@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:background="@color/gray"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        style="@style/text_large_black"
+        android:layout_gravity="center_horizontal"
+        android:drawableLeft="@mipmap/icon_login"
+        android:drawablePadding="@dimen/padding_huge"
+        android:layout_marginBottom="50dp"
+        android:text="欢迎来到RTU运维云"/>
+
+    <EditText
+        android:layout_marginTop="30dp"
+        android:layout_margin="@dimen/padding_large"
+        android:hint="输入手机号"
+        style="@style/edit_text_bg"/>
+
+    <EditText
+        android:layout_margin="@dimen/padding_large"
+        android:hint="输入密码"
+        style="@style/edit_text_bg"/>
+
+    <Button
+        style="@style/btn_blue_middle"
+        android:layout_margin="@dimen/padding_large"
+        android:text="登录"/>
+
+</LinearLayout>
