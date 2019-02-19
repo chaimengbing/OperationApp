@@ -897,6 +897,21 @@
         <item name="android:background">@drawable/edit_item_text_bg</item>
     </style>
 
+    <style name="edit_login_text_bg" parent="Theme.AppCompat.Light">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginBottom">12dp</item>
+        <item name="colorControlNormal">@color/gray</item>
+        <item name="colorControlActivated">@color/blue</item>
+    </style>
+
     <style name="edit_item_tv" parent="edit_item">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

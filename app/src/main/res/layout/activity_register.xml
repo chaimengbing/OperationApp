@@ -25,12 +25,24 @@
 
         <EditText
             style="@style/edit_login_text_bg"
-            android:hint="@string/input_password" />
+            android:hint="@string/set_password" />
+
+        <EditText
+            style="@style/edit_login_text_bg"
+            android:hint="@string/cofirm_password" />
+
+        <TextView
+            style="@style/text_middle"
+            android:layout_marginLeft="30dp"
+            android:text="身份信息描述"
+            android:textColor="@color/gray" />
+
+        <EditText style="@style/edit_login_text_bg" />
 
         <Button
             style="@style/btn_blue_middle"
             android:layout_margin="@dimen/padding_large"
-            android:text="@string/login" />
+            android:text="@string/register" />
 
     </LinearLayout>
 
