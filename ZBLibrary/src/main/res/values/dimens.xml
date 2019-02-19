@@ -20,6 +20,12 @@
     <dimen name="padding_middle">6dp</dimen>
     <dimen name="padding_small">4dp</dimen>
     <dimen name="padding_micro">2dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+
+    <dimen name="padding_16">16dp</dimen>
+    <dimen name="padding_3">3dp</dimen>
+    <dimen name="padding_14">14dp</dimen>
+    <dimen name="main_radius">10dp</dimen>
 
     <!-- padding>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 
@@ -118,5 +124,6 @@
 
     <dimen name="grid_picker_content_height">300dp</dimen>
     <dimen name="radius">3dp</dimen>
+
 
 </resources>

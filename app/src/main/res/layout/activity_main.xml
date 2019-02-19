@@ -1,18 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    style="@style/activity_page">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout style="@style/ll_vertical_match_match">
 
-</android.support.constraint.ConstraintLayout>
+        <RelativeLayout style="@style/main_topbar_bg">
+
+
+            <TextView
+                style="@style/topbar_title"
+                android:layout_centerHorizontal="true"
+                android:text="主菜单" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/edit_gray" />
+        </RelativeLayout>
+        <ImageView
+            style="@style/main_bg"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_main_bg" />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/main_1"
+            style="@style/main_bg"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="#6ccabc"
+            app:cardCornerRadius="@dimen/main_radius">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="109dp">
+
+                <ImageView
+                    style="@style/icon_main"
+                    android:src="@mipmap/main_1" />
+
+                <TextView
+                    style="@style/text_middle_white_main"
+                    android:text="运维云" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/main_2"
+                style="@style/main_bg_left"
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="#a5a0ed"
+                app:cardCornerRadius="@dimen/main_radius">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp">
+
+                    <ImageView
+                        style="@style/icon_main"
+                        android:src="@mipmap/main_2" />
+
+                    <TextView
+                        style="@style/text_middle_white_main"
+                        android:text="YR-4000" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/main_3"
+                style="@style/main_bg_right"
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="#67bdee"
+                app:cardCornerRadius="@dimen/main_radius">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp">
+
+                    <ImageView
+                        style="@style/icon_main"
+                        android:src="@mipmap/main_3" />
+
+                    <TextView
+                        style="@style/text_middle_white_main"
+                        android:text="RTU清单" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/main_4"
+                    style="@style/main_bg_left"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="#e7b0e1"
+                    app:cardCornerRadius="@dimen/main_radius">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="146dp">
+
+                        <ImageView
+                            style="@style/icon_main"
+                            android:src="@mipmap/main_4" />
+
+                        <TextView
+                            style="@style/text_middle_white_main"
+                            android:text="消息" />
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/main_5"
+                    style="@style/main_bg_right"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="#7c8ff4"
+                    app:cardCornerRadius="@dimen/main_radius">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp">
+
+                        <ImageView
+                            style="@style/icon_main"
+                            android:src="@mipmap/main_6" />
+
+                        <TextView
+                            style="@style/text_middle_white_main"
+                            android:text="YR-4000" />
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/main_6"
+                    style="@style/main_bg_right"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="#78a3f0"
+                    app:cardCornerRadius="@dimen/main_radius">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp">
+
+                        <ImageView
+                            style="@style/icon_main"
+                            android:src="@mipmap/main_7" />
+
+                        <TextView
+                            style="@style/text_middle_white_main"
+                            android:text="RTU清单" />
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
