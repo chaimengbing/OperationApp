@@ -38,6 +38,7 @@
         <EditText style="@style/edit_login_text_bg" />
 
         <Button
+            android:id="@+id/register"
             style="@style/btn_blue_middle"
             android:layout_margin="@dimen/padding_large"
             android:text="@string/register" />

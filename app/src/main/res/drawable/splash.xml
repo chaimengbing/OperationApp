@@ -7,7 +7,7 @@
         <!-- 图片 -->
         <bitmap
             android:gravity="center"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/img_splash" />
     </item>
     
     
