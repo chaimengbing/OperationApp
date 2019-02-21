@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Channel_1_connection_mode"
+                android:textColor="@color/black"/>
+
+            <RadioGroup
+                android:id="@+id/channel_group_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/tcp_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_bg"
+                    android:text="TCP"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/udp_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:button="@drawable/radio_bg"
+                    android:checked="false"
+                    android:text="UDP"
+                    android:textColor="@color/black"/>
+
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Channel_2_connection_mode"
+                android:textColor="@color/black"/>
+
+            <RadioGroup
+                android:id="@+id/channel_group_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/tcp_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_bg"
+                    android:text="TCP"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/udp_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:button="@drawable/radio_bg"
+                    android:checked="false"
+                    android:text="UDP"
+                    android:textColor="@color/black"/>
+
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Channel_3_connection_mode"
+                android:textColor="@color/black"/>
+
+            <RadioGroup
+                android:id="@+id/channel_group_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/tcp_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_bg"
+                    android:text="TCP"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/udp_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:button="@drawable/radio_bg"
+                    android:checked="false"
+                    android:text="UDP"
+                    android:textColor="@color/black"/>
+
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Channel_4_connection_mode"
+                android:textColor="@color/black"/>
+
+            <RadioGroup
+                android:id="@+id/channel_group_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/tcp_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_bg"
+                    android:text="TCP"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/udp_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:button="@drawable/radio_bg"
+                    android:checked="false"
+                    android:text="UDP"
+                    android:textColor="@color/black"/>
+
+            </RadioGroup>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/junction_center_1"
+            android:textColor="@color/black" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="@dimen/x80"
+                android:layout_height="wrap_content"
+                android:text="@string/ip_"
+                android:gravity="right"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/ip_1_edittext"
+                android:layout_width="@dimen/x400"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:padding="5dp"
+                android:background="@drawable/bg_edittext" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/x15"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="wrap_content"
+                    android:text="@string/port"
+                    android:gravity="right"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/port_1_edittext"
+                    android:layout_width="@dimen/x400"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:padding="5dp"
+                    android:maxLines="2"
+                    android:background="@drawable/bg_edittext"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/gprs_1_button"
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="@dimen/x60"
+                    android:text="@string/setting"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x20"
+            android:text="@string/junction_center_2"
+            android:textColor="@color/black" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="@dimen/x80"
+                android:layout_height="wrap_content"
+                android:text="@string/ip_"
+                android:gravity="right"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/ip_2_edittext"
+                android:layout_width="@dimen/x400"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:padding="5dp"
+                android:background="@drawable/bg_edittext" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/x15"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="wrap_content"
+                    android:text="@string/port"
+                    android:gravity="right"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/port_2_edittext"
+                    android:layout_width="@dimen/x400"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:padding="5dp"
+                    android:maxLines="2"
+                    android:background="@drawable/bg_edittext"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/gprs_2_button"
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="@dimen/x60"
+                    android:text="@string/setting"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x20"
+            android:text="@string/junction_center_3"
+            android:textColor="@color/black" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="@dimen/x80"
+                android:layout_height="wrap_content"
+                android:text="@string/ip_"
+                android:gravity="right"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/ip_3_edittext"
+                android:layout_width="@dimen/x400"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:padding="5dp"
+                android:background="@drawable/bg_edittext" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/x15"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="wrap_content"
+                    android:text="@string/port"
+                    android:gravity="right"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/port_3_edittext"
+                    android:layout_width="@dimen/x400"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:padding="5dp"
+                    android:maxLines="2"
+                    android:background="@drawable/bg_edittext"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/gprs_3_button"
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="@dimen/x60"
+                    android:text="@string/setting"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</ScrollView>

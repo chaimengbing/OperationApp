@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/device_id"
+                android:textColor="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
+
+                <EditText
+                    android:id="@+id/device_id1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_edittext"
+                    android:inputType="number"
+                    android:padding="5dp"
+                    android:textColor="@color/black"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="2">
+
+                    <Button
+                        android:id="@+id/device_id_setting_button1"
+                        android:layout_width="@dimen/x80"
+                        android:layout_height="@dimen/x60"
+                        android:background="@drawable/bg_button"
+                        android:text="@string/setting"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/center_4_channel1"
+                android:textColor="@color/black"/>
+
+            <RadioGroup
+                android:id="@+id/center_radiogroup_4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/no_use_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_bg"
+                    android:text="@string/no_use"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/gprs_radiobutton_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:button="@drawable/radio_bg"
+                    android:checked="false"
+                    android:text="@string/gprs"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/gprs_gsm_radiobutton_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:button="@drawable/radio_bg"
+                    android:checked="false"
+                    android:text="@string/gprs_gsm"
+                    android:textColor="@color/black"/>
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/recenter_4_channel1"
+                android:textColor="@color/black"/>
+
+            <RadioGroup
+                android:id="@+id/reserve_radiogroup_4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/no_use_sencond_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_bg"
+                    android:text="@string/no_use"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/sms_radiobutton_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:button="@drawable/radio_bg"
+                    android:checked="false"
+                    android:text="@string/sms"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/beidou_radiobutton_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:button="@drawable/radio_bg"
+                    android:checked="false"
+                    android:text="@string/beidou"
+                    android:textColor="@color/black"/>
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Channel_4_connection_mode"
+                android:textColor="@color/black"/>
+
+            <RadioGroup
+                android:id="@+id/channel_group_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/tcp_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_bg"
+                    android:text="TCP"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/udp_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:button="@drawable/radio_bg"
+                    android:checked="false"
+                    android:text="UDP"
+                    android:textColor="@color/black"/>
+
+            </RadioGroup>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Cloud_mode"
+                android:textColor="@color/black"/>
+
+            <RadioGroup
+                android:id="@+id/timing_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/timing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_bg"
+                    android:text="@string/School_time"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/no_timing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:button="@drawable/radio_bg"
+                    android:checked="false"
+                    android:text="@string/Not_school"
+                    android:textColor="@color/black"/>
+
+            </RadioGroup>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Cloud_Feature_Mode"
+                android:textColor="@color/black"/>
+
+            <RadioGroup
+                android:id="@+id/upload_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/upload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_bg"
+                    android:text="@string/Upload"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/no_upload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:button="@drawable/radio_bg"
+                    android:checked="false"
+                    android:text="@string/Do_upload"
+                    android:textColor="@color/black"/>
+
+            </RadioGroup>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x20"
+            android:text="@string/junction_center_4"
+            android:textColor="@color/black" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="@dimen/x80"
+                android:layout_height="wrap_content"
+                android:text="@string/ip_"
+                android:gravity="right"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/ip_4_edittext"
+                android:layout_width="@dimen/x400"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:padding="5dp"
+                android:background="@drawable/bg_edittext" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/x15"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="wrap_content"
+                    android:text="@string/port"
+                    android:gravity="right"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/port_4_edittext"
+                    android:layout_width="@dimen/x400"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:padding="5dp"
+                    android:maxLines="2"
+                    android:background="@drawable/bg_edittext"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/gprs_4_button"
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="@dimen/x60"
+                    android:text="@string/setting"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

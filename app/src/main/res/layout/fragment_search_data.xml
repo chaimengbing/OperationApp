@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="@dimen/x500"
+        android:layout_height="wrap_content"
+        android:text="@string/Starting_time"
+        android:textColor="@color/black"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/begin_time_textview"
+        android:layout_width="@dimen/x500"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner_bg"
+        android:lineSpacingExtra="5dp"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="@dimen/x500"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x20"
+        android:text="@string/End_Time"
+        android:textColor="@color/black"
+        android:textSize="14sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/finish_time_textview"
+            android:layout_width="@dimen/x500"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_bg"
+            android:lineSpacingExtra="5dp"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="@dimen/x120"
+            android:layout_height="@dimen/x60"
+            android:layout_marginLeft="@dimen/x30"
+            android:background="@drawable/bg_button"
+            android:text="@string/Inquire"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/read_history_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x40"
+        android:lineSpacingExtra="5dp"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"/>
+
+
+</LinearLayout>

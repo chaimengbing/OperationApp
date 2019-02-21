@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 0-降水站 1-河道站 2-水库站 3-闸坝站 4-泵站 5-墒情站 6-地下 -->
+    <string-array name="site_type">
+        <item>降水站</item>
+        <item>河道站 </item>
+        <item>水库站</item>
+        <item>闸坝站</item>
+        <item>泵站</item>
+        <item>墒情站</item>
+        <item>地下水站</item>
+        <item>取水口站</item>
+        <item>排水口站</item>
+        <item>500吨/日以上</item>
+        <item>100~500吨/日</item>
+        <item>100吨/日以下</item>
+    </string-array>
+    <string-array name="sensor_type">
+        <item>MPM4780</item>
+        <item>WRU1902 </item>
+        <item>WYS-III</item>
+        <item>DS1300</item>
+        <item>MPM4700</item>
+        <item>MK18+AP701</item>
+        <item>HSWH</item>
+        <item>BRYL 压力水位计</item>
+        <item>BR700 电子水尺</item>
+        <item>天津普瑞四方自定义</item>
+        <item>北瑞BRC100超声波</item>
+    </string-array>
+    <string-array name="lru_num">
+        <item>阀门1</item>
+        <item>阀门2</item>
+        <item>阀门3</item>
+        <item>阀门4</item>
+        <item>阀门5</item>
+        <item>阀门6</item>
+        <item>阀门7</item>
+    </string-array>
+
+    <string-array name="ground_collect_time">
+        <item>10分钟</item>
+        <item>1小时</item>
+        <item>2小时</item>
+        <item>4小时</item>
+        <item>5分钟</item>
+    </string-array>
+
+    <string-array name="comm_rtu_time">
+        <item>5分钟</item>
+        <item>10分钟</item>
+        <item>30分钟</item>
+        <item>1小时</item>
+        <item>2小时</item>
+        <item>4小时</item>
+    </string-array>
+    <!-- 0-低功耗  1-永在线 -->
+    <string-array name="operation_status">
+        <item>低功耗</item>
+        <item>用在线 </item>
+    </string-array>
+
+    <string-array name="customer_select">
+        <item>威控科技</item>
+    </string-array>
+
+    <string-array name="tf_time">
+        <item>5s</item>
+        <item>10s</item>
+    </string-array>
+
+    <string-array name="tf_time2">
+        <item>5s</item>
+        <item>10s</item>
+        <item>15s</item>
+        <item>20s</item>
+        <item>25s</item>
+        <item>30s</item>
+    </string-array>
+
+    <string-array name="ip_config">
+        <item>DHCP</item>
+        <item>静态IP</item>
+    </string-array>
+    <string-array name="time_interval">
+        <item>1分钟</item>
+        <item>2分钟</item>
+        <item>5分钟</item>
+        <item>10分钟 </item>
+        <item>15分钟 </item>
+        <item>30分钟 </item>
+        <item>1小时 </item>
+        <item>2小时 </item>
+        <item>3小时 </item>
+        <item>4小时 </item>
+        <item>6小时 </item>
+        <item>8小时 </item>
+        <item>12小时 </item>
+        <item>24小时 </item>
+    </string-array>
+
+    <string-array name="pictime_interval">
+        <item>5分钟</item>
+        <item>10分钟 </item>
+        <item>15分钟 </item>
+        <item>30分钟 </item>
+        <item>1小时 </item>
+        <item>2小时 </item>
+        <item>3小时 </item>
+        <item>4小时 </item>
+        <item>6小时 </item>
+        <item>8小时 </item>
+        <item>12小时 </item>
+        <item>24小时 </item>
+    </string-array>
+
+    <string-array name="frames_interval">
+        <item>15fps </item>
+        <item>20fps </item>
+        <item>30fps </item>
+    </string-array>
+
+    <string-array name="comm_type">
+        <item>无</item>
+        <item>水文</item>
+        <item>协议1</item>
+        <item>协议2</item>
+        <item>协议3</item>
+        <item>协议4</item>
+        <item>协议5</item>
+        <item>协议6</item>
+        <item>协议7</item>
+        <item>协议8</item>
+        <item>协议9</item>
+        <item>协议10</item>
+        <item>协议11</item>
+        <item>协议12</item>
+        <item>协议13</item>
+        <item>协议14</item>
+        <item>协议15</item>
+        <item>协议16</item>
+        <item>协议17</item>
+        <item>协议18</item>
+        <item>协议19</item>
+        <item>协议20</item>
+    </string-array>
+    <string-array name="water_soil_type">
+        <item>无</item>
+        <item>10cm</item>
+        <item>20cm</item>
+        <item>30cm</item>
+        <item>40cm </item>
+        <item>50cm </item>
+        <item>60cm </item>
+        <item>80cm </item>
+        <item>100cm</item>
+    </string-array>
+
+    <string-array name="ratio_array">
+        <item>320*240</item>
+        <item>640*480</item>
+        <item>800*600</item>
+        <item>1024*768</item>
+        <item>1280*960</item>
+        <item>1600*1200</item>
+        <item>2048*1536</item>
+        <item>2592*1944</item>
+        <item>3264*2448</item>
+        <item>无</item>
+    </string-array>
+
+
+    <string-array name="call_test">
+        <item>召测</item>
+        <item>不召测</item>
+    </string-array>
+    <string-array name="channel_main">
+        <item>禁用</item>
+        <item>GPRS</item>
+        <item>GPRS+GSM</item>
+    </string-array>
+    <string-array name="channel_sencond">
+        <item>禁用</item>
+        <item>短信</item>
+        <item>北斗</item>
+    </string-array>
+    <string-array name="water_select">
+        <item>0-5V</item>
+        <item>0-10V</item>
+        <item>0-20V</item>
+        <item>4-20mA</item>
+    </string-array>
+    <string-array name="water_select_485">
+        <item>亿力能</item>
+        <item>麦克</item>
+        <item>古大</item>
+        <item>伟思</item>
+        <item>大连海峰</item>
+        <item>慧博</item>
+        <item>帅克</item>
+        <item>太原尚水</item>
+        <item>亿力能压力式</item>
+        <item>格乐普分体式</item>
+        <item>格乐普雷达式</item>
+        <item>海川博通</item>
+        <item>南水</item>
+        <item>麦克4780</item>
+        <item>基康</item>
+        <item>OTT</item>
+        <item>沈阳乾峰</item>
+        <item>yc-cz水尺</item>
+        <item>重庆兆州</item>
+        <item>伟思浮子4800</item>
+        <item>太原理工</item>
+        <item>气泡水位计</item>
+        <item>京波</item>
+        <item>股德</item>
+        <item>伟思WYZ-80</item>
+        <item>太原水位计</item>
+        <item>BRYL压力水位计</item>
+        <item>鹰格雷达</item>
+        <item>亿立能压力MODBUS</item>
+        <item>WLZ型雷达</item>
+        <item>HR8000</item>
+        <item>恒瑞-压力式水位</item>
+        <item>兆州-MH-CTIR超声波物位变送器</item>
+        <item>北瑞_BRC100超声波水位计</item>
+    </string-array>
+
+    <string-array name="flow_485">
+        <item>大连海峰</item>
+        <item>大连明锐</item>
+        <item>唐山汇中</item>
+        <item>唐山美伦</item>
+        <item>连利水表</item>
+        <item>迪纳声流量计</item>
+        <item>山东潍微远传水表</item>
+        <item>金水中科</item>
+        <item>格乐普超声波明渠流量计</item>
+        <item>上海肯特</item>
+        <item>SOMMER</item>
+        <item>VADCP</item>
+    </string-array>
+
+    <string-array name="weir_code_number">
+        <item>1号槽</item>
+        <item>2号槽</item>
+        <item>3号槽</item>
+        <item>4号槽</item>
+        <item>5号槽</item>
+        <item>6号槽</item>
+        <item>7号槽</item>
+        <item>8号槽</item>
+        <item>9号槽</item>
+        <item>10号槽</item>
+        <item>11号槽</item>
+        <item>12号槽</item>
+        <item>13号槽</item>
+        <item>14号槽</item>
+        <item>15号槽</item>
+        <item>16号槽</item>
+        <item>17号槽</item>
+        <item>18号槽</item>
+        <item>19号槽</item>
+        <item>20号槽</item>
+        <item>21号槽</item>
+    </string-array>
+
+    <string-array name="flow_485_new">
+        <item>大连海峰</item>
+        <item>大连明锐</item>
+        <item>唐山汇中</item>
+        <item>唐山美伦</item>
+        <item>连利水表</item>
+        <item>迪纳声流量计</item>
+        <item>山东潍微远传水表</item>
+        <item>金水中科</item>
+        <item>格乐普超声波明渠流量计</item>
+        <item>上海肯特</item>
+        <item>SOMMER</item>
+        <item>航证</item>
+        <item>大连道盛</item>
+        <item>麦克</item>
+        <item>迪纳声超声波</item>
+        <item>真诺wph </item>
+        <item>京源水表</item>
+        <item>开封开流L-MAG</item>
+        <item>陕西悦星</item>
+        <item>麦克MBMAG</item>
+        <item>迈时永信流速计</item>
+        <item>大连罗孚</item>
+        <item>E+H</item>
+        <item>海川博通</item>
+        <item>伟思多普勒</item>
+        <item>开封威力</item>
+        <item>开封中至</item>
+        <item>斯德克</item>
+        <item>拓峰EMF89</item>
+        <item>麦克MFS-MQ6802</item>
+        <item>开封百特</item>
+        <item>广州顺仪</item>
+        <item>开封开流LDM</item>
+        <item>新天科技FS</item>
+    </string-array>
+
+    <string-array name="Pressure_manufacturers">
+        <item>星仪</item>
+        <item>昆仑中大</item>
+    </string-array>
+    <string-array name="Water_quality">
+        <item>天健创新一体机</item>
+        <item>天健创新</item>
+    </string-array>
+
+    <string-array name="ammeter">
+        <item>DLT645-1997</item>
+        <item>EDA9033A</item>
+        <item>DLT645-2007</item>
+    </string-array>
+
+    <string-array name="weather_param">
+        <item>FWS600气象站</item>
+    </string-array>
+
+    <string-array name="apn">
+        <item>cmnet</item>
+        <item>3gnet</item>
+        <item>ctnet</item>
+    </string-array>
+
+    <string-array name="Work_status">
+        <item>自报工作状态</item>
+        <item>自报确认工作状态</item>
+        <item>查询应答工作状态</item>
+        <item>调试状态</item>
+    </string-array>
+    
+    <string-array name="ay_element">
+        <item>无</item>
+        <item>水位</item>
+        <item>闸位</item>
+        <item>压力</item>
+        <item>浊度</item>
+        <item>余氯</item>
+        <item>墒情</item>
+    </string-array>
+
+</resources>

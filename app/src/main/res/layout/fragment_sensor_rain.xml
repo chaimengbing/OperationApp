@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/ra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ombrometer_type"
+            android:textColor="@color/black" />
+
+        <RadioGroup
+            android:id="@+id/rain_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/rain_type_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_bg"
+                android:text="@string/Tipping_bucket_type"
+                android:textColor="@color/black" />
+
+            <RadioButton
+                android:id="@+id/rain_type_button_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_bg"
+                android:checked="false"
+                android:layout_marginLeft="@dimen/x20"
+                android:text="SEBA"
+                android:textColor="@color/black" />
+
+            <RadioButton
+                android:id="@+id/rain_type_button_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_bg"
+                android:checked="false"
+                android:layout_marginLeft="@dimen/x20"
+                android:text="OTT"
+                android:textColor="@color/black" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ra1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/ra"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rain_dip_power"
+            android:textColor="@color/black" />
+
+        <RadioGroup
+            android:id="@+id/rain_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/rain_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_bg"
+                android:text="@string/rain_1mm"
+                android:textColor="@color/black" />
+
+            <RadioButton
+                android:id="@+id/rain_button_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_bg"
+                android:checked="false"
+                android:layout_marginLeft="@dimen/x20"
+                android:text="@string/rain_0_5mm"
+                android:textColor="@color/black" />
+
+            <RadioButton
+                android:id="@+id/rain_button_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_bg"
+                android:checked="false"
+                android:layout_marginLeft="@dimen/x20"
+                android:text="@string/rain_0_2mm"
+                android:textColor="@color/black" />
+
+            <RadioButton
+                android:id="@+id/rain_button_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_bg"
+                android:layout_marginLeft="@dimen/x20"
+                android:checked="false"
+                android:text="0.1mm"
+                android:textColor="@color/black" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ra2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@id/ra1"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rain_add_value"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/values_edittext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.8"
+                android:background="@drawable/bg_edittext"
+                android:hint="@string/limit_1_99"
+                android:inputType="number"
+                android:maxLines="2"
+                android:padding="5dp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.3"
+                android:text="@string/Bucket"
+                android:textColor="@color/black" />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:layout_below="@id/ra2">
+
+                <Button
+                    android:id="@+id/rainset_button"
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="@dimen/x60"
+                    android:background="@drawable/bg_button"
+                    android:text="@string/setting" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

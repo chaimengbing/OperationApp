@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:layout_marginTop="13dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="APN"
+                android:textColor="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/apn_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.4"
+                    android:background="@drawable/bg_edittext"
+                    android:maxLength="50"
+                    android:maxLines="2"
+                    android:padding="5dp"
+                    android:textColor="@color/black"/>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="0.6">
+
+                    <Button
+                        android:id="@+id/apn_set_button"
+                        android:layout_width="@dimen/x80"
+                        android:layout_height="@dimen/x60"
+                        android:background="@drawable/bg_button"
+                        android:text="@string/setting"
+                        android:textColor="@color/black"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:layout_marginTop="13dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Lora_channel"
+                android:textColor="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/Lora_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.4"
+                    android:background="@drawable/bg_edittext"
+                    android:maxLength="50"
+                    android:maxLines="2"
+                    android:padding="5dp"
+                    android:inputType="number"
+                    android:textColor="@color/black"/>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="0.6">
+
+                    <Button
+                        android:id="@+id/Lora_set_button"
+                        android:layout_width="@dimen/x80"
+                        android:layout_height="@dimen/x60"
+                        android:background="@drawable/bg_button"
+                        android:text="@string/setting"
+                        android:textColor="@color/black"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TCP_channel_1"
+            android:textColor="@color/black"
+            android:padding="5dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="@dimen/x80"
+                android:layout_height="wrap_content"
+                android:text="@string/ip_"
+                android:gravity="right"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/ip_1_edittext"
+                android:layout_width="@dimen/x400"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:padding="5dp"
+                android:background="@drawable/bg_edittext" />
+            <Button
+                android:id="@+id/tcp_1_button"
+                android:layout_width="@dimen/x80"
+                android:layout_height="@dimen/x60"
+                android:text="@string/setting"
+                android:layout_marginLeft="@dimen/x40"
+                android:background="@drawable/bg_button"
+                android:textColor="@color/black" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/x15"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="wrap_content"
+                    android:text="@string/port"
+                    android:gravity="right"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/port_1_edittext"
+                    android:layout_width="@dimen/x400"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:padding="5dp"
+                    android:maxLines="2"
+                    android:background="@drawable/bg_edittext"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/gprs_1_button"
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="@dimen/x60"
+                    android:text="@string/setting"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x20"
+            android:text="@string/TCP_channel_2"
+            android:textColor="@color/black"
+            android:padding="5dp"
+            android:visibility="gone"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="@dimen/x80"
+                android:layout_height="wrap_content"
+                android:text="@string/ip_"
+                android:gravity="right"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/ip_2_edittext"
+                android:layout_width="@dimen/x400"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:padding="5dp"
+                android:background="@drawable/bg_edittext" />
+            <Button
+                android:id="@+id/tcp_2_button"
+                android:layout_width="@dimen/x80"
+                android:layout_height="@dimen/x60"
+                android:text="@string/setting"
+                android:layout_marginLeft="@dimen/x40"
+                android:background="@drawable/bg_button"
+                android:textColor="@color/black" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/x15"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="wrap_content"
+                    android:text="@string/port"
+                    android:gravity="right"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/port_2_edittext"
+                    android:layout_width="@dimen/x400"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:padding="5dp"
+                    android:maxLines="2"
+                    android:background="@drawable/bg_edittext"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/gprs_2_button"
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="@dimen/x60"
+                    android:text="@string/setting"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x20"
+            android:text="@string/TCP_channel_3"
+            android:textColor="@color/black"
+            android:padding="5dp"
+            android:visibility="gone"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="@dimen/x80"
+                android:layout_height="wrap_content"
+                android:text="@string/ip_"
+                android:gravity="right"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/ip_3_edittext"
+                android:layout_width="@dimen/x400"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:padding="5dp"
+                android:background="@drawable/bg_edittext" />
+            <Button
+                android:id="@+id/tcp_3_button"
+                android:layout_width="@dimen/x80"
+                android:layout_height="@dimen/x60"
+                android:text="@string/setting"
+                android:layout_marginLeft="@dimen/x40"
+                android:background="@drawable/bg_button"
+                android:textColor="@color/black" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/x15"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="wrap_content"
+                    android:text="@string/port"
+                    android:gravity="right"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/port_3_edittext"
+                    android:layout_width="@dimen/x400"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:padding="5dp"
+                    android:maxLines="2"
+                    android:background="@drawable/bg_edittext"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/gprs_3_button"
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="@dimen/x60"
+                    android:text="@string/setting"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x20"
+            android:text="@string/TCP_channel_4"
+            android:textColor="@color/black"
+            android:padding="5dp"
+            android:visibility="gone"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="@dimen/x80"
+                android:layout_height="wrap_content"
+                android:text="@string/ip_"
+                android:gravity="right"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/ip_4_edittext"
+                android:layout_width="@dimen/x400"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:textColor="@color/black"/>
+
+            <Button
+                android:id="@+id/tcp_4_button"
+                android:layout_width="@dimen/x80"
+                android:layout_height="@dimen/x60"
+                android:text="@string/setting"
+                android:layout_marginLeft="@dimen/x40"
+                android:background="@drawable/bg_button"
+                android:textColor="@color/black" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/x15"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="wrap_content"
+                    android:text="@string/port"
+                    android:gravity="right"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/port_4_edittext"
+                    android:layout_width="@dimen/x400"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:padding="5dp"
+                    android:maxLines="2"
+                    android:background="@drawable/bg_edittext"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/gprs_4_button"
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="@dimen/x60"
+                    android:text="@string/setting"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rtu_time"
+                android:textColor="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:id="@+id/rtu_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/spinner_bg"
+                    android:textColor="@color/black"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="3">
+
+                    <Button
+                        android:id="@+id/time_button"
+                        android:layout_width="@dimen/x80"
+                        android:layout_height="@dimen/x60"
+                        android:background="@drawable/bg_button"
+                        android:text="@string/setting"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/reset_factory"
+                    android:layout_width="@dimen/x280"
+                    android:layout_height="@dimen/x80"
+                    android:background="@drawable/bg_button"
+                    android:text="@string/restart"
+                    android:textColor="@color/black"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/save_and_reset"
+                    android:layout_width="@dimen/x280"
+                    android:layout_height="@dimen/x80"
+                    android:background="@drawable/bg_button"
+                    android:text="@string/save_and_restart"
+                    android:textColor="@color/black"/>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

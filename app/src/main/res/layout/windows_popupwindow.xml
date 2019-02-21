@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="#FFFFFF"
+              android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="#e6e6e6"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="#F5F5F5"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <ListView
+            android:id="@+id/set_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F5F5F5"
+            android:divider="#e6e6e6"
+            android:dividerHeight="1dip"
+            android:listSelector="@color/white"
+            android:scrollbars="none"
+            android:visibility="visible">
+        </ListView>
+
+        <LinearLayout
+            android:id="@+id/sensor_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            >
+
+            <TextView
+                android:id="@+id/sensor_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:drawableLeft="@drawable/back2"
+                android:text="@string/sensor_setting"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#e6e6e6"/>
+
+            <ListView
+                android:id="@+id/set_to_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#F5F5F5"
+                android:divider="#e6e6e6"
+                android:dividerHeight="1dip"
+                android:listSelector="@color/white"
+                android:scrollbars="none">
+            </ListView>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

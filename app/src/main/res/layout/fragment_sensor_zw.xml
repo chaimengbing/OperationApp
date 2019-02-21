@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/zw1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/zha_add_value"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/zha_add_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.8"
+                android:background="@drawable/bg_edittext"
+                android:hint="@string/limit_0_99_99"
+                android:inputType="numberDecimal"
+                android:maxLines="2"
+                android:padding="5dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.3"
+                android:text="@string/m"
+                android:textColor="@color/black"/>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.8">
+
+                <Button
+                    android:id="@+id/zha_add_value_button"
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="@dimen/x60"
+                    android:background="@drawable/bg_button"
+                    android:text="@string/setting"
+                    android:textColor="@color/black"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/zw2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/zw1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/model_zha_range"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/model_zha_range"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.8"
+                android:background="@drawable/bg_edittext"
+                android:hint="0-9.99"
+                android:inputType="numberDecimal"
+                android:maxLines="2"
+                android:padding="5dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.3"
+                android:text="@string/m"
+                android:textColor="@color/black"/>
+
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.8">
+
+                <Button
+                    android:id="@+id/model_zha_range_button"
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="@dimen/x60"
+                    android:background="@drawable/bg_button"
+                    android:text="@string/setting"
+                    android:textColor="@color/black"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/zw3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/zw2"
+        android:layout_marginTop="10dp"
+        android:gravity="center|center_vertical"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/zha_plan_type"
+            android:textColor="@color/black"/>
+
+        <RadioGroup
+            android:id="@+id/zha_plan_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/zha_plan_type_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_bg"
+                android:text="@string/zha_plan_type_1"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/zha_plan_type_button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:button="@drawable/radio_bg"
+                android:checked="false"
+                android:text="@string/zha_plan_type_2"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/zha_plan_type_button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:button="@drawable/radio_bg"
+                android:checked="false"
+                android:text="@string/no"
+                android:textColor="@color/black"/>
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/zw4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/zw3"
+        android:layout_marginTop="10dp"
+        android:gravity="center|center_vertical"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/model_zha_type"
+            android:textColor="@color/black"/>
+
+        <RadioGroup
+            android:id="@+id/model_zha_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <RadioButton
+                android:id="@+id/model_zha_type_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_bg"
+                android:text="@string/model_zha_type_1"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/model_zha_type_button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:button="@drawable/radio_bg"
+                android:checked="false"
+                android:text="@string/model_zha_type_2"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/model_zha_type_button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:button="@drawable/radio_bg"
+                android:checked="false"
+                android:text="@string/model_zha_type_3"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/model_zha_type_button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:button="@drawable/radio_bg"
+                android:checked="false"
+                android:text="@string/model_zha_type_4"
+                android:textColor="@color/black"/>
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/zw5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/zw4"
+        android:layout_marginTop="10dp"
+        android:gravity="center|center_vertical"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/zha_plan_485"
+            android:textColor="@color/black"/>
+
+        <RadioGroup
+            android:id="@+id/zha_plan_485"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/zha_plan_485_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_bg"
+                android:text="@string/zha_plan_485_1"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/zha_plan_485_button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:button="@drawable/radio_bg"
+                android:checked="false"
+                android:text="@string/zha_plan_485_2"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/zha_plan_485_button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:button="@drawable/radio_bg"
+                android:checked="false"
+                android:text="@string/zha_plan_485_3"
+                android:textColor="@color/black"/>
+        </RadioGroup>
+    </LinearLayout>
+
+</RelativeLayout>

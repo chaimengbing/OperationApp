@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x30"
+            android:layout_marginTop="@dimen/x30"
+            android:orientation="horizontal"
+            android:padding="@dimen/x10">
+
+            <TextView
+                android:id="@+id/vcm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="@string/RTU_Version"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/rtu_ver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+
+
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divier"
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_below="@id/ll_layout"
+            android:background="@color/pop_divier"/>
+
+        <TextView
+            android:id="@+id/app_ver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x30"
+            android:layout_marginTop="@dimen/x30"
+            android:gravity="left"
+            android:padding="@dimen/x10"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
+
+        <View
+            android:id="@+id/divier1"
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_below="@id/ll_layout"
+            android:background="@color/pop_divier"/>
+
+        <RelativeLayout
+            android:id="@+id/package_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/x30"
+            android:layout_marginTop="@dimen/x30"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/download_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x30"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
+
+
+            <TextView
+                android:id="@+id/sum_data_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/x30"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
+            <Button
+                android:id="@+id/update_rtu_button"
+                android:layout_width="@dimen/x80"
+                android:layout_height="@dimen/x50"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bg_button"
+                android:visibility="gone"
+                android:text="@string/update"
+                android:textColor="@color/black"/>
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/list_title_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x30"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_marginTop="@dimen/x30"
+            android:gravity="left"
+            android:text="@string/Update_file_list"
+            android:textColor="@color/gray"
+            android:textSize="14sp"/>
+
+        <ListView
+            android:id="@+id/update_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/gray"
+            android:listSelector="@color/steelblue">
+
+        </ListView>
+
+        <RelativeLayout
+            android:id="@+id/package_layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/x30"
+            android:layout_marginTop="@dimen/x30"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/download_textview1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x30"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
+
+
+            <TextView
+                android:id="@+id/sum_data_textview1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/x30"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
+            <Button
+                android:id="@+id/touch_import_button"
+                android:layout_width="@dimen/x80"
+                android:layout_height="@dimen/x50"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bg_button"
+                android:visibility="gone"
+                android:text="@string/update"
+                android:textColor="@color/black"/>
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/touch_import_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x30"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_marginTop="@dimen/x30"
+            android:gravity="left"
+            android:text="@string/One_key_configuration"
+            android:textColor="@color/gray"
+            android:textSize="14sp"/>
+
+        <ListView
+            android:id="@+id/touch_import_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/gray"
+            android:listSelector="@color/steelblue">
+
+        </ListView>
+
+    </LinearLayout>
+
+
+</ScrollView>

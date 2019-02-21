@@ -1,0 +1,176 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/activity_page">
+
+    <RelativeLayout
+        android:id="@+id/hh"
+        style="@style/topbar_bg">
+
+        <ImageView
+            android:id="@+id/title_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/main_radius"
+            android:src="@drawable/back2"/>
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/text_middle_white"
+            android:layout_centerInParent="true"
+            android:text="主菜单" />
+
+        <TextView
+            android:id="@+id/title_right"
+            style="@style/text_middle_white"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/main_radius"
+            android:text="主菜单" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/pop_background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="@color/pop_divier" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom_menu_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/ltgray"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/rtu_setting"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/rtu_setting_sel"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/pamars_setting"
+                android:textColor="@color/bottomblack"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="0.8dp"
+                android:layout_height="match_parent"
+                android:background="@color/pop_divier" />
+
+            <TextView
+                android:id="@+id/rtu_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/rtu_search"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/status_search"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="0.8dp"
+                android:layout_height="match_parent"
+                android:background="@color/pop_divier" />
+
+            <TextView
+                android:id="@+id/rtu_version"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/rtu_version"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/rtu_version"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rtu_detail_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_below="@id/hh">
+
+        <LinearLayout
+            android:id="@+id/ll_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x100"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_setting"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x80"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/set_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="@string/system_params_setting"
+                    android:textColor="#4d4d4d"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/icon_default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_default" />
+
+                <TextView
+                    android:id="@+id/sensor_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/system_params_setting"
+                    android:textColor="#4d4d4d"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divier"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:layout_below="@id/ll_layout"
+                android:background="@color/pop_divier" />
+        </LinearLayout>
+
+
+        <FrameLayout
+            android:id="@+id/detail_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/ll_layout"
+            android:layout_marginLeft="@dimen/x40"
+            android:layout_marginTop="@dimen/x20"
+            android:layout_marginBottom="@dimen/x20">
+
+        </FrameLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

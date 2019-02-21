@@ -54,6 +54,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 toActivity(WebViewActivity.createIntent(context, "运维云", "http://www.baidu.com"));
                 break;
             case R.id.main_2:
+                toActivity(new Intent(getApplicationContext(),HomeActivity.class));
                 break;
             case R.id.main_3:
                 break;

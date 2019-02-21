@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.heroan.operation"
-        minSdkVersion 22
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -26,4 +26,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     api project(':ZBLibrary')
+    api project(':blelibrary')
+
+    implementation 'com.github.vilyever:AndroidSocketClient:2.0.1'
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gprs_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:background="@color/transparent"
+    android:orientation="vertical" >
+
+
+        <TextView
+            android:id="@+id/gprs_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="中心站1 GPRS信号信道"
+            android:textColor="@color/black" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="@dimen/x80"
+                android:layout_height="wrap_content"
+                android:text="@string/ip_"
+                android:gravity="right"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/ip_edittext"
+                android:layout_width="@dimen/x400"
+                android:layout_height="wrap_content"
+                 android:textColor="@color/black"
+                android:padding="5dp"
+                android:background="@drawable/bg_edittext" />
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/x15"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="@dimen/x80"
+                android:layout_height="wrap_content"
+                android:text="@string/port"
+                android:gravity="right"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/port_edittext"
+                android:layout_width="@dimen/x400"
+                android:layout_height="wrap_content"
+                 android:textColor="@color/black"
+                android:padding="5dp"
+                 android:maxLines="2"
+                android:background="@drawable/bg_edittext"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/gprs_button"
+                android:layout_width="@dimen/x80"
+                android:layout_height="@dimen/x60"
+                android:text="@string/setting"
+                android:layout_marginLeft="@dimen/x40"
+                android:background="@drawable/bg_button"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

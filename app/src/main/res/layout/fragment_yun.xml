@@ -1,0 +1,1730 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/x60"
+                    android:text="云台状态:"
+                    android:textSize="36px"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:gravity="center"/>
+                <TextView
+                    android:id="@+id/yun_status"
+                    android:layout_width="110dp"
+                    android:layout_height="@dimen/x60"
+                    android:textColor="@color/black"
+                    android:textSize="36px"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"/>
+                <Button
+                    android:id="@+id/start_up"
+                    android:layout_width="@dimen/x150"
+                    android:layout_height="@dimen/x70"
+                    android:background="@drawable/bg_button"
+                    android:text="启动云台"
+                    android:textSize="33px"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="70dp"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_yun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x60"
+                        android:text="云台控制:"
+                        android:textSize="36px"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="15dp"
+                        android:textColor="@color/black"
+                        android:gravity="center"/>
+                    <Button
+                        android:id="@+id/left_arrow"
+                        android:layout_width="@dimen/x100"
+                        android:layout_height="@dimen/x60"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/selector_left"
+                        />
+                    <Button
+                        android:id="@+id/right_arrow"
+                        android:layout_width="@dimen/x100"
+                        android:layout_height="@dimen/x60"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/selector_right"
+                        />
+                    <Button
+                        android:id="@+id/take_photo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x60"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/bg_button"
+                        android:text="拍照"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        style="?android:attr/borderlessButtonStyle"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="主巡测点拍摄方式"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="36px"
+                        android:layout_marginTop="20dp"/>
+
+                    <RadioGroup
+                        android:id="@+id/main_picture"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/main_picture_radiobtton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/radio_bg"
+                            android:text="图片"
+                            android:textSize="36px"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"/>
+
+                        <RadioButton
+                            android:id="@+id/main_video_radiobtton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:button="@drawable/radio_bg"
+                            android:text="图片+视频"
+                            android:textSize="36px"
+                            android:layout_marginTop="15dp"
+                            android:textColor="@color/black"/>
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="辅巡测点拍摄方式"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="36px"
+                        android:layout_marginTop="20dp"/>
+
+                    <RadioGroup
+                        android:id="@+id/auxiliary_picture"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/auxiliary_picture_radiobutton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/radio_bg"
+                            android:text="图片"
+                            android:textSize="36px"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"/>
+
+                        <RadioButton
+                            android:id="@+id/auxiliary_video_radiobutton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:button="@drawable/radio_bg"
+                            android:text="图片+视频"
+                            android:textSize="36px"
+                            android:layout_marginTop="15dp"
+                            android:textColor="@color/black"/>
+                    </RadioGroup>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/main_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="主巡测点配置"
+                        android:textSize="36px"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="10dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/x60"
+                            android:text="主巡测点状态："
+                            android:textColor="@color/black"
+                            android:textSize="33px"
+                            android:gravity="center"
+                            android:layout_marginLeft="22dp"
+                            android:layout_marginTop="5dp"/>
+                        <TextView
+                            android:id="@+id/main_status"
+                            android:layout_width="90dp"
+                            android:layout_height="@dimen/x60"
+                            android:textSize="33px"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            />
+
+                        <Button
+                            android:id="@+id/set_main_button"
+                            android:layout_width="130dp"
+                            android:layout_height="@dimen/x70"
+                            android:text="设置为主巡测点"
+                            android:background="@drawable/bg_button"
+                            android:gravity="center"
+                            android:textSize="33px"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:visibility="visible"/>
+
+                        <Button
+                            android:id="@+id/remove_main_button"
+                            android:layout_width="100dp"
+                            android:layout_height="@dimen/x70"
+                            android:text="删除巡测点"
+                            android:background="@drawable/bg_button"
+                            android:gravity="center"
+                            android:textSize="33px"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:visibility="gone"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/regulate_main_survey"
+                            android:layout_width="130dp"
+                            android:layout_height="@dimen/x70"
+                            android:background="@drawable/bg_button"
+                            android:text="调整到主巡测点"
+                            android:textColor="@color/black"
+                            android:textSize="33px"
+                            android:layout_marginLeft="28dp"
+                            android:layout_marginTop="18dp"/>
+                        <Button
+                            android:id="@+id/add_minor_survey1"
+                            android:layout_width="130dp"
+                            android:layout_height="@dimen/x70"
+                            android:background="@drawable/bg_button"
+                            android:text="添加辅巡测点 1"
+                            android:textColor="@color/black"
+                            android:textSize="33px"
+                            android:layout_marginLeft="35dp"
+                            android:layout_marginTop="18dp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+                </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/auxiliary_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="辅巡测点配置"
+                    android:textSize="36px"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/auxiliary_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/x60"
+                            android:text="辅巡测点1状态："
+                            android:textColor="@color/black"
+                            android:textSize="33px"
+                            android:gravity="center"
+                            android:layout_marginLeft="22dp"
+                            android:layout_marginTop="5dp"/>
+                        <TextView
+                            android:id="@+id/auxiliary_status"
+                            android:layout_width="90dp"
+                            android:layout_height="@dimen/x60"
+                            android:textSize="33px"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            />
+
+                        <Button
+                            android:id="@+id/set_auxiliary_button1"
+                            android:layout_width="130dp"
+                            android:layout_height="@dimen/x70"
+                            android:text="设置为辅巡测点1"
+                            android:background="@drawable/bg_button"
+                            android:gravity="center"
+                            android:textSize="33px"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:visibility="visible"/>
+
+                        <Button
+                            android:id="@+id/remove_auxiliary_button1"
+                            android:layout_width="100dp"
+                            android:layout_height="@dimen/x70"
+                            android:text="删除辅巡测点 1"
+                            android:background="@drawable/bg_button"
+                            android:gravity="center"
+                            android:textSize="33px"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:visibility="gone"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/regulate_auxiliary_survey1"
+                            android:layout_width="130dp"
+                            android:layout_height="@dimen/x70"
+                            android:background="@drawable/bg_button"
+                            android:text="调整到辅巡测点 1"
+                            android:textColor="@color/black"
+                            android:textSize="33px"
+                            android:layout_marginLeft="28dp"
+                            android:layout_marginTop="18dp"/>
+                        <Button
+                            android:id="@+id/add_minor_survey2"
+                            android:layout_width="130dp"
+                            android:layout_height="@dimen/x70"
+                            android:background="@drawable/bg_button"
+                            android:text="添加辅巡测点 2"
+                            android:textColor="@color/black"
+                            android:textSize="33px"
+                            android:layout_marginLeft="35dp"
+                            android:layout_marginTop="18dp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/auxiliary_layout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x60"
+                        android:text="辅巡测点2状态："
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:gravity="center"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/auxiliary_status2"
+                        android:layout_width="90dp"
+                        android:layout_height="@dimen/x60"
+                        android:textSize="33px"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        />
+
+                    <Button
+                        android:id="@+id/set_auxiliary_button2"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="设置为辅巡测点2"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="visible"/>
+
+                    <Button
+                        android:id="@+id/remove_auxiliary_button2"
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="删除辅巡测点 2"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/regulate_auxiliary_survey2"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="调整到辅巡测点 2"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginTop="18dp"/>
+                    <Button
+                        android:id="@+id/add_minor_survey3"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="添加辅巡测点 3"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="18dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/auxiliary_layout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x60"
+                        android:text="辅巡测点3状态："
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:gravity="center"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/auxiliary_status3"
+                        android:layout_width="90dp"
+                        android:layout_height="@dimen/x60"
+                        android:textSize="33px"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        />
+
+                    <Button
+                        android:id="@+id/set_auxiliary_button3"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="设置为辅巡测点3"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="visible"/>
+
+                    <Button
+                        android:id="@+id/remove_auxiliary_button3"
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="删除辅巡测点 3"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/regulate_auxiliary_survey3"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="调整到辅巡测点 3"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginTop="18dp"/>
+                    <Button
+                        android:id="@+id/add_minor_survey4"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="添加辅巡测点 4"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="18dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/auxiliary_layout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x60"
+                        android:text="辅巡测点4状态："
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:gravity="center"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/auxiliary_status4"
+                        android:layout_width="90dp"
+                        android:layout_height="@dimen/x60"
+                        android:textSize="33px"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        />
+
+                    <Button
+                        android:id="@+id/set_auxiliary_button4"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="设置为辅巡测点4"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="visible"/>
+
+                    <Button
+                        android:id="@+id/remove_auxiliary_button4"
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="删除辅巡测点 4"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/regulate_auxiliary_survey4"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="调整到辅巡测点 4"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginTop="18dp"/>
+                    <Button
+                        android:id="@+id/add_minor_survey5"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="添加辅巡测点 5"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="18dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/auxiliary_layout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x60"
+                        android:text="辅巡测点5状态："
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:gravity="center"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/auxiliary_status5"
+                        android:layout_width="90dp"
+                        android:layout_height="@dimen/x60"
+                        android:textSize="33px"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        />
+
+                    <Button
+                        android:id="@+id/set_auxiliary_button5"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="设置为辅巡测点5"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="visible"/>
+
+                    <Button
+                        android:id="@+id/remove_auxiliary_button5"
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="删除辅巡测点 5"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/regulate_auxiliary_survey5"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="调整到辅巡测点 5"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginTop="18dp"/>
+                    <Button
+                        android:id="@+id/add_minor_survey6"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="添加辅巡测点 6"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="18dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/auxiliary_layout6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x60"
+                        android:text="辅巡测点6状态："
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:gravity="center"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/auxiliary_status6"
+                        android:layout_width="90dp"
+                        android:layout_height="@dimen/x60"
+                        android:textSize="33px"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        />
+
+                    <Button
+                        android:id="@+id/set_auxiliary_button6"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="设置为辅巡测点6"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="visible"/>
+
+                    <Button
+                        android:id="@+id/remove_auxiliary_button6"
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="删除辅巡测点 6"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/regulate_auxiliary_survey6"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="调整到辅巡测点 6"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginTop="18dp"/>
+                    <Button
+                        android:id="@+id/add_minor_survey7"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="添加辅巡测点 7"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="18dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/auxiliary_layout7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x60"
+                        android:text="辅巡测点7状态："
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:gravity="center"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/auxiliary_status7"
+                        android:layout_width="90dp"
+                        android:layout_height="@dimen/x60"
+                        android:textSize="33px"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        />
+
+                    <Button
+                        android:id="@+id/set_auxiliary_button7"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="设置为辅巡测点7"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="visible"/>
+
+                    <Button
+                        android:id="@+id/remove_auxiliary_button7"
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="删除辅巡测点 7"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/regulate_auxiliary_survey7"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="调整到辅巡测点 7"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginTop="18dp"/>
+                    <Button
+                        android:id="@+id/add_minor_survey8"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="添加辅巡测点 8"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="18dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/auxiliary_layout8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x60"
+                        android:text="辅巡测点8状态："
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:gravity="center"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/auxiliary_status8"
+                        android:layout_width="90dp"
+                        android:layout_height="@dimen/x60"
+                        android:textSize="33px"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        />
+
+                    <Button
+                        android:id="@+id/set_auxiliary_button8"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="设置为辅巡测点8"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="visible"/>
+
+                    <Button
+                        android:id="@+id/remove_auxiliary_button8"
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="删除辅巡测点 8"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/regulate_auxiliary_survey8"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="调整到辅巡测点 8"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginTop="18dp"/>
+                    <Button
+                        android:id="@+id/add_minor_survey9"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="添加辅巡测点 9"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="18dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/auxiliary_layout9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x60"
+                        android:text="辅巡测点9状态："
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:gravity="center"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/auxiliary_status9"
+                        android:layout_width="90dp"
+                        android:layout_height="@dimen/x60"
+                        android:textSize="33px"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        />
+
+                    <Button
+                        android:id="@+id/set_auxiliary_button9"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="设置为辅巡测点9"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="visible"/>
+
+                    <Button
+                        android:id="@+id/remove_auxiliary_button9"
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="删除辅巡测点 9"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/regulate_auxiliary_survey9"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="调整到辅巡测点 9"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginTop="18dp"/>
+                    <Button
+                        android:id="@+id/add_minor_survey10"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="添加辅巡测点 10"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="18dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/auxiliary_layout10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x60"
+                        android:text="辅巡测点10状态："
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:gravity="center"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/auxiliary_status10"
+                        android:layout_width="90dp"
+                        android:layout_height="@dimen/x60"
+                        android:textSize="33px"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        />
+
+                    <Button
+                        android:id="@+id/set_auxiliary_button10"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="设置为辅巡测点10"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="visible"/>
+
+                    <Button
+                        android:id="@+id/remove_auxiliary_button10"
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="删除辅巡测点 10"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/regulate_auxiliary_survey10"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="调整到辅巡测点 10"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginTop="18dp"/>
+                    <Button
+                        android:id="@+id/add_minor_survey11"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="添加辅巡测点 11"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="18dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/auxiliary_layout11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x60"
+                        android:text="辅巡测点11状态："
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:gravity="center"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/auxiliary_status11"
+                        android:layout_width="90dp"
+                        android:layout_height="@dimen/x60"
+                        android:textSize="33px"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        />
+
+                    <Button
+                        android:id="@+id/set_auxiliary_button11"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="设置为辅巡测点11"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="visible"/>
+
+                    <Button
+                        android:id="@+id/remove_auxiliary_button11"
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="删除辅巡测点 11"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/regulate_auxiliary_survey11"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="调整到辅巡测点 11"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginTop="18dp"/>
+                    <Button
+                        android:id="@+id/add_minor_survey12"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="添加辅巡测点 12"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="18dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/auxiliary_layout12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x60"
+                        android:text="辅巡测点12状态："
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:gravity="center"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/auxiliary_status12"
+                        android:layout_width="90dp"
+                        android:layout_height="@dimen/x60"
+                        android:textSize="33px"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        />
+
+                    <Button
+                        android:id="@+id/set_auxiliary_button12"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="设置为辅巡测点12"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="visible"/>
+
+                    <Button
+                        android:id="@+id/remove_auxiliary_button12"
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="删除辅巡测点 12"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/regulate_auxiliary_survey12"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="调整到辅巡测点 12"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginTop="18dp"/>
+                    <Button
+                        android:id="@+id/add_minor_survey13"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="添加辅巡测点 13"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="18dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/auxiliary_layout13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x60"
+                        android:text="辅巡测点13状态："
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:gravity="center"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/auxiliary_status13"
+                        android:layout_width="90dp"
+                        android:layout_height="@dimen/x60"
+                        android:textSize="33px"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        />
+
+                    <Button
+                        android:id="@+id/set_auxiliary_button13"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="设置为辅巡测点13"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="visible"/>
+
+                    <Button
+                        android:id="@+id/remove_auxiliary_button13"
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="删除辅巡测点 13"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/regulate_auxiliary_survey13"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="调整到辅巡测点 13"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginTop="18dp"/>
+                    <Button
+                        android:id="@+id/add_minor_survey14"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="添加辅巡测点 14"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="18dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/auxiliary_layout14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x60"
+                        android:text="辅巡测点14状态："
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:gravity="center"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/auxiliary_status14"
+                        android:layout_width="90dp"
+                        android:layout_height="@dimen/x60"
+                        android:textSize="33px"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        />
+
+                    <Button
+                        android:id="@+id/set_auxiliary_button14"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="设置为辅巡测点14"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="visible"/>
+
+                    <Button
+                        android:id="@+id/remove_auxiliary_button14"
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="删除辅巡测点 14"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/regulate_auxiliary_survey14"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="调整到辅巡测点 14"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginTop="18dp"/>
+                    <Button
+                        android:id="@+id/add_minor_survey15"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="添加辅巡测点 15"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="18dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/auxiliary_layout15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x60"
+                        android:text="辅巡测点15状态："
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:gravity="center"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/auxiliary_status15"
+                        android:layout_width="90dp"
+                        android:layout_height="@dimen/x60"
+                        android:textSize="33px"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        />
+
+                    <Button
+                        android:id="@+id/set_auxiliary_button15"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="设置为辅巡测点15"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="visible"/>
+
+                    <Button
+                        android:id="@+id/remove_auxiliary_button15"
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="删除辅巡测点 15"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/regulate_auxiliary_survey15"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="调整到辅巡测点 15"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginTop="18dp"/>
+                    <Button
+                        android:id="@+id/add_minor_survey16"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="添加辅巡测点 16"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="18dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/auxiliary_layout16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x60"
+                        android:text="辅巡测点16状态："
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:gravity="center"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/auxiliary_status16"
+                        android:layout_width="90dp"
+                        android:layout_height="@dimen/x60"
+                        android:textSize="33px"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        />
+
+                    <Button
+                        android:id="@+id/set_auxiliary_button16"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="设置为辅巡测点16"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="visible"/>
+
+                    <Button
+                        android:id="@+id/remove_auxiliary_button16"
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/x70"
+                        android:text="删除辅巡测点 16"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:textSize="33px"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/regulate_auxiliary_survey16"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="调整到辅巡测点 16"
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginTop="18dp"/>
+                    <Button
+                        android:id="@+id/add_minor_survey17"
+                        android:layout_width="130dp"
+                        android:layout_height="@dimen/x70"
+                        android:background="@drawable/bg_button"
+                        android:text="添加辅巡测点 "
+                        android:textColor="@color/black"
+                        android:textSize="33px"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="18dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+
+</RelativeLayout>

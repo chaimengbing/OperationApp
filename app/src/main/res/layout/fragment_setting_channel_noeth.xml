@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/noeth_layout"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="信道1 连接方式"
+            android:textColor="@color/black"/>
+
+        <RadioGroup
+            android:id="@+id/channel_group_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/tcp_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_bg"
+                android:text="TCP"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/udp_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:button="@drawable/radio_bg"
+                android:checked="false"
+                android:text="UDP"
+                android:textColor="@color/black"/>
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="信道2 连接方式"
+            android:textColor="@color/black"/>
+
+        <RadioGroup
+            android:id="@+id/channel_group_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/tcp_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_bg"
+                android:text="TCP"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/udp_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:button="@drawable/radio_bg"
+                android:checked="false"
+                android:text="UDP"
+                android:textColor="@color/black"/>
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="信道3 连接方式"
+            android:textColor="@color/black"/>
+
+        <RadioGroup
+            android:id="@+id/channel_group_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/tcp_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_bg"
+                android:text="TCP"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/udp_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:button="@drawable/radio_bg"
+                android:checked="false"
+                android:text="UDP"
+                android:textColor="@color/black"/>
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="信道4 连接方式"
+            android:textColor="@color/black"/>
+
+        <RadioGroup
+            android:id="@+id/channel_group_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/tcp_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_bg"
+                android:text="TCP"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/udp_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:button="@drawable/radio_bg"
+                android:checked="false"
+                android:text="UDP"
+                android:textColor="@color/black"/>
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="北斗厂家"
+            android:textColor="@color/black"/>
+
+        <RadioGroup
+            android:id="@+id/beidou_radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left|center_vertical"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/beidou_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_bg"
+                android:text="神州天鸿"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/beidou_button_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:button="@drawable/radio_bg"
+                android:checked="false"
+                android:text="成都国星/北斗星通"
+                android:textColor="@color/black"/>
+        </RadioGroup>
+    </LinearLayout>
+
+    <com.vcontrol.vcontroliot.view.CustomListView
+        android:id="@+id/channel_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:descendantFocusability="afterDescendants"
+        ></com.vcontrol.vcontroliot.view.CustomListView>
+
+
+</LinearLayout>

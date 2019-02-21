@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/elecrelay_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Relay_switch1"
+            android:textColor="@color/black"
+            android:textSize="16sp"/>
+
+        <Switch
+            android:id="@+id/elecrelay_switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x140"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/elecrelay_layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Relay_switch2"
+            android:textColor="@color/black"
+            android:textSize="16sp"/>
+
+        <Switch
+            android:id="@+id/elecrelay_switch2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x140"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/elecrelay_layout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Relay_switch3"
+            android:textColor="@color/black"
+            android:textSize="16sp"/>
+
+        <Switch
+            android:id="@+id/elecrelay_switch3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x140"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/elecrelay_layout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Relay_switch4"
+            android:textColor="@color/black"
+            android:textSize="16sp"/>
+
+        <Switch
+            android:id="@+id/elecrelay_switch4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x140"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Valve_type"
+            android:textColor="@color/black"/>
+
+        <RadioGroup
+            android:id="@+id/valve_Type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/Butterfly_valve_radiobtton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_bg"
+                android:text="@string/Butterfly_valve"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/Pulse_solenoid_valveradiobtton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:button="@drawable/radio_bg"
+                android:text="@string/Pulse_solenoid_valve"
+                android:textColor="@color/black"/>
+            <RadioButton
+                android:id="@+id/valveradiobtton_485"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:button="@drawable/radio_bg"
+                android:text="@string/DI_butterfly_valve"
+                android:textColor="@color/black"/>
+        </RadioGroup>
+    </LinearLayout>
+
+</LinearLayout>
