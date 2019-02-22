@@ -1,7 +1,10 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -13,7 +16,7 @@ import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
-import zuo.biao.library.util.Log;
+import zuo.biao.library.base.BaseFragment;
 
 /**
  * Created by Vcontrol on 2016/11/23.
@@ -67,28 +70,18 @@ public class GroundWaterSearchFragment extends BaseFragment implements EventNoti
     private RelativeLayout receLayout;
     private StringBuffer currentSB = new StringBuffer();
 
-
-
     @Override
-    public int getLayoutView()
-    {
-        return R.layout.fragment_search;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_search);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
-    @Override
-    public void initComponentViews(View view)
-    {
-        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
 
-        resultTextView = (TextView) view.findViewById(R.id.result_data_textview);
-        resultScroll = (ScrollView) view.findViewById(R.id.result_scroll);
-        receLayout = (RelativeLayout) view.findViewById(R.id.img_layout);
-
-
-
-        setData();
-
-    }
 
     @Override
     public void onDestroy()
@@ -98,16 +91,28 @@ public class GroundWaterSearchFragment extends BaseFragment implements EventNoti
     }
 
     @Override
+    public void initView() {
+        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
+
+        resultTextView = (TextView) view.findViewById(R.id.result_data_textview);
+        resultScroll = (ScrollView) view.findViewById(R.id.result_scroll);
+        receLayout = (RelativeLayout) view.findViewById(R.id.img_layout);
+    }
+
+    @Override
     public void initData()
     {
         SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadData);
-    }
 
+        setData();
+    }
 
     @Override
-    public void setListener()
-    {
+    public void initEvent() {
+
     }
+
+
 
     @Override
     public void didReceivedNotification(int id, Object... args)

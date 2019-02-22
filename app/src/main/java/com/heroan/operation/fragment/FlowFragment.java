@@ -1,7 +1,10 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +20,7 @@ import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
+import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.util.Log;
 /**
  * 流量计
@@ -54,8 +58,14 @@ public class FlowFragment extends BaseFragment implements View.OnClickListener, 
     private Button planNumButton;
 
     @Override
-    public int getLayoutView() {
-        return R.layout.fragment_sensor_flow;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_sensor_flow);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
     @Override
@@ -64,31 +74,6 @@ public class FlowFragment extends BaseFragment implements View.OnClickListener, 
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
     }
 
-    @Override
-    public void initComponentViews(View view) {
-        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
-        flowSpinner = (Spinner) view.findViewById(R.id.flow_485_spinner);
-        flow_weir_co_Spinner = (Spinner) view.findViewById(R.id.flow_weir_co_spinner);
-        flowTypeGroup = (RadioGroup) view.findViewById(R.id.flow_type);
-        speedEdittext = (EditText) view.findViewById(R.id.flow_speed_add_value);
-        valueEdittext = (EditText) view.findViewById(R.id.flow_add_value);
-        speedButton = (Button) view.findViewById(R.id.flow_speed_add_value_button);
-        valueButton = (Button) view.findViewById(R.id.flow_add_value_button);
-        coefficientEdittext0 = (EditText) view.findViewById(R.id.Flow_0_coefficient);
-        coefficientButton0 = (Button) view.findViewById(R.id.Flow_coefficient_button0);
-        coefficientEdittext1 = (EditText) view.findViewById(R.id.Flow_1_coefficient);
-        coefficientButton1 = (Button) view.findViewById(R.id.Flow_coefficient_button1);
-        coefficientEdittext2 = (EditText) view.findViewById(R.id.Flow_2_coefficient);
-        coefficientButton2 = (Button) view.findViewById(R.id.Flow_coefficient_button2);
-        coefficientEdittext3 = (EditText) view.findViewById(R.id.Flow_3_coefficient);
-        coefficientButton3 = (Button) view.findViewById(R.id.Flow_coefficient_button3);
-        planNumEditText = (EditText) view.findViewById(R.id.plan_num_edittext);
-        planNumButton = (Button) view.findViewById(R.id.plan_num_button);
-        newFlowSpinner = (Spinner) view.findViewById(R.id.flow_485_spinner_new);
-
-
-        initView(view);
-    }
 
     private void initView(final View view) {
 
@@ -118,6 +103,32 @@ public class FlowFragment extends BaseFragment implements View.OnClickListener, 
                 SocketUtil.getSocketUtil().sendContent(content);
             }
         });
+    }
+
+    @Override
+    public void initView() {
+        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
+        flowSpinner = (Spinner) view.findViewById(R.id.flow_485_spinner);
+        flow_weir_co_Spinner = (Spinner) view.findViewById(R.id.flow_weir_co_spinner);
+        flowTypeGroup = (RadioGroup) view.findViewById(R.id.flow_type);
+        speedEdittext = (EditText) view.findViewById(R.id.flow_speed_add_value);
+        valueEdittext = (EditText) view.findViewById(R.id.flow_add_value);
+        speedButton = (Button) view.findViewById(R.id.flow_speed_add_value_button);
+        valueButton = (Button) view.findViewById(R.id.flow_add_value_button);
+        coefficientEdittext0 = (EditText) view.findViewById(R.id.Flow_0_coefficient);
+        coefficientButton0 = (Button) view.findViewById(R.id.Flow_coefficient_button0);
+        coefficientEdittext1 = (EditText) view.findViewById(R.id.Flow_1_coefficient);
+        coefficientButton1 = (Button) view.findViewById(R.id.Flow_coefficient_button1);
+        coefficientEdittext2 = (EditText) view.findViewById(R.id.Flow_2_coefficient);
+        coefficientButton2 = (Button) view.findViewById(R.id.Flow_coefficient_button2);
+        coefficientEdittext3 = (EditText) view.findViewById(R.id.Flow_3_coefficient);
+        coefficientButton3 = (Button) view.findViewById(R.id.Flow_coefficient_button3);
+        planNumEditText = (EditText) view.findViewById(R.id.plan_num_edittext);
+        planNumButton = (Button) view.findViewById(R.id.plan_num_button);
+        newFlowSpinner = (Spinner) view.findViewById(R.id.flow_485_spinner_new);
+
+
+        initView(view);
     }
 
     @Override
@@ -155,7 +166,7 @@ public class FlowFragment extends BaseFragment implements View.OnClickListener, 
     }
 
     @Override
-    public void setListener() {
+    public void initEvent() {
         speedButton.setOnClickListener(this);
         valueButton.setOnClickListener(this);
         coefficientButton0.setOnClickListener(this);
@@ -164,6 +175,7 @@ public class FlowFragment extends BaseFragment implements View.OnClickListener, 
         coefficientButton3.setOnClickListener(this);
         planNumButton.setOnClickListener(this);
     }
+
 
     @Override
     public void onClick(View view) {

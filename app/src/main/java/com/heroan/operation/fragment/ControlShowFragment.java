@@ -1,9 +1,14 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.heroan.operation.R;
+
+import zuo.biao.library.base.BaseFragment;
 
 /**
  * Created by linxi on 2017/4/27.
@@ -21,16 +26,20 @@ public class ControlShowFragment extends BaseFragment
     private TextView showTextView;
 
     @Override
-    public int getLayoutView()
-    {
-        return R.layout.fragment_setting_control;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_setting_control);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
-    @Override
-    public void initComponentViews(View view)
-    {
-        showTextView = (TextView) view.findViewById(R.id.show_data_textview);
 
+    @Override
+    public void initView() {
+        showTextView = (TextView) view.findViewById(R.id.show_data_textview);
         showTextView.setText(showResult);
     }
 
@@ -41,9 +50,9 @@ public class ControlShowFragment extends BaseFragment
     }
 
     @Override
-    public void setListener()
-    {
+    public void initEvent() {
 
     }
+
 
 }

@@ -1,7 +1,10 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -10,19 +13,18 @@ import android.widget.TextView;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
-import zuo.biao.library.util.Log;
+import zuo.biao.library.base.BaseFragment;
 
 /**
  * Created by linxi on 2017/7/5.
  */
 
-public class YUNFragment extends BaseFragment implements View.OnClickListener,EventNotifyHelper.NotificationCenterDelegate
-{
+public class YUNFragment extends BaseFragment implements View.OnClickListener,
+        EventNotifyHelper.NotificationCenterDelegate {
 
     private TextView yunStatus;
     private Button startUp;
@@ -156,23 +158,83 @@ public class YUNFragment extends BaseFragment implements View.OnClickListener,Ev
     private Button takePhoto;
 
     @Override
-    public int getLayoutView()
-    {
-        return R.layout.fragment_yun;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_yun);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
     @Override
-    public void onDestroy()
-    {
+    public void onDestroy() {
         super.onDestroy();
-        EventNotifyHelper.getInstance().removeObserver(this,UiEventEntry.READ_DATA);
+        EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
+    }
+
+
+    private void initView(final View view) {
+        mainPicture.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                View checkView = view.findViewById(i);
+                if (!checkView.isPressed()) {
+                    return;
+                }
+                String content = ConfigParams.YUNMainType;
+                String yun = "";
+                switch (i) {
+                    case R.id.main_picture_radiobtton:
+                        yun = "0";
+                        break;
+                    case R.id.main_video_radiobtton:
+                        yun = "1";
+                        break;
+
+                    default:
+                        break;
+                }
+                if (TextUtils.isEmpty(yun)) {
+                    return;
+                }
+                SocketUtil.getSocketUtil().sendContent(content + yun);
+            }
+        });
+
+        auxiliaryPicture.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                View checkView = view.findViewById(i);
+                if (!checkView.isPressed()) {
+                    return;
+                }
+                String content = ConfigParams.YUNMinorType;
+                String yun = "";
+                switch (i) {
+                    case R.id.auxiliary_picture_radiobutton:
+                        yun = "0";
+                        break;
+                    case R.id.auxiliary_video_radiobutton:
+                        yun = "1";
+                        break;
+
+                    default:
+                        break;
+                }
+                if (TextUtils.isEmpty(yun)) {
+                    return;
+                }
+                SocketUtil.getSocketUtil().sendContent(content + yun);
+            }
+        });
+
     }
 
     @Override
-    public void initComponentViews(View view)
-    {
-
-        EventNotifyHelper.getInstance().addObserver(this,UiEventEntry.READ_DATA);
+    public void initView() {
+        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
 
         yunStatus = (TextView) view.findViewById(R.id.yun_status);
         startUp = (Button) view.findViewById(R.id.start_up);
@@ -307,88 +369,15 @@ public class YUNFragment extends BaseFragment implements View.OnClickListener,Ev
 
 
         initView(view);
-
-    }
-
-
-    private void initView(final View view)
-    {
-        mainPicture.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i)
-            {
-                View checkView = view.findViewById(i);
-                if (!checkView.isPressed())
-                {
-                    return;
-                }
-                String content = ConfigParams.YUNMainType;
-                String yun = "";
-                switch (i)
-                {
-                    case R.id.main_picture_radiobtton:
-                        yun = "0";
-                        break;
-                    case R.id.main_video_radiobtton:
-                        yun = "1";
-                        break;
-
-                    default:
-                        break;
-                }
-                if (TextUtils.isEmpty(yun))
-                {
-                    return;
-                }
-                SocketUtil.getSocketUtil().sendContent(content + yun);
-            }
-        });
-
-        auxiliaryPicture.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i)
-            {
-                View checkView = view.findViewById(i);
-                if (!checkView.isPressed())
-                {
-                    return;
-                }
-                String content = ConfigParams.YUNMinorType;
-                String yun = "";
-                switch (i)
-                {
-                    case R.id.auxiliary_picture_radiobutton:
-                        yun = "0";
-                        break;
-                    case R.id.auxiliary_video_radiobutton:
-                        yun = "1";
-                        break;
-
-                    default:
-                        break;
-                }
-                if (TextUtils.isEmpty(yun))
-                {
-                    return;
-                }
-                SocketUtil.getSocketUtil().sendContent(content + yun);
-            }
-        });
-
     }
 
     @Override
-    public void initData()
-    {
+    public void initData() {
         SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadYUNStatus);
     }
 
     @Override
-    public void setListener()
-    {
-
+    public void initEvent() {
         takePhoto.setOnClickListener(this);
         startUp.setOnClickListener(this);
         leftArrow.setOnClickListener(this);
@@ -481,16 +470,13 @@ public class YUNFragment extends BaseFragment implements View.OnClickListener,Ev
         removeAuxiliaryButton16.setOnClickListener(this);
         regulateAuxiliarySurvey16.setOnClickListener(this);
         addMinorSurvey17.setOnClickListener(this);
-
     }
 
 
     @Override
-    public void onClick(View v)
-    {
+    public void onClick(View v) {
         String content = "";
-        switch (v.getId())
-        {
+        switch (v.getId()) {
             case R.id.take_photo:
                 content = ConfigParams.CameraTakePicture;
                 break;
@@ -760,45 +746,36 @@ public class YUNFragment extends BaseFragment implements View.OnClickListener,Ev
             default:
                 break;
         }
-        if (TextUtils.isEmpty(content))
-        {
+        if (TextUtils.isEmpty(content)) {
             return;
         }
         SocketUtil.getSocketUtil().sendContent(content);
     }
 
     @Override
-    public void didReceivedNotification(int id, Object... args)
-    {
+    public void didReceivedNotification(int id, Object... args) {
 
-        if (id == UiEventEntry.READ_DATA)
-        {
+        if (id == UiEventEntry.READ_DATA) {
             String result = (String) args[0];
             String content = (String) args[1];
-            if (TextUtils.isEmpty(result) || TextUtils.isEmpty(content))
-            {
+            if (TextUtils.isEmpty(result) || TextUtils.isEmpty(content)) {
                 return;
             }
             setData(result);
         }
     }
 
-    private void setData(String result)
-    {
+    private void setData(String result) {
         String data = "";
-        if (result.contains(ConfigParams.YUNStatus.trim()))
-        {
-            data = result.replaceAll(ConfigParams.YUNStatus.trim(),"").trim();
-            if ("0".equals(data))
-            {
+        if (result.contains(ConfigParams.YUNStatus.trim())) {
+            data = result.replaceAll(ConfigParams.YUNStatus.trim(), "").trim();
+            if ("0".equals(data)) {
                 yunStatus.setText("已启动");
                 layoutYun.setVisibility(View.VISIBLE);
                 auxiliaryText.setVisibility(View.VISIBLE);
                 mainLayout.setVisibility(View.VISIBLE);
 
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 yunStatus.setText("未启动");
                 layoutYun.setVisibility(View.GONE);
                 auxiliaryText.setVisibility(View.GONE);
@@ -819,9 +796,7 @@ public class YUNFragment extends BaseFragment implements View.OnClickListener,Ev
                 auxiliaryLayout14.setVisibility(View.GONE);
                 auxiliaryLayout15.setVisibility(View.GONE);
                 auxiliaryLayout16.setVisibility(View.GONE);
-            }
-            else if ("2".equals(data))
-            {
+            } else if ("2".equals(data)) {
                 yunStatus.setText("拍摄中，请稍等...");
                 layoutYun.setVisibility(View.GONE);
                 auxiliaryText.setVisibility(View.GONE);
@@ -844,588 +819,408 @@ public class YUNFragment extends BaseFragment implements View.OnClickListener,Ev
                 auxiliaryLayout16.setVisibility(View.GONE);
 
             }
-        }
-        else if (result.contains(ConfigParams.YUNMainType.trim()))
-        {
-            data = result.replaceAll(ConfigParams.YUNMainType.trim(),"").trim();
-            if ("0".equals(data))
-            {
+        } else if (result.contains(ConfigParams.YUNMainType.trim())) {
+            data = result.replaceAll(ConfigParams.YUNMainType.trim(), "").trim();
+            if ("0".equals(data)) {
                 mainPicture.check(R.id.main_picture_radiobtton);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 mainPicture.check(R.id.main_video_radiobtton);
             }
-        }
-        else if (result.contains(ConfigParams.YUNMinorType.trim()))
-        {
-            data = result.replaceAll(ConfigParams.YUNMinorType.trim(),"").trim();
-            if ("0".equals(data))
-            {
+        } else if (result.contains(ConfigParams.YUNMinorType.trim())) {
+            data = result.replaceAll(ConfigParams.YUNMinorType.trim(), "").trim();
+            if ("0".equals(data)) {
                 auxiliaryPicture.check(R.id.auxiliary_picture_radiobutton);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 auxiliaryPicture.check(R.id.auxiliary_video_radiobutton);
             }
-        }
-        else if (result.contains(ConfigParams.DelMainSurveyStatus.trim()))
-        {
-            data = result.replaceAll(ConfigParams.DelMainSurveyStatus.trim(),"").trim();
-            if ("OK".equals(data))
-            {
+        } else if (result.contains(ConfigParams.DelMainSurveyStatus.trim())) {
+            data = result.replaceAll(ConfigParams.DelMainSurveyStatus.trim(), "").trim();
+            if ("OK".equals(data)) {
                 mainLayout.setVisibility(View.GONE);
-            }
-            else if ("ERROR".equals(data))
-            {
+            } else if ("ERROR".equals(data)) {
                 ToastUtil.showToastLong("请先删除所有辅巡测点！");
             }
-        }
-        else if (result.contains(ConfigParams.MainSurveyStatus.trim()))
-        {
-            data = result.replaceAll(ConfigParams.MainSurveyStatus.trim(),"").trim();
-            if ("0".equals(data))
-            {
+        } else if (result.contains(ConfigParams.MainSurveyStatus.trim())) {
+            data = result.replaceAll(ConfigParams.MainSurveyStatus.trim(), "").trim();
+            if ("0".equals(data)) {
                 mainStatus.setText("已设置");
                 setMainButton.setVisibility(View.GONE);
                 removeMainButton.setVisibility(View.VISIBLE);
             }
-            if ("1".equals(data))
-            {
+            if ("1".equals(data)) {
                 mainStatus.setText("未设置");
                 setMainButton.setVisibility(View.VISIBLE);
                 removeMainButton.setVisibility(View.GONE);
             }
-        }
-        else if (result.contains((ConfigParams.MinorSurveyStatus1).trim()))
-        {
+        } else if (result.contains((ConfigParams.MinorSurveyStatus1).trim())) {
             String content = ConfigParams.MinorSurveyStatus1;
-            data = result.replaceAll(content.trim(),"").trim();
+            data = result.replaceAll(content.trim(), "").trim();
             addMinorSurvey1.setEnabled(false);
             auxiliaryLayout.setVisibility(View.VISIBLE);
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 auxiliaryStatus.setText("已设置");
                 setAuxiliaryButton1.setVisibility(View.GONE);
                 removeAuxiliaryButton1.setVisibility(View.VISIBLE);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 auxiliaryStatus.setText("未设置");
                 setAuxiliaryButton1.setVisibility(View.VISIBLE);
                 removeAuxiliaryButton1.setVisibility(View.GONE);
             }
-        }
-        else if (result.contains((ConfigParams.MinorSurveyStatus+"2").trim()))
-        {
-            String content = ConfigParams.MinorSurveyStatus + "2 " ;
-            data = result.replaceAll(content.trim(),"").trim();
+        } else if (result.contains((ConfigParams.MinorSurveyStatus + "2").trim())) {
+            String content = ConfigParams.MinorSurveyStatus + "2 ";
+            data = result.replaceAll(content.trim(), "").trim();
             addMinorSurvey2.setEnabled(false);
             auxiliaryLayout2.setVisibility(View.VISIBLE);
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 auxiliaryStatus2.setText("已设置");
                 setAuxiliaryButton2.setVisibility(View.GONE);
                 removeAuxiliaryButton2.setVisibility(View.VISIBLE);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 auxiliaryStatus2.setText("未设置");
                 setAuxiliaryButton2.setVisibility(View.VISIBLE);
                 removeAuxiliaryButton2.setVisibility(View.GONE);
             }
-        }
-        else if (result.contains((ConfigParams.MinorSurveyStatus+"3").trim()))
-        {
+        } else if (result.contains((ConfigParams.MinorSurveyStatus + "3").trim())) {
             String content = ConfigParams.MinorSurveyStatus + "3 ";
-            data = result.replaceAll(content.trim(),"").trim();
+            data = result.replaceAll(content.trim(), "").trim();
             addMinorSurvey3.setEnabled(false);
             auxiliaryLayout3.setVisibility(View.VISIBLE);
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 auxiliaryStatus3.setText("已设置");
                 setAuxiliaryButton3.setVisibility(View.GONE);
                 removeAuxiliaryButton3.setVisibility(View.VISIBLE);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 auxiliaryStatus3.setText("未设置");
                 setAuxiliaryButton3.setVisibility(View.VISIBLE);
                 removeAuxiliaryButton3.setVisibility(View.GONE);
             }
-        }
-        else if (result.contains((ConfigParams.MinorSurveyStatus+"4").trim()))
-        {
+        } else if (result.contains((ConfigParams.MinorSurveyStatus + "4").trim())) {
             String content = ConfigParams.MinorSurveyStatus + "4 ";
-            data = result.replaceAll(content.trim(),"").trim();
+            data = result.replaceAll(content.trim(), "").trim();
             addMinorSurvey4.setEnabled(false);
             auxiliaryLayout4.setVisibility(View.VISIBLE);
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 auxiliaryStatus4.setText("已设置");
                 setAuxiliaryButton4.setVisibility(View.GONE);
                 removeAuxiliaryButton4.setVisibility(View.VISIBLE);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 auxiliaryStatus4.setText("未设置");
                 setAuxiliaryButton4.setVisibility(View.VISIBLE);
                 removeAuxiliaryButton4.setVisibility(View.GONE);
             }
-        }
-        else if (result.contains((ConfigParams.MinorSurveyStatus+"5").trim()))
-        {
+        } else if (result.contains((ConfigParams.MinorSurveyStatus + "5").trim())) {
             String content = ConfigParams.MinorSurveyStatus + "5 ";
-            data = result.replaceAll(content.trim(),"").trim();
+            data = result.replaceAll(content.trim(), "").trim();
             addMinorSurvey5.setEnabled(false);
             auxiliaryLayout5.setVisibility(View.VISIBLE);
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 auxiliaryStatus5.setText("已设置");
                 setAuxiliaryButton5.setVisibility(View.GONE);
                 removeAuxiliaryButton5.setVisibility(View.VISIBLE);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 auxiliaryStatus5.setText("未设置");
                 setAuxiliaryButton5.setVisibility(View.VISIBLE);
                 removeAuxiliaryButton5.setVisibility(View.GONE);
             }
-        }
-        else if (result.contains((ConfigParams.MinorSurveyStatus+"6").trim()))
-        {
+        } else if (result.contains((ConfigParams.MinorSurveyStatus + "6").trim())) {
             String content = ConfigParams.MinorSurveyStatus + "6 ";
-            data = result.replaceAll(content.trim(),"").trim();
+            data = result.replaceAll(content.trim(), "").trim();
             addMinorSurvey6.setEnabled(false);
             auxiliaryLayout6.setVisibility(View.VISIBLE);
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 auxiliaryStatus6.setText("已设置");
                 setAuxiliaryButton6.setVisibility(View.GONE);
                 removeAuxiliaryButton6.setVisibility(View.VISIBLE);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 auxiliaryStatus6.setText("未设置");
                 setAuxiliaryButton6.setVisibility(View.VISIBLE);
                 removeAuxiliaryButton6.setVisibility(View.GONE);
             }
-        }
-        else if (result.contains((ConfigParams.MinorSurveyStatus+"7").trim()))
-        {
+        } else if (result.contains((ConfigParams.MinorSurveyStatus + "7").trim())) {
             String content = ConfigParams.MinorSurveyStatus + "7 ";
-            data = result.replaceAll(content.trim(),"").trim();
+            data = result.replaceAll(content.trim(), "").trim();
             addMinorSurvey7.setEnabled(false);
             auxiliaryLayout7.setVisibility(View.VISIBLE);
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 auxiliaryStatus7.setText("已设置");
                 setAuxiliaryButton7.setVisibility(View.GONE);
                 removeAuxiliaryButton7.setVisibility(View.VISIBLE);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 auxiliaryStatus7.setText("未设置");
                 setAuxiliaryButton7.setVisibility(View.VISIBLE);
                 removeAuxiliaryButton7.setVisibility(View.GONE);
             }
-        }
-        else if (result.contains((ConfigParams.MinorSurveyStatus+"8").trim()))
-        {
+        } else if (result.contains((ConfigParams.MinorSurveyStatus + "8").trim())) {
             String content = ConfigParams.MinorSurveyStatus + "8 ";
-            data = result.replaceAll(content.trim(),"").trim();
+            data = result.replaceAll(content.trim(), "").trim();
             addMinorSurvey8.setEnabled(false);
             auxiliaryLayout8.setVisibility(View.VISIBLE);
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 auxiliaryStatus8.setText("已设置");
                 setAuxiliaryButton8.setVisibility(View.GONE);
                 removeAuxiliaryButton8.setVisibility(View.VISIBLE);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 auxiliaryStatus8.setText("未设置");
                 setAuxiliaryButton8.setVisibility(View.VISIBLE);
                 removeAuxiliaryButton8.setVisibility(View.GONE);
             }
-        }
-        else if (result.contains((ConfigParams.MinorSurveyStatus+"9").trim()))
-        {
+        } else if (result.contains((ConfigParams.MinorSurveyStatus + "9").trim())) {
             String content = ConfigParams.MinorSurveyStatus + "9 ";
-            data = result.replaceAll(content.trim(),"").trim();
+            data = result.replaceAll(content.trim(), "").trim();
             addMinorSurvey9.setEnabled(false);
             auxiliaryLayout9.setVisibility(View.VISIBLE);
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 auxiliaryStatus9.setText("已设置");
                 setAuxiliaryButton9.setVisibility(View.GONE);
                 removeAuxiliaryButton9.setVisibility(View.VISIBLE);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 auxiliaryStatus9.setText("未设置");
                 setAuxiliaryButton9.setVisibility(View.VISIBLE);
                 removeAuxiliaryButton9.setVisibility(View.GONE);
             }
-        }
-        else if (result.contains((ConfigParams.MinorSurveyStatus+"10").trim()))
-        {
+        } else if (result.contains((ConfigParams.MinorSurveyStatus + "10").trim())) {
             String content = ConfigParams.MinorSurveyStatus + "10" + " ";
-            data = result.replaceAll(content.trim(),"").trim();
+            data = result.replaceAll(content.trim(), "").trim();
             addMinorSurvey10.setEnabled(false);
             auxiliaryLayout10.setVisibility(View.VISIBLE);
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 auxiliaryStatus10.setText("已设置");
                 setAuxiliaryButton10.setVisibility(View.GONE);
                 removeAuxiliaryButton10.setVisibility(View.VISIBLE);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 auxiliaryStatus10.setText("未设置");
                 setAuxiliaryButton10.setVisibility(View.VISIBLE);
                 removeAuxiliaryButton10.setVisibility(View.GONE);
             }
-        }
-        else if (result.contains((ConfigParams.MinorSurveyStatus+"11").trim()))
-        {
+        } else if (result.contains((ConfigParams.MinorSurveyStatus + "11").trim())) {
             String content = ConfigParams.MinorSurveyStatus + "11 ";
-            data = result.replaceAll(content.trim(),"").trim();
+            data = result.replaceAll(content.trim(), "").trim();
             addMinorSurvey11.setEnabled(false);
             auxiliaryLayout11.setVisibility(View.VISIBLE);
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 auxiliaryStatus11.setText("已设置");
                 setAuxiliaryButton11.setVisibility(View.GONE);
                 removeAuxiliaryButton11.setVisibility(View.VISIBLE);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 auxiliaryStatus11.setText("未设置");
                 setAuxiliaryButton11.setVisibility(View.VISIBLE);
                 removeAuxiliaryButton11.setVisibility(View.GONE);
             }
-        }
-        else if (result.contains((ConfigParams.MinorSurveyStatus+"12").trim()))
-        {
+        } else if (result.contains((ConfigParams.MinorSurveyStatus + "12").trim())) {
             String content = ConfigParams.MinorSurveyStatus + "12 ";
-            data = result.replaceAll(content.trim(),"").trim();
+            data = result.replaceAll(content.trim(), "").trim();
             addMinorSurvey12.setEnabled(false);
             auxiliaryLayout12.setVisibility(View.VISIBLE);
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 auxiliaryStatus12.setText("已设置");
                 setAuxiliaryButton12.setVisibility(View.GONE);
                 removeAuxiliaryButton12.setVisibility(View.VISIBLE);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 auxiliaryStatus12.setText("未设置");
                 setAuxiliaryButton12.setVisibility(View.VISIBLE);
                 removeAuxiliaryButton12.setVisibility(View.GONE);
             }
-        }
-        else if (result.contains((ConfigParams.MinorSurveyStatus+"13").trim()))
-        {
+        } else if (result.contains((ConfigParams.MinorSurveyStatus + "13").trim())) {
             String content = ConfigParams.MinorSurveyStatus + "13 ";
-            data = result.replaceAll(content.trim(),"").trim();
+            data = result.replaceAll(content.trim(), "").trim();
             addMinorSurvey13.setEnabled(false);
             auxiliaryLayout13.setVisibility(View.VISIBLE);
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 auxiliaryStatus13.setText("已设置");
                 setAuxiliaryButton13.setVisibility(View.GONE);
                 removeAuxiliaryButton13.setVisibility(View.VISIBLE);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 auxiliaryStatus13.setText("未设置");
                 setAuxiliaryButton13.setVisibility(View.VISIBLE);
                 removeAuxiliaryButton13.setVisibility(View.GONE);
             }
-        }
-        else if (result.contains((ConfigParams.MinorSurveyStatus+"14").trim()))
-        {
+        } else if (result.contains((ConfigParams.MinorSurveyStatus + "14").trim())) {
             String content = ConfigParams.MinorSurveyStatus + "14 ";
-            data = result.replaceAll(content.trim(),"").trim();
+            data = result.replaceAll(content.trim(), "").trim();
             addMinorSurvey14.setEnabled(false);
             auxiliaryLayout14.setVisibility(View.VISIBLE);
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 auxiliaryStatus14.setText("已设置");
                 setAuxiliaryButton14.setVisibility(View.GONE);
                 removeAuxiliaryButton14.setVisibility(View.VISIBLE);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 auxiliaryStatus14.setText("未设置");
                 setAuxiliaryButton14.setVisibility(View.VISIBLE);
                 removeAuxiliaryButton14.setVisibility(View.GONE);
             }
-        }
-        else if (result.contains((ConfigParams.MinorSurveyStatus+"15").trim()))
-        {
+        } else if (result.contains((ConfigParams.MinorSurveyStatus + "15").trim())) {
             String content = ConfigParams.MinorSurveyStatus + "15 ";
-            data = result.replaceAll(content.trim(),"").trim();
+            data = result.replaceAll(content.trim(), "").trim();
             addMinorSurvey15.setEnabled(false);
             auxiliaryLayout15.setVisibility(View.VISIBLE);
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 auxiliaryStatus15.setText("已设置");
                 setAuxiliaryButton15.setVisibility(View.GONE);
                 removeAuxiliaryButton15.setVisibility(View.VISIBLE);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 auxiliaryStatus15.setText("未设置");
                 setAuxiliaryButton15.setVisibility(View.VISIBLE);
                 removeAuxiliaryButton15.setVisibility(View.GONE);
             }
-        }
-        else if (result.contains((ConfigParams.MinorSurveyStatus+"16").trim()))
-        {
+        } else if (result.contains((ConfigParams.MinorSurveyStatus + "16").trim())) {
             String content = ConfigParams.MinorSurveyStatus + "16 ";
-            data = result.replaceAll(content.trim(),"").trim();
+            data = result.replaceAll(content.trim(), "").trim();
             addMinorSurvey16.setEnabled(false);
             auxiliaryLayout16.setVisibility(View.VISIBLE);
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 auxiliaryStatus16.setText("已设置");
                 setAuxiliaryButton16.setVisibility(View.GONE);
                 removeAuxiliaryButton16.setVisibility(View.VISIBLE);
-            }
-            else if ("1".equals(data))
-            {
+            } else if ("1".equals(data)) {
                 auxiliaryStatus16.setText("未设置");
                 setAuxiliaryButton16.setVisibility(View.VISIBLE);
                 removeAuxiliaryButton16.setVisibility(View.GONE);
             }
-        }
-        else if (result.contains((ConfigParams.DelMinorSurvey+"1").trim()))
-        {
+        } else if (result.contains((ConfigParams.DelMinorSurvey + "1").trim())) {
             String content = ConfigParams.DelMinorSurvey + "1 ";
-            data = result.replaceAll(content.trim(),"").trim();
-            if ("OK".equals(data))
-            {
+            data = result.replaceAll(content.trim(), "").trim();
+            if ("OK".equals(data)) {
                 auxiliaryLayout.setVisibility(View.GONE);
                 addMinorSurvey1.setEnabled(true);
-            }
-            else if ("ERROR".equals(data))
-            {
+            } else if ("ERROR".equals(data)) {
                 ToastUtil.showToastLong("删除失败！");
             }
-        }
-        else if (result.contains((ConfigParams.DelMinorSurvey+"2").trim()))
-        {
+        } else if (result.contains((ConfigParams.DelMinorSurvey + "2").trim())) {
             String content = ConfigParams.DelMinorSurvey + "2 ";
-            data = result.replaceAll(content.trim(),"").trim();
-            if ("OK".equals(data))
-            {
+            data = result.replaceAll(content.trim(), "").trim();
+            if ("OK".equals(data)) {
                 auxiliaryLayout2.setVisibility(View.GONE);
                 addMinorSurvey2.setEnabled(true);
-            }
-            else if ("ERROR".equals(data))
-            {
+            } else if ("ERROR".equals(data)) {
                 ToastUtil.showToastLong("删除失败！");
             }
-        }
-        else if (result.contains((ConfigParams.DelMinorSurvey+"3").trim()))
-        {
+        } else if (result.contains((ConfigParams.DelMinorSurvey + "3").trim())) {
             String content = ConfigParams.DelMinorSurvey + "3 ";
-            data = result.replaceAll(content.trim(),"").trim();
-            if ("OK".equals(data))
-            {
+            data = result.replaceAll(content.trim(), "").trim();
+            if ("OK".equals(data)) {
                 auxiliaryLayout3.setVisibility(View.GONE);
                 addMinorSurvey3.setEnabled(true);
-            }
-            else if ("ERROR".equals(data))
-            {
+            } else if ("ERROR".equals(data)) {
                 ToastUtil.showToastLong("删除失败！");
             }
-        }
-        else if (result.contains((ConfigParams.DelMinorSurvey+"4").trim()))
-        {
+        } else if (result.contains((ConfigParams.DelMinorSurvey + "4").trim())) {
             String content = ConfigParams.DelMinorSurvey + "4 ";
-            data = result.replaceAll(content.trim(),"").trim();
-            if ("OK".equals(data))
-            {
+            data = result.replaceAll(content.trim(), "").trim();
+            if ("OK".equals(data)) {
                 auxiliaryLayout4.setVisibility(View.GONE);
                 addMinorSurvey4.setEnabled(true);
-            }
-            else if ("ERROR".equals(data))
-            {
+            } else if ("ERROR".equals(data)) {
                 ToastUtil.showToastLong("删除失败！");
             }
-        }
-        else if (result.contains((ConfigParams.DelMinorSurvey+"5").trim()))
-        {
+        } else if (result.contains((ConfigParams.DelMinorSurvey + "5").trim())) {
             String content = ConfigParams.DelMinorSurvey + "5 ";
-            data = result.replaceAll(content.trim(),"").trim();
-            if ("OK".equals(data))
-            {
+            data = result.replaceAll(content.trim(), "").trim();
+            if ("OK".equals(data)) {
                 auxiliaryLayout5.setVisibility(View.GONE);
                 addMinorSurvey5.setEnabled(true);
-            }
-            else if ("ERROR".equals(data))
-            {
+            } else if ("ERROR".equals(data)) {
                 ToastUtil.showToastLong("删除失败！");
             }
-        }
-        else if (result.contains((ConfigParams.DelMinorSurvey+"6").trim()))
-        {
+        } else if (result.contains((ConfigParams.DelMinorSurvey + "6").trim())) {
             String content = ConfigParams.DelMinorSurvey + "6 ";
-            data = result.replaceAll(content.trim(),"").trim();
-            if ("OK".equals(data))
-            {
+            data = result.replaceAll(content.trim(), "").trim();
+            if ("OK".equals(data)) {
                 auxiliaryLayout6.setVisibility(View.GONE);
                 addMinorSurvey6.setEnabled(true);
-            }
-            else if ("ERROR".equals(data))
-            {
+            } else if ("ERROR".equals(data)) {
                 ToastUtil.showToastLong("删除失败！");
             }
-        }
-        else if (result.contains((ConfigParams.DelMinorSurvey+"7").trim()))
-        {
+        } else if (result.contains((ConfigParams.DelMinorSurvey + "7").trim())) {
             String content = ConfigParams.DelMinorSurvey + "7 ";
-            data = result.replaceAll(content.trim(),"").trim();
-            if ("OK".equals(data))
-            {
+            data = result.replaceAll(content.trim(), "").trim();
+            if ("OK".equals(data)) {
                 auxiliaryLayout7.setVisibility(View.GONE);
                 addMinorSurvey7.setEnabled(true);
-            }
-            else if ("ERROR".equals(data))
-            {
+            } else if ("ERROR".equals(data)) {
                 ToastUtil.showToastLong("删除失败！");
             }
-        }
-        else if (result.contains((ConfigParams.DelMinorSurvey+"8").trim()))
-        {
+        } else if (result.contains((ConfigParams.DelMinorSurvey + "8").trim())) {
             String content = ConfigParams.DelMinorSurvey + "8 ";
-            data = result.replaceAll(content.trim(),"").trim();
-            if ("OK".equals(data))
-            {
+            data = result.replaceAll(content.trim(), "").trim();
+            if ("OK".equals(data)) {
                 auxiliaryLayout8.setVisibility(View.GONE);
                 addMinorSurvey8.setEnabled(true);
-            }
-            else if ("ERROR".equals(data))
-            {
+            } else if ("ERROR".equals(data)) {
                 ToastUtil.showToastLong("删除失败！");
             }
-        }
-        else if (result.contains((ConfigParams.DelMinorSurvey+"9").trim()))
-        {
+        } else if (result.contains((ConfigParams.DelMinorSurvey + "9").trim())) {
             String content = ConfigParams.DelMinorSurvey + "9 ";
-            data = result.replaceAll(content.trim(),"").trim();
-            if ("OK".equals(data))
-            {
+            data = result.replaceAll(content.trim(), "").trim();
+            if ("OK".equals(data)) {
                 auxiliaryLayout9.setVisibility(View.GONE);
                 addMinorSurvey9.setEnabled(true);
-            }
-            else if ("ERROR".equals(data))
-            {
+            } else if ("ERROR".equals(data)) {
                 ToastUtil.showToastLong("删除失败！");
             }
-        }
-        else if (result.contains((ConfigParams.DelMinorSurvey+"10").trim()))
-        {
+        } else if (result.contains((ConfigParams.DelMinorSurvey + "10").trim())) {
             String content = ConfigParams.DelMinorSurvey + "10 ";
-            data = result.replaceAll(content.trim(),"").trim();
-            if ("OK".equals(data))
-            {
+            data = result.replaceAll(content.trim(), "").trim();
+            if ("OK".equals(data)) {
                 auxiliaryLayout10.setVisibility(View.GONE);
                 addMinorSurvey10.setEnabled(true);
-            }
-            else if ("ERROR".equals(data))
-            {
+            } else if ("ERROR".equals(data)) {
                 ToastUtil.showToastLong("删除失败！");
             }
-        }
-        else if (result.contains((ConfigParams.DelMinorSurvey+"11").trim()))
-        {
+        } else if (result.contains((ConfigParams.DelMinorSurvey + "11").trim())) {
             String content = ConfigParams.DelMinorSurvey + "11 ";
-            data = result.replaceAll(content.trim(),"").trim();
-            if ("OK".equals(data))
-            {
+            data = result.replaceAll(content.trim(), "").trim();
+            if ("OK".equals(data)) {
                 auxiliaryLayout11.setVisibility(View.GONE);
                 addMinorSurvey11.setEnabled(true);
-            }
-            else if ("ERROR".equals(data))
-            {
+            } else if ("ERROR".equals(data)) {
                 ToastUtil.showToastLong("删除失败！");
             }
-        }
-        else if (result.contains((ConfigParams.DelMinorSurvey+"12").trim()))
-        {
+        } else if (result.contains((ConfigParams.DelMinorSurvey + "12").trim())) {
             String content = ConfigParams.DelMinorSurvey + "12 ";
-            data = result.replaceAll(content.trim(),"").trim();
-            if ("OK".equals(data))
-            {
+            data = result.replaceAll(content.trim(), "").trim();
+            if ("OK".equals(data)) {
                 auxiliaryLayout12.setVisibility(View.GONE);
                 addMinorSurvey12.setEnabled(true);
-            }
-            else if ("ERROR".equals(data))
-            {
+            } else if ("ERROR".equals(data)) {
                 ToastUtil.showToastLong("删除失败！");
             }
-        }
-        else if (result.contains((ConfigParams.DelMinorSurvey+"13").trim()))
-        {
+        } else if (result.contains((ConfigParams.DelMinorSurvey + "13").trim())) {
             String content = ConfigParams.DelMinorSurvey + "13 ";
-            data = result.replaceAll(content.trim(),"").trim();
-            if ("OK".equals(data))
-            {
+            data = result.replaceAll(content.trim(), "").trim();
+            if ("OK".equals(data)) {
                 auxiliaryLayout13.setVisibility(View.GONE);
                 addMinorSurvey13.setEnabled(true);
-            }
-            else if ("ERROR".equals(data))
-            {
+            } else if ("ERROR".equals(data)) {
                 ToastUtil.showToastLong("删除失败！");
             }
-        }
-        else if (result.contains((ConfigParams.DelMinorSurvey+"14").trim()))
-        {
+        } else if (result.contains((ConfigParams.DelMinorSurvey + "14").trim())) {
             String content = ConfigParams.DelMinorSurvey + "14 ";
-            data = result.replaceAll(content.trim(),"").trim();
-            if ("OK".equals(data))
-            {
+            data = result.replaceAll(content.trim(), "").trim();
+            if ("OK".equals(data)) {
                 auxiliaryLayout14.setVisibility(View.GONE);
                 addMinorSurvey14.setEnabled(true);
-            }
-            else if ("ERROR".equals(data))
-            {
+            } else if ("ERROR".equals(data)) {
                 ToastUtil.showToastLong("删除失败！");
             }
-        }
-        else if (result.contains((ConfigParams.DelMinorSurvey+"15").trim()))
-        {
+        } else if (result.contains((ConfigParams.DelMinorSurvey + "15").trim())) {
             String content = ConfigParams.DelMinorSurvey + "15 ";
-            data = result.replaceAll(content.trim(),"").trim();
-            if ("OK".equals(data))
-            {
+            data = result.replaceAll(content.trim(), "").trim();
+            if ("OK".equals(data)) {
                 auxiliaryLayout15.setVisibility(View.GONE);
                 addMinorSurvey15.setEnabled(true);
-            }
-            else if ("ERROR".equals(data))
-            {
+            } else if ("ERROR".equals(data)) {
                 ToastUtil.showToastLong("删除失败！");
             }
-        }
-        else if (result.contains((ConfigParams.DelMinorSurvey+"16").trim()))
-        {
+        } else if (result.contains((ConfigParams.DelMinorSurvey + "16").trim())) {
             String content = ConfigParams.DelMinorSurvey + "16 ";
-            data = result.replaceAll(content.trim(),"").trim();
-            if ("OK".equals(data))
-            {
+            data = result.replaceAll(content.trim(), "").trim();
+            if ("OK".equals(data)) {
                 auxiliaryLayout16.setVisibility(View.GONE);
                 addMinorSurvey16.setEnabled(true);
-            }
-            else if ("ERROR".equals(data))
-            {
+            } else if ("ERROR".equals(data)) {
                 ToastUtil.showToastLong("删除失败！");
             }
-        }
-        else {
+        } else {
 
             addMinorSurvey1.setEnabled(true);
             addMinorSurvey2.setEnabled(true);

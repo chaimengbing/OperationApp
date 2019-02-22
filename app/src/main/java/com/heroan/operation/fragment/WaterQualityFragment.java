@@ -1,7 +1,10 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,14 +18,14 @@ import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
-import zuo.biao.library.util.Log;
+import zuo.biao.library.base.BaseFragment;
 
 /**
  * Created by linxi on 2017/11/30.
  */
 
-public class WaterQualityFragment extends BaseFragment implements View.OnClickListener,EventNotifyHelper.NotificationCenterDelegate
-{
+public class WaterQualityFragment extends BaseFragment implements View.OnClickListener,
+        EventNotifyHelper.NotificationCenterDelegate {
     private final String TAG = WaterQualityFragment.class.getSimpleName();
 
     private Spinner waterQualitySpinner;
@@ -43,57 +46,57 @@ public class WaterQualityFragment extends BaseFragment implements View.OnClickLi
 
 
     @Override
-    public int getLayoutView()
-    {
-        return R.layout.fragment_water_quality;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_water_quality);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
+
     @Override
-    public void onDestroy()
-    {
+    public void onDestroy() {
         super.onDestroy();
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
     }
+
     @Override
-    public void initComponentViews(View view)
-    {
+    public void initView() {
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
-        waterQualitySpinner = (Spinner) view.findViewById(R.id.Water_quality);
-        collectButton = (Button) view.findViewById(R.id.collect_button);
-        checkBox1 = (CheckBox) view.findViewById(R.id.checkbox1);
-        checkBox2 = (CheckBox) view.findViewById(R.id.checkbox2);
-        checkBox3 = (CheckBox) view.findViewById(R.id.checkbox3);
-        checkBox4 = (CheckBox) view.findViewById(R.id.checkbox4);
-        checkBox5 = (CheckBox) view.findViewById(R.id.checkbox5);
-        checkBox6 = (CheckBox) view.findViewById(R.id.checkbox6);
-        checkBox7 = (CheckBox) view.findViewById(R.id.checkbox7);
-        checkBox8 = (CheckBox) view.findViewById(R.id.checkbox8);
-        checkBox9 = (CheckBox) view.findViewById(R.id.checkbox9);
+        waterQualitySpinner = view.findViewById(R.id.Water_quality);
+        collectButton = view.findViewById(R.id.collect_button);
+        checkBox1 = view.findViewById(R.id.checkbox1);
+        checkBox2 = view.findViewById(R.id.checkbox2);
+        checkBox3 = view.findViewById(R.id.checkbox3);
+        checkBox4 = view.findViewById(R.id.checkbox4);
+        checkBox5 = view.findViewById(R.id.checkbox5);
+        checkBox6 = view.findViewById(R.id.checkbox6);
+        checkBox7 = view.findViewById(R.id.checkbox7);
+        checkBox8 = view.findViewById(R.id.checkbox8);
+        checkBox9 = view.findViewById(R.id.checkbox9);
     }
 
     @Override
-    public void initData()
-    {
+    public void initData() {
         waterQualityItems = getResources().getStringArray(R.array.Water_quality);
-        waterQualityAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item, waterQualityItems);
+        waterQualityAdapter = new SimpleSpinnerAdapter(getActivity(),
+                R.layout.simple_spinner_item, waterQualityItems);
         waterQualitySpinner.setAdapter(waterQualityAdapter);
         SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadWaterQuality);
     }
 
     @Override
-    public void setListener()
-    {
-
+    public void initEvent() {
         collectButton.setOnClickListener(this);
 
-        waterQualitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
+        waterQualitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
-            {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                if (isFirst)
-                {
+                if (isFirst) {
                     isFirst = false;
                     return;
                 }
@@ -103,25 +106,19 @@ public class WaterQualityFragment extends BaseFragment implements View.OnClickLi
                 String content = ConfigParams.SetWaterQuality + i;
                 SocketUtil.getSocketUtil().sendContent(content);
 
-//                i += 1;
-//                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetWaterQuality + ServiceUtils.getStr("" + i,2));
-
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView)
-            {
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
-
     }
 
+
     @Override
-    public void onClick(View view)
-    {
-        switch (view.getId())
-        {
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.collect_button:
                 String check1 = checkBox1 != null && checkBox1.isChecked() ? "1" : "0";
                 String check2 = checkBox2 != null && checkBox2.isChecked() ? "1" : "0";
@@ -133,7 +130,8 @@ public class WaterQualityFragment extends BaseFragment implements View.OnClickLi
                 String check8 = checkBox8 != null && checkBox8.isChecked() ? "1" : "0";
                 String check9 = checkBox9 != null && checkBox9.isChecked() ? "1" : "0";
 
-                String content = ConfigParams.Setsz_select + check1 + check2 + check3 + check4 + check5 + check6 + check7 + check8 + check9 ;
+                String content =
+                        ConfigParams.Setsz_select + check1 + check2 + check3 + check4 + check5 + check6 + check7 + check8 + check9;
                 SocketUtil.getSocketUtil().sendContent(content);
                 break;
             default:
@@ -142,55 +140,45 @@ public class WaterQualityFragment extends BaseFragment implements View.OnClickLi
     }
 
     @Override
-    public void didReceivedNotification(int id, Object... args)
-    {
+    public void didReceivedNotification(int id, Object... args) {
         String result = (String) args[0];
         String content = (String) args[1];
-        if (TextUtils.isEmpty(result) || TextUtils.isEmpty(content))
-        {
+        if (TextUtils.isEmpty(result) || TextUtils.isEmpty(content)) {
             return;
         }
         setData(result);
     }
 
-    private void setData(String result)
-    {
+    private void setData(String result) {
         String data = "";
-        if (result.contains(ConfigParams.SetWaterQuality))
-        {
+        if (result.contains(ConfigParams.SetWaterQuality)) {
             data = result.replaceAll(ConfigParams.SetWaterQuality, "").trim();
-            if (ServiceUtils.isNumeric(data))
-            {
+            if (ServiceUtils.isNumeric(data)) {
                 int t = Integer.parseInt(data);
-                if (t < waterQualityItems.length)
-                {
+                if (t < waterQualityItems.length) {
                     waterQualitySpinner.setSelection(t, false);
                 }
-                waterQualitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-                {
+                waterQualitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
                     @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-                    {
+                    public void onItemSelected(AdapterView<?> parent, View view, int position,
+                                               long id) {
                         waterQualityAdapter.setSelectedItem(position);
                         String water485 = waterQualityItems[position];
-                        if ("无".equals(water485))
-                        {
+                        if ("无".equals(water485)) {
                             return;
                         }
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.SetWaterQuality + ServiceUtils.getStr("" + position,2));
+                        SocketUtil.getSocketUtil().sendContent(ConfigParams.SetWaterQuality + ServiceUtils.getStr("" + position, 2));
                     }
 
                     @Override
-                    public void onNothingSelected(AdapterView<?> parent)
-                    {
+                    public void onNothingSelected(AdapterView<?> parent) {
 
                     }
                 });
             }
-        }
-        else if (result.contains(ConfigParams.Setsz_select.trim()) && (!result.equals("OK")))
-        {// 获取采集要素设置
+        } else if (result.contains(ConfigParams.Setsz_select.trim()) && (!result.equals("OK"))) {
+            // 获取采集要素设置
             String collect = result.replaceAll(ConfigParams.Setsz_select.trim(), "").trim();
             checkBox1.setChecked((collect.charAt(0)) == '1');
             checkBox2.setChecked((collect.charAt(1)) == '1');

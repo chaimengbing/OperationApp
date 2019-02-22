@@ -1,26 +1,28 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
-import zuo.biao.library.util.Log;
+import zuo.biao.library.base.BaseFragment;
 
 /**
  * 采集要素
  * Created by Vcontrol on 2016/11/23.
  */
 
-public class CollectFragment extends BaseFragment implements View.OnClickListener, EventNotifyHelper.NotificationCenterDelegate
-{
+public class CollectFragment extends BaseFragment implements View.OnClickListener,
+        EventNotifyHelper.NotificationCenterDelegate {
 
     private Button collectButton;
     private CheckBox checkBox1;
@@ -41,64 +43,62 @@ public class CollectFragment extends BaseFragment implements View.OnClickListene
     private CheckBox checkBox16;
     private CheckBox checkBox17;
 
+
     @Override
-    public int getLayoutView()
-    {
-        return R.layout.fragment_setting_collect;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_setting_collect);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
     @Override
-    public void onDestroy()
-    {
+    public void onDestroy() {
         super.onDestroy();
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
     }
 
+
     @Override
-    public void initComponentViews(View view)
-    {
-
+    public void initView() {
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
-        collectButton = (Button) view.findViewById(R.id.collect_button);
-        checkBox1 = (CheckBox) view.findViewById(R.id.checkbox1);
-        checkBox2 = (CheckBox) view.findViewById(R.id.checkbox2);
-        checkBox3 = (CheckBox) view.findViewById(R.id.checkbox3);
-        checkBox4 = (CheckBox) view.findViewById(R.id.checkbox4);
-        checkBox5 = (CheckBox) view.findViewById(R.id.checkbox5);
-        checkBox6 = (CheckBox) view.findViewById(R.id.checkbox6);
-        checkBox7 = (CheckBox) view.findViewById(R.id.checkbox7);
-        checkBox8 = (CheckBox) view.findViewById(R.id.checkbox8);
-        checkBox9 = (CheckBox) view.findViewById(R.id.checkbox9);
-        checkBox10 = (CheckBox) view.findViewById(R.id.checkbox10);
-        checkBox11 = (CheckBox) view.findViewById(R.id.checkbox11);
-        checkBox12 = (CheckBox) view.findViewById(R.id.checkbox12);
-        checkBox13 = (CheckBox) view.findViewById(R.id.checkbox13);
-        checkBox14 = (CheckBox) view.findViewById(R.id.checkbox14);
-        checkBox15 = (CheckBox) view.findViewById(R.id.checkbox15);
-        checkBox16 = (CheckBox) view.findViewById(R.id.checkbox16);
-        checkBox17 = (CheckBox) view.findViewById(R.id.checkbox17);
-
-
-
+        collectButton = view.findViewById(R.id.collect_button);
+        checkBox1 = view.findViewById(R.id.checkbox1);
+        checkBox2 = view.findViewById(R.id.checkbox2);
+        checkBox3 = view.findViewById(R.id.checkbox3);
+        checkBox4 = view.findViewById(R.id.checkbox4);
+        checkBox5 = view.findViewById(R.id.checkbox5);
+        checkBox6 = view.findViewById(R.id.checkbox6);
+        checkBox7 = view.findViewById(R.id.checkbox7);
+        checkBox8 = view.findViewById(R.id.checkbox8);
+        checkBox9 = view.findViewById(R.id.checkbox9);
+        checkBox10 = view.findViewById(R.id.checkbox10);
+        checkBox11 = view.findViewById(R.id.checkbox11);
+        checkBox12 = view.findViewById(R.id.checkbox12);
+        checkBox13 = view.findViewById(R.id.checkbox13);
+        checkBox14 = view.findViewById(R.id.checkbox14);
+        checkBox15 = view.findViewById(R.id.checkbox15);
+        checkBox16 = view.findViewById(R.id.checkbox16);
+        checkBox17 = view.findViewById(R.id.checkbox17);
     }
 
     @Override
-    public void initData()
-    {
+    public void initData() {
         SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadSystemPara);
     }
 
     @Override
-    public void setListener()
-    {
+    public void initEvent() {
         collectButton.setOnClickListener(this);
     }
 
+
     @Override
-    public void onClick(View view)
-    {
-        switch (view.getId())
-        {
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.collect_button:
                 String check1 = checkBox1 != null && checkBox1.isChecked() ? "1" : "0";
                 String check2 = checkBox2 != null && checkBox2.isChecked() ? "1" : "0";
@@ -117,7 +117,8 @@ public class CollectFragment extends BaseFragment implements View.OnClickListene
                 String check15 = checkBox15 != null && checkBox15.isChecked() ? "1" : "0";
                 String check16 = checkBox16 != null && checkBox16.isChecked() ? "1" : "0";
                 String check17 = checkBox17 != null && checkBox17.isChecked() ? "1" : "0";
-                String content = ConfigParams.SetScadaFactor + check1 + check2 + check3 + check4 + check5 + check6 + check7 + check8 + check9 + check10 + check11 + check12 + check13+ check14 + check15 + check16+ check17;
+                String content =
+                        ConfigParams.SetScadaFactor + check1 + check2 + check3 + check4 + check5 + check6 + check7 + check8 + check9 + check10 + check11 + check12 + check13 + check14 + check15 + check16 + check17;
                 SocketUtil.getSocketUtil().sendContent(content);
                 break;
             default:
@@ -126,14 +127,11 @@ public class CollectFragment extends BaseFragment implements View.OnClickListene
     }
 
     @Override
-    public void didReceivedNotification(int id, Object... args)
-    {
-        if (id == UiEventEntry.READ_DATA)
-        {
+    public void didReceivedNotification(int id, Object... args) {
+        if (id == UiEventEntry.READ_DATA) {
             String result = (String) args[0];
             String content = (String) args[1];
-            if (TextUtils.isEmpty(result) || TextUtils.isEmpty(content))
-            {
+            if (TextUtils.isEmpty(result) || TextUtils.isEmpty(content)) {
                 return;
             }
             setData(result);
@@ -141,10 +139,9 @@ public class CollectFragment extends BaseFragment implements View.OnClickListene
         }
     }
 
-    private void setData(String result)
-    {
-        if (result.contains(ConfigParams.SetScadaFactor.trim()) && (!result.equals("OK")))
-        {// 获取采集要素设置
+    private void setData(String result) {
+        if (result.contains(ConfigParams.SetScadaFactor.trim()) && (!result.equals("OK"))) {//
+            // 获取采集要素设置
             String collect = result.replaceAll(ConfigParams.SetScadaFactor.trim(), "").trim();
             checkBox1.setChecked((collect.charAt(0)) == '1');
             checkBox2.setChecked((collect.charAt(1)) == '1');
@@ -155,36 +152,28 @@ public class CollectFragment extends BaseFragment implements View.OnClickListene
             checkBox7.setChecked((collect.charAt(6)) == '1');
             checkBox8.setChecked((collect.charAt(7)) == '1');
             checkBox9.setChecked((collect.charAt(8)) == '1');
-            if (collect.length() > 9)
-            {
+            if (collect.length() > 9) {
                 checkBox10.setChecked((collect.charAt(9)) == '1');
             }
-            if (collect.length() > 10)
-            {
+            if (collect.length() > 10) {
                 checkBox11.setChecked((collect.charAt(10)) == '1');
             }
-            if (collect.length() > 11)
-            {
+            if (collect.length() > 11) {
                 checkBox12.setChecked((collect.charAt(11)) == '1');
             }
-            if (collect.length() > 12)
-            {
+            if (collect.length() > 12) {
                 checkBox13.setChecked((collect.charAt(12)) == '1');
             }
-            if (collect.length() > 13)
-            {
+            if (collect.length() > 13) {
                 checkBox14.setChecked((collect.charAt(13)) == '1');
             }
-            if (collect.length() > 14)
-            {
+            if (collect.length() > 14) {
                 checkBox15.setChecked((collect.charAt(14)) == '1');
             }
-            if (collect.length() > 15)
-            {
+            if (collect.length() > 15) {
                 checkBox16.setChecked((collect.charAt(15)) == '1');
             }
-            if (collect.length() > 16)
-            {
+            if (collect.length() > 16) {
                 checkBox17.setChecked((collect.charAt(16)) == '1');
             }
         }

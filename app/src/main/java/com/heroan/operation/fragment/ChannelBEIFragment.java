@@ -1,7 +1,10 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -16,14 +19,15 @@ import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
-import zuo.biao.library.util.Log;
+import zuo.biao.library.base.BaseFragment;
+
 /**
  * 北斗设置
  * Created by Vcontrol on 2017/03/27.
  */
 
-public class ChannelBEIFragment extends BaseFragment implements View.OnClickListener, EventNotifyHelper.NotificationCenterDelegate
-{
+public class ChannelBEIFragment extends BaseFragment implements View.OnClickListener,
+        EventNotifyHelper.NotificationCenterDelegate {
     private LinearLayout company;
     private TextView channel1;
     private TextView channel2;
@@ -43,22 +47,25 @@ public class ChannelBEIFragment extends BaseFragment implements View.OnClickList
     private RadioGroup beiDouGroup;
 
     @Override
-    public int getLayoutView()
-    {
-        return R.layout.fragment_setting_channel_gms;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_setting_channel_gms);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
     @Override
-    public void onDestroy()
-    {
+    public void onDestroy() {
         super.onDestroy();
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
     }
 
-    @Override
-    public void initComponentViews(View view)
-    {
 
+    @Override
+    public void initView() {
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
         num1 = (EditText) view.findViewById(R.id.num_1_edittext);
         num2 = (EditText) view.findViewById(R.id.num_2_edittext);
@@ -83,31 +90,31 @@ public class ChannelBEIFragment extends BaseFragment implements View.OnClickList
         channel4.setText(getString(R.string.Beidou_channel_4));
 
         beiDouGroup = (RadioGroup) view.findViewById(R.id.beidou_radiogroup);
-
-        initView(view);
-
     }
 
-    private void initView(final View view)
-    {
-        beiDouGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
+    @Override
+    public void initData() {
+        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadCommPara3);
+    }
+
+    @Override
+    public void initEvent() {
+        set1.setOnClickListener(this);
+        set2.setOnClickListener(this);
+        set3.setOnClickListener(this);
+        set4.setOnClickListener(this);
+        beiDouGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId)
-            {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
                 View checkView = view.findViewById(checkedId);
-                if (!checkView.isPressed())
-                {
+                if (!checkView.isPressed()) {
                     return;
                 }
                 String content = ConfigParams.SetBeidouType;
-                if (checkedId == R.id.beidou_button)
-                {
+                if (checkedId == R.id.beidou_button) {
                     SocketUtil.getSocketUtil().sendContent(content + "00");
-                }
-                else if (checkedId == R.id.beidou_button_2)
-                {
+                } else if (checkedId == R.id.beidou_button_2) {
                     SocketUtil.getSocketUtil().sendContent(content + "01");
 
                 }
@@ -116,32 +123,15 @@ public class ChannelBEIFragment extends BaseFragment implements View.OnClickList
         });
     }
 
-    @Override
-    public void initData()
-    {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadCommPara3);
-    }
 
     @Override
-    public void setListener()
-    {
-        set1.setOnClickListener(this);
-        set2.setOnClickListener(this);
-        set3.setOnClickListener(this);
-        set4.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View view)
-    {
+    public void onClick(View view) {
         String num;
         String content = "";
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.gms_1_button:
                 num = num1.getText().toString().trim();
-                if (TextUtils.isEmpty(num))
-                {
+                if (TextUtils.isEmpty(num)) {
                     ToastUtil.showToastLong(getString(R.string.compass_number_cannot_be_empty));
                     return;
                 }
@@ -150,8 +140,7 @@ public class ChannelBEIFragment extends BaseFragment implements View.OnClickList
                 break;
             case R.id.gms_2_button:
                 num = num2.getText().toString().trim();
-                if (TextUtils.isEmpty(num))
-                {
+                if (TextUtils.isEmpty(num)) {
                     ToastUtil.showToastLong(getString(R.string.compass_number_cannot_be_empty));
                     return;
                 }
@@ -160,8 +149,7 @@ public class ChannelBEIFragment extends BaseFragment implements View.OnClickList
                 break;
             case R.id.gms_3_button:
                 num = num3.getText().toString().trim();
-                if (TextUtils.isEmpty(num))
-                {
+                if (TextUtils.isEmpty(num)) {
                     ToastUtil.showToastLong(getString(R.string.compass_number_cannot_be_empty));
                     return;
                 }
@@ -170,8 +158,7 @@ public class ChannelBEIFragment extends BaseFragment implements View.OnClickList
                 break;
             case R.id.gms_4_button:
                 num = num4.getText().toString().trim();
-                if (TextUtils.isEmpty(num))
-                {
+                if (TextUtils.isEmpty(num)) {
                     ToastUtil.showToastLong(getString(R.string.compass_number_cannot_be_empty));
                     return;
                 }
@@ -185,45 +172,30 @@ public class ChannelBEIFragment extends BaseFragment implements View.OnClickList
 
 
     @Override
-    public void didReceivedNotification(int id, Object... args)
-    {
+    public void didReceivedNotification(int id, Object... args) {
         String result = (String) args[0];
         String content = (String) args[1];
-        if (TextUtils.isEmpty(result))
-        {
+        if (TextUtils.isEmpty(result)) {
             return;
         }
         setData(result);
     }
 
-    private void setData(String result)
-    {
+    private void setData(String result) {
         // 北斗信道 1 2 3 4
-        if (result.contains(ConfigParams.SetBeiDou + "1"))
-        {
+        if (result.contains(ConfigParams.SetBeiDou + "1")) {
             num1.setText(result.replaceAll(ConfigParams.SetBeiDou + "1", "").trim());
-        }
-        else if (result.contains(ConfigParams.SetBeiDou + "2"))
-        {
+        } else if (result.contains(ConfigParams.SetBeiDou + "2")) {
             num2.setText(result.replaceAll(ConfigParams.SetBeiDou + "2", "").trim());
-        }
-        else if (result.contains(ConfigParams.SetBeiDou + "3"))
-        {
+        } else if (result.contains(ConfigParams.SetBeiDou + "3")) {
             num3.setText(result.replaceAll(ConfigParams.SetBeiDou + "3", "").trim());
-        }
-        else if (result.contains(ConfigParams.SetBeiDou + "4"))
-        {
+        } else if (result.contains(ConfigParams.SetBeiDou + "4")) {
             num4.setText(result.replaceAll(ConfigParams.SetBeiDou + "4", "").trim());
-        }
-        else if (result.contains(ConfigParams.SetBeidouType.trim()))
-        {// 北斗厂家
+        } else if (result.contains(ConfigParams.SetBeidouType.trim())) {// 北斗厂家
             String data = result.replaceAll(ConfigParams.SetBeidouType, "").trim();
-            if (data.equals("0"))
-            {
+            if (data.equals("0")) {
                 beiDouGroup.check(R.id.beidou_button);
-            }
-            else
-            {
+            } else {
                 beiDouGroup.check(R.id.beidou_button_2);
             }
         }

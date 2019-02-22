@@ -1,11 +1,10 @@
 package com.heroan.operation.fragment;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -23,23 +22,22 @@ import com.heroan.operation.R;
 import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
-import zuo.biao.library.util.Log;
-
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+
+import zuo.biao.library.base.BaseFragment;
+import zuo.biao.library.util.Log;
 
 /**
  * Created by Vcontrol on 2016/11/23.
  */
 
-public class GroundWaterBasicFragment extends BaseFragment implements View.OnClickListener, EventNotifyHelper.NotificationCenterDelegate, AdapterView.OnItemSelectedListener
-{
+public class GroundWaterBasicFragment extends BaseFragment implements View.OnClickListener,
+        EventNotifyHelper.NotificationCenterDelegate, AdapterView.OnItemSelectedListener {
 
     private static final String DEFAULT_TIME_FORMAT = "yyyy年MM月dd日HH时mm分ss秒";
     private static final String SEND_TIME_FORMAT = "yyyyMMddHHmmss";
@@ -57,7 +55,6 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
     private Button collectionButton;
     private CheckBox checkBox1;
     private CheckBox checkBox2;
-
 
 
     private Button gateMeterSetButton;
@@ -100,24 +97,26 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
     private SimpleSpinnerAdapter siteTypeAdapter;
     private String[] siteTypeItems;
 
-
     @Override
-    public int getLayoutView()
-    {
-        return R.layout.fragment_setting_system_pamars;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_setting_system_pamars);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
     @Override
-    public void onDestroy()
-    {
+    public void onDestroy() {
         super.onDestroy();
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
     }
 
-    @Override
-    public void initComponentViews(View view)
-    {
 
+    @Override
+    public void initView() {
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
 
         siteTestSetButton = (Button) view.findViewById(R.id.site_test_setting_button);
@@ -138,7 +137,7 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
         alwaysRadioButton = (RadioButton) view.findViewById(R.id.always_online_radiobtton);
         timeButton = (Button) view.findViewById(R.id.time_button);
         resetButton = (Button) view.findViewById(R.id.reset_button);
-        sam_gate_now_Button= (Button) view.findViewById(R.id.sam_gate_now_button);
+        sam_gate_now_Button = (Button) view.findViewById(R.id.sam_gate_now_button);
         restartButton = (Button) view.findViewById(R.id.restart_button);
         currentTime = (TextView) view.findViewById(R.id.current_time);
         rtuTimeTextView = (TextView) view.findViewById(R.id.rtu_time);
@@ -155,40 +154,35 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
 
         siteTypeSpinner = (Spinner) view.findViewById(R.id.site_type_spinner);
         initView(view);
-
-
     }
 
     @Override
-    public void initData()
-    {
+    public void initData() {
         initContent();
         sensorTypeItems = getResources().getStringArray(R.array.sensor_type);
         timeItems = getResources().getStringArray(R.array.ground_collect_time);
-        sensorTypeAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item, sensorTypeItems);
-        timeTypeAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item, timeItems);
+        sensorTypeAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item,
+                sensorTypeItems);
+        timeTypeAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item,
+                timeItems);
         sensorTypeSpinner.setAdapter(sensorTypeAdapter);
         timeSpinner.setAdapter(timeTypeAdapter);
 
         siteTypeItems = getResources().getStringArray(R.array.site_type);
-        siteTypeAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item, siteTypeItems);
+        siteTypeAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item,
+                siteTypeItems);
         siteTypeSpinner.setAdapter(siteTypeAdapter);
 
 
         timeFormat = new SimpleDateFormat(DEFAULT_TIME_FORMAT);
         sendTimeFormat = new SimpleDateFormat(SEND_TIME_FORMAT);
-        mTimeUpdateThread = new Runnable()
-        {
+        mTimeUpdateThread = new Runnable() {
             @Override
-            public void run()
-            {
-                try
-                {
+            public void run() {
+                try {
                     OperationApplication.applicationHandler.postDelayed(mTimeUpdateThread, 1000);
                     currentTime.setText(timeFormat.format(System.currentTimeMillis()));
-                }
-                catch (Exception e)
-                {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -198,21 +192,45 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
         SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadData);
     }
 
-    private void initView(final View view)
-    {
-        runStatusRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
+    @Override
+    public void initEvent() {
+        siteTestSetButton.setOnClickListener(this);
+        depthSetButton.setOnClickListener(this);
+        timeButton.setOnClickListener(this);
+        resetButton.setOnClickListener(this);
+        sam_gate_now_Button.setOnClickListener(this);
+        apnButton.setOnClickListener(this);
+        restartButton.setOnClickListener(this);
+        /*collectionButton.setOnClickListener(this);*/
+        rtuTimeTextView.setOnClickListener(this);
+        gateMeterSetButton.setOnClickListener(this);
+        elecrelaySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i)
-            {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (elecrelaySwitch.isPressed()) {
+
+                    if (!isChecked) {
+                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "0");
+                    } else {
+                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "1");
+
+                    }
+                }
+
+            }
+        });
+    }
+
+    private void initView(final View view) {
+        runStatusRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 View checkView = view.findViewById(i);
-                if (!checkView.isPressed())
-                {
+                if (!checkView.isPressed()) {
                     return;
                 }
                 String content = ConfigParams.SetWorkMode;
-                switch (i)
-                {
+                switch (i) {
                     case R.id.low_power_radiobtton:
                         String low = content + "0";
                         SocketUtil.getSocketUtil().sendContent(low);
@@ -230,19 +248,15 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
             }
         });
 
-        humRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
+        humRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i)
-            {
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 View checkView = view.findViewById(i);
-                if (!checkView.isPressed())
-                {
+                if (!checkView.isPressed()) {
                     return;
                 }
                 String content = ConfigParams.SetXIUZHENG;
-                switch (i)
-                {
+                switch (i) {
                     case R.id.hum_update_radiobtton:
                         String low = content + "1";
                         SocketUtil.getSocketUtil().sendContent(low);
@@ -260,19 +274,15 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
             }
         });
 
-        outputRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
+        outputRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i)
-            {
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 View checkView = view.findViewById(i);
-                if (!checkView.isPressed())
-                {
+                if (!checkView.isPressed()) {
                     return;
                 }
                 String content = ConfigParams.SetOutPut;
-                switch (i)
-                {
+                switch (i) {
                     case R.id.send_radiobtton:
                         String low = content + "1";
                         SocketUtil.getSocketUtil().sendContent(low);
@@ -291,60 +301,19 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
         });
     }
 
-    @Override
-    public void setListener()
-    {
-        siteTestSetButton.setOnClickListener(this);
-        depthSetButton.setOnClickListener(this);
-        timeButton.setOnClickListener(this);
-        resetButton.setOnClickListener(this);
-        sam_gate_now_Button.setOnClickListener(this);
-        apnButton.setOnClickListener(this);
-        restartButton.setOnClickListener(this);
-        /*collectionButton.setOnClickListener(this);*/
-        rtuTimeTextView.setOnClickListener(this);
-        gateMeterSetButton.setOnClickListener(this);
-        elecrelaySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
-                if (elecrelaySwitch.isPressed())
-                {
-
-                    if (!isChecked)
-                    {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "0");
-                    }
-                    else
-                    {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "1");
-
-                    }
-                }
-
-            }
-        });
-
-    }
 
     @Override
-    public void onClick(View view)
-    {
-        switch (view.getId())
-        {
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.site_test_setting_button:
                 String number = siteTestEditText.getText().toString();
-                if (TextUtils.isEmpty(number))
-                {
+                if (TextUtils.isEmpty(number)) {
                     ToastUtil.showToastLong(getString(R.string.Address_cannot_be_empty));
                     return;
                 }
                 String ss = "";
-                if (number.length() < 10)
-                {
-                    for (int i = 0; i < 10 - number.length(); i++)
-                    {
+                if (number.length() < 10) {
+                    for (int i = 0; i < 10 - number.length(); i++) {
                         ss += "0";
                     }
                 }
@@ -355,19 +324,18 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
                 break;
             case R.id.gate_meter_setting_button:
                 String number1 = gateMeterEditText.getText().toString();
-                if (TextUtils.isEmpty(number1))
-                {
+                if (TextUtils.isEmpty(number1)) {
                     ToastUtil.showToastLong(getString(R.string.Address_cannot_be_empty));
                     return;
                 }
                 String ss1 = "";
                 //if (number1.length() < 5)
                 //{
-                    //for (int i = 0; i < 5 - number1.length(); i++)
-                    //{
-                     //   ss1 += "0";
-                   // }
-               // }
+                //for (int i = 0; i < 5 - number1.length(); i++)
+                //{
+                //   ss1 += "0";
+                // }
+                // }
 
                 String content2 = ConfigParams.Setlora_gate_addr + ss1 + number1;
 
@@ -376,8 +344,7 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
             case R.id.apn_set_button:
                 String centerAdd = "";
                 centerAdd = apnEdittext.getText().toString().trim();
-                if (TextUtils.isEmpty(centerAdd))
-                {
+                if (TextUtils.isEmpty(centerAdd)) {
                     ToastUtil.showToastLong(getString(R.string.APN_cannot_be_empty));
                     return;
                 }
@@ -386,14 +353,12 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
                 break;
             case R.id.ground_setting_button:
                 String ground = depthEditText.getText().toString();
-                if (TextUtils.isEmpty(ground))
-                {
+                if (TextUtils.isEmpty(ground)) {
                     ToastUtil.showToastLong(getString(R.string.Groundwater_depth));
                     return;
                 }
 
-                if (ground.length() > 5)
-                {
+                if (ground.length() > 5) {
                     ToastUtil.showToastLong(getString(R.string.Buried_depth_5));
                     return;
                 }
@@ -413,12 +378,9 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
 
 
             case R.id.time_button:
-                if (TextUtils.isEmpty(setTime))
-                {
+                if (TextUtils.isEmpty(setTime)) {
                     SocketUtil.getSocketUtil().sendContent(ConfigParams.SETTIME + sendTimeFormat.format(System.currentTimeMillis()));
-                }
-                else
-                {
+                } else {
                     SocketUtil.getSocketUtil().sendContent(ConfigParams.SETTIME + setTime);
                 }
                 break;
@@ -441,8 +403,7 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
-    {
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         siteTypeAdapter.setSelectedItem(i);
 
         String content = ConfigParams.SetStationMode + i;
@@ -450,83 +411,64 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent)
-    {
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 
     @Override
-    public void didReceivedNotification(int id, Object... args)
-    {
-        if (id == UiEventEntry.READ_DATA)
-        {
+    public void didReceivedNotification(int id, Object... args) {
+        if (id == UiEventEntry.READ_DATA) {
             String result = (String) args[0];
             String content = (String) args[1];
-            if (TextUtils.isEmpty(result) || TextUtils.isEmpty(content))
-            {
+            if (TextUtils.isEmpty(result) || TextUtils.isEmpty(content)) {
                 return;
             }
             setData(result);
 
 
-
         }
 
     }
 
-    private void setData(String result)
-    {
-        if (result.contains(ConfigParams.GROUND_RTUid.trim()))
-        {// 遥测站地址：
+    private void setData(String result) {
+        if (result.contains(ConfigParams.GROUND_RTUid.trim())) {// 遥测站地址：
             siteTestEditText.setText(result.replaceAll(ConfigParams.GROUND_RTUid.trim(), "").trim());
             siteTestEditText.setSelection(siteTestEditText.getText().toString().trim().length());
         }
 
-        if (result.contains(ConfigParams.Setlora_gate_addr.trim()))
-        {// 闸位计地址：
-            gateMeterEditText.setText(result.replaceAll(ConfigParams.Setlora_gate_addr.trim(), "").trim());
+        if (result.contains(ConfigParams.Setlora_gate_addr.trim())) {// 闸位计地址：
+            gateMeterEditText.setText(result.replaceAll(ConfigParams.Setlora_gate_addr.trim(),
+                    "").trim());
             gateMeterEditText.setSelection(gateMeterEditText.getText().toString().trim().length());
         }
 
-        if (result.contains(ConfigParams.GROUND_maishen.trim()))
-        {// 埋深地址：
+        if (result.contains(ConfigParams.GROUND_maishen.trim())) {// 埋深地址：
             depthEditText.setText(result.replaceAll(ConfigParams.GROUND_maishen.trim(), "").trim());
             depthEditText.setSelection(depthEditText.getText().toString().trim().length());
-        }
-        else if (result.contains(ConfigParams.SetAPN.trim()))
-        {
+        } else if (result.contains(ConfigParams.SetAPN.trim())) {
             apnEdittext.setText(result.replaceAll(ConfigParams.SetAPN.trim(), "").trim());
             apnEdittext.setSelection(apnEdittext.getText().toString().trim().length());
-        }
-        else if (result.contains(ConfigParams.SetStationMode.trim()))
-        {// 站点类型：
+        } else if (result.contains(ConfigParams.SetStationMode.trim())) {// 站点类型：
             String site = result.replaceAll(ConfigParams.SetStationMode.trim(), "").trim();
             int siteNum = Integer.parseInt(site);
-            if (siteNum <= 9)
-            {
+            if (siteNum <= 9) {
                 siteTypeSpinner.setSelection(siteNum, false);
                 siteTypeAdapter.setSelectedItem(siteNum);
-            }
-            else
-            {
+            } else {
                 siteTypeSpinner.setSelection(0, false);
                 siteTypeAdapter.setSelectedItem(0);
 
             }
             siteTypeSpinner.setOnItemSelectedListener(this);
-        }
-        else if (result.contains(ConfigParams.GROUND_Water485Type.trim()))
-        {// 传感器类型：
+        } else if (result.contains(ConfigParams.GROUND_Water485Type.trim())) {// 传感器类型：
             String site = result.replaceAll(ConfigParams.GROUND_Water485Type.trim(), "").trim();
             int siteNum = Integer.parseInt(site);
             sensorTypeSpinner.setSelection(siteNum, false);
             sensorTypeAdapter.setSelectedItem(siteNum);
 
-            sensorTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-            {
+            sensorTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
-                {
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     sensorTypeAdapter.setSelectedItem(i);
 
                     String content = ConfigParams.SetWater485Type + i;
@@ -534,30 +476,25 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
                 }
 
                 @Override
-                public void onNothingSelected(AdapterView<?> adapterView)
-                {
+                public void onNothingSelected(AdapterView<?> adapterView) {
 
                 }
             });
-        }
-        else if (result.contains(ConfigParams.GROUND_SetPacketInterval.trim()))
-        {// 采集时间间隔：
-            String site = result.replaceAll(ConfigParams.GROUND_SetPacketInterval.trim(), "").trim();
+        } else if (result.contains(ConfigParams.GROUND_SetPacketInterval.trim())) {// 采集时间间隔：
+            String site =
+                    result.replaceAll(ConfigParams.GROUND_SetPacketInterval.trim(), "").trim();
             int siteNum = Integer.parseInt(site);
-            if (siteNum <= timeItems.length){
+            if (siteNum <= timeItems.length) {
                 timeSpinner.setSelection(siteNum, false);
                 timeTypeAdapter.setSelectedItem(siteNum);
-            }
-            else {
+            } else {
                 ToastUtil.showToastLong(getString(R.string.Groundwater_value));
             }
 
 
-            timeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-            {
+            timeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
-                {
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     timeTypeAdapter.setSelectedItem(i);
 
                     String content = ConfigParams.SetPacketInterval + i;
@@ -565,8 +502,7 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
                 }
 
                 @Override
-                public void onNothingSelected(AdapterView<?> adapterView)
-                {
+                public void onNothingSelected(AdapterView<?> adapterView) {
 
                 }
             });
@@ -581,155 +517,119 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
 
         }*/
 
-        else if (result.contains(ConfigParams.elecrelay.trim()))
-        {// 设备ID
+        else if (result.contains(ConfigParams.elecrelay.trim())) {// 设备ID
             String data = result.replaceAll(ConfigParams.elecrelay.trim(), "").trim();
 
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 elecrelaySwitch.setChecked(false);
-            }
-            else
-            {
+            } else {
                 elecrelaySwitch.setChecked(true);
             }
-        }
-        else if (result.contains(ConfigParams.GROUND_RunMode.trim()))
-        {
+        } else if (result.contains(ConfigParams.GROUND_RunMode.trim())) {
             String s = result.replaceAll(ConfigParams.GROUND_RunMode.trim(), "").trim();
-            if (TextUtils.isEmpty(s))
-            {
+            if (TextUtils.isEmpty(s)) {
                 return;
             }
-            if (s.equals("0"))
-            {
+            if (s.equals("0")) {
                 lowRadioButton.setChecked(true);
-            }
-            else
-            {
+            } else {
                 alwaysRadioButton.setChecked(true);
             }
-        }
-        else if (result.contains(ConfigParams.GROUND_XIUZHENG.trim()))
-        {
+        } else if (result.contains(ConfigParams.GROUND_XIUZHENG.trim())) {
             String s = result.replaceAll(ConfigParams.GROUND_XIUZHENG.trim(), "").trim();
-            if (TextUtils.isEmpty(s))
-            {
+            if (TextUtils.isEmpty(s)) {
                 return;
             }
-            if (s.equals("1"))
-            {
+            if (s.equals("1")) {
                 humRadioGroup.check(R.id.hum_update_radiobtton);
-            }
-            else if(s.equals("2"))
-            {
+            } else if (s.equals("2")) {
                 humRadioGroup.check(R.id.hum_noupdate_radiobtton);
             }
-        }
-        else if (result.contains(ConfigParams.GROUND_PrintMode.trim()))
-        {
+        } else if (result.contains(ConfigParams.GROUND_PrintMode.trim())) {
             String s = result.replaceAll(ConfigParams.GROUND_PrintMode.trim(), "").trim();
-            if (TextUtils.isEmpty(s))
-            {
+            if (TextUtils.isEmpty(s)) {
                 return;
             }
-            if (s.equals("0"))
-            {
+            if (s.equals("0")) {
                 outputRadioGroup.check(R.id.no_send_radiobtton);
-            }
-            else
-            {
+            } else {
                 outputRadioGroup.check(R.id.send_radiobtton);
             }
-        }
-        else if (result.contains(ConfigParams.GROUND_tm_year.trim()))
-        {
+        } else if (result.contains(ConfigParams.GROUND_tm_year.trim())) {
             String timeTemp = result.replaceAll(ConfigParams.GROUND_tm_year.trim(), "").trim();
             String time = timeTemp.replaceAll(" ", "0").trim();
             Log.i(TAG, "time:" + time);
-            String month = time.substring(4,6);
+            String month = time.substring(4, 6);
             int intMonth = Integer.valueOf(month);
-            if (intMonth > 12 || intMonth <1){
+            if (intMonth > 12 || intMonth < 1) {
 
                 ToastUtil.showToastLong("月份错误");
                 return;
             }
-            int day = Integer.valueOf(time.substring(6,8));
+            int day = Integer.valueOf(time.substring(6, 8));
 
-            if (day > 31 || intMonth < 1){
+            if (day > 31 || intMonth < 1) {
 
                 ToastUtil.showToastLong("日期错误");
                 return;
             }
 
-            int hour = Integer.valueOf(time.substring(8,10));
-            int min = Integer.valueOf(time.substring(10,12));
-            int s= Integer.valueOf(time.substring(12,14));
-            if (hour > 24 || hour < 0 || min > 60 || min < 0 || s > 60 || s < 0 ){
+            int hour = Integer.valueOf(time.substring(8, 10));
+            int min = Integer.valueOf(time.substring(10, 12));
+            int s = Integer.valueOf(time.substring(12, 14));
+            if (hour > 24 || hour < 0 || min > 60 || min < 0 || s > 60 || s < 0) {
 
                 ToastUtil.showToastLong("时间错误");
                 return;
             }
 
             String rtuTime = getTime(time);
-            if (rtuTimeTextView != null && rtuTime != null)
-            {
+            if (rtuTimeTextView != null && rtuTime != null) {
                 rtuTimeTextView.setText(rtuTime);
                 setTime = time;
             }
         }
     }
 
-    public void initContent()
-    {
+    public void initContent() {
         yearContent = new String[66];
         for (int i = 0; i < 65; i++)
             yearContent[i] = String.valueOf(i + 1970);
 
         monthContent = new String[12];
-        for (int i = 0; i < 12; i++)
-        {
+        for (int i = 0; i < 12; i++) {
             monthContent[i] = String.valueOf(i + 1);
-            if (monthContent[i].length() < 2)
-            {
+            if (monthContent[i].length() < 2) {
                 monthContent[i] = "0" + monthContent[i];
             }
         }
 
         dayContent = new String[31];
-        for (int i = 0; i < 31; i++)
-        {
+        for (int i = 0; i < 31; i++) {
             dayContent[i] = String.valueOf(i + 1);
-            if (dayContent[i].length() < 2)
-            {
+            if (dayContent[i].length() < 2) {
                 dayContent[i] = "0" + dayContent[i];
             }
         }
         hourContent = new String[24];
-        for (int i = 0; i < 24; i++)
-        {
+        for (int i = 0; i < 24; i++) {
             hourContent[i] = String.valueOf(i);
-            if (hourContent[i].length() < 2)
-            {
+            if (hourContent[i].length() < 2) {
                 hourContent[i] = "0" + hourContent[i];
             }
         }
 
         minuteContent = new String[60];
-        for (int i = 0; i < 60; i++)
-        {
+        for (int i = 0; i < 60; i++) {
             minuteContent[i] = String.valueOf(i);
-            if (minuteContent[i].length() < 2)
-            {
+            if (minuteContent[i].length() < 2) {
                 minuteContent[i] = "0" + minuteContent[i];
             }
         }
         secondContent = new String[60];
-        for (int i = 0; i < 60; i++)
-        {
+        for (int i = 0; i < 60; i++) {
             secondContent[i] = String.valueOf(i);
-            if (secondContent[i].length() < 2)
-            {
+            if (secondContent[i].length() < 2) {
                 secondContent[i] = "0" + secondContent[i];
             }
         }
@@ -743,12 +643,10 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
      * @param month
      * @return
      */
-    private int getDay(int year, int month)
-    {
+    private int getDay(int year, int month) {
         int day = 30;
         boolean flag = false;
-        switch (year % 4)
-        {// 计算是否是闰年
+        switch (year % 4) {// 计算是否是闰年
             case 0:
                 flag = true;
                 break;
@@ -756,8 +654,7 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
                 flag = false;
                 break;
         }
-        switch (month)
-        {
+        switch (month) {
             case 1:
             case 3:
             case 5:
@@ -778,14 +675,13 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
     }
 
 
-
-
     /**
      * 选择设置的时间
      */
 //    private void seletDate()
 //    {
-//        View view = ((LayoutInflater) parentActivity.getSystemService(parentActivity.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.time_picker, null);
+//        View view = ((LayoutInflater) parentActivity.getSystemService(parentActivity
+// .LAYOUT_INFLATER_SERVICE)).inflate(R.layout.time_picker, null);
 //
 //        Calendar calendar = Calendar.getInstance();
 //        int curYear = calendar.get(Calendar.YEAR);
@@ -819,7 +715,8 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
 //        monthWheel.setInterpolator(new AnticipateOvershootInterpolator());
 //        monthWheel.addScrollingListener(scrollListener);
 //
-//        dayWheel.setAdapter(new NumericWheelAdapter(1, getDay(Integer.parseInt(yearWheel.getCurrentItemValue()), Integer.parseInt(monthWheel.getCurrentItemValue())), "%02d"));
+//        dayWheel.setAdapter(new NumericWheelAdapter(1, getDay(Integer.parseInt(yearWheel
+// .getCurrentItemValue()), Integer.parseInt(monthWheel.getCurrentItemValue())), "%02d"));
 //        dayWheel.setCurrentItem(curDay - 1);
 //        dayWheel.setCyclic(true);
 //        dayWheel.setInterpolator(new AnticipateOvershootInterpolator());
@@ -842,7 +739,8 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
 //        secondWheel.setInterpolator(new AnticipateOvershootInterpolator());
 //
 //        builder.setTitle(getString(R.string.Select_time));
-//        builder.setPositiveButton(getString(R.string.Determine), new DialogInterface.OnClickListener()
+//        builder.setPositiveButton(getString(R.string.Determine), new DialogInterface
+// .OnClickListener()
 //        {
 //
 //            @Override
@@ -862,7 +760,8 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
 //                        .append(month).append(getString(R.string.month))
 //                        .append(day).append(getString(R.string.day)).append(hour)
 //                        .append(getString(R.string.hour)).append(min)
-//                        .append(getString(R.string.minute)).append(second).append(getString(R.string.second));
+//                        .append(getString(R.string.minute)).append(second).append(getString(R
+// .string.second));
 //
 //
 //                Log.info(TAG, "date::sb:" + sb.toString());
@@ -883,30 +782,24 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
 //        builder.show();
 //
 //    }
-
-    private String getTime(String strDate)
-    {
+    private String getTime(String strDate) {
         // 准备第一个模板，从字符串中提取出日期数字
         String pat1 = "yyyyMMddHHmmss";
         // 准备第二个模板，将提取后的日期数字变为指定的格式
-        String pat2 = "yyyy"+getString(R.string.year)+"MM"+getString(R.string.month)+"dd"+getString(R.string.day)+"HH"+getString(R.string.hour)+"mm"+getString(R.string.minute)+"ss"+getString(R.string.second);
+        String pat2 =
+                "yyyy" + getString(R.string.year) + "MM" + getString(R.string.month) + "dd" + getString(R.string.day) + "HH" + getString(R.string.hour) + "mm" + getString(R.string.minute) + "ss" + getString(R.string.second);
         SimpleDateFormat sdf1 = new SimpleDateFormat(pat1);        // 实例化模板对象
         SimpleDateFormat sdf2 = new SimpleDateFormat(pat2);        // 实例化模板对象
         Date d = null;
-        try
-        {
+        try {
             d = sdf1.parse(strDate);   // 将给定的字符串中的日期提取出来
-        }
-        catch (Exception e)
-        {            // 如果提供的字符串格式有错误，则进行异常处理
+        } catch (Exception e) {            // 如果提供的字符串格式有错误，则进行异常处理
             e.printStackTrace();       // 打印异常信息
         }
 
 
-
         String time = sdf2.format(d);
-        if (TextUtils.isEmpty(time))
-        {
+        if (TextUtils.isEmpty(time)) {
             return null;
         }
         return time;

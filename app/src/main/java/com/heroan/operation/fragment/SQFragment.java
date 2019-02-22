@@ -1,7 +1,10 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,13 +16,11 @@ import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.BleUtils;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
-import zuo.biao.library.util.Log;
-
 import cn.com.heaton.blelibrary.ble.BleDevice;
+import zuo.biao.library.base.BaseFragment;
 
 /**
  * 墒情
@@ -67,9 +68,16 @@ public class SQFragment extends BaseFragment implements View.OnClickListener, Ev
     private boolean isBleDevice = false;
     private BleDevice bleDevice = null;
 
+
     @Override
-    public int getLayoutView() {
-        return R.layout.fragment_sensor_sq;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_sensor_sq);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
     @Override
@@ -78,39 +86,6 @@ public class SQFragment extends BaseFragment implements View.OnClickListener, Ev
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
     }
 
-    @Override
-    public void initComponentViews(View view) {
-        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
-
-        if (getArguments() != null) {
-            isBleDevice = getArguments().getBoolean("isBleDevice");
-            bleDevice = (BleDevice) getArguments().getSerializable("device");
-        }
-
-
-        soilModelGroup = (RadioGroup) view.findViewById(R.id.water_soil_model);
-        soil485Group = (RadioGroup) view.findViewById(R.id.water_soil_485);
-        waterSoil1EditText = (EditText) view.findViewById(R.id.water_soil_0);
-        waterSoil2EditText = (EditText) view.findViewById(R.id.water_soil_1);
-        waterSoil3EditText = (EditText) view.findViewById(R.id.water_soil_2);
-        waterSoil4EditText = (EditText) view.findViewById(R.id.water_soil_3);
-
-        waterSoil1Button = (Button) view.findViewById(R.id.water_soil_type_button);
-        waterSoil2Button = (Button) view.findViewById(R.id.water_soil_type_1_button);
-        waterSoil3Button = (Button) view.findViewById(R.id.water_soil_type_2_button);
-        waterSoil4Button = (Button) view.findViewById(R.id.water_soil_type_3_button);
-
-        soilType1Spinner = (Spinner) view.findViewById(R.id.water_soil_type_1);
-        soilType2Spinner = (Spinner) view.findViewById(R.id.water_soil_type_2);
-        soilType3Spinner = (Spinner) view.findViewById(R.id.water_soil_type_3);
-        soilType4Spinner = (Spinner) view.findViewById(R.id.water_soil_type_4);
-        soilType5Spinner = (Spinner) view.findViewById(R.id.water_soil_type_5);
-        soilType6Spinner = (Spinner) view.findViewById(R.id.water_soil_type_6);
-
-        AnaMoistureTypeSpinner = (Spinner) view.findViewById(R.id.AnaMoisture_Type);
-
-        initView(view);
-    }
 
 
     private void sendData(String content) {
@@ -303,6 +278,40 @@ public class SQFragment extends BaseFragment implements View.OnClickListener, Ev
     }
 
     @Override
+    public void initView() {
+        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
+
+        if (getArguments() != null) {
+            isBleDevice = getArguments().getBoolean("isBleDevice");
+            bleDevice = (BleDevice) getArguments().getSerializable("device");
+        }
+
+
+        soilModelGroup = (RadioGroup) view.findViewById(R.id.water_soil_model);
+        soil485Group = (RadioGroup) view.findViewById(R.id.water_soil_485);
+        waterSoil1EditText = (EditText) view.findViewById(R.id.water_soil_0);
+        waterSoil2EditText = (EditText) view.findViewById(R.id.water_soil_1);
+        waterSoil3EditText = (EditText) view.findViewById(R.id.water_soil_2);
+        waterSoil4EditText = (EditText) view.findViewById(R.id.water_soil_3);
+
+        waterSoil1Button = (Button) view.findViewById(R.id.water_soil_type_button);
+        waterSoil2Button = (Button) view.findViewById(R.id.water_soil_type_1_button);
+        waterSoil3Button = (Button) view.findViewById(R.id.water_soil_type_2_button);
+        waterSoil4Button = (Button) view.findViewById(R.id.water_soil_type_3_button);
+
+        soilType1Spinner = (Spinner) view.findViewById(R.id.water_soil_type_1);
+        soilType2Spinner = (Spinner) view.findViewById(R.id.water_soil_type_2);
+        soilType3Spinner = (Spinner) view.findViewById(R.id.water_soil_type_3);
+        soilType4Spinner = (Spinner) view.findViewById(R.id.water_soil_type_4);
+        soilType5Spinner = (Spinner) view.findViewById(R.id.water_soil_type_5);
+        soilType6Spinner = (Spinner) view.findViewById(R.id.water_soil_type_6);
+
+        AnaMoistureTypeSpinner = (Spinner) view.findViewById(R.id.AnaMoisture_Type);
+
+        initView(view);
+    }
+
+    @Override
     public void initData() {
 
         waterItems = getResources().getStringArray(R.array.water_soil_type);
@@ -321,13 +330,13 @@ public class SQFragment extends BaseFragment implements View.OnClickListener, Ev
     }
 
     @Override
-    public void setListener() {
+    public void initEvent() {
         waterSoil1Button.setOnClickListener(this);
         waterSoil2Button.setOnClickListener(this);
         waterSoil3Button.setOnClickListener(this);
         waterSoil4Button.setOnClickListener(this);
-
     }
+
 
     @Override
     public void onClick(View view) {

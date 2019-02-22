@@ -1,7 +1,10 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,9 +21,8 @@ import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
-import zuo.biao.library.util.Log;
-
 import cn.com.heaton.blelibrary.ble.BleDevice;
+import zuo.biao.library.base.BaseFragment;
 
 /**
  * 水位计
@@ -61,8 +63,14 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
     private BleDevice bleDevice = null;
 
     @Override
-    public int getLayoutView() {
-        return R.layout.fragment_sensor_water_plan;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_sensor_water_plan);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
     @Override
@@ -71,38 +79,6 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
     }
 
-    @Override
-    public void initComponentViews(View view) {
-        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
-        waterGroup = (RadioGroup) view.findViewById(R.id.watertype_group);
-        waterCollectGroup = (RadioGroup) view.findViewById(R.id.water_collect_group);
-        singalGroup = (RadioGroup) view.findViewById(R.id.water_singal_group);
-        selwaterSpinner = (Spinner) view.findViewById(R.id.selwater_spinner);
-        selwater485Spinner = (Spinner) view.findViewById(R.id.sel485water_spinner);
-
-        modelButton = (Button) view.findViewById(R.id.model_button);
-        waterLevelButton = (Button) view.findViewById(R.id.water_level_button);
-        modelEditText = (EditText) view.findViewById(R.id.model_edittext);
-        waterLevelEditText = (EditText) view.findViewById(R.id.water_level_edittext);
-
-        planNumButton = (Button) view.findViewById(R.id.plan_num_button);
-        planNumEditText = (EditText) view.findViewById(R.id.plan_num_edittext);
-        plan1Button = (Button) view.findViewById(R.id.plan_button_1);
-        plan1EditText = (EditText) view.findViewById(R.id.plan_edittext_1);
-        plan2Button = (Button) view.findViewById(R.id.plan_button_2);
-        plan2EditText = (EditText) view.findViewById(R.id.plan_edittext_2);
-        plan3Button = (Button) view.findViewById(R.id.plan_button_3);
-        plan3EditText = (EditText) view.findViewById(R.id.plan_edittext_3);
-        plan4Button = (Button) view.findViewById(R.id.plan_button_4);
-        plan4EditText = (EditText) view.findViewById(R.id.plan_edittext_4);
-
-        if (getArguments() != null) {
-            isBleDevice = getArguments().getBoolean("isBleDevice");
-            bleDevice = (BleDevice) getArguments().getSerializable("device");
-        }
-
-        initView(view);
-    }
 
 
     private void sendData(String content) {
@@ -172,6 +148,39 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
 
 
     @Override
+    public void initView() {
+        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
+        waterGroup = (RadioGroup) view.findViewById(R.id.watertype_group);
+        waterCollectGroup = (RadioGroup) view.findViewById(R.id.water_collect_group);
+        singalGroup = (RadioGroup) view.findViewById(R.id.water_singal_group);
+        selwaterSpinner = (Spinner) view.findViewById(R.id.selwater_spinner);
+        selwater485Spinner = (Spinner) view.findViewById(R.id.sel485water_spinner);
+
+        modelButton = (Button) view.findViewById(R.id.model_button);
+        waterLevelButton = (Button) view.findViewById(R.id.water_level_button);
+        modelEditText = (EditText) view.findViewById(R.id.model_edittext);
+        waterLevelEditText = (EditText) view.findViewById(R.id.water_level_edittext);
+
+        planNumButton = (Button) view.findViewById(R.id.plan_num_button);
+        planNumEditText = (EditText) view.findViewById(R.id.plan_num_edittext);
+        plan1Button = (Button) view.findViewById(R.id.plan_button_1);
+        plan1EditText = (EditText) view.findViewById(R.id.plan_edittext_1);
+        plan2Button = (Button) view.findViewById(R.id.plan_button_2);
+        plan2EditText = (EditText) view.findViewById(R.id.plan_edittext_2);
+        plan3Button = (Button) view.findViewById(R.id.plan_button_3);
+        plan3EditText = (EditText) view.findViewById(R.id.plan_edittext_3);
+        plan4Button = (Button) view.findViewById(R.id.plan_button_4);
+        plan4EditText = (EditText) view.findViewById(R.id.plan_edittext_4);
+
+        if (getArguments() != null) {
+            isBleDevice = getArguments().getBoolean("isBleDevice");
+            bleDevice = (BleDevice) getArguments().getSerializable("device");
+        }
+
+        initView(view);
+    }
+
+    @Override
     public void initData() {
         waterItems = getResources().getStringArray(R.array.water_select);
         waterAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item, waterItems);
@@ -185,7 +194,7 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
     }
 
     @Override
-    public void setListener() {
+    public void initEvent() {
         modelButton.setOnClickListener(this);
         planNumButton.setOnClickListener(this);
         plan1Button.setOnClickListener(this);
@@ -193,8 +202,8 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
         plan3Button.setOnClickListener(this);
         plan4Button.setOnClickListener(this);
         waterLevelButton.setOnClickListener(this);
-
     }
+
 
     @Override
     public void onClick(View view) {

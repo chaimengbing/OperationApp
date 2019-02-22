@@ -1,7 +1,10 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -10,10 +13,10 @@ import android.widget.Switch;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
+import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.util.Log;
 /**
  * Created by linxi on 2017/12/22.
@@ -46,27 +49,16 @@ public class ValveControlRelayFragment extends BaseFragment implements View.OnCl
     }
 
     @Override
-    public int getLayoutView()
-    {
-        return R.layout.valve_relay;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.valve_relay);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
-    @Override
-    public void initComponentViews(View view)
-    {
-        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
-        elecrelaySwitch1 = (Switch) view.findViewById(R.id.elecrelay_switch1);
-        elecrelaySwitch2 = (Switch) view.findViewById(R.id.elecrelay_switch2);
-        elecrelaySwitch3 = (Switch) view.findViewById(R.id.elecrelay_switch3);
-        elecrelaySwitch4 = (Switch) view.findViewById(R.id.elecrelay_switch4);
-        valveTypeRadioGroup = (RadioGroup) view.findViewById(R.id.valve_Type);
-        butterflyRadiobutton = (RadioButton) view.findViewById(R.id.Butterfly_valve_radiobtton);
-        pulseRadiobutton = (RadioButton) view.findViewById(R.id.Pulse_solenoid_valveradiobtton);
-        vaRadiobutton = (RadioButton) view.findViewById(R.id.valveradiobtton_485);
-
-        initView(view);
-
-    }
 
     public void initView(final View view)
     {
@@ -106,6 +98,22 @@ public class ValveControlRelayFragment extends BaseFragment implements View.OnCl
         });
 
     }
+
+    @Override
+    public void initView() {
+        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
+        elecrelaySwitch1 = (Switch) view.findViewById(R.id.elecrelay_switch1);
+        elecrelaySwitch2 = (Switch) view.findViewById(R.id.elecrelay_switch2);
+        elecrelaySwitch3 = (Switch) view.findViewById(R.id.elecrelay_switch3);
+        elecrelaySwitch4 = (Switch) view.findViewById(R.id.elecrelay_switch4);
+        valveTypeRadioGroup = (RadioGroup) view.findViewById(R.id.valve_Type);
+        butterflyRadiobutton = (RadioButton) view.findViewById(R.id.Butterfly_valve_radiobtton);
+        pulseRadiobutton = (RadioButton) view.findViewById(R.id.Pulse_solenoid_valveradiobtton);
+        vaRadiobutton = (RadioButton) view.findViewById(R.id.valveradiobtton_485);
+
+        initView(view);
+    }
+
     @Override
     public void initData()
     {
@@ -114,9 +122,7 @@ public class ValveControlRelayFragment extends BaseFragment implements View.OnCl
     }
 
     @Override
-    public void setListener()
-    {
-
+    public void initEvent() {
         elecrelaySwitch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
             @Override
@@ -204,6 +210,7 @@ public class ValveControlRelayFragment extends BaseFragment implements View.OnCl
             }
         });
     }
+
 
     @Override
     public void didReceivedNotification(int id, Object... args)

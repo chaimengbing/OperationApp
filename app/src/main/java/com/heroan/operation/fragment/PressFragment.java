@@ -1,7 +1,10 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +20,7 @@ import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
+import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.util.Log;
 
 /**
@@ -38,11 +42,15 @@ public class  PressFragment extends BaseFragment implements View.OnClickListener
     private String[] pressItems;
     private SimpleSpinnerAdapter pressAdapter;
 
-
     @Override
-    public int getLayoutView()
-    {
-        return R.layout.fragment_sensor_press;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_sensor_press);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
     @Override
@@ -52,21 +60,6 @@ public class  PressFragment extends BaseFragment implements View.OnClickListener
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
     }
 
-    @Override
-    public void initComponentViews(View view)
-    {
-        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
-
-        pressSpinner = (Spinner) view.findViewById(R.id.flow_485_spinner);
-
-        modelButton = (Button) view.findViewById(R.id.press_model_button);
-        pressRadio = (RadioGroup) view.findViewById(R.id.press_type);
-        press485Radio = (RadioGroup) view.findViewById(R.id.press485_type);
-        pressNumEdittext = (EditText) view.findViewById(R.id.press_model_edittext);
-
-        initView(view);
-
-    }
 
     private void initView(final View view)
     {
@@ -122,6 +115,20 @@ public class  PressFragment extends BaseFragment implements View.OnClickListener
     }
 
     @Override
+    public void initView() {
+        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
+
+        pressSpinner = (Spinner) view.findViewById(R.id.flow_485_spinner);
+
+        modelButton = (Button) view.findViewById(R.id.press_model_button);
+        pressRadio = (RadioGroup) view.findViewById(R.id.press_type);
+        press485Radio = (RadioGroup) view.findViewById(R.id.press485_type);
+        pressNumEdittext = (EditText) view.findViewById(R.id.press_model_edittext);
+
+        initView(view);
+    }
+
+    @Override
     public void initData()
     {
 
@@ -133,10 +140,10 @@ public class  PressFragment extends BaseFragment implements View.OnClickListener
     }
 
     @Override
-    public void setListener()
-    {
+    public void initEvent() {
         modelButton.setOnClickListener(this);
     }
+
 
     @Override
     public void onClick(View v)

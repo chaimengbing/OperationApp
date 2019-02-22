@@ -1,16 +1,15 @@
 package com.heroan.operation.activity;
 
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.PaintDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -1340,7 +1339,7 @@ public class HomeActivity extends BaseActivity implements PopupWindow.OnDismissL
     }
 
     public boolean turnToFragmentStack(int containerViewId, Class<? extends Fragment> toFragmentClass, Bundle args) {
-        return FgManager.turnToFragmentStack(getFragmentManager(), containerViewId, toFragmentClass, args);
+        return FgManager.turnToFragmentStack(getSupportFragmentManager(), containerViewId, toFragmentClass, args);
     }
 
 
@@ -1487,7 +1486,7 @@ public class HomeActivity extends BaseActivity implements PopupWindow.OnDismissL
     }
 
     public boolean turnToFragmentStack(int containerViewId, Class<? extends Fragment> toFragmentClass) {
-        return FgManager.turnToFragmentStack(getFragmentManager(), containerViewId, toFragmentClass, null);
+        return FgManager.turnToFragmentStack(getSupportFragmentManager(), containerViewId, toFragmentClass, null);
     }
 
     @Override

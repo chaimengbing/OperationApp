@@ -1,7 +1,10 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -18,13 +21,13 @@ import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
-import zuo.biao.library.util.Log;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
 import cn.com.heaton.blelibrary.ble.BleDevice;
+import zuo.biao.library.base.BaseFragment;
+import zuo.biao.library.util.Log;
 
 /**
  * Created by Vcontrol on 2016/11/23.
@@ -87,9 +90,16 @@ public class RTUVersionFragment extends BaseFragment implements View.OnClickList
 
 
     @Override
-    public int getLayoutView() {
-        return R.layout.fragment_setting_version;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_setting_version);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
+
 
 
     @Override
@@ -100,8 +110,20 @@ public class RTUVersionFragment extends BaseFragment implements View.OnClickList
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.SetAllConfigInfo);
     }
 
+    private String getAppVersion() {
+        String versionName = null;
+
+        try {
+            versionName = getActivity().getPackageManager().getPackageInfo(
+                    getActivity().getPackageName(), 0).versionName;
+        } catch (Exception e) {
+
+        }
+        return versionName;
+    }
+
     @Override
-    public void initComponentViews(View view) {
+    public void initView() {
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.DOWNLOADING);
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.SetAllConfigInfo);
@@ -128,20 +150,6 @@ public class RTUVersionFragment extends BaseFragment implements View.OnClickList
         packageLayout1 = (RelativeLayout) view.findViewById(R.id.package_layout1);
 
         appVers.setText(getString(R.string.APP_Version) + getAppVersion());
-
-
-    }
-
-    private String getAppVersion() {
-        String versionName = null;
-
-        try {
-            versionName = getActivity().getPackageManager().getPackageInfo(
-                    getActivity().getPackageName(), 0).versionName;
-        } catch (Exception e) {
-
-        }
-        return versionName;
     }
 
     @Override
@@ -197,7 +205,7 @@ public class RTUVersionFragment extends BaseFragment implements View.OnClickList
     }
 
     @Override
-    public void setListener() {
+    public void initEvent() {
         updateButton.setOnClickListener(this);
         updateButton1.setOnClickListener(this);
 

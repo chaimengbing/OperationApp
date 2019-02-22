@@ -1,11 +1,10 @@
 package com.heroan.operation.fragment;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -20,23 +19,22 @@ import com.heroan.operation.R;
 import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
-import zuo.biao.library.util.Log;
-
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+
+import zuo.biao.library.base.BaseFragment;
+import zuo.biao.library.util.Log;
 
 /**
  * Created by Vcontrol on 2016/11/23.
  */
 
-public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickListener, EventNotifyHelper.NotificationCenterDelegate
-{
+public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickListener,
+        EventNotifyHelper.NotificationCenterDelegate {
 
     private static final String TAG = RcmFunPamarsFragment.class.getSimpleName();
 
@@ -63,7 +61,7 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
 
 
     private SimpleDateFormat sendTimeFormat;
-//    private WheelView yearWheel, monthWheel, dayWheel, hourWheel, minuteWheel, secondWheel;
+    //    private WheelView yearWheel, monthWheel, dayWheel, hourWheel, minuteWheel, secondWheel;
     public static String[] yearContent = null;
     public static String[] monthContent = null;
     public static String[] dayContent = null;
@@ -85,31 +83,31 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
     private SimpleSpinnerAdapter customLzAdapter;
     private LinearLayout lz;
 
-
-
-
     @Override
-    public int getLayoutView()
-    {
-        return R.layout.fragment_setting_rcm_fun;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_setting_rcm_fun);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
     @Override
-    public void onDestroy()
-    {
+    public void onDestroy() {
         super.onDestroy();
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
     }
 
-    @Override
-    public void initComponentViews(View view)
-    {
 
+    @Override
+    public void initView() {
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
         numEditText = (EditText) view.findViewById(R.id.site_fun_number);
         customerEditText = (EditText) view.findViewById(R.id.customer_number);
         runStatusRadioGroup = (RadioGroup) view.findViewById(R.id.run_fun_status);
-        takeModelRadioGroup = (RadioGroup) view.findViewById(R.id.take_pictures_model) ;
+        takeModelRadioGroup = (RadioGroup) view.findViewById(R.id.take_pictures_model);
         funAddrButton = (Button) view.findViewById(R.id.site_fun_button);
         takePictureButton = (Button) view.findViewById(R.id.take_pictures);
         timeSpinner = (Spinner) view.findViewById(R.id.fun_interval_spinner);
@@ -126,55 +124,124 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
         collectButton = (Button) view.findViewById(R.id.collect_button_two);
         checkBox1 = (CheckBox) view.findViewById(R.id.checkbox1);
         checkBox2 = (CheckBox) view.findViewById(R.id.checkbox2);
-        checkBox3= (CheckBox) view.findViewById(R.id.checkbox3);
+        checkBox3 = (CheckBox) view.findViewById(R.id.checkbox3);
         checkBox4 = (CheckBox) view.findViewById(R.id.checkbox4);
 
         sendTimeFormat = new SimpleDateFormat(SEND_TIME_FORMAT);
         isFirst = true;
         initView(view);
-
     }
 
-
     @Override
-    public void initData()
-    {
+    public void initData() {
         SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadFunctionData);
 
         timeItems = getResources().getStringArray(R.array.pictime_interval);
-        timeAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item, timeItems);
+        timeAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item,
+                timeItems);
         timeSpinner.setAdapter(timeAdapter);
 
         collectionItems = getResources().getStringArray(R.array.comm_rtu_time);
-        collectionAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item,collectionItems);
+        collectionAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item,
+                collectionItems);
         collectionSpinner.setAdapter(collectionAdapter);
 
         customItems = getResources().getStringArray(R.array.customer_select);
-        customAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item, customItems);
+        customAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item,
+                customItems);
         customSpinner.setAdapter(customAdapter);
 
         customLzItems = getResources().getStringArray(R.array.pictime_interval);
-        customLzAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item, customLzItems);
+        customLzAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item,
+                customLzItems);
         customLzSpinner.setAdapter(customLzAdapter);
 
         initContent();
     }
 
-    private void initView(final View view)
-    {
-        runStatusRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
+    @Override
+    public void initEvent() {
+        funAddrButton.setOnClickListener(this);
+        timeButton.setOnClickListener(this);
+        rtuTimeTextView.setOnClickListener(this);
+        customerButton.setOnClickListener(this);
+        collectButton.setOnClickListener(this);
+        takePictureButton.setOnClickListener(this);
+
+
+        timeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i)
-            {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (isFirst) {
+                    isFirst = false;
+                    return;
+                }
+                timeAdapter.setSelectedItem(position);
+
+                String content = ConfigParams.SetPacketInterval + position;
+                SocketUtil.getSocketUtil().sendContent(content);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        customLzSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (isFirst) {
+                    isFirst = false;
+                    return;
+                }
+                customLzAdapter.setSelectedItem(position);
+
+                String content = ConfigParams.SetVideoInterval + position;
+                SocketUtil.getSocketUtil().sendContent(content);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        collectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                if (isFirst) {
+                    isFirst = false;
+                    return;
+                }
+
+                collectionAdapter.setSelectedItem(i);
+
+                String content = ConfigParams.SetCollectionInterval + i;
+                SocketUtil.getSocketUtil().sendContent(content);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    private void initView(final View view) {
+        runStatusRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 View checkView = view.findViewById(i);
-                if (!checkView.isPressed())
-                {
+                if (!checkView.isPressed()) {
                     return;
                 }
                 String content = ConfigParams.SetWorkMode;
-                switch (i)
-                {
+                switch (i) {
                     case R.id.low_power_fun_radiobtton:
                         String low = content + "0";
                         SocketUtil.getSocketUtil().sendContent(low);
@@ -192,20 +259,16 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
             }
         });
 
-        takeModelRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
+        takeModelRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i)
-            {
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 View checkView = view.findViewById(i);
-                if (!checkView.isPressed())
-                {
+                if (!checkView.isPressed()) {
                     return;
                 }
 
                 String content = ConfigParams.SetTakePhotoMode;
-                switch (i)
-                {
+                switch (i) {
                     case R.id.Take_pictures_regularly:
                         String regularly = content + "0";
                         SocketUtil.getSocketUtil().sendContent(regularly);
@@ -225,110 +288,20 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
         });
     }
 
-    @Override
-    public void setListener()
-    {
-        funAddrButton.setOnClickListener(this);
-        timeButton.setOnClickListener(this);
-        rtuTimeTextView.setOnClickListener(this);
-        customerButton.setOnClickListener(this);
-        collectButton.setOnClickListener(this);
-        takePictureButton.setOnClickListener(this);
-
-
-        timeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-            {
-
-                if (isFirst)
-                {
-                    isFirst = false;
-                    return;
-                }
-                timeAdapter.setSelectedItem(position);
-
-                String content = ConfigParams.SetPacketInterval + position;
-                SocketUtil.getSocketUtil().sendContent(content);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent)
-            {
-
-            }
-        });
-
-        customLzSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-            {
-
-                if (isFirst)
-                {
-                    isFirst = false;
-                    return;
-                }
-                customLzAdapter.setSelectedItem(position);
-
-                String content = ConfigParams.SetVideoInterval + position;
-                SocketUtil.getSocketUtil().sendContent(content);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent)
-            {
-
-            }
-        });
-
-
-        collectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
-            {
-
-                if (isFirst)
-                {
-                    isFirst = false;
-                    return;
-                }
-
-                collectionAdapter.setSelectedItem(i);
-
-                String content = ConfigParams.SetCollectionInterval + i;
-                SocketUtil.getSocketUtil().sendContent(content);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView)
-            {
-
-            }
-        });
-    }
-
 
     @Override
-    public void onClick(View view)
-    {
+    public void onClick(View view) {
         String data = "";
         String port = "";
         String content = "";
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.site_fun_button:
                 data = numEditText.getText().toString().trim();
-                if (TextUtils.isEmpty(data))
-                {
+                if (TextUtils.isEmpty(data)) {
                     ToastUtil.showToastLong(getString(R.string.Telemetry_station_address_empty));
                     return;
                 }
-                if (data.length() > 10)
-                {
+                if (data.length() > 10) {
                     ToastUtil.showToastLong(getString(R.string.Telemetry_station_address_exceeds_limit));
                     return;
                 }
@@ -336,20 +309,16 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
                 break;
             case R.id.customer_button:
                 data = customerEditText.getText().toString().trim();
-                if (TextUtils.isEmpty(data))
-                {
+                if (TextUtils.isEmpty(data)) {
                     ToastUtil.showToastLong(getString(R.string.Customer_number_empty));
                     return;
                 }
                 content = ConfigParams.CustomerSelect + data;
                 break;
             case R.id.time_fun_button:
-                if (TextUtils.isEmpty(setTime))
-                {
+                if (TextUtils.isEmpty(setTime)) {
                     SocketUtil.getSocketUtil().sendContent(ConfigParams.SETTIME + sendTimeFormat.format(System.currentTimeMillis()));
-                }
-                else
-                {
+                } else {
                     SocketUtil.getSocketUtil().sendContent(ConfigParams.SETTIME + setTime);
                 }
                 break;
@@ -380,37 +349,30 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
         SocketUtil.getSocketUtil().sendContent(content);
     }
 
-    private Runnable timeRunnable = new Runnable()
-    {
+    private Runnable timeRunnable = new Runnable() {
         @Override
-        public void run()
-        {
+        public void run() {
             sendData();
             OperationApplication.applicationHandler.postDelayed(timeRunnable, UiEventEntry.TIME);
         }
     };
 
-    private void sendData()
-    {
+    private void sendData() {
         SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadStatus);
     }
 
-    private void startupStatus()
-    {
+    private void startupStatus() {
         SocketUtil.getSocketUtil().sendContent(ConfigParams.StartUp);
         OperationApplication.applicationHandler.postDelayed(timeRunnable, UiEventEntry.TIME);
     }
 
 
     @Override
-    public void didReceivedNotification(int id, Object... args)
-    {
-        if (id == UiEventEntry.READ_DATA)
-        {
+    public void didReceivedNotification(int id, Object... args) {
+        if (id == UiEventEntry.READ_DATA) {
             String result = (String) args[0];
             String content = (String) args[1];
-            if (TextUtils.isEmpty(result) || TextUtils.isEmpty(content))
-            {
+            if (TextUtils.isEmpty(result) || TextUtils.isEmpty(content)) {
                 return;
             }
             setData(result);
@@ -418,72 +380,49 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
         }
     }
 
-    private void setData(String result)
-    {
+    private void setData(String result) {
         String data;
         String ip;
         int value;
-        if (result.contains(ConfigParams.SetAddr.trim()))
-        {//
+        if (result.contains(ConfigParams.SetAddr.trim())) {//
             data = result.replaceAll(ConfigParams.SetAddr, "").trim();
             numEditText.setText(data);
-        }
-        else if (result.contains(ConfigParams.SetWorkMode.trim()))
-        {//
+        } else if (result.contains(ConfigParams.SetWorkMode.trim())) {//
             data = result.replaceAll(ConfigParams.SetWorkMode, "").trim();
-            if ("1".equals(data))
-            {
+            if ("1".equals(data)) {
                 runStatusRadioGroup.check(R.id.always_online_fun_radiobtton);
-            }
-            else
-            {
+            } else {
                 runStatusRadioGroup.check(R.id.low_power_fun_radiobtton);
             }
-        }
-        else if (result.contains(ConfigParams.SetTakePhotoMode.trim()))
-        {//拍照方式
-            data = result.replaceAll(ConfigParams.SetTakePhotoMode,"").trim();
-            if ("1".equals(data))
-            {
+        } else if (result.contains(ConfigParams.SetTakePhotoMode.trim())) {//拍照方式
+            data = result.replaceAll(ConfigParams.SetTakePhotoMode, "").trim();
+            if ("1".equals(data)) {
                 takeModelRadioGroup.check(R.id.Plus_pictures_taken);
-            }
-            else
-            {
+            } else {
                 takeModelRadioGroup.check(R.id.Take_pictures_regularly);
             }
-        }
-        else if (result.contains(ConfigParams.SetPacketInterval.trim()))
-        {// 定时报间隔
+        } else if (result.contains(ConfigParams.SetPacketInterval.trim())) {// 定时报间隔
             data = result.replaceAll(ConfigParams.SetPacketInterval, "").trim();
 
             value = Integer.parseInt(data);
-            if (value < timeItems.length && value > 0)
-            {
+            if (value < timeItems.length && value > 0) {
                 timeSpinner.setSelection(value);
             }
-        }
-        else if (result.contains(ConfigParams.SetVideoInterval.trim()))
-        {// 定时报间隔
+        } else if (result.contains(ConfigParams.SetVideoInterval.trim())) {// 定时报间隔
             data = result.replaceAll(ConfigParams.SetVideoInterval, "").trim();
 
             value = Integer.parseInt(data);
-            if (value < customLzItems.length && value > 0)
-            {
+            if (value < customLzItems.length && value > 0) {
                 customLzSpinner.setSelection(value);
             }
-        }
-        else if (result.contains(ConfigParams.SetCollectionInterval.trim()))
-        {//采集间隔
-            data = result.replaceAll(ConfigParams.SetCollectionInterval,"").trim();
+        } else if (result.contains(ConfigParams.SetCollectionInterval.trim())) {//采集间隔
+            data = result.replaceAll(ConfigParams.SetCollectionInterval, "").trim();
             value = Integer.parseInt(data);
-            if (value < collectionItems.length && value > 0)
-            {
+            if (value < collectionItems.length && value > 0) {
                 collectionSpinner.setSelection(value);
             }
 
-        }
-        else if (result.contains(ConfigParams.CustomerSelect.trim()))
-        {// 客户编号
+        } else if (result.contains(ConfigParams.CustomerSelect.trim())) {// 客户编号
             data = result.replaceAll(ConfigParams.CustomerSelect, "").trim();
             customerEditText.setText(data);
 
@@ -495,7 +434,8 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
 //            customSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
 //            {
 //                @Override
-//                public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+//                public void onItemSelected(AdapterView<?> parent, View view, int position, long
+// id)
 //                {
 //                    customAdapter.setSelectedItem(position);
 //                    String content = ConfigParams.CustomerSelect + position;
@@ -508,51 +448,44 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
 //
 //                }
 //            });
-        }
-        else if (result.contains(ConfigParams.SETTIME.trim()))
-        {
+        } else if (result.contains(ConfigParams.SETTIME.trim())) {
             String timeTemp = result.replaceAll(ConfigParams.SETTIME.trim(), "").trim();
             String time = timeTemp.replaceAll(" ", "0").trim();
             Log.i(TAG, "time:" + time);
-            String month = time.substring(4,6);
+            String month = time.substring(4, 6);
             int intMonth = Integer.valueOf(month);
-            if (intMonth > 12 || intMonth <1){
+            if (intMonth > 12 || intMonth < 1) {
 
                 ToastUtil.showToastLong("月份错误");
                 return;
             }
-            int day = Integer.valueOf(time.substring(6,8));
+            int day = Integer.valueOf(time.substring(6, 8));
 
-            if (day > 31 || intMonth < 1){
+            if (day > 31 || intMonth < 1) {
 
                 ToastUtil.showToastLong("日期错误");
                 return;
             }
 
-            int hour = Integer.valueOf(time.substring(8,10));
-            int min = Integer.valueOf(time.substring(10,12));
-            int s= Integer.valueOf(time.substring(12,14));
-            if (hour > 24 || hour < 0 || min > 60 || min < 0 || s > 60 || s < 0 ){
+            int hour = Integer.valueOf(time.substring(8, 10));
+            int min = Integer.valueOf(time.substring(10, 12));
+            int s = Integer.valueOf(time.substring(12, 14));
+            if (hour > 24 || hour < 0 || min > 60 || min < 0 || s > 60 || s < 0) {
 
                 ToastUtil.showToastLong("时间错误");
                 return;
             }
             String rtuTime = getTime(time);
-            if (rtuTimeTextView != null && rtuTime != null)
-            {
+            if (rtuTimeTextView != null && rtuTime != null) {
                 rtuTimeTextView.setText(rtuTime);
                 setTime = time;
             }
-        }
-        else if (result.contains("System Up"))
-        {// 开机完成
-        }
-        else if (result.contains("System Down"))
-        {// 正在开机
+        } else if (result.contains("System Up")) {// 开机完成
+        } else if (result.contains("System Down")) {// 正在开机
 
         }
-        if (result.contains(ConfigParams.SetScadaFactor.trim()) && (!result.equals("OK")))
-        {// 获取采集要素设置
+        if (result.contains(ConfigParams.SetScadaFactor.trim()) && (!result.equals("OK"))) {//
+            // 获取采集要素设置
             String collect = result.replaceAll(ConfigParams.SetScadaFactor.trim(), "").trim();
             checkBox1.setChecked((collect.charAt(0)) == '1');
             checkBox2.setChecked((collect.charAt(1)) == '1');
@@ -562,56 +495,45 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
     }
 
 
-    public void initContent()
-    {
+    public void initContent() {
         yearContent = new String[66];
         for (int i = 0; i < 65; i++)
             yearContent[i] = String.valueOf(i + 1970);
 
         monthContent = new String[12];
-        for (int i = 0; i < 12; i++)
-        {
+        for (int i = 0; i < 12; i++) {
             monthContent[i] = String.valueOf(i + 1);
-            if (monthContent[i].length() < 2)
-            {
+            if (monthContent[i].length() < 2) {
                 monthContent[i] = "0" + monthContent[i];
             }
         }
 
         dayContent = new String[31];
-        for (int i = 0; i < 31; i++)
-        {
+        for (int i = 0; i < 31; i++) {
             dayContent[i] = String.valueOf(i + 1);
-            if (dayContent[i].length() < 2)
-            {
+            if (dayContent[i].length() < 2) {
                 dayContent[i] = "0" + dayContent[i];
             }
         }
         hourContent = new String[24];
-        for (int i = 0; i < 24; i++)
-        {
+        for (int i = 0; i < 24; i++) {
             hourContent[i] = String.valueOf(i);
-            if (hourContent[i].length() < 2)
-            {
+            if (hourContent[i].length() < 2) {
                 hourContent[i] = "0" + hourContent[i];
             }
         }
 
         minuteContent = new String[60];
-        for (int i = 0; i < 60; i++)
-        {
+        for (int i = 0; i < 60; i++) {
             minuteContent[i] = String.valueOf(i);
-            if (minuteContent[i].length() < 2)
-            {
+            if (minuteContent[i].length() < 2) {
                 minuteContent[i] = "0" + minuteContent[i];
             }
         }
         secondContent = new String[60];
-        for (int i = 0; i < 60; i++)
-        {
+        for (int i = 0; i < 60; i++) {
             secondContent[i] = String.valueOf(i);
-            if (secondContent[i].length() < 2)
-            {
+            if (secondContent[i].length() < 2) {
                 secondContent[i] = "0" + secondContent[i];
             }
         }
@@ -625,12 +547,10 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
      * @param month
      * @return
      */
-    private int getDay(int year, int month)
-    {
+    private int getDay(int year, int month) {
         int day = 30;
         boolean flag = false;
-        switch (year % 4)
-        {// 计算是否是闰年
+        switch (year % 4) {// 计算是否是闰年
             case 0:
                 flag = true;
                 break;
@@ -638,8 +558,7 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
                 flag = false;
                 break;
         }
-        switch (month)
-        {
+        switch (month) {
             case 1:
             case 3:
             case 5:
@@ -667,7 +586,8 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
 //     */
 //    private void seletDate()
 //    {
-//        View view = ((LayoutInflater) parentActivity.getSystemService(parentActivity.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.time_picker, null);
+//        View view = ((LayoutInflater) parentActivity.getSystemService(parentActivity
+// .LAYOUT_INFLATER_SERVICE)).inflate(R.layout.time_picker, null);
 //
 //        Calendar calendar = Calendar.getInstance();
 //        int curYear = calendar.get(Calendar.YEAR);
@@ -701,7 +621,8 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
 //        monthWheel.setInterpolator(new AnticipateOvershootInterpolator());
 //        monthWheel.addScrollingListener(scrollListener);
 //
-//        dayWheel.setAdapter(new NumericWheelAdapter(1, getDay(Integer.parseInt(yearWheel.getCurrentItemValue()), Integer.parseInt(monthWheel.getCurrentItemValue())), "%02d"));
+//        dayWheel.setAdapter(new NumericWheelAdapter(1, getDay(Integer.parseInt(yearWheel
+// .getCurrentItemValue()), Integer.parseInt(monthWheel.getCurrentItemValue())), "%02d"));
 //        dayWheel.setCurrentItem(curDay - 1);
 //        dayWheel.setCyclic(true);
 //        dayWheel.setInterpolator(new AnticipateOvershootInterpolator());
@@ -724,7 +645,8 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
 //        secondWheel.setInterpolator(new AnticipateOvershootInterpolator());
 //
 //        builder.setTitle(getString(R.string.Select_time));
-//        builder.setPositiveButton(getString(R.string.Determine), new DialogInterface.OnClickListener()
+//        builder.setPositiveButton(getString(R.string.Determine), new DialogInterface
+// .OnClickListener()
 //        {
 //
 //            @Override
@@ -744,7 +666,8 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
 //                        .append(month).append(getString(R.string.month))
 //                        .append(day).append(getString(R.string.day)).append(hour)
 //                        .append(getString(R.string.hour)).append(min)
-//                        .append(getString(R.string.minute)).append(second).append(getString(R.string.second));
+//                        .append(getString(R.string.minute)).append(second).append(getString(R
+// .string.second));
 //
 //
 //                Log.info(TAG, "date::sb:" + sb.toString());
@@ -766,26 +689,23 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
 //
 //    }
 
-    private String getTime(String strDate)
-    {
+    private String getTime(String strDate) {
         // 准备第一个模板，从字符串中提取出日期数字
         String pat1 = "yyyyMMddHHmmss";
         // 准备第二个模板，将提取后的日期数字变为指定的格式
-        String pat2 = "yyyy"+getString(R.string.year)+"MM"+getString(R.string.month)+"dd"+getString(R.string.day)+"HH"+getString(R.string.hour)+"mm"+getString(R.string.minute)+"ss"+getString(R.string.second);
+        String pat2 =
+                "yyyy" + getString(R.string.year) + "MM" + getString(R.string.month) + "dd" + getString(R.string.day) + "HH" + getString(R.string.hour) + "mm" + getString(R.string.minute) + "ss" + getString(R.string.second);
         SimpleDateFormat sdf1 = new SimpleDateFormat(pat1);        // 实例化模板对象
         SimpleDateFormat sdf2 = new SimpleDateFormat(pat2);        // 实例化模板对象
         Date d = null;
-        try
-        {
+        try {
             d = sdf1.parse(strDate);   // 将给定的字符串中的日期提取出来
-        } catch (Exception e)
-        {            // 如果提供的字符串格式有错误，则进行异常处理
+        } catch (Exception e) {            // 如果提供的字符串格式有错误，则进行异常处理
             e.printStackTrace();       // 打印异常信息
         }
 
         String time = sdf2.format(d);
-        if (TextUtils.isEmpty(time))
-        {
+        if (TextUtils.isEmpty(time)) {
             return null;
         }
         return time;

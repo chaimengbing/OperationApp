@@ -419,6 +419,7 @@
     <string name="AD_voltage_calibration_large_value_null">AD电压校准大值不能为空！</string>
     <string name="AD_voltage_calibration_small_value_null">AD电压校准小值不能为空！</string>
     <string name="cumulative_rainfall_value_empty">累计雨量值不能为空！</string>
+    <string name="Cumulative_rainfall_value">累计雨量值</string>
     <string name="Start_end_time_empty">开始时间或结束时间不能为空！</string>
     <string name="RTU_station_number_empty">RTU站号不能为空！</string>
     <string name="IP_or_port_empty">IP或端口不能为空！</string>
@@ -444,7 +445,7 @@
     <string name="Determine">确 定</string>
 
     <string name="Telemetry_station_number">遥测站编号：</string>
-    <string name="No.1_central_station_IP">1号中心站IP：</string>
+    <string name="No_1_central_station_IP">1号中心站IP：</string>
     <string name="Buried_depth">埋深：</string>
     <string name="Software_version_number">软件版本号：</string>
     <string name="Battery_voltage">电池电压：</string>
@@ -490,7 +491,6 @@
     <string name="Current">电流</string>
     <string name="Stop_updating">停止更新</string>
     <string name="Send_2_pic">采集摄像头2</string>
-    <string name="Cumulative_rainfall_value">累计雨量值</string>
     <string name="Current_hyetal_value">当前雨量值</string>
     <string name="Relative_water_level_on_reservoir">库上相对水位：</string>
     <string name="Absolute_water_level_on_reservoir">库上绝对水位：</string>

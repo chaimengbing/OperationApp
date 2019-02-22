@@ -1,22 +1,24 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.heroan.operation.R;
 import com.heroan.operation.adapter.DevicesAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
-import zuo.biao.library.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import zuo.biao.library.base.BaseFragment;
 
 /**
  * Created by Vcontrol on 2016/11/23.
@@ -30,9 +32,14 @@ public class DevicesFragment extends BaseFragment implements View.OnClickListene
     private List<String> deviceList = new ArrayList<>();
 
     @Override
-    public int getLayoutView()
-    {
-        return R.layout.fragment_device_list;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_device_list);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
     @Override
@@ -44,19 +51,15 @@ public class DevicesFragment extends BaseFragment implements View.OnClickListene
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DEL_DEVICE_ERROR);
     }
 
+
+
     @Override
-    public void initComponentViews(View view)
-    {
+    public void initView() {
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DEL_DEVICE_ERROR);
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DEL_DEVICE_OK);
 
         deviceListView = (ListView) view.findViewById(R.id.device_listview);
-        initView(view);
-    }
-
-    private void initView(final View view)
-    {
     }
 
     @Override
@@ -68,9 +71,10 @@ public class DevicesFragment extends BaseFragment implements View.OnClickListene
     }
 
     @Override
-    public void setListener()
-    {
+    public void initEvent() {
+
     }
+
 
     @Override
     public void onClick(View view)

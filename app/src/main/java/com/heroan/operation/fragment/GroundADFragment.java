@@ -1,7 +1,10 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -9,12 +12,11 @@ import com.heroan.operation.OperationApplication;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
-import zuo.biao.library.util.Log;
+import zuo.biao.library.base.BaseFragment;
 
 /**
  * Created by Vcontrol on 2016/11/23.
@@ -48,10 +50,16 @@ public class GroundADFragment extends BaseFragment implements View.OnClickListen
         }
     };
 
+
     @Override
-    public int getLayoutView()
-    {
-        return R.layout.fragment_setting_ground_ad;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_setting_ground_ad);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
     @Override
@@ -63,9 +71,9 @@ public class GroundADFragment extends BaseFragment implements View.OnClickListen
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_AD_LV);
     }
 
+
     @Override
-    public void initComponentViews(View view)
-    {
+    public void initView() {
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_AD_LV);
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
 
@@ -82,11 +90,11 @@ public class GroundADFragment extends BaseFragment implements View.OnClickListen
     }
 
     @Override
-    public void setListener()
-    {
+    public void initEvent() {
         adDownButton.setOnClickListener(this);
         adUPButton.setOnClickListener(this);
     }
+
 
     @Override
     public void onClick(View view)

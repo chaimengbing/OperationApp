@@ -1,7 +1,10 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,11 +23,10 @@ import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
-import zuo.biao.library.util.Log;
-
 import java.text.SimpleDateFormat;
 
 import cn.com.heaton.blelibrary.ble.BleDevice;
+import zuo.biao.library.base.BaseFragment;
 
 /**
  * Created by linxi on 2018/5/22.
@@ -69,9 +71,16 @@ public class LNewSysPamarsFragment extends BaseFragment implements View.OnClickL
     private BleDevice bleDevice = null;
 
     @Override
-    public int getLayoutView() {
-        return R.layout.fragment_lru_new_syspamars;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_lru_new_syspamars);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
+
 
     @Override
     public void onDestroy() {
@@ -80,8 +89,9 @@ public class LNewSysPamarsFragment extends BaseFragment implements View.OnClickL
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.SELECT_TIME);
     }
 
+
     @Override
-    public void initComponentViews(View view) {
+    public void initView() {
 
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.SELECT_TIME);
@@ -135,22 +145,18 @@ public class LNewSysPamarsFragment extends BaseFragment implements View.OnClickL
         sendTimeFormat = new SimpleDateFormat(SEND_TIME_FORMAT);
 
 
-//        mTimeUpdateThread = new Runnable()
-//        {
-//            @Override
-//            public void run()
-//            {
-//                try
-//                {
-//                    VcontrolApplication.applicationHandler.postDelayed(mTimeUpdateThread, 1000);
-////                    currentTime.setText(timeFormat.format(System.currentTimeMillis()));
-//                } catch (Exception e)
-//                {
-//                    e.printStackTrace();
-//                }
-//            }
-//        };
-//        VcontrolApplication.applicationHandler.post(mTimeUpdateThread);
+    }
+
+    @Override
+    public void initEvent() {
+        siteTestSetButton.setOnClickListener(this);
+        xingSetButton.setOnClickListener(this);
+        resetFactoryButton.setOnClickListener(this);
+        saveResetButton.setOnClickListener(this);
+        timeButton.setOnClickListener(this);
+        rtuTimeTextView.setOnClickListener(this);
+        apnButton.setOnClickListener(this);
+        set1.setOnClickListener(this);
     }
 
     private void initView(final View view) {
@@ -205,20 +211,6 @@ public class LNewSysPamarsFragment extends BaseFragment implements View.OnClickL
                 }
             }
         });
-    }
-
-    @Override
-    public void setListener() {
-
-        siteTestSetButton.setOnClickListener(this);
-        xingSetButton.setOnClickListener(this);
-        resetFactoryButton.setOnClickListener(this);
-        saveResetButton.setOnClickListener(this);
-        timeButton.setOnClickListener(this);
-        rtuTimeTextView.setOnClickListener(this);
-        apnButton.setOnClickListener(this);
-        set1.setOnClickListener(this);
-
     }
 
 

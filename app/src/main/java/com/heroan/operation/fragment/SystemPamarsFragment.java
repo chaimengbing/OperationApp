@@ -2,7 +2,9 @@ package com.heroan.operation.fragment;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -26,6 +28,7 @@ import com.heroan.operation.utils.UiEventEntry;
 
 import java.text.SimpleDateFormat;
 
+import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.util.Log;
 
 /**
@@ -33,8 +36,8 @@ import zuo.biao.library.util.Log;
  * Created by Vcontrol on 2016/11/23.
  */
 
-public class SystemPamarsFragment extends BaseFragment implements View.OnClickListener, AdapterView.OnItemSelectedListener, EventNotifyHelper.NotificationCenterDelegate
-{
+public class SystemPamarsFragment extends BaseFragment implements View.OnClickListener,
+        AdapterView.OnItemSelectedListener, EventNotifyHelper.NotificationCenterDelegate {
 
     private static final String DEFAULT_TIME_FORMAT = "yyyy年MM月dd日HH时mm分ss秒";
     private static final String SEND_TIME_FORMAT = "yyyyMMddHHmmss";
@@ -88,26 +91,28 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
     private String setTime = "";
     private int currentType = -1;
 
-
-
     @Override
-    public int getLayoutView()
-    {
-        return R.layout.fragment_setting_system_pamars1;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_setting_system_pamars1);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
+
     @Override
-    public void onDestroy()
-    {
+    public void onDestroy() {
         super.onDestroy();
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.SELECT_TIME);
     }
 
-    @Override
-    public void initComponentViews(View view)
-    {
 
+    @Override
+    public void initView() {
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.SELECT_TIME);
 
@@ -144,26 +149,24 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
         initView(view);
 
         Bundle bundle = getArguments();
-        if (bundle != null)
-        {
+        if (bundle != null) {
             currentType = bundle.getInt(UiEventEntry.CURRENT_RTU_NAME);
-            if (currentType == UiEventEntry.WRU_2801)
-            {
+            if (currentType == UiEventEntry.WRU_2801) {
                 elecrelayLayout.setVisibility(View.GONE);
             }
         }
-
     }
 
     @Override
-    public void initData()
-    {
+    public void initData() {
         siteTypeItems = getResources().getStringArray(R.array.site_type);
-        siteTypeAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item, siteTypeItems);
+        siteTypeAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item,
+                siteTypeItems);
         siteTypeSpinner.setAdapter(siteTypeAdapter);
 
         workModelItems = getResources().getStringArray(R.array.Work_status);
-        workModelAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item, workModelItems);
+        workModelAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item,
+                workModelItems);
         workModelSpinner.setAdapter(workModelAdapter);
         SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadSystemPara);
 
@@ -189,21 +192,45 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
 //        VcontrolApplication.applicationHandler.post(mTimeUpdateThread);
     }
 
-    private void initView(final View view)
-    {
-        runStatusRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
+    @Override
+    public void initEvent() {
+        deviceSetButton.setOnClickListener(this);
+        siteTestSetButton.setOnClickListener(this);
+        xingSetButton.setOnClickListener(this);
+        resetFactoryButton.setOnClickListener(this);
+        saveResetButton.setOnClickListener(this);
+        timeButton.setOnClickListener(this);
+        rtuTimeTextView.setOnClickListener(this);
+        saveNumSetButton.setOnClickListener(this);
+
+
+        elecrelaySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i)
-            {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (elecrelaySwitch.isPressed()) {
+
+                    if (!isChecked) {
+                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "0");
+                    } else {
+                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "1");
+
+                    }
+                }
+
+            }
+        });
+    }
+
+    private void initView(final View view) {
+        runStatusRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 View checkView = view.findViewById(i);
-                if (!checkView.isPressed())
-                {
+                if (!checkView.isPressed()) {
                     return;
                 }
                 String content = ConfigParams.SetWorkMode;
-                switch (i)
-                {
+                switch (i) {
                     case R.id.low_power_radiobtton:
                         String low = content + "0";
                         SocketUtil.getSocketUtil().sendContent(low);
@@ -221,19 +248,15 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
             }
         });
 
-        valveTypeRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
+        valveTypeRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i)
-            {
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 View checkView = view.findViewById(i);
-                if (!checkView.isPressed())
-                {
+                if (!checkView.isPressed()) {
                     return;
                 }
                 String content = ConfigParams.SetvalveType;
-                switch (i)
-                {
+                switch (i) {
                     case R.id.Butterfly_valve_radiobtton:
                         String butterfly = content + "1";
                         SocketUtil.getSocketUtil().sendContent(butterfly);
@@ -256,19 +279,15 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
             }
         });
 
-        siteNumRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
+        siteNumRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i)
-            {
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 View checkView = view.findViewById(i);
-                if (!checkView.isPressed())
-                {
+                if (!checkView.isPressed()) {
                     return;
                 }
                 String content = ConfigParams.SetId_Type;
-                switch (i)
-                {
+                switch (i) {
                     case R.id.site_num_8:
                         String low = content + "0";
                         SocketUtil.getSocketUtil().sendContent(low);
@@ -294,67 +313,26 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
         });
     }
 
-    @Override
-    public void setListener()
-    {
-        deviceSetButton.setOnClickListener(this);
-        siteTestSetButton.setOnClickListener(this);
-        xingSetButton.setOnClickListener(this);
-        resetFactoryButton.setOnClickListener(this);
-        saveResetButton.setOnClickListener(this);
-        timeButton.setOnClickListener(this);
-        rtuTimeTextView.setOnClickListener(this);
-        saveNumSetButton.setOnClickListener(this);
-
-
-        elecrelaySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
-                if (elecrelaySwitch.isPressed())
-                {
-
-                    if (!isChecked)
-                    {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "0");
-                    }
-                    else
-                    {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "1");
-
-                    }
-                }
-
-            }
-        });
-    }
 
     @Override
-    public void onClick(View view)
-    {
+    public void onClick(View view) {
 
         String data = "";
         int dataNum = 0;
         String content;
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.device_id_setting_button:
 
                 String deviceid = deviceEditText.getText().toString();
-                if (TextUtils.isEmpty(deviceid))
-                {
+                if (TextUtils.isEmpty(deviceid)) {
                     ToastUtil.showToastLong(getString(R.string.Device_ID_cannot_be_empty));
                     return;
                 }
 
-                if (deviceid.length() == 14)
-                {
+                if (deviceid.length() == 14) {
                     String content1 = ConfigParams.SetRTUid18 + deviceid;
                     SocketUtil.getSocketUtil().sendContent(content1);
-                }
-                else
-                {
+                } else {
                     ToastUtil.showToastLong(getString(R.string.Device_ID_14));
                 }
 
@@ -363,29 +341,22 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
             case R.id.site_test_setting_button:
 
                 String number = siteTestEditText.getText().toString();
-                if (TextUtils.isEmpty(number))
-                {
+                if (TextUtils.isEmpty(number)) {
                     ToastUtil.showToastLong(getString(R.string.Address_cannot_be_empty));
                     return;
                 }
-                if (number.length() > 10)
-                {
+                if (number.length() > 10) {
                     return;
                 }
                 String ss = "";
-                if (number.length() < 10)
-                {
-                    for (int i = 0; i < 10 - number.length(); i++)
-                    {
+                if (number.length() < 10) {
+                    for (int i = 0; i < 10 - number.length(); i++) {
                         ss += "0";
                     }
                 }
-                if (is8Add)
-                {
+                if (is8Add) {
                     content = ConfigParams.SetAddr + ss + number;
-                }
-                else
-                {
+                } else {
                     content = ConfigParams.SetRTUidyc + ServiceUtils.getStr(number, 5);
                 }
 
@@ -393,14 +364,12 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
                 SocketUtil.getSocketUtil().sendContent(content);
                 break;
             case R.id.xingzheng_setting_button:
-                if (is8Add)
-                {
+                if (is8Add) {
                     return;
                 }
 
                 String xing = xingEditText.getText().toString();
-                if (TextUtils.isEmpty(xing))
-                {
+                if (TextUtils.isEmpty(xing)) {
                     ToastUtil.showToastLong(getString(R.string.Administrative_division_code_can_not_be_empty));
                     return;
                 }
@@ -412,14 +381,12 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
 
 
                 data = saveNumEditText.getText().toString();
-                if (TextUtils.isEmpty(data))
-                {
+                if (TextUtils.isEmpty(data)) {
                     ToastUtil.showToastLong(getString(R.string.Storage_interval_cannot_be_empty));
                     return;
                 }
                 dataNum = Integer.parseInt(data);
-                if (dataNum < 0 || dataNum > 1440)
-                {
+                if (dataNum < 0 || dataNum > 1440) {
                     ToastUtil.showToastLong(getString(R.string.Memory_interval_out_of_range));
                     return;
                 }
@@ -435,12 +402,9 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
                 SocketUtil.getSocketUtil().sendContent(ConfigParams.RESETUNIT);
                 break;
             case R.id.time_button:
-                if (TextUtils.isEmpty(setTime))
-                {
+                if (TextUtils.isEmpty(setTime)) {
                     SocketUtil.getSocketUtil().sendContent(ConfigParams.SETTIME + sendTimeFormat.format(System.currentTimeMillis()));
-                }
-                else
-                {
+                } else {
                     SocketUtil.getSocketUtil().sendContent(ConfigParams.SETTIME + setTime);
                 }
                 break;
@@ -466,8 +430,7 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
-    {
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         siteTypeAdapter.setSelectedItem(i);
 
         String content = ConfigParams.SetStationMode + i;
@@ -475,20 +438,16 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> adapterView)
-    {
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 
     @Override
-    public void didReceivedNotification(int id, Object... args)
-    {
-        if (id == UiEventEntry.READ_DATA)
-        {
+    public void didReceivedNotification(int id, Object... args) {
+        if (id == UiEventEntry.READ_DATA) {
             String result = (String) args[0];
             String content = (String) args[1];
-            if (TextUtils.isEmpty(result) || TextUtils.isEmpty(content))
-            {
+            if (TextUtils.isEmpty(result) || TextUtils.isEmpty(content)) {
                 return;
             }
             setData(result);
@@ -502,71 +461,49 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
 //                }
 //            }
 
-        }
-        else if (id == UiEventEntry.SELECT_TIME)
-        {
+        } else if (id == UiEventEntry.SELECT_TIME) {
             String result = (String) args[0];
             rtuTimeTextView.setText(result);
             setTime = (String) args[1];
         }
     }
 
-    private void setData(String result)
-    {
-        if (result.contains(ConfigParams.SetAddr.trim()))
-        {// 遥测站地址：
+    private void setData(String result) {
+        if (result.contains(ConfigParams.SetAddr.trim())) {// 遥测站地址：
             siteTestEditText.setText(result.replaceAll(ConfigParams.SetAddr.trim(), "").trim());
-        }
-        else if (result.contains(ConfigParams.SetRTUid18.trim()))
-        {// 设备ID
+        } else if (result.contains(ConfigParams.SetRTUid18.trim())) {// 设备ID
             deviceEditText.setText(result.replaceAll(ConfigParams.SetRTUid18.trim(), "").trim());
-        }
-        else if (result.contains(ConfigParams.SetSaveInterval.trim()))
-        {// 设备ID
+        } else if (result.contains(ConfigParams.SetSaveInterval.trim())) {// 设备ID
             saveNumEditText.setText(result.replaceAll(ConfigParams.SetSaveInterval.trim(), "").trim());
-        }
-        else if (result.contains(ConfigParams.elecrelay.trim()))
-        {// 设备ID
+        } else if (result.contains(ConfigParams.elecrelay.trim())) {// 设备ID
             String data = result.replaceAll(ConfigParams.elecrelay.trim(), "").trim();
 
-            if ("0".equals(data))
-            {
+            if ("0".equals(data)) {
                 elecrelaySwitch.setChecked(false);
-            }
-            else
-            {
+            } else {
                 elecrelaySwitch.setChecked(true);
             }
-        }
-        else if (result.contains(ConfigParams.SetStationMode.trim()))
-        {// 站点类型：
+        } else if (result.contains(ConfigParams.SetStationMode.trim())) {// 站点类型：
             String site = result.replaceAll(ConfigParams.SetStationMode.trim(), "").trim();
             int siteNum = Integer.parseInt(site);
-            if (siteNum <= 12)
-            {
+            if (siteNum <= 12) {
                 siteTypeSpinner.setSelection(siteNum, false);
                 siteTypeAdapter.setSelectedItem(siteNum);
-            }
-            else
-            {
+            } else {
                 siteTypeSpinner.setSelection(0, false);
                 siteTypeAdapter.setSelectedItem(0);
 
             }
             siteTypeSpinner.setOnItemSelectedListener(this);
-        }
-        else if (result.contains(ConfigParams.SetWorkModel.trim()))
-        {// 工作状态：
+        } else if (result.contains(ConfigParams.SetWorkModel.trim())) {// 工作状态：
             String site = result.replaceAll(ConfigParams.SetWorkModel.trim(), "").trim();
             int siteNum = Integer.parseInt(site);
             workModelSpinner.setSelection(siteNum, false);
             workModelAdapter.setSelectedItem(siteNum);
 
-            workModelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-            {
+            workModelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
-                {
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     workModelAdapter.setSelectedItem(i);
 
                     String content = ConfigParams.SetWorkModel + i;
@@ -574,119 +511,89 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
                 }
 
                 @Override
-                public void onNothingSelected(AdapterView<?> adapterView)
-                {
+                public void onNothingSelected(AdapterView<?> adapterView) {
 
                 }
             });
-        }
-        else if (result.contains(ConfigParams.SetWorkMode.trim()))
-        {
+        } else if (result.contains(ConfigParams.SetWorkMode.trim())) {
             String s = result.replaceAll(ConfigParams.SetWorkMode.trim(), "").trim();
-            if (TextUtils.isEmpty(s))
-            {
+            if (TextUtils.isEmpty(s)) {
                 return;
             }
-            if (s.equals("0"))
-            {
+            if (s.equals("0")) {
                 lowRadioButton.setChecked(true);
-            }
-            else if (s.equals("1"))
-            {
+            } else if (s.equals("1")) {
                 alwaysRadioButton.setChecked(true);
             }
-        }
-        else if (result.contains(ConfigParams.SetvalveType.trim()))
-        {
+        } else if (result.contains(ConfigParams.SetvalveType.trim())) {
             String s = result.replaceAll(ConfigParams.SetvalveType.trim(), "").trim();
-            if (TextUtils.isEmpty(s))
-            {
+            if (TextUtils.isEmpty(s)) {
                 return;
             }
-            if (s.equals("1"))
-            {
+            if (s.equals("1")) {
                 butterflyRadiobutton.setChecked(true);
-            }
-            else if (s.equals("2"))
-            {
+            } else if (s.equals("2")) {
                 pulseRadiobutton.setChecked(true);
-            }
-            else if (s.equals("3"))
-            {
+            } else if (s.equals("3")) {
                 vaRadiobutton.setChecked(true);
             }
-        }
-        else if (result.contains(ConfigParams.SETTIME.trim()))
-        {
+        } else if (result.contains(ConfigParams.SETTIME.trim())) {
             String timeTemp = result.replaceAll(ConfigParams.SETTIME.trim(), "").trim();
             String time = timeTemp.replaceAll(" ", "0").trim();
             Log.i(TAG, "time:" + time);
 
 
-
-            String month = time.substring(4,6);
+            String month = time.substring(4, 6);
             int intMonth = Integer.valueOf(month);
-            if (intMonth > 12 || intMonth <1){
+            if (intMonth > 12 || intMonth < 1) {
 
                 ToastUtil.showToastLong(getString(R.string.Month_error));
                 return;
             }
-            int day = Integer.valueOf(time.substring(6,8));
+            int day = Integer.valueOf(time.substring(6, 8));
 
-            if (day > 31 || intMonth < 1){
+            if (day > 31 || intMonth < 1) {
 
                 ToastUtil.showToastLong(getString(R.string.Date_error));
                 return;
             }
 
-            int hour = Integer.valueOf(time.substring(8,10));
-            int min = Integer.valueOf(time.substring(10,12));
-            int s= Integer.valueOf(time.substring(12,14));
-            if (hour > 24 || hour < 0 || min > 60 || min < 0 || s > 60 || s < 0 ){
+            int hour = Integer.valueOf(time.substring(8, 10));
+            int min = Integer.valueOf(time.substring(10, 12));
+            int s = Integer.valueOf(time.substring(12, 14));
+            if (hour > 24 || hour < 0 || min > 60 || min < 0 || s > 60 || s < 0) {
 
                 ToastUtil.showToastLong(getString(R.string.Time_error1));
                 return;
             }
 
-            String rtuTime = ServiceUtils.getTime(time,getActivity());
-            if (rtuTimeTextView != null && rtuTime != null)
-            {
+            String rtuTime = ServiceUtils.getTime(time, getActivity());
+            if (rtuTimeTextView != null && rtuTime != null) {
                 rtuTimeTextView.setText(rtuTime);
                 setTime = time;
             }
-        }
-        else if (result.contains(ConfigParams.SetId_Type.trim()))
-        {//区分8位站号和十位站号
+        } else if (result.contains(ConfigParams.SetId_Type.trim())) {//区分8位站号和十位站号
             String s = result.replaceAll(ConfigParams.SetId_Type.trim(), "").trim();
-            if (TextUtils.isEmpty(s))
-            {
+            if (TextUtils.isEmpty(s)) {
                 return;
             }
-            if ("0".equals(s))
-            {//8位站号
+            if ("0".equals(s)) {//8位站号
                 is8Add = true;
                 siteNumRadioGroup.check(R.id.site_num_8);
                 xingLinearLayout.setVisibility(View.GONE);
-            }
-            else if ("1".equals(s))
-            {//10位站号
+            } else if ("1".equals(s)) {//10位站号
                 is8Add = false;
                 siteNumRadioGroup.check(R.id.site_num_10);
                 xingLinearLayout.setVisibility(View.VISIBLE);
             }
-        }
-        else if (result.contains(ConfigParams.SetRTUidxz.trim()))
-        {//10位站号行政区划码
+        } else if (result.contains(ConfigParams.SetRTUidxz.trim())) {//10位站号行政区划码
 //            if (is8Add)
 //            {
 //                return;
 //            }
             xingEditText.setText(result.replaceAll(ConfigParams.SetRTUidxz.trim(), "").trim());
-        }
-        else if (result.contains(ConfigParams.SetRTUidyc.trim()))
-        {//10位站号遥测站地址
-            if (is8Add)
-            {
+        } else if (result.contains(ConfigParams.SetRTUidyc.trim())) {//10位站号遥测站地址
+            if (is8Add) {
                 return;
             }
             siteTestEditText.setText(result.replaceAll(ConfigParams.SetRTUidyc.trim(), "").trim());

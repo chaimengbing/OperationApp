@@ -1,7 +1,10 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -14,6 +17,7 @@ import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
+import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.util.Log;
 
 /**
@@ -35,9 +39,14 @@ public class YPTFragment extends BaseFragment implements View.OnClickListener,Ev
     private RadioGroup uploadGroup;
 
     @Override
-    public int getLayoutView()
-    {
-        return R.layout.fragment_ypt;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_ypt);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
     @Override
@@ -45,22 +54,6 @@ public class YPTFragment extends BaseFragment implements View.OnClickListener,Ev
     {
         super.onDestroy();
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
-    }
-    @Override
-    public void initComponentViews(View view)
-    {
-        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
-        deviceSetButton = (Button) view.findViewById(R.id.device_id_setting_button1);
-        deviceEditText = (EditText) view.findViewById(R.id.device_id1);
-        center4Group = (RadioGroup) view.findViewById(R.id.center_radiogroup_4);
-        reserve4Group = (RadioGroup) view.findViewById(R.id.reserve_radiogroup_4);
-        noeth4ChannelGroup = (RadioGroup) view.findViewById(R.id.channel_group_4);
-        timingGroup = (RadioGroup) view.findViewById(R.id.timing_group);
-        uploadGroup = (RadioGroup) view.findViewById(R.id.upload_group);
-        ip4 = (EditText) view.findViewById(R.id.ip_4_edittext);
-        port4 = (EditText) view.findViewById(R.id.port_4_edittext);
-        set4 = (Button) view.findViewById(R.id.gprs_4_button);
-        initView(view);
     }
 
     private void initView(final View v)
@@ -184,6 +177,23 @@ public class YPTFragment extends BaseFragment implements View.OnClickListener,Ev
             }
         });
     }
+
+    @Override
+    public void initView() {
+        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
+        deviceSetButton = (Button) view.findViewById(R.id.device_id_setting_button1);
+        deviceEditText = (EditText) view.findViewById(R.id.device_id1);
+        center4Group = (RadioGroup) view.findViewById(R.id.center_radiogroup_4);
+        reserve4Group = (RadioGroup) view.findViewById(R.id.reserve_radiogroup_4);
+        noeth4ChannelGroup = (RadioGroup) view.findViewById(R.id.channel_group_4);
+        timingGroup = (RadioGroup) view.findViewById(R.id.timing_group);
+        uploadGroup = (RadioGroup) view.findViewById(R.id.upload_group);
+        ip4 = (EditText) view.findViewById(R.id.ip_4_edittext);
+        port4 = (EditText) view.findViewById(R.id.port_4_edittext);
+        set4 = (Button) view.findViewById(R.id.gprs_4_button);
+        initView(view);
+    }
+
     @Override
     public void initData()
     {
@@ -191,11 +201,11 @@ public class YPTFragment extends BaseFragment implements View.OnClickListener,Ev
     }
 
     @Override
-    public void setListener()
-    {
+    public void initEvent() {
         deviceSetButton.setOnClickListener(this);
         set4.setOnClickListener(this);
     }
+
     @Override
     public void onClick(View v)
     {

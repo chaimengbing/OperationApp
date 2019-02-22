@@ -1,8 +1,10 @@
 package com.heroan.operation.fragment;
 
-import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +21,7 @@ import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
+import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.util.Log;
 
 /**
@@ -76,13 +79,17 @@ public class RcmSysPamarsFragment extends BaseFragment implements View.OnClickLi
     private boolean isrFirst = true;
 
 
-
-
     @Override
-    public int getLayoutView()
-    {
-        return R.layout.fragment_setting_rcm_system;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_setting_rcm_system);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
+
 
     @Override
     public void onDestroy()
@@ -91,10 +98,10 @@ public class RcmSysPamarsFragment extends BaseFragment implements View.OnClickLi
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
     }
 
-    @Override
-    public void initComponentViews(View view)
-    {
 
+
+    @Override
+    public void initView() {
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
 
         ipChannel = (EditText) view.findViewById(R.id.ip_channel_edittext);
@@ -131,9 +138,7 @@ public class RcmSysPamarsFragment extends BaseFragment implements View.OnClickLi
         isFirst = true;
         isrFirst = true;
         initView(view);
-
     }
-
 
     @Override
     public void initData()
@@ -163,56 +168,8 @@ public class RcmSysPamarsFragment extends BaseFragment implements View.OnClickLi
 
     }
 
-    private void initView(final View view)
-    {
-        simConfigRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
-
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId)
-            {
-
-                View checkView = view.findViewById(checkedId);
-                if (!checkView.isPressed())
-                {
-                    return;
-                }
-                String content = "";
-                if (checkedId == R.id.main_picture_radiobtton)
-                {
-                    content = ConfigParams.YunFunction + "0";
-                }
-                else
-                {
-                    content = ConfigParams.YunFunction + "1";
-                }
-                SocketUtil.getSocketUtil().sendContent(content);
-            }
-        });
-    }
-
     @Override
-    public void onResume()
-    {
-        super.onResume();
-
-        int item = photoSpinner.getSelectedItemPosition();
-        photoSpinner.setSelection(item);
-
-        int item1 = ratioSpinner.getSelectedItemPosition();
-        ratioSpinner.setSelection(item1);
-
-        int item2 = framesSpinner.getSelectedItemPosition();
-        framesSpinner.setSelection(item2);
-
-        int item3 = apnSpinner.getSelectedItemPosition();
-        apnSpinner.setSelection(item3);
-
-    }
-
-    @Override
-    public void setListener()
-    {
+    public void initEvent() {
         channelButton.setOnClickListener(this);
         ftpAddrButton.setOnClickListener(this);
         photoIntervalButton.setOnClickListener(this);
@@ -332,6 +289,54 @@ public class RcmSysPamarsFragment extends BaseFragment implements View.OnClickLi
             }
         });
     }
+
+    private void initView(final View view)
+    {
+        simConfigRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId)
+            {
+
+                View checkView = view.findViewById(checkedId);
+                if (!checkView.isPressed())
+                {
+                    return;
+                }
+                String content = "";
+                if (checkedId == R.id.main_picture_radiobtton)
+                {
+                    content = ConfigParams.YunFunction + "0";
+                }
+                else
+                {
+                    content = ConfigParams.YunFunction + "1";
+                }
+                SocketUtil.getSocketUtil().sendContent(content);
+            }
+        });
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+
+        int item = photoSpinner.getSelectedItemPosition();
+        photoSpinner.setSelection(item);
+
+        int item1 = ratioSpinner.getSelectedItemPosition();
+        ratioSpinner.setSelection(item1);
+
+        int item2 = framesSpinner.getSelectedItemPosition();
+        framesSpinner.setSelection(item2);
+
+        int item3 = apnSpinner.getSelectedItemPosition();
+        apnSpinner.setSelection(item3);
+
+    }
+
 
 
     @Override

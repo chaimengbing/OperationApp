@@ -1,7 +1,10 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -14,9 +17,8 @@ import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
-import zuo.biao.library.util.Log;
-
 import cn.com.heaton.blelibrary.ble.BleDevice;
+import zuo.biao.library.base.BaseFragment;
 
 /**
  * 闸位计
@@ -38,8 +40,14 @@ public class ZWFragment extends BaseFragment implements View.OnClickListener, Ev
     private BleDevice bleDevice = null;
 
     @Override
-    public int getLayoutView() {
-        return R.layout.fragment_sensor_zw;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_sensor_zw);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
     @Override
@@ -48,26 +56,6 @@ public class ZWFragment extends BaseFragment implements View.OnClickListener, Ev
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
     }
 
-    @Override
-    public void initComponentViews(View view) {
-        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
-
-
-        if (getArguments() != null) {
-            isBleDevice = getArguments().getBoolean("isBleDevice");
-            bleDevice = (BleDevice) getArguments().getSerializable("device");
-        }
-
-        addValueEditText = (EditText) view.findViewById(R.id.zha_add_value);
-        rangeEditText = (EditText) view.findViewById(R.id.model_zha_range);
-        addValueButton = (Button) view.findViewById(R.id.zha_add_value_button);
-        rangeButton = (Button) view.findViewById(R.id.model_zha_range_button);
-        planTypeGroup = (RadioGroup) view.findViewById(R.id.zha_plan_type);
-        modelTypeGroup = (RadioGroup) view.findViewById(R.id.model_zha_type);
-        plan485Group = (RadioGroup) view.findViewById(R.id.zha_plan_485);
-
-        initView(view);
-    }
 
 
     private void sendData(String content) {
@@ -144,15 +132,37 @@ public class ZWFragment extends BaseFragment implements View.OnClickListener, Ev
     }
 
     @Override
+    public void initView() {
+        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
+
+
+        if (getArguments() != null) {
+            isBleDevice = getArguments().getBoolean("isBleDevice");
+            bleDevice = (BleDevice) getArguments().getSerializable("device");
+        }
+
+        addValueEditText = (EditText) view.findViewById(R.id.zha_add_value);
+        rangeEditText = (EditText) view.findViewById(R.id.model_zha_range);
+        addValueButton = (Button) view.findViewById(R.id.zha_add_value_button);
+        rangeButton = (Button) view.findViewById(R.id.model_zha_range_button);
+        planTypeGroup = (RadioGroup) view.findViewById(R.id.zha_plan_type);
+        modelTypeGroup = (RadioGroup) view.findViewById(R.id.model_zha_type);
+        plan485Group = (RadioGroup) view.findViewById(R.id.zha_plan_485);
+
+        initView(view);
+    }
+
+    @Override
     public void initData() {
 
     }
 
     @Override
-    public void setListener() {
+    public void initEvent() {
         addValueButton.setOnClickListener(this);
         rangeButton.setOnClickListener(this);
     }
+
 
     @Override
     public void onClick(View view) {

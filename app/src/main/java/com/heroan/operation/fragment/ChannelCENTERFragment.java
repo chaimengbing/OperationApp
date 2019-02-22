@@ -1,7 +1,10 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -13,6 +16,7 @@ import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
+import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.util.Log;
 
 /**
@@ -34,10 +38,16 @@ public class ChannelCENTERFragment extends BaseFragment implements View.OnClickL
     private Button center4AddButton;
     private Button fiveRainButton;
     private Button waterPersonButton;
+
     @Override
-    public int getLayoutView()
-    {
-        return R.layout.fragment_setting_comm_center;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_setting_comm_center);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
     @Override
@@ -47,9 +57,10 @@ public class ChannelCENTERFragment extends BaseFragment implements View.OnClickL
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
     }
 
+
+
     @Override
-    public void initComponentViews(View view)
-    {
+    public void initView() {
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
         center1AddEdittext = (EditText) view.findViewById(R.id.center_1_add_edittext);
         center2AddEdittext = (EditText) view.findViewById(R.id.center_2_add_edittext);
@@ -64,15 +75,8 @@ public class ChannelCENTERFragment extends BaseFragment implements View.OnClickL
         center4AddButton = (Button) view.findViewById(R.id.center_4_add_button);
         fiveRainButton = (Button) view.findViewById(R.id.five_rain_button);
         waterPersonButton = (Button) view.findViewById(R.id.water_person_button);
-
-        initView(view);
-
     }
 
-    public void initView(View view)
-    {
-
-    }
     @Override
     public void initData()
     {
@@ -81,9 +85,7 @@ public class ChannelCENTERFragment extends BaseFragment implements View.OnClickL
     }
 
     @Override
-    public void setListener()
-    {
-
+    public void initEvent() {
         center1AddButton.setOnClickListener(this);
         center2AddButton.setOnClickListener(this);
         center3AddButton.setOnClickListener(this);
@@ -91,6 +93,7 @@ public class ChannelCENTERFragment extends BaseFragment implements View.OnClickL
         fiveRainButton.setOnClickListener(this);
         waterPersonButton.setOnClickListener(this);
     }
+
     @Override
     public void onClick(View view)
     {

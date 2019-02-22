@@ -1,7 +1,10 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -13,9 +16,8 @@ import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
-import zuo.biao.library.util.Log;
-
 import cn.com.heaton.blelibrary.ble.BleDevice;
+import zuo.biao.library.base.BaseFragment;
 
 /**
  * Created by linxi on 2018/5/23.
@@ -46,24 +48,17 @@ public class BleSearchFragment extends BaseFragment implements EventNotifyHelper
     private BleDevice bleDevice = null;
 
     @Override
-    public int getLayoutView() {
-        return R.layout.fragment_search;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_search);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
-    @Override
-    public void initComponentViews(View view) {
-        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
-        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.NOTIFY_BUNDLE);
-        resultTextView = (TextView) view.findViewById(R.id.result_data_textview);
-        resultScroll = (ScrollView) view.findViewById(R.id.result_scroll);
 
-
-        if (getArguments() != null) {
-            isBleDevice = getArguments().getBoolean("isBleDevice");
-            bleDevice = (BleDevice) getArguments().getSerializable("device");
-        }
-        setData();
-    }
 
 
     private void sendData(String content) {
@@ -140,14 +135,30 @@ public class BleSearchFragment extends BaseFragment implements EventNotifyHelper
     }
 
     @Override
-    public void initData() {
+    public void initView() {
+        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
+        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.NOTIFY_BUNDLE);
+        resultTextView = (TextView) view.findViewById(R.id.result_data_textview);
+        resultScroll = (ScrollView) view.findViewById(R.id.result_scroll);
+
+
+        if (getArguments() != null) {
+            isBleDevice = getArguments().getBoolean("isBleDevice");
+            bleDevice = (BleDevice) getArguments().getSerializable("device");
+        }
 
     }
 
     @Override
-    public void setListener() {
+    public void initData() {
+        setData();
+    }
+
+    @Override
+    public void initEvent() {
 
     }
+
 
     @Override
     public void didReceivedNotification(int id, Object... args) {

@@ -1,7 +1,10 @@
 package com.heroan.operation.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -14,7 +17,7 @@ import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
-import zuo.biao.library.util.Log;
+import zuo.biao.library.base.BaseFragment;
 /**
  * 水位参数
  * Created by Vcontrol on 2016/11/23.
@@ -42,10 +45,16 @@ public class WaterPamarsFragment extends BaseFragment implements View.OnClickLis
     private EditText waterPhotoUpEditText;
     private EditText waterPhotoDownEditText;
 
+
     @Override
-    public int getLayoutView()
-    {
-        return R.layout.fragment_sensor_water_params;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        setContentView(R.layout.fragment_sensor_water_params);
+        initView();
+        initData();
+        initEvent();
+        return view;
     }
 
     @Override
@@ -55,31 +64,6 @@ public class WaterPamarsFragment extends BaseFragment implements View.OnClickLis
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
     }
 
-    @Override
-    public void initComponentViews(View view)
-    {
-        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
-        waterGroup = (RadioGroup) view.findViewById(R.id.water_group);
-        addWaterButton = (Button) view.findViewById(R.id.add_water_button);
-        addWaterUpButton = (Button) view.findViewById(R.id.add_water_up_button);
-        addWaterDownButton = (Button) view.findViewById(R.id.add_water_down_button);
-        addTimeButton = (Button) view.findViewById(R.id.add_time_button);
-        waterModifyButton = (Button) view.findViewById(R.id.water_modify_button);
-        waterBasicButton = (Button) view.findViewById(R.id.water_basic_button);
-        waterPhotoUpButton = (Button) view.findViewById(R.id.photo_water_up_button);
-        waterPhotoDownButton = (Button) view.findViewById(R.id.photo_water_down_button);
-
-        addWaterEditText = (EditText) view.findViewById(R.id.add_water_edittext);
-        addWaterUpEditText = (EditText) view.findViewById(R.id.add_water_up_edittext);
-        addWaterDownEditText = (EditText) view.findViewById(R.id.add_water_down_edittext);
-        addTimeEditText = (EditText) view.findViewById(R.id.add_time_edittext);
-        waterModifyEditText = (EditText) view.findViewById(R.id.water_modify_edittext);
-        waterBasicEditText = (EditText) view.findViewById(R.id.water_basic_edittext);
-        waterPhotoUpEditText = (EditText) view.findViewById(R.id.photo_water_up_edittext);
-        waterPhotoDownEditText = (EditText) view.findViewById(R.id.photo_water_down_edittext);
-
-        initView(view);
-    }
 
     private void initView(final View view)
     {
@@ -112,14 +96,38 @@ public class WaterPamarsFragment extends BaseFragment implements View.OnClickLis
     }
 
     @Override
+    public void initView() {
+        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
+        waterGroup = (RadioGroup) view.findViewById(R.id.water_group);
+        addWaterButton = (Button) view.findViewById(R.id.add_water_button);
+        addWaterUpButton = (Button) view.findViewById(R.id.add_water_up_button);
+        addWaterDownButton = (Button) view.findViewById(R.id.add_water_down_button);
+        addTimeButton = (Button) view.findViewById(R.id.add_time_button);
+        waterModifyButton = (Button) view.findViewById(R.id.water_modify_button);
+        waterBasicButton = (Button) view.findViewById(R.id.water_basic_button);
+        waterPhotoUpButton = (Button) view.findViewById(R.id.photo_water_up_button);
+        waterPhotoDownButton = (Button) view.findViewById(R.id.photo_water_down_button);
+
+        addWaterEditText = (EditText) view.findViewById(R.id.add_water_edittext);
+        addWaterUpEditText = (EditText) view.findViewById(R.id.add_water_up_edittext);
+        addWaterDownEditText = (EditText) view.findViewById(R.id.add_water_down_edittext);
+        addTimeEditText = (EditText) view.findViewById(R.id.add_time_edittext);
+        waterModifyEditText = (EditText) view.findViewById(R.id.water_modify_edittext);
+        waterBasicEditText = (EditText) view.findViewById(R.id.water_basic_edittext);
+        waterPhotoUpEditText = (EditText) view.findViewById(R.id.photo_water_up_edittext);
+        waterPhotoDownEditText = (EditText) view.findViewById(R.id.photo_water_down_edittext);
+
+        initView(view);
+    }
+
+    @Override
     public void initData()
     {
         SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadSensorPara1);
     }
 
     @Override
-    public void setListener()
-    {
+    public void initEvent() {
         addWaterButton.setOnClickListener(this);
         addWaterUpButton.setOnClickListener(this);
         addWaterDownButton.setOnClickListener(this);
@@ -129,6 +137,7 @@ public class WaterPamarsFragment extends BaseFragment implements View.OnClickLis
         waterPhotoUpButton.setOnClickListener(this);
         waterPhotoDownButton.setOnClickListener(this);
     }
+
 
     @Override
     public void onClick(View view)
