@@ -13,7 +13,6 @@ import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -86,7 +85,7 @@ public class ChannelGPRSFragment extends BaseFragment implements View.OnClickLis
 
     @Override
     public void initData() {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadCommPara2);
+        ServiceUtils.sendData(ConfigParams.ReadCommPara2);
     }
 
     @Override
@@ -105,9 +104,9 @@ public class ChannelGPRSFragment extends BaseFragment implements View.OnClickLis
                 }
                 String content = ConfigParams.Setconnect_Type1;
                 if (checkedId == R.id.tcp_1) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.udp_1) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 }
             }
         });
@@ -121,9 +120,9 @@ public class ChannelGPRSFragment extends BaseFragment implements View.OnClickLis
                 }
                 String content = ConfigParams.Setconnect_Type2;
                 if (checkedId == R.id.tcp_2) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.udp_2) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 }
             }
         });
@@ -137,9 +136,9 @@ public class ChannelGPRSFragment extends BaseFragment implements View.OnClickLis
                 }
                 String content = ConfigParams.Setconnect_Type3;
                 if (checkedId == R.id.tcp_3) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.udp_3) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 }
             }
         });
@@ -222,7 +221,7 @@ public class ChannelGPRSFragment extends BaseFragment implements View.OnClickLis
                 break;
         }
 
-        SocketUtil.getSocketUtil().sendContent(content);
+        ServiceUtils.sendData(content);
     }
 
 

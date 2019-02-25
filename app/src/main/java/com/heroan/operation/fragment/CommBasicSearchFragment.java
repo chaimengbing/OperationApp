@@ -12,7 +12,6 @@ import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
 import zuo.biao.library.base.BaseFragment;
@@ -134,7 +133,7 @@ public class CommBasicSearchFragment extends BaseFragment implements EventNotify
         BatteryVolts = getString(R.string.Battery_voltage);
         currentSB.delete(0, currentSB.length());
         resultScroll.setVisibility(View.VISIBLE);
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadParameter);
+        ServiceUtils.sendData(ConfigParams.ReadParameter);
         currentSB.append(SetAddr);
         currentSB.append("\n");
         currentSB.append(SetWorkMode);

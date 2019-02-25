@@ -14,7 +14,7 @@ import android.widget.Switch;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -123,7 +123,7 @@ public class LruSysPamarsFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     public void initData() {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadParameters);
+        ServiceUtils.sendData(ConfigParams.ReadParameters);
     }
 
     @Override
@@ -138,9 +138,9 @@ public class LruSysPamarsFragment extends BaseFragment implements View.OnClickLi
                 if (valveSwitch_1.isPressed()) {
 
                     if (!isChecked) {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.valve1ctl + "2");
+                        ServiceUtils.sendData(ConfigParams.valve1ctl + "2");
                     } else {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.valve1ctl + "1");
+                        ServiceUtils.sendData(ConfigParams.valve1ctl + "1");
 
                     }
                 }
@@ -154,9 +154,9 @@ public class LruSysPamarsFragment extends BaseFragment implements View.OnClickLi
                 if (valveSwitch_2.isPressed()) {
 
                     if (!isChecked) {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.valve2ctl + "2");
+                        ServiceUtils.sendData(ConfigParams.valve2ctl + "2");
                     } else {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.valve2ctl + "1");
+                        ServiceUtils.sendData(ConfigParams.valve2ctl + "1");
 
                     }
                 }
@@ -181,7 +181,7 @@ public class LruSysPamarsFragment extends BaseFragment implements View.OnClickLi
                 } else {
                     content = ConfigParams.PulsePolar + "0";
                 }
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
             }
         });
 
@@ -201,7 +201,7 @@ public class LruSysPamarsFragment extends BaseFragment implements View.OnClickLi
                 } else {
                     content = ConfigParams.SensorPolar + "0";
                 }
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
             }
         });
     }
@@ -267,7 +267,7 @@ public class LruSysPamarsFragment extends BaseFragment implements View.OnClickLi
         }
 
         String content = type + data;
-        SocketUtil.getSocketUtil().sendContent(content);
+        ServiceUtils.sendData(content);
     }
 
 

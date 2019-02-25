@@ -17,7 +17,6 @@ import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -143,7 +142,7 @@ public class RcmSysPamarsFragment extends BaseFragment implements View.OnClickLi
     @Override
     public void initData()
     {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadData);
+        ServiceUtils.sendData(ConfigParams.ReadData);
 
         timeItems = getResources().getStringArray(R.array.pictime_interval);
         timeAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item, timeItems);
@@ -195,7 +194,7 @@ public class RcmSysPamarsFragment extends BaseFragment implements View.OnClickLi
                 }
                 timeAdapter.setSelectedItem(position);
                 String content = ConfigParams.SetTakePhotoInterval + position;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
             }
 
             @Override
@@ -217,7 +216,7 @@ public class RcmSysPamarsFragment extends BaseFragment implements View.OnClickLi
                 }
                 apnAdapter.setSelectedItem(position);
                 String content = ConfigParams.SetCameraAPN + position;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
             }
 
             @Override
@@ -240,7 +239,7 @@ public class RcmSysPamarsFragment extends BaseFragment implements View.OnClickLi
                 Log.i(TAG, "wwwww");
                 ratioAdapter.setSelectedItem(position);
                 String content = ConfigParams.SetPIC_Resolution  + position;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
             }
 
             @Override
@@ -262,7 +261,7 @@ public class RcmSysPamarsFragment extends BaseFragment implements View.OnClickLi
                 }
                 framesAdapter.setSelectedItem(position);
                 String content = ConfigParams.SetFramesInterval + position;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
             }
 
             @Override
@@ -279,7 +278,7 @@ public class RcmSysPamarsFragment extends BaseFragment implements View.OnClickLi
             {
                 tfAdapter.setSelectedItem(position);
                 String content = ConfigParams.SetVideoSave + position;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
             }
 
             @Override
@@ -313,7 +312,7 @@ public class RcmSysPamarsFragment extends BaseFragment implements View.OnClickLi
                 {
                     content = ConfigParams.YunFunction + "1";
                 }
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
             }
         });
     }
@@ -406,19 +405,19 @@ public class RcmSysPamarsFragment extends BaseFragment implements View.OnClickLi
                 content = ConfigParams.SetClearSDCard;
                 break;
             case R.id.Reboot_device_two:
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.RESETALL10);
+                ServiceUtils.sendData(ConfigParams.RESETALL10);
                 break;
             case R.id.reset_button_two:
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.RESETALL);
+                ServiceUtils.sendData(ConfigParams.RESETALL);
                 break;
             case R.id.Restart_system_board:
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetRestartSystemBoard);
+                ServiceUtils.sendData(ConfigParams.SetRestartSystemBoard);
             default:
                 content = "";
                 break;
         }
 
-        SocketUtil.getSocketUtil().sendContent(content);
+        ServiceUtils.sendData(content);
     }
 
     private Runnable timeRunnable = new Runnable()
@@ -433,12 +432,12 @@ public class RcmSysPamarsFragment extends BaseFragment implements View.OnClickLi
 
     private void sendData()
     {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadStatus);
+        ServiceUtils.sendData(ConfigParams.ReadStatus);
     }
 
     private void startupStatus()
     {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.StartUp);
+        ServiceUtils.sendData(ConfigParams.StartUp);
         OperationApplication.applicationHandler.postDelayed(timeRunnable, UiEventEntry.TIME);
     }
 

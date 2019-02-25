@@ -20,7 +20,6 @@ import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 import com.heroan.operation.view.CustomListView;
@@ -96,12 +95,12 @@ public class ChannelFragment extends BaseFragment implements EventNotifyHelper.N
             ipAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item,
                     ipItems);
             ipSpinner.setAdapter(ipAdapter);
-            SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadStaticIP);
+            ServiceUtils.sendData(ConfigParams.ReadStaticIP);
 
             OperationApplication.applicationHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadCommPara2);
+                    ServiceUtils.sendData(ConfigParams.ReadCommPara2);
                 }
             }, 1500);
         } else {
@@ -110,7 +109,7 @@ public class ChannelFragment extends BaseFragment implements EventNotifyHelper.N
             channelListView.setAdapter(channelAdapter);
             // 请求数据
 
-            SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadCommPara2);
+            ServiceUtils.sendData(ConfigParams.ReadCommPara2);
         }
 
     }
@@ -185,9 +184,9 @@ public class ChannelFragment extends BaseFragment implements EventNotifyHelper.N
                 }
                 String content = ConfigParams.Setconnect_Type1;
                 if (checkedId == R.id.eth_tcp) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.eth_udp) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 }
             }
         });
@@ -201,9 +200,9 @@ public class ChannelFragment extends BaseFragment implements EventNotifyHelper.N
                 }
                 String content = ConfigParams.Setconnect_Type1;
                 if (checkedId == R.id.tcp_1) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.udp_1) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 }
             }
         });
@@ -217,9 +216,9 @@ public class ChannelFragment extends BaseFragment implements EventNotifyHelper.N
                 }
                 String content = ConfigParams.Setconnect_Type2;
                 if (checkedId == R.id.tcp_2) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.udp_2) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 }
             }
         });
@@ -233,9 +232,9 @@ public class ChannelFragment extends BaseFragment implements EventNotifyHelper.N
                 }
                 String content = ConfigParams.Setconnect_Type3;
                 if (checkedId == R.id.tcp_3) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.udp_3) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 }
             }
         });
@@ -249,9 +248,9 @@ public class ChannelFragment extends BaseFragment implements EventNotifyHelper.N
                 }
                 String content = ConfigParams.Setconnect_Type4;
                 if (checkedId == R.id.tcp_4) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.udp_4) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 }
             }
         });
@@ -266,9 +265,9 @@ public class ChannelFragment extends BaseFragment implements EventNotifyHelper.N
                 }
                 String content = ConfigParams.SetBeidouType;
                 if (checkedId == R.id.beidou_button) {
-                    SocketUtil.getSocketUtil().sendContent(content + "00");
+                    ServiceUtils.sendData(content + "00");
                 } else if (checkedId == R.id.beidou_button_2) {
-                    SocketUtil.getSocketUtil().sendContent(content + "01");
+                    ServiceUtils.sendData(content + "01");
 
                 }
 
@@ -318,7 +317,7 @@ public class ChannelFragment extends BaseFragment implements EventNotifyHelper.N
                 }
                 String content =
                         ConfigParams.SetStaticIP + "1 " + devip + " " + ConfigParams.IPFlags + currentConfig;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.gprs_button:
                 String ip = ipEditView.getText().toString().trim();
@@ -337,7 +336,7 @@ public class ChannelFragment extends BaseFragment implements EventNotifyHelper.N
                 // String content1 = ConfigParams.SetIP + "1 " +
                 // ServiceUtils.getRegxIp(ip) + " " + ConfigParams.PORT +
                 // currentConfig;
-                SocketUtil.getSocketUtil().sendContent(content1);
+                ServiceUtils.sendData(content1);
                 break;
 
             default:
@@ -362,7 +361,7 @@ public class ChannelFragment extends BaseFragment implements EventNotifyHelper.N
                 String mac = result.replaceAll(ConfigParams.Module_MAC, "").replaceAll(" ", "0");
                 mac = ServiceUtils.getMac(mac);
                 macTextView.setText(mac);
-//                SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadCommPara2);
+//                ServiceUtils.sendData(ConfigParams.ReadCommPara2);
             } else if (result.contains(ConfigParams.SetIP + "1")) {
                 // 读取参数，更新适配器
                 String[] ipArray = result.split(ConfigParams.setPort.trim());
@@ -401,7 +400,7 @@ public class ChannelFragment extends BaseFragment implements EventNotifyHelper.N
                 OperationApplication.applicationHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadCommPara3);
+                        ServiceUtils.sendData(ConfigParams.ReadCommPara3);
                     }
                 }, 1500);
 

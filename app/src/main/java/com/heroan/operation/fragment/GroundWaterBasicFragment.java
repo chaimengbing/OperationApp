@@ -22,7 +22,7 @@ import com.heroan.operation.R;
 import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -189,7 +189,7 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
         };
         OperationApplication.applicationHandler.post(mTimeUpdateThread);
 
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadData);
+        ServiceUtils.sendData(ConfigParams.ReadData);
     }
 
     @Override
@@ -210,9 +210,9 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
                 if (elecrelaySwitch.isPressed()) {
 
                     if (!isChecked) {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "0");
+                        ServiceUtils.sendData(ConfigParams.elecrelay + "0");
                     } else {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "1");
+                        ServiceUtils.sendData(ConfigParams.elecrelay + "1");
 
                     }
                 }
@@ -233,12 +233,12 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
                 switch (i) {
                     case R.id.low_power_radiobtton:
                         String low = content + "0";
-                        SocketUtil.getSocketUtil().sendContent(low);
+                        ServiceUtils.sendData(low);
 
                         break;
                     case R.id.always_online_radiobtton:
                         String always = content + "1";
-                        SocketUtil.getSocketUtil().sendContent(always);
+                        ServiceUtils.sendData(always);
 
                         break;
 
@@ -259,12 +259,12 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
                 switch (i) {
                     case R.id.hum_update_radiobtton:
                         String low = content + "1";
-                        SocketUtil.getSocketUtil().sendContent(low);
+                        ServiceUtils.sendData(low);
 
                         break;
                     case R.id.hum_noupdate_radiobtton:
                         String always = content + "2";
-                        SocketUtil.getSocketUtil().sendContent(always);
+                        ServiceUtils.sendData(always);
 
                         break;
 
@@ -285,12 +285,12 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
                 switch (i) {
                     case R.id.send_radiobtton:
                         String low = content + "1";
-                        SocketUtil.getSocketUtil().sendContent(low);
+                        ServiceUtils.sendData(low);
 
                         break;
                     case R.id.no_send_radiobtton:
                         String always = content + "0";
-                        SocketUtil.getSocketUtil().sendContent(always);
+                        ServiceUtils.sendData(always);
 
                         break;
 
@@ -320,7 +320,7 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
                 // siteTestEditText.setText(ss + number);
                 String content = ConfigParams.SetAddr + ss + number;
 
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.gate_meter_setting_button:
                 String number1 = gateMeterEditText.getText().toString();
@@ -339,7 +339,7 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
 
                 String content2 = ConfigParams.Setlora_gate_addr + ss1 + number1;
 
-                SocketUtil.getSocketUtil().sendContent(content2);
+                ServiceUtils.sendData(content2);
                 break;
             case R.id.apn_set_button:
                 String centerAdd = "";
@@ -348,7 +348,7 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
                     ToastUtil.showToastLong(getString(R.string.APN_cannot_be_empty));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAPN + centerAdd);
+                ServiceUtils.sendData(ConfigParams.SetAPN + centerAdd);
 
                 break;
             case R.id.ground_setting_button:
@@ -365,7 +365,7 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
                 // siteTestEditText.setText(ss + number);
                 String content1 = ConfigParams.SetDep + ground;
 
-                SocketUtil.getSocketUtil().sendContent(content1);
+                ServiceUtils.sendData(content1);
                 break;
 
 
@@ -373,25 +373,25 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
                 String check1 = checkBox1 != null && checkBox1.isChecked() ? "1" : "0";
                 String check2 = checkBox2 != null && checkBox2.isChecked() ? "1" : "0";
                 String content3 = ConfigParams.SetScadaFactor + "0"+check2+"0" + check1;
-                SocketUtil.getSocketUtil().sendContent(content3);
+                ServiceUtils.sendData(content3);
                 break;*/
 
 
             case R.id.time_button:
                 if (TextUtils.isEmpty(setTime)) {
-                    SocketUtil.getSocketUtil().sendContent(ConfigParams.SETTIME + sendTimeFormat.format(System.currentTimeMillis()));
+                    ServiceUtils.sendData(ConfigParams.SETTIME + sendTimeFormat.format(System.currentTimeMillis()));
                 } else {
-                    SocketUtil.getSocketUtil().sendContent(ConfigParams.SETTIME + setTime);
+                    ServiceUtils.sendData(ConfigParams.SETTIME + setTime);
                 }
                 break;
             case R.id.reset_button:
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.ResetUnit);
+                ServiceUtils.sendData(ConfigParams.ResetUnit);
                 break;
             case R.id.sam_gate_now_button:
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.Sam_Gate_now);
+                ServiceUtils.sendData(ConfigParams.Sam_Gate_now);
                 break;
             case R.id.restart_button:
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.RESETALL);
+                ServiceUtils.sendData(ConfigParams.RESETALL);
                 break;
             case R.id.rtu_time:
 //                seletDate();
@@ -407,7 +407,7 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
         siteTypeAdapter.setSelectedItem(i);
 
         String content = ConfigParams.SetStationMode + i;
-        SocketUtil.getSocketUtil().sendContent(content);
+        ServiceUtils.sendData(content);
     }
 
     @Override
@@ -472,7 +472,7 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
                     sensorTypeAdapter.setSelectedItem(i);
 
                     String content = ConfigParams.SetWater485Type + i;
-                    SocketUtil.getSocketUtil().sendContent(content);
+                    ServiceUtils.sendData(content);
                 }
 
                 @Override
@@ -498,7 +498,7 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
                     timeTypeAdapter.setSelectedItem(i);
 
                     String content = ConfigParams.SetPacketInterval + i;
-                    SocketUtil.getSocketUtil().sendContent(content);
+                    ServiceUtils.sendData(content);
                 }
 
                 @Override

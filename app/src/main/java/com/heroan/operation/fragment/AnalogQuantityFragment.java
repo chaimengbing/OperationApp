@@ -14,7 +14,7 @@ import com.heroan.operation.R;
 import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.UiEventEntry;
 
 import zuo.biao.library.base.BaseFragment;
@@ -135,7 +135,7 @@ public class AnalogQuantityFragment extends BaseFragment implements View.OnClick
         quantityType5Spinner.setAdapter(quantityAdapter);
         quantityType6Spinner.setAdapter(quantityAdapter);
         quantityType7Spinner.setAdapter(quantityAdapter);
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadAna_SensorPara);
+        ServiceUtils.sendData(ConfigParams.ReadAna_SensorPara);
     }
 
     @Override
@@ -166,7 +166,7 @@ public class AnalogQuantityFragment extends BaseFragment implements View.OnClick
                     return;
                 }
                 quantityAdapter.setSelectedItem(position);
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAna_element0 + position);
+                ServiceUtils.sendData(ConfigParams.SetAna_element0 + position);
             }
 
             @Override
@@ -183,7 +183,7 @@ public class AnalogQuantityFragment extends BaseFragment implements View.OnClick
                     return;
                 }
                 quantityAdapter.setSelectedItem(position);
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAna_element1 + position);
+                ServiceUtils.sendData(ConfigParams.SetAna_element1 + position);
 
             }
 
@@ -202,7 +202,7 @@ public class AnalogQuantityFragment extends BaseFragment implements View.OnClick
                     return;
                 }
                 quantityAdapter.setSelectedItem(position);
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAna_element2 + position);
+                ServiceUtils.sendData(ConfigParams.SetAna_element2 + position);
 
             }
 
@@ -221,7 +221,7 @@ public class AnalogQuantityFragment extends BaseFragment implements View.OnClick
                     return;
                 }
                 quantityAdapter.setSelectedItem(position);
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAna_element3 + position);
+                ServiceUtils.sendData(ConfigParams.SetAna_element3 + position);
 
             }
 
@@ -240,7 +240,7 @@ public class AnalogQuantityFragment extends BaseFragment implements View.OnClick
                     return;
                 }
                 quantityAdapter.setSelectedItem(position);
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAna_element4 + position);
+                ServiceUtils.sendData(ConfigParams.SetAna_element4 + position);
 
             }
 
@@ -259,7 +259,7 @@ public class AnalogQuantityFragment extends BaseFragment implements View.OnClick
                     return;
                 }
                 quantityAdapter.setSelectedItem(position);
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAna_element5 + position);
+                ServiceUtils.sendData(ConfigParams.SetAna_element5 + position);
 
             }
 
@@ -278,7 +278,7 @@ public class AnalogQuantityFragment extends BaseFragment implements View.OnClick
                     return;
                 }
                 quantityAdapter.setSelectedItem(position);
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAna_element6 + position);
+                ServiceUtils.sendData(ConfigParams.SetAna_element6 + position);
 
             }
 
@@ -297,35 +297,35 @@ public class AnalogQuantityFragment extends BaseFragment implements View.OnClick
         switch (v.getId()) {
             case R.id.ay0_button:
                 content = quantitySoil1EditText.getText().toString().trim();
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAnaRange0 + content);
+                ServiceUtils.sendData(ConfigParams.SetAnaRange0 + content);
                 break;
             case R.id.ay1_button:
                 content = quantitySoil2EditText.getText().toString().trim();
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAnaRange1 + content);
+                ServiceUtils.sendData(ConfigParams.SetAnaRange1 + content);
                 break;
             case R.id.ay2_button:
                 content = quantitySoil3EditText.getText().toString().trim();
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAnaRange2 + content);
+                ServiceUtils.sendData(ConfigParams.SetAnaRange2 + content);
                 break;
             case R.id.ay3_button:
                 content = quantitySoil4EditText.getText().toString().trim();
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAnaRange3 + content);
+                ServiceUtils.sendData(ConfigParams.SetAnaRange3 + content);
                 break;
             case R.id.ay4_button:
                 content = quantitySoil5EditText.getText().toString().trim();
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAnaRange4 + content);
+                ServiceUtils.sendData(ConfigParams.SetAnaRange4 + content);
                 break;
             case R.id.ay5_button:
                 content = quantitySoil6EditText.getText().toString().trim();
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAnaRange5 + content);
+                ServiceUtils.sendData(ConfigParams.SetAnaRange5 + content);
                 break;
             case R.id.ay6_button:
                 content = quantitySoil7EditText.getText().toString().trim();
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAnaRange6 + content);
+                ServiceUtils.sendData(ConfigParams.SetAnaRange6 + content);
                 break;
             case R.id.ay14_button:
                 content = lowerLimitEditText.getText().toString().trim();
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAnaRange_low0 + content);
+                ServiceUtils.sendData(ConfigParams.SetAnaRange_low0 + content);
                 break;
             default:
                 break;

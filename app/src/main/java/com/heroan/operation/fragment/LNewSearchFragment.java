@@ -12,7 +12,6 @@ import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
 import zuo.biao.library.base.BaseFragment;
@@ -184,7 +183,7 @@ public class LNewSearchFragment extends BaseFragment implements EventNotifyHelpe
 
         if (search == UiEventEntry.TAB_SEARCH_LRU_NEW) {
 
-            SocketUtil.getSocketUtil().sendContent(ConfigParams.Readdata);
+            ServiceUtils.sendData(ConfigParams.Readdata);
 
             currentSB.append(Temperature);
             currentSB.append(C);

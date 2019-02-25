@@ -16,7 +16,6 @@ import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -77,16 +76,16 @@ public class  PressFragment extends BaseFragment implements View.OnClickListener
                 String content = ConfigParams.SetPressType;
                 if (checkedId == R.id.press_type_button)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 }
                 else if (checkedId == R.id.press_type_button1)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "2");
+                    ServiceUtils.sendData(content + "2");
 
                 }
                 else if (checkedId == R.id.press_type_button2)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "3");
+                    ServiceUtils.sendData(content + "3");
 
                 }
 
@@ -107,7 +106,7 @@ public class  PressFragment extends BaseFragment implements View.OnClickListener
                 String content = ConfigParams.SetPress485Type;
                 if (checkedId == R.id.press485_type_button1)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 }
 
             }
@@ -136,7 +135,7 @@ public class  PressFragment extends BaseFragment implements View.OnClickListener
         pressAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item, pressItems);
         pressSpinner.setAdapter(pressAdapter);
 
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadSensorPara2);
+        ServiceUtils.sendData(ConfigParams.ReadSensorPara2);
     }
 
     @Override
@@ -164,7 +163,7 @@ public class  PressFragment extends BaseFragment implements View.OnClickListener
                 return;
             }
 
-            SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAnaPressRange + ServiceUtils.getStr(level + "", 5));
+            ServiceUtils.sendData(ConfigParams.SetAnaPressRange + ServiceUtils.getStr(level + "", 5));
         }
     }
 
@@ -203,7 +202,7 @@ public class  PressFragment extends BaseFragment implements View.OnClickListener
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         pressAdapter.setSelectedItem(position);
                         String content = ConfigParams.SetPress485Type + ServiceUtils.getStr(position + 1 + "", 2);
-                        SocketUtil.getSocketUtil().sendContent(content);
+                        ServiceUtils.sendData(content);
                     }
 
                     @Override

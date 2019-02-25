@@ -13,7 +13,6 @@ import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -81,15 +80,15 @@ public class WaterPamarsFragment extends BaseFragment implements View.OnClickLis
                 String content = ConfigParams.SetWaterMeterPara;
                 if (checkedId == R.id.water_button)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 }
                 else if (checkedId == R.id.water_button2)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 }
                 else if (checkedId == R.id.water_button3)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "2");
+                    ServiceUtils.sendData(content + "2");
                 }
             }
         });
@@ -123,7 +122,7 @@ public class WaterPamarsFragment extends BaseFragment implements View.OnClickLis
     @Override
     public void initData()
     {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadSensorPara1);
+        ServiceUtils.sendData(ConfigParams.ReadSensorPara1);
     }
 
     @Override
@@ -294,7 +293,7 @@ public class WaterPamarsFragment extends BaseFragment implements View.OnClickLis
         }
         if (!TextUtils.isEmpty(content))
         {
-            SocketUtil.getSocketUtil().sendContent(content);
+            ServiceUtils.sendData(content);
         }
     }
 
@@ -369,7 +368,7 @@ public class WaterPamarsFragment extends BaseFragment implements View.OnClickLis
                 waterModifyEditText.setText(temp);
             }
 
-            SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadSensorPara2);
+            ServiceUtils.sendData(ConfigParams.ReadSensorPara2);
         }
         else if (result.contains(ConfigParams.SetAnaWaterBac))
         {

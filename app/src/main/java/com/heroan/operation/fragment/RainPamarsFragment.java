@@ -13,7 +13,6 @@ import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -63,13 +62,13 @@ public class RainPamarsFragment extends BaseFragment implements View.OnClickList
                 }
                 String content = ConfigParams.SetRainMeterPara;
                 if (checkedId == R.id.rain_button) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.rain_button_2) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 } else if (checkedId == R.id.rain_button_3) {
-                    SocketUtil.getSocketUtil().sendContent(content + "2");
+                    ServiceUtils.sendData(content + "2");
                 } else if (checkedId == R.id.rain_button_4) {
-                    SocketUtil.getSocketUtil().sendContent(content + "3");
+                    ServiceUtils.sendData(content + "3");
                 }
             }
         });
@@ -84,11 +83,11 @@ public class RainPamarsFragment extends BaseFragment implements View.OnClickList
                 }
                 String content = ConfigParams.SetRainType;
                 if (checkedId == R.id.rain_type_button) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 } else if (checkedId == R.id.rain_type_button_2) {
-                    SocketUtil.getSocketUtil().sendContent(content + "2");
+                    ServiceUtils.sendData(content + "2");
                 } else if (checkedId == R.id.rain_type_button_3) {
-                    SocketUtil.getSocketUtil().sendContent(content + "3");
+                    ServiceUtils.sendData(content + "3");
                 }
             }
         });
@@ -107,7 +106,7 @@ public class RainPamarsFragment extends BaseFragment implements View.OnClickList
 
     @Override
     public void initData() {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadSensorPara1);
+        ServiceUtils.sendData(ConfigParams.ReadSensorPara1);
     }
 
     @Override
@@ -129,7 +128,7 @@ public class RainPamarsFragment extends BaseFragment implements View.OnClickList
                 if (number < 0 || number > 99) {
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetRainFlowChangeMax + ServiceUtils.getStr(number + "", 2));
+                ServiceUtils.sendData(ConfigParams.SetRainFlowChangeMax + ServiceUtils.getStr(number + "", 2));
 
                 break;
 

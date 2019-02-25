@@ -13,7 +13,6 @@ import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
 import zuo.biao.library.base.BaseFragment;
@@ -102,7 +101,7 @@ public class GroundWaterSearchFragment extends BaseFragment implements EventNoti
     @Override
     public void initData()
     {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadData);
+        ServiceUtils.sendData(ConfigParams.ReadData);
 
         setData();
     }

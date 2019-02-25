@@ -11,7 +11,7 @@ import android.widget.CheckBox;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.UiEventEntry;
 
 import zuo.biao.library.base.BaseFragment;
@@ -87,7 +87,7 @@ public class CollectFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public void initData() {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadSystemPara);
+        ServiceUtils.sendData(ConfigParams.ReadSystemPara);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class CollectFragment extends BaseFragment implements View.OnClickListene
                 String check17 = checkBox17 != null && checkBox17.isChecked() ? "1" : "0";
                 String content =
                         ConfigParams.SetScadaFactor + check1 + check2 + check3 + check4 + check5 + check6 + check7 + check8 + check9 + check10 + check11 + check12 + check13 + check14 + check15 + check16 + check17;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
             default:
                 break;

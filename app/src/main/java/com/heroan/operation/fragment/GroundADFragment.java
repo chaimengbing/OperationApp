@@ -12,7 +12,7 @@ import com.heroan.operation.OperationApplication;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -40,11 +40,11 @@ public class GroundADFragment extends BaseFragment implements View.OnClickListen
         {
             if (isHigh)
             {
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadBatteryHighStatus);
+                ServiceUtils.sendData(ConfigParams.ReadBatteryHighStatus);
             }
             else
             {
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadBatteryLowStatus);
+                ServiceUtils.sendData(ConfigParams.ReadBatteryLowStatus);
             }
             OperationApplication.applicationHandler.postDelayed(adRunnable, UiEventEntry.TIME);
         }
@@ -108,11 +108,11 @@ public class GroundADFragment extends BaseFragment implements View.OnClickListen
         switch (view.getId())
         {
             case R.id.ad_down_button:
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetBatteryLow);
+                ServiceUtils.sendData(ConfigParams.SetBatteryLow);
                 isHigh = false;
                 break;
             case R.id.ad_up_button:
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetBatteryHigh);
+                ServiceUtils.sendData(ConfigParams.SetBatteryHigh);
                 isHigh = true;
                 break;
 

@@ -15,7 +15,6 @@ import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -103,7 +102,7 @@ public class GroundServerFragment extends BaseFragment implements EventNotifyHel
 
         serverTextView.setText(currentSB.toString());
 
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadCommPara);
+        ServiceUtils.sendData(ConfigParams.ReadCommPara);
 
     }
 
@@ -227,7 +226,7 @@ public class GroundServerFragment extends BaseFragment implements EventNotifyHel
 
             String content =
                     ConfigParams.SetIP + currentServer + " " + ServiceUtils.getRegxIp(ip) + ConfigParams.setPort + ServiceUtils.getStr(port + "", 5);
-            SocketUtil.getSocketUtil().sendContent(content);
+            ServiceUtils.sendData(content);
         }
     }
 }

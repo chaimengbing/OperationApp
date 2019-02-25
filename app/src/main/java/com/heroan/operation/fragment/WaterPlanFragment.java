@@ -13,11 +13,9 @@ import android.widget.Spinner;
 
 import com.heroan.operation.R;
 import com.heroan.operation.adapter.SimpleSpinnerAdapter;
-import com.heroan.operation.utils.BleUtils;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -81,13 +79,6 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
 
 
 
-    private void sendData(String content) {
-        if (isBleDevice) {
-            BleUtils.getInstance().sendData(bleDevice, content.getBytes());
-        } else {
-            SocketUtil.getSocketUtil().sendContent(content);
-        }
-    }
 
 
     private void initView(final View view) {
@@ -107,7 +98,7 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
                 } else if (checkedId == R.id.watertype_button3) {
                     content = content + "3";
                 }
-                sendData(content);
+                ServiceUtils.sendData(content);
             }
         });
         waterCollectGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -124,7 +115,7 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
                 } else if (checkedId == R.id.water_collect_button2) {
                     content = content + "2";
                 }
-                sendData(content);
+                ServiceUtils.sendData(content);
             }
         });
         singalGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -141,7 +132,7 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
                 } else if (checkedId == R.id.water_singal_button2) {
                     content = content + "2";
                 }
-                sendData(content);
+                ServiceUtils.sendData(content);
             }
         });
     }
@@ -190,7 +181,7 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
         water485Adapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item, water485Items);
         selwater485Spinner.setAdapter(water485Adapter);
 
-        sendData(ConfigParams.ReadSensorPara2);
+        ServiceUtils.sendData(ConfigParams.ReadSensorPara2);
     }
 
     @Override
@@ -224,7 +215,7 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
                     return;
                 }
                 content = ConfigParams.SetWater_Num + planNum;
-                sendData(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.plan_button_1:
                 water = plan1EditText.getText().toString();
@@ -234,7 +225,7 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
                 }
 
                 content = ConfigParams.SetWater_Addr1 + water;
-                sendData(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.plan_button_2:
                 water = plan2EditText.getText().toString();
@@ -244,7 +235,7 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
                 }
 
                 content = ConfigParams.SetWater_Addr2 + water;
-                sendData(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.plan_button_3:
                 water = plan3EditText.getText().toString();
@@ -254,7 +245,7 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
                 }
 
                 content = ConfigParams.SetWater_Addr3 + water;
-                sendData(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.plan_button_4:
                 water = plan4EditText.getText().toString();
@@ -264,7 +255,7 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
                 }
 
                 content = ConfigParams.SetWater_Addr4 + water;
-                sendData(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.model_button:
                 water = modelEditText.getText().toString();
@@ -282,7 +273,7 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
 
                 water = tt.substring(0, tt.indexOf("."));
                 content = ConfigParams.SetWaterLvBo + ServiceUtils.getStr(water, 3);
-                sendData(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.water_level_button:
                 water = waterLevelEditText.getText().toString();
@@ -297,7 +288,7 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
                 }
 
                 content = ConfigParams.SetAnaWaterRange + ServiceUtils.getStr(level + "", 5);
-                sendData(content);
+                ServiceUtils.sendData(content);
                 break;
 
             default:
@@ -382,7 +373,7 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
                             return;
                         }
                         String content = ConfigParams.SetAnaWaterType + position;
-                        sendData(content);
+                        ServiceUtils.sendData(content);
                     }
 
                     @Override
@@ -408,7 +399,7 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
                             return;
                         }
                         String content = ConfigParams.SetWater485Type + ServiceUtils.getStr("" + position, 2);
-                        sendData(content);
+                        ServiceUtils.sendData(content);
                     }
 
                     @Override

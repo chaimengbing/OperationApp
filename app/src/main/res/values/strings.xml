@@ -23,6 +23,7 @@
     <string name="wru_3800">RTU-3800</string>
     <string name="lru_3000">LRU-3000</string>
     <string name="rcm_2000">VCM-2000</string>
+    <string name="lru_3300">LRU-3300</string>
     <string name="virtual_message">虚拟报文</string>
     <string name="port_test">端口测试</string>
     <string name="small_tools">小工具</string>

@@ -12,7 +12,6 @@ import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -23,9 +22,9 @@ import zuo.biao.library.util.Log;
  * Created by linxi on 2017/9/8.
  */
 
-public class ChannelCENTERFragment extends BaseFragment implements View.OnClickListener,EventNotifyHelper.NotificationCenterDelegate
-{
-    private static final java.lang.String TAG = ChannelCENTERFragment.class.getSimpleName() ;
+public class ChannelCENTERFragment extends BaseFragment implements View.OnClickListener,
+        EventNotifyHelper.NotificationCenterDelegate {
+    private static final java.lang.String TAG = ChannelCENTERFragment.class.getSimpleName();
     private EditText center1AddEdittext;
     private EditText center2AddEdittext;
     private EditText center3AddEdittext;
@@ -51,12 +50,10 @@ public class ChannelCENTERFragment extends BaseFragment implements View.OnClickL
     }
 
     @Override
-    public void onDestroy()
-    {
+    public void onDestroy() {
         super.onDestroy();
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
     }
-
 
 
     @Override
@@ -78,10 +75,8 @@ public class ChannelCENTERFragment extends BaseFragment implements View.OnClickL
     }
 
     @Override
-    public void initData()
-    {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadCommPara4);
-
+    public void initData() {
+        ServiceUtils.sendData(ConfigParams.ReadCommPara4);
     }
 
     @Override
@@ -95,89 +90,79 @@ public class ChannelCENTERFragment extends BaseFragment implements View.OnClickL
     }
 
     @Override
-    public void onClick(View view)
-    {
+    public void onClick(View view) {
 
         String centerAdd = "";
         int centerNum;
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.center_1_add_button:
 
                 centerAdd = center1AddEdittext.getText().toString().trim();
-                if (TextUtils.isEmpty(centerAdd))
-                {
+                if (TextUtils.isEmpty(centerAdd)) {
                     ToastUtil.showToastLong(getString(R.string.Address_cannot_be_empty));
                     return;
                 }
 
                 centerNum = Integer.parseInt(centerAdd);
-                if (centerNum < 0 || centerNum > 255)
-                {
+                if (centerNum < 0 || centerNum > 255) {
                     ToastUtil.showToastLong(getString(R.string.Address_range));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.Setcenternumber + "1 " + ServiceUtils.getStr(centerAdd, 3));
+                ServiceUtils.sendData(ConfigParams.Setcenternumber + "1 " + ServiceUtils.getStr(centerAdd, 3));
 
                 break;
             case R.id.center_2_add_button:
                 centerAdd = center2AddEdittext.getText().toString().trim();
-                if (TextUtils.isEmpty(centerAdd))
-                {
+                if (TextUtils.isEmpty(centerAdd)) {
                     ToastUtil.showToastLong(getString(R.string.Address_cannot_be_empty));
                     return;
                 }
 
                 centerNum = Integer.parseInt(centerAdd);
-                if (centerNum < 0 || centerNum > 255)
-                {
+                if (centerNum < 0 || centerNum > 255) {
                     ToastUtil.showToastLong(getString(R.string.Address_range));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.Setcenternumber + "2 " + ServiceUtils.getStr(centerAdd, 3));
+                ServiceUtils.sendData(ConfigParams.Setcenternumber + "2 " + ServiceUtils.getStr(centerAdd, 3));
 
                 break;
             case R.id.center_3_add_button:
                 centerAdd = center3AddEdittext.getText().toString().trim();
-                if (TextUtils.isEmpty(centerAdd))
-                {
+                if (TextUtils.isEmpty(centerAdd)) {
                     ToastUtil.showToastLong(getString(R.string.Address_cannot_be_empty));
                     return;
                 }
 
                 centerNum = Integer.parseInt(centerAdd);
-                if (centerNum < 0 || centerNum > 255)
-                {
+                if (centerNum < 0 || centerNum > 255) {
                     ToastUtil.showToastLong(getString(R.string.Address_range));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.Setcenternumber + "3 " + ServiceUtils.getStr(centerAdd, 3));
+                ServiceUtils.sendData(ConfigParams.Setcenternumber + "3 " + ServiceUtils.getStr(centerAdd, 3));
 
                 break;
             case R.id.center_4_add_button:
                 centerAdd = center4AddEdittext.getText().toString().trim();
-                if (TextUtils.isEmpty(centerAdd))
-                {
+                if (TextUtils.isEmpty(centerAdd)) {
                     ToastUtil.showToastLong(getString(R.string.Address_cannot_be_empty));
                     return;
                 }
 
                 centerNum = Integer.parseInt(centerAdd);
-                if (centerNum < 0 || centerNum > 255)
-                {
+                if (centerNum < 0 || centerNum > 255) {
                     ToastUtil.showToastLong(getString(R.string.Address_range));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.Setcenternumber + "4 " + ServiceUtils.getStr(centerAdd, 3));
+                ServiceUtils.sendData(ConfigParams.Setcenternumber + "4 " + ServiceUtils.getStr(centerAdd, 3));
 
                 break;
             case R.id.five_rain_button:
                 centerAdd = fiveRainEdittext.getText().toString();
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SendManualDataRain + centerAdd);
+                ServiceUtils.sendData(ConfigParams.SendManualDataRain + centerAdd);
                 break;
             case R.id.water_person_button:
                 centerAdd = waterPersonEdittext.getText().toString();
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SendManualDataWater + centerAdd);
+                ServiceUtils.sendData(ConfigParams.SendManualDataWater + centerAdd);
                 break;
             default:
                 break;
@@ -185,41 +170,31 @@ public class ChannelCENTERFragment extends BaseFragment implements View.OnClickL
     }
 
     @Override
-    public void didReceivedNotification(int id, Object... args)
-    {
+    public void didReceivedNotification(int id, Object... args) {
 
-        Log.i(TAG,"1");
+        Log.i(TAG, "1");
         String result = (String) args[0];
         String content = (String) args[1];
-        if (TextUtils.isEmpty(result))
-        {
+        if (TextUtils.isEmpty(result)) {
             return;
         }
         setData(result);
 
     }
 
-    public void setData(String result)
-    {
+    public void setData(String result) {
         String data = "";
-        Log.i(TAG,data);
-        if (result.contains(ConfigParams.Setcenternumber + "1"))
-        {
+        Log.i(TAG, data);
+        if (result.contains(ConfigParams.Setcenternumber + "1")) {
             data = result.replaceAll(ConfigParams.Setcenternumber + "1", "").trim();
             center1AddEdittext.setText(data);
-        }
-        else if (result.contains(ConfigParams.Setcenternumber + "2"))
-        {
+        } else if (result.contains(ConfigParams.Setcenternumber + "2")) {
             data = result.replaceAll(ConfigParams.Setcenternumber + "2", "").trim();
             center2AddEdittext.setText(data);
-        }
-        else if (result.contains(ConfigParams.Setcenternumber + "3"))
-        {
+        } else if (result.contains(ConfigParams.Setcenternumber + "3")) {
             data = result.replaceAll(ConfigParams.Setcenternumber + "3", "").trim();
             center3AddEdittext.setText(data);
-        }
-        else if (result.contains(ConfigParams.Setcenternumber + "4"))
-        {
+        } else if (result.contains(ConfigParams.Setcenternumber + "4")) {
             data = result.replaceAll(ConfigParams.Setcenternumber + "4", "").trim();
             center4AddEdittext.setText(data);
         }

@@ -12,7 +12,6 @@ import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
 import zuo.biao.library.base.BaseFragment;
@@ -142,7 +141,7 @@ public class RcmFunSearchFragment extends BaseFragment implements EventNotifyHel
         Temperature = getString(R.string.temperature);
 
         String content = ConfigParams.ReadFunctionData;
-        SocketUtil.getSocketUtil().sendContent(content);
+        ServiceUtils.sendData(content);
         currentSB.delete(0, currentSB.length());
         resultScroll.setVisibility(View.VISIBLE);
         currentSB.append(addrNum);

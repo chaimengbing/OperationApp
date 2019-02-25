@@ -12,7 +12,7 @@ import android.widget.RadioGroup;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 import com.heroan.operation.view.MyRadioGroup;
@@ -67,7 +67,7 @@ public class CameraFragment extends BaseFragment implements EventNotifyHelper.No
 
     @Override
     public void initData() {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadSensorPara2);
+        ServiceUtils.sendData(ConfigParams.ReadSensorPara2);
     }
 
     @Override
@@ -82,17 +82,17 @@ public class CameraFragment extends BaseFragment implements EventNotifyHelper.No
                 }
                 String content = ConfigParams.SetCameraManuf;
                 if (checkedId == R.id.company_button) {
-                    SocketUtil.getSocketUtil().sendContent(content + "01");
+                    ServiceUtils.sendData(content + "01");
                 } else if (checkedId == R.id.company_button2) {
-                    SocketUtil.getSocketUtil().sendContent(content + "02");
+                    ServiceUtils.sendData(content + "02");
                 } else if (checkedId == R.id.company_button3) {
-                    SocketUtil.getSocketUtil().sendContent(content + "03");
+                    ServiceUtils.sendData(content + "03");
                 } else if (checkedId == R.id.company_button4) {
-                    SocketUtil.getSocketUtil().sendContent(content + "04");
+                    ServiceUtils.sendData(content + "04");
                 } else if (checkedId == R.id.company_button5) {
-                    SocketUtil.getSocketUtil().sendContent(content + "05");
+                    ServiceUtils.sendData(content + "05");
                 } else if (checkedId == R.id.company_button6) {
-                    SocketUtil.getSocketUtil().sendContent(content + "06");
+                    ServiceUtils.sendData(content + "06");
                 }
             }
         });
@@ -107,11 +107,11 @@ public class CameraFragment extends BaseFragment implements EventNotifyHelper.No
                 }
                 String content = ConfigParams.SetCameraType;
                 if (checkedId == R.id.type_button) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 } else if (checkedId == R.id.type_button2) {
-                    SocketUtil.getSocketUtil().sendContent(content + "2");
+                    ServiceUtils.sendData(content + "2");
                 } else if (checkedId == R.id.type_button3) {
-                    SocketUtil.getSocketUtil().sendContent(content + "3");
+                    ServiceUtils.sendData(content + "3");
                 }
             }
         });
@@ -126,9 +126,9 @@ public class CameraFragment extends BaseFragment implements EventNotifyHelper.No
                 }
                 String content = ConfigParams.SetPicSendMode;
                 if (checkedId == R.id.Single_packet_reply_button) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 } else if (checkedId == R.id.Multi_packet_reply_button) {
-                    SocketUtil.getSocketUtil().sendContent(content + "2");
+                    ServiceUtils.sendData(content + "2");
                 }
             }
         });
@@ -142,11 +142,11 @@ public class CameraFragment extends BaseFragment implements EventNotifyHelper.No
                 }
                 String content = ConfigParams.SetPIC_Resolution;
                 if (checkedId == R.id.camera_button) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.camera_button2) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 } else if (checkedId == R.id.camera_button3) {
-                    SocketUtil.getSocketUtil().sendContent(content + "2");
+                    ServiceUtils.sendData(content + "2");
                 }
             }
         });
@@ -228,7 +228,7 @@ public class CameraFragment extends BaseFragment implements EventNotifyHelper.No
                     return;
                 }
                 String content = ConfigParams.SetCamNum + planNum;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
 
 
                 break;

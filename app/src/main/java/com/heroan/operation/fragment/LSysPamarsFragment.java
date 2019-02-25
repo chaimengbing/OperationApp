@@ -13,7 +13,6 @@ import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -121,7 +120,7 @@ public class LSysPamarsFragment extends BaseFragment implements View.OnClickList
 
     @Override
     public void initData() {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadNetCfg);
+        ServiceUtils.sendData(ConfigParams.ReadNetCfg);
         timeFormat = new SimpleDateFormat(DEFAULT_TIME_FORMAT);
         sendTimeFormat = new SimpleDateFormat(SEND_TIME_FORMAT);
     }
@@ -156,7 +155,7 @@ public class LSysPamarsFragment extends BaseFragment implements View.OnClickList
                     ToastUtil.showToastLong(getString(R.string.APN_cannot_be_empty));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAPN + content);
+                ServiceUtils.sendData(ConfigParams.SetAPN + content);
 
                 break;
             case R.id.Lora_set_button:
@@ -170,14 +169,14 @@ public class LSysPamarsFragment extends BaseFragment implements View.OnClickList
                     ToastUtil.showToastLong(getString(R.string.Lora_channel_range));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetLoraChannel + content);
+                ServiceUtils.sendData(ConfigParams.SetLoraChannel + content);
 
                 break;
             case R.id.reset_factory:
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.RESETALL);
+                ServiceUtils.sendData(ConfigParams.RESETALL);
                 break;
             case R.id.save_and_reset:
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.RESETUNIT);
+                ServiceUtils.sendData(ConfigParams.RESETUNIT);
                 break;
             case R.id.tcp_1_button:
                 ip = ip1.getText().toString().trim();
@@ -193,7 +192,7 @@ public class LSysPamarsFragment extends BaseFragment implements View.OnClickList
                 }
                 // 设置状态参数
                 content = ConfigParams.SetNetIP + 1 + " " + ip;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.gprs_1_button:
                 port = port1.getText().toString().trim();
@@ -209,7 +208,7 @@ public class LSysPamarsFragment extends BaseFragment implements View.OnClickList
                 }
                 // 设置状态参数
                 content = ConfigParams.SetNetPort + 1 + " " + port;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.tcp_2_button:
                 ip = ip2.getText().toString().trim();
@@ -223,7 +222,7 @@ public class LSysPamarsFragment extends BaseFragment implements View.OnClickList
                 }
                 // 设置状态参数
                 content = ConfigParams.SetNetIP + 2 + " " + ip;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.gprs_2_button:
                 port = port2.getText().toString().trim();
@@ -239,7 +238,7 @@ public class LSysPamarsFragment extends BaseFragment implements View.OnClickList
                 }
                 // 设置状态参数
                 content = ConfigParams.SetNetPort + 2 + " " + port;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.tcp_3_button:
                 ip = ip3.getText().toString().trim();
@@ -253,7 +252,7 @@ public class LSysPamarsFragment extends BaseFragment implements View.OnClickList
                 }
                 // 设置状态参数
                 content = ConfigParams.SetNetIP + 3 + " " + ip;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.gprs_3_button:
                 port = port3.getText().toString().trim();
@@ -269,7 +268,7 @@ public class LSysPamarsFragment extends BaseFragment implements View.OnClickList
                 }
                 // 设置状态参数
                 content = ConfigParams.SetNetPort + 3 + " " + port;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.tcp_4_button:
                 ip = ip4.getText().toString().trim();
@@ -283,7 +282,7 @@ public class LSysPamarsFragment extends BaseFragment implements View.OnClickList
                 }
                 // 设置状态参数
                 content = ConfigParams.SetNetIP + 4 + " " + ip;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.gprs_4_button:
                 port = port4.getText().toString().trim();
@@ -299,13 +298,13 @@ public class LSysPamarsFragment extends BaseFragment implements View.OnClickList
                 }
                 // 设置状态参数
                 content = ConfigParams.SetNetPort + 4 + " " + port;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.time_button:
                 if (TextUtils.isEmpty(setTime)) {
-                    SocketUtil.getSocketUtil().sendContent(ConfigParams.SetRTC + sendTimeFormat.format(System.currentTimeMillis()));
+                    ServiceUtils.sendData(ConfigParams.SetRTC + sendTimeFormat.format(System.currentTimeMillis()));
                 } else {
-                    SocketUtil.getSocketUtil().sendContent(ConfigParams.SetRTC + setTime);
+                    ServiceUtils.sendData(ConfigParams.SetRTC + setTime);
                 }
                 break;
             case R.id.rtu_time:

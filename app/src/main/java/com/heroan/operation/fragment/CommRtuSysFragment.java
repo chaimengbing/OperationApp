@@ -17,7 +17,7 @@ import com.heroan.operation.R;
 import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -110,7 +110,7 @@ public class CommRtuSysFragment extends BaseFragment implements View.OnClickList
         timeFormat = new SimpleDateFormat(DEFAULT_TIME_FORMAT);
         sendTimeFormat = new SimpleDateFormat(SEND_TIME_FORMAT);
 
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadParameter);
+        ServiceUtils.sendData(ConfigParams.ReadParameter);
     }
 
     @Override
@@ -131,12 +131,12 @@ public class CommRtuSysFragment extends BaseFragment implements View.OnClickList
                 switch (i) {
                     case R.id.low_power_radiobtton:
                         String low = content + "0";
-                        SocketUtil.getSocketUtil().sendContent(low);
+                        ServiceUtils.sendData(low);
 
                         break;
                     case R.id.always_online_radiobtton:
                         String always = content + "1";
-                        SocketUtil.getSocketUtil().sendContent(always);
+                        ServiceUtils.sendData(always);
 
                         break;
 
@@ -166,18 +166,18 @@ public class CommRtuSysFragment extends BaseFragment implements View.OnClickList
                     }
                 }
                 String content = ConfigParams.SetAddr + ss + number;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
 
             case R.id.time_button:
                 if (TextUtils.isEmpty(setTime)) {
-                    SocketUtil.getSocketUtil().sendContent(ConfigParams.SETTIME + sendTimeFormat.format(System.currentTimeMillis()));
+                    ServiceUtils.sendData(ConfigParams.SETTIME + sendTimeFormat.format(System.currentTimeMillis()));
                 } else {
-                    SocketUtil.getSocketUtil().sendContent(ConfigParams.SETTIME + setTime);
+                    ServiceUtils.sendData(ConfigParams.SETTIME + setTime);
                 }
                 break;
             case R.id.reset_button:
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.RESETALL);
+                ServiceUtils.sendData(ConfigParams.RESETALL);
                 break;
             case R.id.rtu_time:
 //                seletDate();
@@ -219,7 +219,7 @@ public class CommRtuSysFragment extends BaseFragment implements View.OnClickList
                     timeTypeAdapter.setSelectedItem(i);
 
                     String content = ConfigParams.SetPacketInterval + i;
-                    SocketUtil.getSocketUtil().sendContent(content);
+                    ServiceUtils.sendData(content);
                 }
 
                 @Override

@@ -11,7 +11,7 @@ import com.heroan.operation.R;
 import com.heroan.operation.adapter.DevicesAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -67,7 +67,7 @@ public class DevicesFragment extends BaseFragment implements View.OnClickListene
     {
         adapter = new DevicesAdapter(getActivity());
         deviceListView.setAdapter(adapter);
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadDeviceList);
+        ServiceUtils.sendData(ConfigParams.ReadDeviceList);
     }
 
     @Override
@@ -108,7 +108,7 @@ public class DevicesFragment extends BaseFragment implements View.OnClickListene
     {
         this.deviceList.clear();
         adapter.updateData(deviceList);
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadDeviceList);
+        ServiceUtils.sendData(ConfigParams.ReadDeviceList);
     }
 
 

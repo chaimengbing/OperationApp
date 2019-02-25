@@ -13,7 +13,6 @@ import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
 import zuo.biao.library.base.BaseFragment;
@@ -71,7 +70,7 @@ public class AmmeterFragment extends BaseFragment implements View.OnClickListene
         ammeterAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item,
                 ammeterItems);
         ammeterSpinner.setAdapter(ammeterAdapter);
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadDIANBIAO_SensorPara);
+        ServiceUtils.sendData(ConfigParams.ReadDIANBIAO_SensorPara);
     }
 
     @Override
@@ -87,7 +86,7 @@ public class AmmeterFragment extends BaseFragment implements View.OnClickListene
 
                 ammeterAdapter.setSelectedItem(i);
                 i += 1;
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.Setdiaobian_guiyue + ServiceUtils.getStr("" + i, 2));
+                ServiceUtils.sendData(ConfigParams.Setdiaobian_guiyue + ServiceUtils.getStr("" + i, 2));
 
             }
 
@@ -130,7 +129,7 @@ public class AmmeterFragment extends BaseFragment implements View.OnClickListene
                         }
 
                         position += 1;
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.Setdiaobian_guiyue + ServiceUtils.getStr("" + position, 2));
+                        ServiceUtils.sendData(ConfigParams.Setdiaobian_guiyue + ServiceUtils.getStr("" + position, 2));
                     }
 
                     @Override

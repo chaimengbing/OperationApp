@@ -17,7 +17,6 @@ import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -116,9 +115,9 @@ public class CommParamsFragment extends BaseFragment implements View.OnClickList
                 }
                 String content = ConfigParams.SetAcquisitionMode;
                 if (checkedId == R.id.call_test) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.no_call_test) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
 
                 }
 
@@ -134,11 +133,11 @@ public class CommParamsFragment extends BaseFragment implements View.OnClickList
                 }
                 String content = ConfigParams.SetSIMType;
                 if (checkedId == R.id.sim_mobile) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.sim_unicom) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 } else if (checkedId == R.id.sim_telecom) {
-                    SocketUtil.getSocketUtil().sendContent(content + "2");
+                    ServiceUtils.sendData(content + "2");
                 }
 
             }
@@ -193,7 +192,7 @@ public class CommParamsFragment extends BaseFragment implements View.OnClickList
         commAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item,
                 commItems);
         commTypeSpinner.setAdapter(commAdapter);
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadCommPara1);
+        ServiceUtils.sendData(ConfigParams.ReadCommPara1);
     }
 
     @Override
@@ -238,7 +237,7 @@ public class CommParamsFragment extends BaseFragment implements View.OnClickList
                     ToastUtil.showToastLong(getString(R.string.Daily_start_time_range));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetSendBeginTime + ServiceUtils.getStr(centerAdd, 2));
+                ServiceUtils.sendData(ConfigParams.SetSendBeginTime + ServiceUtils.getStr(centerAdd, 2));
 
                 break;
             case R.id.comm_num_button:
@@ -248,7 +247,7 @@ public class CommParamsFragment extends BaseFragment implements View.OnClickList
                     ToastUtil.showToastLong(getString(R.string.Communication_identifier_must_not_be_null));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetSMS + "5" + " " + ServiceUtils.getStr(centerAdd, 11));
+                ServiceUtils.sendData(ConfigParams.SetSMS + "5" + " " + ServiceUtils.getStr(centerAdd, 11));
 
                 break;
             case R.id.apn_set_button:
@@ -257,7 +256,7 @@ public class CommParamsFragment extends BaseFragment implements View.OnClickList
                     ToastUtil.showToastLong(getString(R.string.APN_cannot_be_empty));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAPN + centerAdd);
+                ServiceUtils.sendData(ConfigParams.SetAPN + centerAdd);
 
                 break;
             case R.id.apn_user_button:
@@ -266,7 +265,7 @@ public class CommParamsFragment extends BaseFragment implements View.OnClickList
                     ToastUtil.showToastLong(getString(R.string.APN_user_account_cannot_be_empty));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAPNUser + centerAdd);
+                ServiceUtils.sendData(ConfigParams.SetAPNUser + centerAdd);
 
                 break;
             case R.id.apn_psd_button:
@@ -275,7 +274,7 @@ public class CommParamsFragment extends BaseFragment implements View.OnClickList
                     ToastUtil.showToastLong(getString(R.string.APN_password_cannot_be_empty));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetAP_N_secret + centerAdd);
+                ServiceUtils.sendData(ConfigParams.SetAP_N_secret + centerAdd);
                 break;
             case R.id.comm_psd_button:
                 centerAdd = commPsdEdittext.getText().toString().trim();
@@ -289,7 +288,7 @@ public class CommParamsFragment extends BaseFragment implements View.OnClickList
                     ToastUtil.showToastLong(getString(R.string.Communication_password_range));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetComPassword + ServiceUtils.getStr(centerAdd, 5));
+                ServiceUtils.sendData(ConfigParams.SetComPassword + ServiceUtils.getStr(centerAdd, 5));
 
                 break;
             case R.id.time_interval_button:
@@ -304,7 +303,7 @@ public class CommParamsFragment extends BaseFragment implements View.OnClickList
                     ToastUtil.showToastLong("getString(R.string.Regular_reporting_interval_range)");
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetPacketInterval + ServiceUtils.getStr(centerAdd, 3));
+                ServiceUtils.sendData(ConfigParams.SetPacketInterval + ServiceUtils.getStr(centerAdd, 3));
 
                 break;
 
@@ -340,7 +339,7 @@ public class CommParamsFragment extends BaseFragment implements View.OnClickList
 
                             String content =
                                     ConfigParams.SetPacketInterval + ServiceUtils.getTimeNum(timeItems[i]);
-                            SocketUtil.getSocketUtil().sendContent(content);
+                            ServiceUtils.sendData(content);
 
                         }
 
@@ -376,7 +375,7 @@ public class CommParamsFragment extends BaseFragment implements View.OnClickList
                         pictimeAdapter.setSelectedItem(position);
                         String content =
                                 ConfigParams.PicSendInterval + ServiceUtils.getTimeNum(pictimeItems[position]);
-                        SocketUtil.getSocketUtil().sendContent(content);
+                        ServiceUtils.sendData(content);
                     }
 
                     @Override
@@ -403,7 +402,7 @@ public class CommParamsFragment extends BaseFragment implements View.OnClickList
 
                         String content = ConfigParams.SetprotocolType + ServiceUtils.getStr(i +
                                 "", 2);
-                        SocketUtil.getSocketUtil().sendContent(content);
+                        ServiceUtils.sendData(content);
                     }
 
                     @Override

@@ -33,7 +33,8 @@ import zuo.biao.library.util.Log;
  * Created by Vcontrol on 2016/11/23.
  */
 
-public class RTUVersionFragment extends BaseFragment implements View.OnClickListener, EventNotifyHelper.NotificationCenterDelegate {
+public class RTUVersionFragment extends BaseFragment implements View.OnClickListener,
+        EventNotifyHelper.NotificationCenterDelegate {
 
     private static final String TAG = RTUVersionFragment.class.getSimpleName();
     private TextView appVers;
@@ -101,7 +102,6 @@ public class RTUVersionFragment extends BaseFragment implements View.OnClickList
     }
 
 
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -157,25 +157,25 @@ public class RTUVersionFragment extends BaseFragment implements View.OnClickList
         if (getArguments() != null) {
             currentType = getArguments().getInt(UiEventEntry.CURRENT_RTU_NAME);
             if (currentType == UiEventEntry.WRU_2800 || currentType == UiEventEntry.WRU_2801 || currentType == UiEventEntry.WRU_2100) {
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadSensorPara2);
+                ServiceUtils.sendData(ConfigParams.ReadSensorPara2);
             } else if (currentType == UiEventEntry.WRU_1901) {
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadData);
+                ServiceUtils.sendData(ConfigParams.ReadData);
             } else if (currentType == UiEventEntry.RTU_2800 || currentType == UiEventEntry.WRU_2801) {
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadParameter);
+                ServiceUtils.sendData(ConfigParams.ReadParameter);
             } else if (currentType == UiEventEntry.LRU_3000) {
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadParameters);
+                ServiceUtils.sendData(ConfigParams.ReadParameters);
                 vcm.setText(getString(R.string.Software_version));
             } else if (currentType == UiEventEntry.LRU_3200) {
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadNetVer);
+                ServiceUtils.sendData(ConfigParams.ReadNetVer);
             } else if (currentType == UiEventEntry.RCM_2000) {
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadFunctionData);
+                ServiceUtils.sendData(ConfigParams.ReadFunctionData);
                 vcm.setText(getString(R.string.Camera_version));
             } else if (currentType == UiEventEntry.LRU_BLE_3300) {
                 vcm.setText(getString(R.string.Software_version));
-                BleUtils.getInstance().sendData(bleDevice, ConfigParams.ReadVer.getBytes());
+                BleUtils.getInstance().sendData(ConfigParams.ReadVer.getBytes());
             }
         } else {
-            SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadSensorPara2);
+            ServiceUtils.sendData(ConfigParams.ReadSensorPara2);
         }
 
         if (currentType == UiEventEntry.WRU_2800 || currentType == UiEventEntry.WRU_2801 || currentType == UiEventEntry.WRU_2100) {
@@ -304,7 +304,8 @@ public class RTUVersionFragment extends BaseFragment implements View.OnClickList
             //crc 校验值
             String crcValue = ServiceUtils.getIntLowHex(ServiceUtils.calcCrc16(buffer));
 //            Log.info(TAG, "crcValue:" + Arrays.toString(buffer));
-            String content = ServiceUtils.toHexString(ConfigParams.DOWNLOAD) + ServiceUtils.byteArrayToHexStr(buffer) + crcValue + ConfigParams.DOWNLOADEND;
+            String content =
+                    ServiceUtils.toHexString(ConfigParams.DOWNLOAD) + ServiceUtils.byteArrayToHexStr(buffer) + crcValue + ConfigParams.DOWNLOADEND;
             Log.i(TAG, "content:" + content);
             byte[] sendData = ServiceUtils.decodeToBytes(content);
 //            Log.info(TAG, "sendData:" + Arrays.toString(sendData));
@@ -373,7 +374,8 @@ public class RTUVersionFragment extends BaseFragment implements View.OnClickList
 
             String crcValue = ServiceUtils.getIntLowHex(ServiceUtils.calcCrc16(buffer));
 //            Log.info(TAG, "crcValue:" + Arrays.toString(buffer));
-            String content = ServiceUtils.toHexString(ConfigParams.SetAllConfigInfo) + ServiceUtils.toHexString(string) + ServiceUtils.byteArrayToHexStr(buffer) + crcValue;
+            String content =
+                    ServiceUtils.toHexString(ConfigParams.SetAllConfigInfo) + ServiceUtils.toHexString(string) + ServiceUtils.byteArrayToHexStr(buffer) + crcValue;
             Log.i(TAG, "content:" + content);
             byte[] sendData = ServiceUtils.decodeToBytes(content);
             byte[] bytes = new byte[sendData.length + 2];

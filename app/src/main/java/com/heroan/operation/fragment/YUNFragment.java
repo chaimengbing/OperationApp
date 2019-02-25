@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -199,7 +199,7 @@ public class YUNFragment extends BaseFragment implements View.OnClickListener,
                 if (TextUtils.isEmpty(yun)) {
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(content + yun);
+                ServiceUtils.sendData(content + yun);
             }
         });
 
@@ -226,7 +226,7 @@ public class YUNFragment extends BaseFragment implements View.OnClickListener,
                 if (TextUtils.isEmpty(yun)) {
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(content + yun);
+                ServiceUtils.sendData(content + yun);
             }
         });
 
@@ -373,7 +373,7 @@ public class YUNFragment extends BaseFragment implements View.OnClickListener,
 
     @Override
     public void initData() {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadYUNStatus);
+        ServiceUtils.sendData(ConfigParams.ReadYUNStatus);
     }
 
     @Override
@@ -749,7 +749,7 @@ public class YUNFragment extends BaseFragment implements View.OnClickListener,
         if (TextUtils.isEmpty(content)) {
             return;
         }
-        SocketUtil.getSocketUtil().sendContent(content);
+        ServiceUtils.sendData(content);
     }
 
     @Override

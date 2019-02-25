@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.UiEventEntry;
 
 import zuo.biao.library.base.BaseFragment;
@@ -171,7 +171,7 @@ public class SoilSearchFragment extends BaseFragment implements View.OnClickList
         CDN4R = getString(R.string.Conductance_4);
 
         String content = ConfigParams.Read_turang_data;
-        SocketUtil.getSocketUtil().sendContent(content);
+        ServiceUtils.sendData(content);
         currentSB.delete(0, currentSB.length());
         resultScroll.setVisibility(View.VISIBLE);
         currentSB.append(Temperature_G);

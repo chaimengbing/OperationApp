@@ -16,7 +16,6 @@ import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -100,7 +99,7 @@ public class FlowFragment extends BaseFragment implements View.OnClickListener, 
                 {
                     content = ConfigParams.SetFlowType + "4";
                 }
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
             }
         });
     }
@@ -145,7 +144,7 @@ public class FlowFragment extends BaseFragment implements View.OnClickListener, 
         newFlowAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item, newFlowItems);
         newFlowSpinner.setAdapter(newFlowAdapter);
 
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadSensorPara2);
+        ServiceUtils.sendData(ConfigParams.ReadSensorPara2);
 
 
 
@@ -155,7 +154,7 @@ public class FlowFragment extends BaseFragment implements View.OnClickListener, 
 //            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //                waterAdapter.setSelectedItem(position);
 //                String content = ConfigParams.SetFlow485Type + ServiceUtils.getStr(position + 1 + "", 2);
-//                SocketUtil.getSocketUtil().sendContent(content);
+//                ServiceUtils.sendData(content);
 //            }
 //
 //            @Override
@@ -200,7 +199,7 @@ public class FlowFragment extends BaseFragment implements View.OnClickListener, 
                     return;
                 }
                 content = ConfigParams.Setliuliang_Num + planNum;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.flow_speed_add_value_button:
                 flow = speedEdittext.getText().toString().trim();
@@ -264,7 +263,7 @@ public class FlowFragment extends BaseFragment implements View.OnClickListener, 
                 break;
 
         }
-        SocketUtil.getSocketUtil().sendContent(content);
+        ServiceUtils.sendData(content);
     }
 
     @Override
@@ -302,7 +301,7 @@ public class FlowFragment extends BaseFragment implements View.OnClickListener, 
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         waterAdapter.setSelectedItem(position);
                         String content = ConfigParams.SetFlow485Type + ServiceUtils.getStr(position + 1 + "", 2);
-                        SocketUtil.getSocketUtil().sendContent(content);
+                        ServiceUtils.sendData(content);
                     }
 
                     @Override
@@ -318,7 +317,7 @@ public class FlowFragment extends BaseFragment implements View.OnClickListener, 
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         newFlowAdapter.setSelectedItem(position);
                         String content = ConfigParams.SetFlow485Type + ServiceUtils.getStr(position + 1 + "", 2);
-                        SocketUtil.getSocketUtil().sendContent(content);
+                        ServiceUtils.sendData(content);
                     }
 
                     @Override
@@ -343,7 +342,7 @@ public class FlowFragment extends BaseFragment implements View.OnClickListener, 
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         flow_weir_coAdapter.setSelectedItem(position);
                         String content = ConfigParams.SetWeir_Code_Number + ServiceUtils.getStr(position + 1 + "", 2);
-                        SocketUtil.getSocketUtil().sendContent(content);
+                        ServiceUtils.sendData(content);
                     }
 
                     @Override
@@ -368,7 +367,7 @@ public class FlowFragment extends BaseFragment implements View.OnClickListener, 
 //                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //                        newFlowAdapter.setSelectedItem(position);
 //                        String content = ConfigParams.SetFlow485Type + ServiceUtils.getStr(position + 1 + "", 2);
-//                        SocketUtil.getSocketUtil().sendContent(content);
+//                        ServiceUtils.sendData(content);
 //                    }
 //
 //                    @Override
@@ -397,7 +396,7 @@ public class FlowFragment extends BaseFragment implements View.OnClickListener, 
             {
                 flowTypeGroup.check(R.id.flow_type_button4);
             }
-            SocketUtil.getSocketUtil().sendContent(ConfigParams.Readliuliang_SensorPara);
+            ServiceUtils.sendData(ConfigParams.Readliuliang_SensorPara);
 
         }
         else if (result.contains(ConfigParams.Setliuliang_Num))

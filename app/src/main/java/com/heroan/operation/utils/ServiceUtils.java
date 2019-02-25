@@ -1,17 +1,11 @@
 package com.heroan.operation.utils;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.EditText;
-
 
 import com.heroan.operation.R;
 import com.heroan.operation.fragment.SearchFragment;
@@ -19,7 +13,6 @@ import com.heroan.operation.fragment.SearchFragment;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -31,8 +24,7 @@ import java.util.regex.Pattern;
 
 import zuo.biao.library.util.Log;
 
-public class ServiceUtils
-{
+public class ServiceUtils {
 
     private static final String TAG = ServiceUtils.class.getSimpleName();
 
@@ -102,10 +94,8 @@ public class ServiceUtils
     private static String Sent_successfully;
     private static String Failed_send;
 
-    public static ExecutorService getSocketThreads()
-    {
-        if (socketThreads == null)
-        {
+    public static ExecutorService getSocketThreads() {
+        if (socketThreads == null) {
             socketThreads = Executors.newFixedThreadPool(5);
         }
         return socketThreads;
@@ -114,11 +104,9 @@ public class ServiceUtils
 
     private static ServiceUtils serviceUtils = null;
 
-    public static ServiceUtils getServiceUtils()
-    {
+    public static ServiceUtils getServiceUtils() {
 
-        if (serviceUtils == null)
-        {
+        if (serviceUtils == null) {
             serviceUtils = new ServiceUtils();
         }
         return serviceUtils;
@@ -138,7 +126,8 @@ public class ServiceUtils
      */
 //    public void seletDate(final Activity context)
 //    {
-//        View view = ((LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.time_picker, null);
+//        View view = ((LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE)
+// ).inflate(R.layout.time_picker, null);
 //
 //        Calendar calendar = Calendar.getInstance();
 //        int curYear = calendar.get(Calendar.YEAR);
@@ -172,7 +161,8 @@ public class ServiceUtils
 //        monthWheel.setInterpolator(new AnticipateOvershootInterpolator());
 //        monthWheel.addScrollingListener(scrollListener);
 //
-//        dayWheel.setAdapter(new NumericWheelAdapter(1, getDay(Integer.parseInt(yearWheel.getCurrentItemValue()), Integer.parseInt(monthWheel.getCurrentItemValue())), "%02d"));
+//        dayWheel.setAdapter(new NumericWheelAdapter(1, getDay(Integer.parseInt(yearWheel
+// .getCurrentItemValue()), Integer.parseInt(monthWheel.getCurrentItemValue())), "%02d"));
 //        dayWheel.setCurrentItem(curDay - 1);
 //        dayWheel.setCyclic(true);
 //        dayWheel.setInterpolator(new AnticipateOvershootInterpolator());
@@ -195,7 +185,8 @@ public class ServiceUtils
 //        secondWheel.setInterpolator(new AnticipateOvershootInterpolator());
 //
 //        builder.setTitle(context.getString(R.string.Select_time));
-//        builder.setPositiveButton(context.getString(R.string.Determine), new DialogInterface.OnClickListener()
+//        builder.setPositiveButton(context.getString(R.string.Determine), new DialogInterface
+// .OnClickListener()
 //        {
 //
 //            @Override
@@ -214,7 +205,8 @@ public class ServiceUtils
 //                        .append(month).append(context.getString(R.string.month))
 //                        .append(day).append(context.getString(R.string.day)).append(hour)
 //                        .append(context.getString(R.string.hour)).append(min)
-//                        .append(context.getString(R.string.minute)).append(second).append(context.getString(R.string.second));
+//                        .append(context.getString(R.string.minute)).append(second).append
+// (context.getString(R.string.second));
 //
 //
 //                Log.info(TAG, "date::sb:" + sb.toString());
@@ -225,7 +217,8 @@ public class ServiceUtils
 //                        .append(day).append(hour).append(min)
 //                        .append(second);
 //
-//                EventNotifyHelper.getInstance().postNotification(UiEventEntry.SELECT_TIME, sb.toString(), sb1.toString());
+//                EventNotifyHelper.getInstance().postNotification(UiEventEntry.SELECT_TIME, sb
+// .toString(), sb1.toString());
 //                dialog.cancel();
 //            }
 //        });
@@ -236,7 +229,8 @@ public class ServiceUtils
 
 //    public void seletSearchDate(final Activity context, final int type)
 //    {
-//        View view = ((LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.time_search_picker, null);
+//        View view = ((LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE)
+// ).inflate(R.layout.time_search_picker, null);
 //
 //        Calendar calendar = Calendar.getInstance();
 //        int curYear = calendar.get(Calendar.YEAR);
@@ -266,7 +260,8 @@ public class ServiceUtils
 //        monthWheel.setInterpolator(new AnticipateOvershootInterpolator());
 //        monthWheel.addScrollingListener(scrollListener);
 //
-//        dayWheel.setAdapter(new NumericWheelAdapter(1, getDay(Integer.parseInt(yearWheel.getCurrentItemValue()), Integer.parseInt(monthWheel.getCurrentItemValue())), "%02d"));
+//        dayWheel.setAdapter(new NumericWheelAdapter(1, getDay(Integer.parseInt(yearWheel
+// .getCurrentItemValue()), Integer.parseInt(monthWheel.getCurrentItemValue())), "%02d"));
 //        dayWheel.setCurrentItem(curDay - 1);
 //        dayWheel.setCyclic(true);
 //        dayWheel.setInterpolator(new AnticipateOvershootInterpolator());
@@ -279,7 +274,8 @@ public class ServiceUtils
 //
 //
 //        builder.setTitle(context.getString(R.string.Select_time));
-//        builder.setPositiveButton(context.getString(R.string.Determine), new DialogInterface.OnClickListener()
+//        builder.setPositiveButton(context.getString(R.string.Determine), new DialogInterface
+// .OnClickListener()
 //        {
 //
 //            @Override
@@ -305,7 +301,8 @@ public class ServiceUtils
 //                        .append(month).append(" ")
 //                        .append(day).append(" ").append(hour);
 //
-//                EventNotifyHelper.getInstance().postNotification(UiEventEntry.SELECT_TIME, sb.toString(), sb1.toString(), type);
+//                EventNotifyHelper.getInstance().postNotification(UiEventEntry.SELECT_TIME, sb
+// .toString(), sb1.toString(), type);
 //                dialog.cancel();
 //            }
 //        });
@@ -313,9 +310,7 @@ public class ServiceUtils
 //        builder.show();
 //
 //    }
-
-    public static String getTime(String strDate, Context context)
-    {
+    public static String getTime(String strDate, Context context) {
         years = context.getString(R.string.year);
         months = context.getString(R.string.month);
         days = context.getString(R.string.day);
@@ -327,21 +322,20 @@ public class ServiceUtils
         // 准备第一个模板，从字符串中提取出日期数字
         String pat1 = "yyyyMMddHHmmss";
         // 准备第二个模板，将提取后的日期数字变为指定的格式
-        String pat2 = "yyyy"+years+"MM"+months+"dd"+days+"HH"+hours+"mm"+minutes+"ss"+seconds;
+        String pat2 =
+                "yyyy" + years + "MM" + months + "dd" + days + "HH" + hours + "mm" + minutes +
+                        "ss" + seconds;
         SimpleDateFormat sdf1 = new SimpleDateFormat(pat1);        // 实例化模板对象
         SimpleDateFormat sdf2 = new SimpleDateFormat(pat2);        // 实例化模板对象
         Date d = null;
-        try
-        {
+        try {
             d = sdf1.parse(strDate);   // 将给定的字符串中的日期提取出来
-        } catch (Exception e)
-        {            // 如果提供的字符串格式有错误，则进行异常处理
+        } catch (Exception e) {            // 如果提供的字符串格式有错误，则进行异常处理
             e.printStackTrace();       // 打印异常信息
         }
 
         String time = sdf2.format(d);
-        if (TextUtils.isEmpty(time))
-        {
+        if (TextUtils.isEmpty(time)) {
             return null;
         }
         return time;
@@ -354,12 +348,10 @@ public class ServiceUtils
      * @param month
      * @return
      */
-    private int getDay(int year, int month)
-    {
+    private int getDay(int year, int month) {
         int day = 30;
         boolean flag = false;
-        switch (year % 4)
-        {// 计算是否是闰年
+        switch (year % 4) {// 计算是否是闰年
             case 0:
                 flag = true;
                 break;
@@ -367,8 +359,7 @@ public class ServiceUtils
                 flag = false;
                 break;
         }
-        switch (month)
-        {
+        switch (month) {
             case 1:
             case 3:
             case 5:
@@ -402,7 +393,8 @@ public class ServiceUtils
 //        {
 //            if (yearWheel != null && monthWheel != null && dayWheel != null)
 //            {
-//                dayWheel.setAdapter(new NumericWheelAdapter(1, getDay(Integer.parseInt(yearWheel.getCurrentItemValue()), Integer.parseInt(monthWheel.getCurrentItemValue())), "%02d"));
+//                dayWheel.setAdapter(new NumericWheelAdapter(1, getDay(Integer.parseInt
+// (yearWheel.getCurrentItemValue()), Integer.parseInt(monthWheel.getCurrentItemValue())), "%02d"));
 //                dayWheel.setCyclic(true);
 //                dayWheel.setInterpolator(new AnticipateOvershootInterpolator());
 //
@@ -473,8 +465,7 @@ public class ServiceUtils
      * @param src1 byte
      * @return byte
      */
-    public static byte uniteBytes(byte src0, byte src1)
-    {
+    public static byte uniteBytes(byte src0, byte src1) {
         byte _b0 = Byte.decode("0x" + new String(new byte[]{src0}))
                 .byteValue();
         _b0 = (byte) (_b0 << 4);
@@ -487,53 +478,40 @@ public class ServiceUtils
     private static String hexStr = "0123456789ABCDEF";  //全局
 
 
-
-
     //charToByte返回在指定字符的第一个发生的字符串中的索引，即返回匹配字符
-    private static byte charToByte(char c)
-    {
+    private static byte charToByte(char c) {
         return (byte) "0123456789ABCDEF".indexOf(c);
     }
 
 
-
-    public static int hexToInt(byte b) throws Exception
-    {
-        if (b >= '0' && b <= '9')
-        {
+    public static int hexToInt(byte b) throws Exception {
+        if (b >= '0' && b <= '9') {
             return (int) b - '0';
         }
-        if (b >= 'a' && b <= 'f')
-        {
+        if (b >= 'a' && b <= 'f') {
             return (int) b + 10 - 'a';
         }
-        if (b >= 'A' && b <= 'F')
-        {
+        if (b >= 'A' && b <= 'F') {
             return (int) b + 10 - 'A';
         }
         throw new Exception("invalid hex");
     }
 
-    public static byte[] decodeToBytes(String hexString)
-    {
+    public static byte[] decodeToBytes(String hexString) {
         byte[] hex = hexString.getBytes();
-        if ((hex.length % 2) != 0)
-        {
+        if ((hex.length % 2) != 0) {
             return null;
         }
         byte[] ret = new byte[hex.length / 2];
         int j = 0;
         int i = 0;
-        try
-        {
-            while (i < hex.length)
-            {
+        try {
+            while (i < hex.length) {
                 byte hi = hex[i++];
                 byte lo = hex[i++];
                 ret[j++] = (byte) ((hexToInt(hi) << 4) | hexToInt(lo));
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
@@ -541,22 +519,17 @@ public class ServiceUtils
     }
 
 
-
-    public static String decodeToString(String hexString)
-    {
+    public static String decodeToString(String hexString) {
         return new String(decodeToBytes(hexString));
     }
 
-    public static String byteArrayToHexStr(byte[] byteArray)
-    {
-        if (byteArray == null)
-        {
+    public static String byteArrayToHexStr(byte[] byteArray) {
+        if (byteArray == null) {
             return null;
         }
         char[] hexArray = "0123456789ABCDEF".toCharArray();
         char[] hexChars = new char[byteArray.length * 2];
-        for (int j = 0; j < byteArray.length; j++)
-        {
+        for (int j = 0; j < byteArray.length; j++) {
             int v = byteArray[j] & 0xFF;
             hexChars[j * 2] = hexArray[v >>> 4];
             hexChars[j * 2 + 1] = hexArray[v & 0x0F];
@@ -569,16 +542,14 @@ public class ServiceUtils
      * @param hexString
      * @return 将十六进制转换为字节数组
      */
-    public static byte[] HexStringToBinary(String hexString)
-    {
+    public static byte[] HexStringToBinary(String hexString) {
         //hexString的长度对2取整，作为bytes的长度
         int len = hexString.length() / 2;
         byte[] bytes = new byte[len];
         byte high = 0;//字节高四位
         byte low = 0;//字节低四位
 
-        for (int i = 0; i < len; i++)
-        {
+        for (int i = 0; i < len; i++) {
             //右移四位得到高位
             high = (byte) ((hexStr.indexOf(hexString.charAt(2 * i))) << 4);
             low = (byte) hexStr.indexOf(hexString.charAt(2 * i + 1));
@@ -587,70 +558,135 @@ public class ServiceUtils
         return bytes;
     }
 
-    public static Bitmap getPhotoFromSDCard(String path, String photoName)
-    {
+    public static Bitmap getPhotoFromSDCard(String path, String photoName) {
         Bitmap photoBitmap = BitmapFactory.decodeFile(path + "/" + photoName);
-        if (photoBitmap == null)
-        {
+        if (photoBitmap == null) {
             return null;
-        }
-        else
-        {
+        } else {
             return photoBitmap;
         }
     }
 
 
-    public static String getIntLowHex(int value)
-    {
+    public static String getIntLowHex(int value) {
         String data = ServiceUtils.getStr(Integer.toHexString(value) + "", 4);
         return getStringLowHex(data);
     }
 
 
-
-    public static String getStringLowHex(String data)
-    {
+    public static String getStringLowHex(String data) {
         List<String> list = new ArrayList<>();
         String result = "";
         byte[] bytes = data.getBytes();
         Log.i(TAG, bytes.length + "");
 
 
-        for (int i = 0; i < data.length(); i += 2)
-        {
+        for (int i = 0; i < data.length(); i += 2) {
             String s = data.substring(i, i + 2);
             list.add(s);
 
         }
 
-        for (int i = (list.size() - 1); i >= 0; i--)
-        {
+        for (int i = (list.size() - 1); i >= 0; i--) {
             result += list.get(i);
         }
         return result;
     }
 
 
-    static byte[] crc16_tab_h = {(byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0,
-            (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1,
-            (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0,
-            (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0,
-            (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40};
+    static byte[] crc16_tab_h = {(byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01,
+            (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0, (byte) 0x80,
+            (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01,
+            (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81,
+            (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01,
+            (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0, (byte) 0x80,
+            (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x00,
+            (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80,
+            (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01,
+            (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0,
+            (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40,
+            (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1,
+            (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40,
+            (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1,
+            (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41,
+            (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1,
+            (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40,
+            (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0,
+            (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40,
+            (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1,
+            (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40,
+            (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0,
+            (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40,
+            (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0,
+            (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40,
+            (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0,
+            (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40,
+            (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0,
+            (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41,
+            (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0,
+            (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40,
+            (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0,
+            (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40,
+            (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0,
+            (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40,
+            (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1,
+            (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40,
+            (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0,
+            (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40,
+            (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0,
+            (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40,
+            (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0,
+            (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40};
 
-    static byte[] crc16_tab_l = {(byte) 0x00, (byte) 0xC0, (byte) 0xC1, (byte) 0x01, (byte) 0xC3, (byte) 0x03, (byte) 0x02, (byte) 0xC2, (byte) 0xC6, (byte) 0x06, (byte) 0x07, (byte) 0xC7, (byte) 0x05, (byte) 0xC5, (byte) 0xC4, (byte) 0x04, (byte) 0xCC, (byte) 0x0C, (byte) 0x0D, (byte) 0xCD, (byte) 0x0F, (byte) 0xCF, (byte) 0xCE, (byte) 0x0E, (byte) 0x0A, (byte) 0xCA, (byte) 0xCB, (byte) 0x0B, (byte) 0xC9, (byte) 0x09, (byte) 0x08, (byte) 0xC8, (byte) 0xD8, (byte) 0x18, (byte) 0x19, (byte) 0xD9, (byte) 0x1B, (byte) 0xDB, (byte) 0xDA, (byte) 0x1A, (byte) 0x1E, (byte) 0xDE, (byte) 0xDF, (byte) 0x1F, (byte) 0xDD, (byte) 0x1D, (byte) 0x1C, (byte) 0xDC, (byte) 0x14, (byte) 0xD4, (byte) 0xD5, (byte) 0x15, (byte) 0xD7, (byte) 0x17, (byte) 0x16, (byte) 0xD6, (byte) 0xD2, (byte) 0x12,
-            (byte) 0x13, (byte) 0xD3, (byte) 0x11, (byte) 0xD1, (byte) 0xD0, (byte) 0x10, (byte) 0xF0, (byte) 0x30, (byte) 0x31, (byte) 0xF1, (byte) 0x33, (byte) 0xF3, (byte) 0xF2, (byte) 0x32, (byte) 0x36, (byte) 0xF6, (byte) 0xF7, (byte) 0x37, (byte) 0xF5, (byte) 0x35, (byte) 0x34, (byte) 0xF4, (byte) 0x3C, (byte) 0xFC, (byte) 0xFD, (byte) 0x3D, (byte) 0xFF, (byte) 0x3F, (byte) 0x3E, (byte) 0xFE, (byte) 0xFA, (byte) 0x3A, (byte) 0x3B, (byte) 0xFB, (byte) 0x39, (byte) 0xF9, (byte) 0xF8, (byte) 0x38, (byte) 0x28, (byte) 0xE8, (byte) 0xE9, (byte) 0x29, (byte) 0xEB, (byte) 0x2B, (byte) 0x2A, (byte) 0xEA, (byte) 0xEE, (byte) 0x2E, (byte) 0x2F, (byte) 0xEF, (byte) 0x2D, (byte) 0xED, (byte) 0xEC, (byte) 0x2C, (byte) 0xE4, (byte) 0x24, (byte) 0x25, (byte) 0xE5, (byte) 0x27, (byte) 0xE7,
-            (byte) 0xE6, (byte) 0x26, (byte) 0x22, (byte) 0xE2, (byte) 0xE3, (byte) 0x23, (byte) 0xE1, (byte) 0x21, (byte) 0x20, (byte) 0xE0, (byte) 0xA0, (byte) 0x60, (byte) 0x61, (byte) 0xA1, (byte) 0x63, (byte) 0xA3, (byte) 0xA2, (byte) 0x62, (byte) 0x66, (byte) 0xA6, (byte) 0xA7, (byte) 0x67, (byte) 0xA5, (byte) 0x65, (byte) 0x64, (byte) 0xA4, (byte) 0x6C, (byte) 0xAC, (byte) 0xAD, (byte) 0x6D, (byte) 0xAF, (byte) 0x6F, (byte) 0x6E, (byte) 0xAE, (byte) 0xAA, (byte) 0x6A, (byte) 0x6B, (byte) 0xAB, (byte) 0x69, (byte) 0xA9, (byte) 0xA8, (byte) 0x68, (byte) 0x78, (byte) 0xB8, (byte) 0xB9, (byte) 0x79, (byte) 0xBB, (byte) 0x7B, (byte) 0x7A, (byte) 0xBA, (byte) 0xBE, (byte) 0x7E, (byte) 0x7F, (byte) 0xBF, (byte) 0x7D, (byte) 0xBD, (byte) 0xBC, (byte) 0x7C, (byte) 0xB4, (byte) 0x74,
-            (byte) 0x75, (byte) 0xB5, (byte) 0x77, (byte) 0xB7, (byte) 0xB6, (byte) 0x76, (byte) 0x72, (byte) 0xB2, (byte) 0xB3, (byte) 0x73, (byte) 0xB1, (byte) 0x71, (byte) 0x70, (byte) 0xB0, (byte) 0x50, (byte) 0x90, (byte) 0x91, (byte) 0x51, (byte) 0x93, (byte) 0x53, (byte) 0x52, (byte) 0x92, (byte) 0x96, (byte) 0x56, (byte) 0x57, (byte) 0x97, (byte) 0x55, (byte) 0x95, (byte) 0x94, (byte) 0x54, (byte) 0x9C, (byte) 0x5C, (byte) 0x5D, (byte) 0x9D, (byte) 0x5F, (byte) 0x9F, (byte) 0x9E, (byte) 0x5E, (byte) 0x5A, (byte) 0x9A, (byte) 0x9B, (byte) 0x5B, (byte) 0x99, (byte) 0x59, (byte) 0x58, (byte) 0x98, (byte) 0x88, (byte) 0x48, (byte) 0x49, (byte) 0x89, (byte) 0x4B, (byte) 0x8B, (byte) 0x8A, (byte) 0x4A, (byte) 0x4E, (byte) 0x8E, (byte) 0x8F, (byte) 0x4F, (byte) 0x8D, (byte) 0x4D,
-            (byte) 0x4C, (byte) 0x8C, (byte) 0x44, (byte) 0x84, (byte) 0x85, (byte) 0x45, (byte) 0x87, (byte) 0x47, (byte) 0x46, (byte) 0x86, (byte) 0x82, (byte) 0x42, (byte) 0x43, (byte) 0x83, (byte) 0x41, (byte) 0x81, (byte) 0x80, (byte) 0x40};
+    static byte[] crc16_tab_l = {(byte) 0x00, (byte) 0xC0, (byte) 0xC1, (byte) 0x01, (byte) 0xC3,
+            (byte) 0x03, (byte) 0x02, (byte) 0xC2, (byte) 0xC6, (byte) 0x06, (byte) 0x07,
+            (byte) 0xC7, (byte) 0x05, (byte) 0xC5, (byte) 0xC4, (byte) 0x04, (byte) 0xCC,
+            (byte) 0x0C, (byte) 0x0D, (byte) 0xCD, (byte) 0x0F, (byte) 0xCF, (byte) 0xCE,
+            (byte) 0x0E, (byte) 0x0A, (byte) 0xCA, (byte) 0xCB, (byte) 0x0B, (byte) 0xC9,
+            (byte) 0x09, (byte) 0x08, (byte) 0xC8, (byte) 0xD8, (byte) 0x18, (byte) 0x19,
+            (byte) 0xD9, (byte) 0x1B, (byte) 0xDB, (byte) 0xDA, (byte) 0x1A, (byte) 0x1E,
+            (byte) 0xDE, (byte) 0xDF, (byte) 0x1F, (byte) 0xDD, (byte) 0x1D, (byte) 0x1C,
+            (byte) 0xDC, (byte) 0x14, (byte) 0xD4, (byte) 0xD5, (byte) 0x15, (byte) 0xD7,
+            (byte) 0x17, (byte) 0x16, (byte) 0xD6, (byte) 0xD2, (byte) 0x12,
+            (byte) 0x13, (byte) 0xD3, (byte) 0x11, (byte) 0xD1, (byte) 0xD0, (byte) 0x10,
+            (byte) 0xF0, (byte) 0x30, (byte) 0x31, (byte) 0xF1, (byte) 0x33, (byte) 0xF3,
+            (byte) 0xF2, (byte) 0x32, (byte) 0x36, (byte) 0xF6, (byte) 0xF7, (byte) 0x37,
+            (byte) 0xF5, (byte) 0x35, (byte) 0x34, (byte) 0xF4, (byte) 0x3C, (byte) 0xFC,
+            (byte) 0xFD, (byte) 0x3D, (byte) 0xFF, (byte) 0x3F, (byte) 0x3E, (byte) 0xFE,
+            (byte) 0xFA, (byte) 0x3A, (byte) 0x3B, (byte) 0xFB, (byte) 0x39, (byte) 0xF9,
+            (byte) 0xF8, (byte) 0x38, (byte) 0x28, (byte) 0xE8, (byte) 0xE9, (byte) 0x29,
+            (byte) 0xEB, (byte) 0x2B, (byte) 0x2A, (byte) 0xEA, (byte) 0xEE, (byte) 0x2E,
+            (byte) 0x2F, (byte) 0xEF, (byte) 0x2D, (byte) 0xED, (byte) 0xEC, (byte) 0x2C,
+            (byte) 0xE4, (byte) 0x24, (byte) 0x25, (byte) 0xE5, (byte) 0x27, (byte) 0xE7,
+            (byte) 0xE6, (byte) 0x26, (byte) 0x22, (byte) 0xE2, (byte) 0xE3, (byte) 0x23,
+            (byte) 0xE1, (byte) 0x21, (byte) 0x20, (byte) 0xE0, (byte) 0xA0, (byte) 0x60,
+            (byte) 0x61, (byte) 0xA1, (byte) 0x63, (byte) 0xA3, (byte) 0xA2, (byte) 0x62,
+            (byte) 0x66, (byte) 0xA6, (byte) 0xA7, (byte) 0x67, (byte) 0xA5, (byte) 0x65,
+            (byte) 0x64, (byte) 0xA4, (byte) 0x6C, (byte) 0xAC, (byte) 0xAD, (byte) 0x6D,
+            (byte) 0xAF, (byte) 0x6F, (byte) 0x6E, (byte) 0xAE, (byte) 0xAA, (byte) 0x6A,
+            (byte) 0x6B, (byte) 0xAB, (byte) 0x69, (byte) 0xA9, (byte) 0xA8, (byte) 0x68,
+            (byte) 0x78, (byte) 0xB8, (byte) 0xB9, (byte) 0x79, (byte) 0xBB, (byte) 0x7B,
+            (byte) 0x7A, (byte) 0xBA, (byte) 0xBE, (byte) 0x7E, (byte) 0x7F, (byte) 0xBF,
+            (byte) 0x7D, (byte) 0xBD, (byte) 0xBC, (byte) 0x7C, (byte) 0xB4, (byte) 0x74,
+            (byte) 0x75, (byte) 0xB5, (byte) 0x77, (byte) 0xB7, (byte) 0xB6, (byte) 0x76,
+            (byte) 0x72, (byte) 0xB2, (byte) 0xB3, (byte) 0x73, (byte) 0xB1, (byte) 0x71,
+            (byte) 0x70, (byte) 0xB0, (byte) 0x50, (byte) 0x90, (byte) 0x91, (byte) 0x51,
+            (byte) 0x93, (byte) 0x53, (byte) 0x52, (byte) 0x92, (byte) 0x96, (byte) 0x56,
+            (byte) 0x57, (byte) 0x97, (byte) 0x55, (byte) 0x95, (byte) 0x94, (byte) 0x54,
+            (byte) 0x9C, (byte) 0x5C, (byte) 0x5D, (byte) 0x9D, (byte) 0x5F, (byte) 0x9F,
+            (byte) 0x9E, (byte) 0x5E, (byte) 0x5A, (byte) 0x9A, (byte) 0x9B, (byte) 0x5B,
+            (byte) 0x99, (byte) 0x59, (byte) 0x58, (byte) 0x98, (byte) 0x88, (byte) 0x48,
+            (byte) 0x49, (byte) 0x89, (byte) 0x4B, (byte) 0x8B, (byte) 0x8A, (byte) 0x4A,
+            (byte) 0x4E, (byte) 0x8E, (byte) 0x8F, (byte) 0x4F, (byte) 0x8D, (byte) 0x4D,
+            (byte) 0x4C, (byte) 0x8C, (byte) 0x44, (byte) 0x84, (byte) 0x85, (byte) 0x45,
+            (byte) 0x87, (byte) 0x47, (byte) 0x46, (byte) 0x86, (byte) 0x82, (byte) 0x42,
+            (byte) 0x43, (byte) 0x83, (byte) 0x41, (byte) 0x81, (byte) 0x80, (byte) 0x40};
 
 
     //转化字符串为十六进制编码
-    public static String toHexString(String s)
-    {
+    public static String toHexString(String s) {
         String str = "";
-        for (int i = 0; i < s.length(); i++)
-        {
+        for (int i = 0; i < s.length(); i++) {
             int ch = (int) s.charAt(i);
             String s4 = Integer.toHexString(ch);
             str = str + s4;
@@ -659,27 +695,20 @@ public class ServiceUtils
     }
 
 
-
     // 转化十六进制编码为字符串
-    public static String toStringHex1(String s)
-    {
+    public static String toStringHex1(String s) {
         byte[] baKeyword = new byte[s.length() / 2];
-        for (int i = 0; i < baKeyword.length; i++)
-        {
-            try
-            {
+        for (int i = 0; i < baKeyword.length; i++) {
+            try {
                 baKeyword[i] = (byte) (0xff & Integer.parseInt(s.substring(
                         i * 2, i * 2 + 2), 16));
-            } catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        try
-        {
+        try {
             s = new String(baKeyword, "utf-8");// UTF-16le:Not
-        } catch (Exception e1)
-        {
+        } catch (Exception e1) {
             e1.printStackTrace();
         }
         return s;
@@ -692,8 +721,7 @@ public class ServiceUtils
      * @param data 需要计算的数组
      * @return CRC16校验值
      */
-    public static int calcCrc16(byte[] data)
-    {
+    public static int calcCrc16(byte[] data) {
         return calcCrc16(data, 0, data.length);
     }
 
@@ -705,8 +733,7 @@ public class ServiceUtils
      * @param len    长度
      * @return CRC16校验值
      */
-    public static int calcCrc16(byte[] data, int offset, int len)
-    {
+    public static int calcCrc16(byte[] data, int offset, int len) {
         return calcCrc16(data, offset, len, 0xffff);
     }
 
@@ -719,13 +746,11 @@ public class ServiceUtils
      * @param preval 之前的校验值
      * @return CRC16校验值
      */
-    public static int calcCrc16(byte[] data, int offset, int len, int preval)
-    {
+    public static int calcCrc16(byte[] data, int offset, int len, int preval) {
         int ucCRCHi = (preval & 0xff00) >> 8;
         int ucCRCLo = preval & 0x00ff;
         int iIndex;
-        for (int i = 0; i < len; ++i)
-        {
+        for (int i = 0; i < len; ++i) {
             iIndex = (ucCRCLo ^ data[offset + i]) & 0x00ff;
             ucCRCLo = ucCRCHi ^ crc16_tab_h[iIndex];
             ucCRCHi = crc16_tab_l[iIndex];
@@ -739,10 +764,8 @@ public class ServiceUtils
      * @param strName
      * @return
      */
-    public static boolean isGarbledCode(String strName)
-    {
-        if (null == strName || 0 == strName.trim().length())
-        {
+    public static boolean isGarbledCode(String strName) {
+        if (null == strName || 0 == strName.trim().length()) {
             return true;
         }
 
@@ -753,66 +776,51 @@ public class ServiceUtils
         char[] ch = temp.trim().toCharArray();
         float chLength = ch.length;
         float count = 0;
-        for (int i = 0; i < ch.length; i++)
-        {
+        for (int i = 0; i < ch.length; i++) {
             char c = ch[i];
-            if (!Character.isLetterOrDigit(c))
-            {
-                if (!isChinese(c))
-                {
+            if (!Character.isLetterOrDigit(c)) {
+                if (!isChinese(c)) {
                     count = count + 1;
                 }
             }
         }
 
         float result = count / chLength;
-        if (result > 0.4)
-        {
+        if (result > 0.4) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
 
-    public static boolean isChinese(char c)
-    {
+    public static boolean isChinese(char c) {
         Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
-        if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A || ub == Character.UnicodeBlock.GENERAL_PUNCTUATION || ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS)
-        {
+        if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A || ub == Character.UnicodeBlock.GENERAL_PUNCTUATION || ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS) {
             return true;
         }
         return false;
     }
 
-    public static String getMac(String mac)
-    {
-        if (TextUtils.isEmpty(mac))
-        {
+    public static String getMac(String mac) {
+        if (TextUtils.isEmpty(mac)) {
             return "";
         }
         Log.d(TAG, "mac:" + mac);
         StringBuilder sb = new StringBuilder(mac);
 
-        if (sb.length() > 10)
-        {
+        if (sb.length() > 10) {
             sb.insert(10, ":");
         }
-        if (sb.length() > 8)
-        {
+        if (sb.length() > 8) {
             sb.insert(8, ":");
         }
-        if (sb.length() > 6)
-        {
+        if (sb.length() > 6) {
             sb.insert(6, ":");
         }
-        if (sb.length() > 4)
-        {
+        if (sb.length() > 4) {
             sb.insert(4, ":");
         }
-        if (sb.length() > 2)
-        {
+        if (sb.length() > 2) {
             sb.insert(2, ":");
         }
 
@@ -825,12 +833,10 @@ public class ServiceUtils
      * @param str
      * @return
      */
-    public static boolean isNumeric(String str)
-    {
+    public static boolean isNumeric(String str) {
         Pattern pattern = Pattern.compile("[0-9]*");
         Matcher isNum = pattern.matcher(str);
-        if (!isNum.matches())
-        {
+        if (!isNum.matches()) {
             return false;
         }
         return true;
@@ -842,17 +848,14 @@ public class ServiceUtils
      * @param bString
      * @return
      */
-    public static String binaryString2hexString(String bString)
-    {
+    public static String binaryString2hexString(String bString) {
         if (bString == null || bString.equals("") || bString.length() % 8 != 0)
             return "";
         StringBuffer tmp = new StringBuffer();
         int iTmp = 0;
-        for (int i = 0; i < bString.length(); i += 4)
-        {
+        for (int i = 0; i < bString.length(); i += 4) {
             iTmp = 0;
-            for (int j = 0; j < 4; j++)
-            {
+            for (int j = 0; j < 4; j++) {
                 iTmp += Integer.parseInt(bString.substring(i + j, i + j + 1)) << (4 - j - 1);
             }
             tmp.append(Integer.toHexString(iTmp));
@@ -860,21 +863,17 @@ public class ServiceUtils
         return tmp.toString();
     }
 
-    public static String get485Data(String data)
-    {
+    public static String get485Data(String data) {
         String resultData = "";
-        if (TextUtils.isEmpty(data))
-        {
+        if (TextUtils.isEmpty(data)) {
             return "";
         }
         data = data.replaceAll(" ", "0");
         Log.i(TAG, "get485Data::data:" + data);
-        for (int i = 0; i < data.length(); i += 2)
-        {
+        for (int i = 0; i < data.length(); i += 2) {
             resultData += ((i / 2 + 1) + ":" + (String.valueOf(data.charAt(i)) + String.valueOf(data.charAt(i + 1))));
             resultData += " , ";
-            if (i == 12)
-            {
+            if (i == 12) {
                 resultData += "\n";
             }
         }
@@ -895,11 +894,9 @@ public class ServiceUtils
      * @param status
      * @return
      */
-    public static String getStatus(int i, char status)
-    {
+    public static String getStatus(int i, char status) {
         String resultStatus = "";
-        switch (i)
-        {
+        switch (i) {
             case 31:
                 // bit0--交流电充电状态，0--正常，1--停电
                 resultStatus += "交流电充电状态：";
@@ -984,8 +981,7 @@ public class ServiceUtils
         return resultStatus;
     }
 
-    public static void getSingleStatus(StringBuffer sb, int i, char status, Context context)
-    {
+    public static void getSingleStatus(StringBuffer sb, int i, char status, Context context) {
         String resultStatus = "";
         String statusNum = "";
         normal = context.getString(R.string.normal);
@@ -1000,8 +996,7 @@ public class ServiceUtils
         Pump_down = context.getString(R.string.Pump_down);
         Not_overrun = context.getString(R.string.Not_overrun);
         Water_limit = context.getString(R.string.Reset);
-        switch (i)
-        {
+        switch (i) {
             case 31:
                 // bit0--交流电充电状态，0--正常，1--停电
                 resultStatus = status == '0' ? normal : power_failure;
@@ -1039,7 +1034,7 @@ public class ServiceUtils
                 break;
             case 24:
                 // bit7--终端箱门状态，0--开启，1--关闭
-                resultStatus = status == '0' ? Open: Close;
+                resultStatus = status == '0' ? Open : Close;
                 statusNum = SearchFragment.STATUS8;
                 break;
             case 23:
@@ -1091,19 +1086,16 @@ public class ServiceUtils
      * @param hexStatus
      * @return
      */
-    public static String getEquipmentStatus(String hexStatus)
-    {
+    public static String getEquipmentStatus(String hexStatus) {
 
 
         Log.i(TAG, "getEquipmentStatus::hexStatus:" + hexStatus);
         String resultStatus = "";
-        if (TextUtils.isEmpty(hexStatus))
-        {
+        if (TextUtils.isEmpty(hexStatus)) {
             return resultStatus;
         }
 
-        for (int i = hexStatus.length() - 1; i > 16; i--)
-        {
+        for (int i = hexStatus.length() - 1; i > 16; i--) {
             resultStatus += getStatus(i, hexStatus.charAt(i));
         }
 
@@ -1116,14 +1108,12 @@ public class ServiceUtils
      * @param hexString
      * @return
      */
-    public static String hexString2binaryString(String hexString)
-    {
+    public static String hexString2binaryString(String hexString) {
         String hex = getHex(hexString);
         if (hex == null || hex.length() % 2 != 0)
             return "";
         String bString = "", tmp;
-        for (int i = 0; i < hex.length(); i++)
-        {
+        for (int i = 0; i < hex.length(); i++) {
             tmp = "0000" + Integer.toBinaryString(Integer.parseInt(hex.substring(i, i + 1), 16));
             bString += tmp.substring(tmp.length() - 4);
         }
@@ -1136,31 +1126,22 @@ public class ServiceUtils
      * @param equipmentStatus
      * @return
      */
-    public static String getHex(String equipmentStatus)
-    {
-        if (equipmentStatus.length() % 2 != 0)
-        {
+    public static String getHex(String equipmentStatus) {
+        if (equipmentStatus.length() % 2 != 0) {
             return "0" + equipmentStatus;
-        }
-        else
-        {
+        } else {
             return equipmentStatus;
         }
 
     }
 
-    public static void requestEdittext(final EditText edittext)
-    {
+    public static void requestEdittext(final EditText edittext) {
 
-        if (edittext != null)
-        {
-            edittext.setOnFocusChangeListener(new View.OnFocusChangeListener()
-            {
+        if (edittext != null) {
+            edittext.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
-                public void onFocusChange(View v, boolean hasFocus)
-                {
-                    if (!hasFocus)
-                    {
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (!hasFocus) {
                         EditText etxt = (EditText) v;
                         edittext.setText(etxt.getText().toString());
                     }
@@ -1176,13 +1157,10 @@ public class ServiceUtils
      * @param count
      * @return
      */
-    public static String getStr(String number, int count)
-    {
+    public static String getStr(String number, int count) {
         String ss = "";
-        if (number.length() < count)
-        {
-            for (int i = 0; i < count - number.length(); i++)
-            {
+        if (number.length() < count) {
+            for (int i = 0; i < count - number.length(); i++) {
                 ss += "0";
             }
         }
@@ -1195,16 +1173,13 @@ public class ServiceUtils
      * @param number
      * @return
      */
-    public static String getDouble(String number)
-    {
+    public static String getDouble(String number) {
         Log.i(TAG, "number:" + number);
-        if (TextUtils.isEmpty(number))
-        {
+        if (TextUtils.isEmpty(number)) {
             return "";
         }
         String temp = "";
-        if (isNumeric(number))
-        {
+        if (isNumeric(number)) {
             double level = Double.parseDouble(number) / 100.0;
             Log.i(TAG, "level:" + level + ",data:" + number);
             temp = String.valueOf(level);
@@ -1223,17 +1198,13 @@ public class ServiceUtils
     }
 
 
-
-    public static String getDouble_1(String number)
-    {
+    public static String getDouble_1(String number) {
         Log.i(TAG, "number:" + number);
-        if (TextUtils.isEmpty(number))
-        {
+        if (TextUtils.isEmpty(number)) {
             return "";
         }
         String temp = "";
-        if (isNumeric(number))
-        {
+        if (isNumeric(number)) {
             double level = Double.parseDouble(number) / 1000.0;
             Log.i(TAG, "level:" + level + ",data:" + number);
             temp = String.valueOf(level);
@@ -1250,22 +1221,20 @@ public class ServiceUtils
         }
         return temp;
     }
+
     /**
      * 传入的数字保留两位小数
      *
      * @param number
      * @return
      */
-    public static String getDouble2(String number)
-    {
+    public static String getDouble2(String number) {
         Log.i(TAG, "number:" + number);
-        if (TextUtils.isEmpty(number))
-        {
+        if (TextUtils.isEmpty(number)) {
             return "";
         }
         String temp = "";
-        if (isNumeric(number))
-        {
+        if (isNumeric(number)) {
             double level = Double.parseDouble(number);
 
             DecimalFormat df = new DecimalFormat("0.00");
@@ -1286,6 +1255,7 @@ public class ServiceUtils
         }
         return temp;
     }
+
     /**
      * 目标字符串向后补零
      *
@@ -1293,13 +1263,10 @@ public class ServiceUtils
      * @param count  总伟数
      * @return
      */
-    public static String getStrAfter(String number, int count)
-    {
+    public static String getStrAfter(String number, int count) {
         String ss = "";
-        if (number.length() < count)
-        {
-            for (int i = 0; i < count - number.length(); i++)
-            {
+        if (number.length() < count) {
+            for (int i = 0; i < count - number.length(); i++) {
                 ss += "0";
             }
         }
@@ -1315,25 +1282,19 @@ public class ServiceUtils
     public static String getRegxIp(String ip)// ggg.com
     {
         String ss = "";
-        if (TextUtils.isEmpty(ip))
-        {
+        if (TextUtils.isEmpty(ip)) {
             return "";
         }
         String[] temp = ip.split("\\.");// ggg com
-        for (int i = 0; i < temp.length; i++)
-        {
-            if (temp[i].length() < 3 && isNumeric(temp[i]))
-            {
+        for (int i = 0; i < temp.length; i++) {
+            if (temp[i].length() < 3 && isNumeric(temp[i])) {
                 ss += getStr(temp[i], 3);
-            }
-            else
-            {
+            } else {
                 ss += temp[i];
             }
             ss += ".";
         }
-        if (TextUtils.isEmpty(ss))
-        {
+        if (TextUtils.isEmpty(ss)) {
             return "";
         }
         return ss.substring(0, ss.length() - 1);
@@ -1348,35 +1309,27 @@ public class ServiceUtils
     public static String getRemoteIp(String ip)// ggg.com
     {
         String ss = "";
-        if (TextUtils.isEmpty(ip))
-        {
+        if (TextUtils.isEmpty(ip)) {
             return "";
         }
         String[] temp = ip.split("\\.");// ggg com
-        for (int i = 0; i < temp.length; i++)
-        {
-            if (isNumeric(temp[i]))
-            {
+        for (int i = 0; i < temp.length; i++) {
+            if (isNumeric(temp[i])) {
                 ss += Integer.parseInt(temp[i]) + "";
-            }
-            else
-            {
+            } else {
                 ss += temp[i];
             }
             ss += ".";
         }
-        if (TextUtils.isEmpty(ss))
-        {
+        if (TextUtils.isEmpty(ss)) {
             return "";
         }
         return ss.substring(0, ss.length() - 1);
     }
 
-    public static int getTimePos(int time)
-    {
+    public static int getTimePos(int time) {
         int result = 0;
-        switch (time)
-        {
+        switch (time) {
             case 61:
                 result = 0;
                 break;
@@ -1426,11 +1379,9 @@ public class ServiceUtils
         return result;
     }
 
-    public static int getpicTimePos(int time)
-    {
+    public static int getpicTimePos(int time) {
         int result = 0;
-        switch (time)
-        {
+        switch (time) {
             case 5:
                 result = 0;
                 break;
@@ -1474,11 +1425,9 @@ public class ServiceUtils
         return result;
     }
 
-    public static String getFunTimePos(int time)
-    {
+    public static String getFunTimePos(int time) {
         String result = "";
-        switch (time)
-        {
+        switch (time) {
             case 0:
                 result = "5分钟";
                 break;
@@ -1522,11 +1471,9 @@ public class ServiceUtils
         return result;
     }
 
-    public static String getFunCustomerPos(int time)
-    {
+    public static String getFunCustomerPos(int time) {
         String result = "";
-        switch (time)
-        {
+        switch (time) {
             case 0:
                 result = "威控科技";
                 break;
@@ -1538,11 +1485,9 @@ public class ServiceUtils
         return result;
     }
 
-    public static String getFunTFPos(int time)
-    {
+    public static String getFunTFPos(int time) {
         String result = "";
-        switch (time)
-        {
+        switch (time) {
             case 0:
                 result = "5s";
                 break;
@@ -1569,11 +1514,9 @@ public class ServiceUtils
         return result;
     }
 
-    public static String getTimeNum(String time)
-    {
+    public static String getTimeNum(String time) {
         String result = "";
-        switch (time)
-        {
+        switch (time) {
             case "1分钟":
                 result = "61";
                 break;
@@ -1631,8 +1574,7 @@ public class ServiceUtils
      * @param status
      * @return
      */
-    public static String getGPRSStatus(String status, Context context)
-    {
+    public static String getGPRSStatus(String status, Context context) {
         String result = "";
         Reset = context.getString(R.string.Reset);
         Device_error = context.getString(R.string.Device_error);
@@ -1645,8 +1587,7 @@ public class ServiceUtils
         Register_network = context.getString(R.string.Register_network);
         PPP_connected = context.getString(R.string.PPP_connected);
         PPP_failed = context.getString(R.string.PPP_failed);
-        switch (status)
-        {
+        switch (status) {
             case "0":
                 result = Reset;
                 break;
@@ -1696,8 +1637,7 @@ public class ServiceUtils
      * @param status
      * @return
      */
-    public static String getSocketStatus(String status, Context context)
-    {
+    public static String getSocketStatus(String status, Context context) {
         Log.i(TAG, "status:" + status);
         String result = "";
         Set_service_type = context.getString(R.string.Set_service_type);
@@ -1712,8 +1652,7 @@ public class ServiceUtils
         Close_connection = context.getString(R.string.Close_connection);
         Task_off = context.getString(R.string.Task_off);
         status1 = context.getString(R.string.status);
-        switch (status)
-        {
+        switch (status) {
             case "1":
                 result = Set_service_type;//"设置服务类型";
                 break;
@@ -1763,8 +1702,7 @@ public class ServiceUtils
      * @param status
      * @return
      */
-    public static String getGSMStatus(String status, Context context)
-    {
+    public static String getGSMStatus(String status, Context context) {
         String result = "";
         Waiting_for_data = context.getString(R.string.Waiting_for_data);
         Read_number_messages = context.getString(R.string.Read_number_messages);
@@ -1773,8 +1711,7 @@ public class ServiceUtils
         Send_SMS_content = context.getString(R.string.Send_SMS_content);
         Delete_text_messages = context.getString(R.string.Delete_text_messages);
         status1 = context.getString(R.string.status);
-        switch (status)
-        {
+        switch (status) {
             case "0":
                 result = Waiting_for_data;//"等待数据";
                 break;
@@ -1809,11 +1746,9 @@ public class ServiceUtils
      * @param time
      * @return
      */
-    public static String getCommTime(String time)
-    {
+    public static String getCommTime(String time) {
         String result = "";
-        switch (time)
-        {
+        switch (time) {
             case "0":
                 result = "5分钟";
                 break;
@@ -1848,15 +1783,13 @@ public class ServiceUtils
      * @param status
      * @return
      */
-    public static String getCameraReadStatus(String status, Context context)
-    {
+    public static String getCameraReadStatus(String status, Context context) {
         String result = "";
         Not_read = context.getString(R.string.Not_read);
         Reading_picture = context.getString(R.string.Reading_picture);
         Read_success = context.getString(R.string.Read_success);
         Reading_failed = context.getString(R.string.Reading_failed);
-        switch (status)
-        {
+        switch (status) {
             case "0":
                 result = Not_read;//"没有读取";
                 break;
@@ -1881,16 +1814,14 @@ public class ServiceUtils
      * @param status
      * @return
      */
-    public static String getImgSendStatus(String status, Context context)
-    {
+    public static String getImgSendStatus(String status, Context context) {
         String result = "";
 
         Did_not_send = context.getString(R.string.Did_not_send);
         sending = context.getString(R.string.sending);
         Sent_successfully = context.getString(R.string.Sent_successfully);
         Failed_send = context.getString(R.string.Failed_send);
-        switch (status)
-        {
+        switch (status) {
             case "0":
                 result = Did_not_send;//"没有发送";
                 break;
@@ -1915,11 +1846,9 @@ public class ServiceUtils
      * @param name
      * @return
      */
-    public static String getSysType(String name)
-    {
+    public static String getSysType(String name) {
         String result = "";
-        switch (name)
-        {
+        switch (name) {
             case ConfigParams.SetAddr:
                 result = "遥测站地址：";
                 break;
@@ -1945,11 +1874,9 @@ public class ServiceUtils
      * @param name
      * @return
      */
-    public static String getAddrType(String name)
-    {
+    public static String getAddrType(String name) {
         String result = "";
-        switch (name)
-        {
+        switch (name) {
             case "0":
                 result = "降水站";
                 break;
@@ -1984,11 +1911,9 @@ public class ServiceUtils
      * @param name
      * @return
      */
-    public static String getSensorType(String name)
-    {
+    public static String getSensorType(String name) {
         String result = "";
-        switch (name)
-        {
+        switch (name) {
             case ConfigParams.SetRainMeterPara:
                 result = "雨量分辨力：";
                 break;
@@ -2043,11 +1968,9 @@ public class ServiceUtils
      * @param name
      * @return
      */
-    public static String getCommType(String name)
-    {
+    public static String getCommType(String name) {
         String result = "";
-        switch (name)
-        {
+        switch (name) {
             case ConfigParams.SetPacketInterval:
                 result = "定时报间隔：";
                 break;
@@ -2084,8 +2007,7 @@ public class ServiceUtils
      *
      * @return 返回短时间字符串格式yyyy-MM-dd
      */
-    public static String getStringDate()
-    {
+    public static String getStringDate() {
         Date currentTime = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         String dateString = formatter.format(currentTime);
@@ -2093,5 +2015,18 @@ public class ServiceUtils
     }
 
 
+    /**
+     * 发送数据的方法
+     *
+     * @param content
+     */
+    public static void sendData(String content) {
+        boolean isBleDevice = false;
+        if (isBleDevice) {
+            BleUtils.getInstance().sendData(content.getBytes());
+        } else {
+            SocketUtil.getSocketUtil().sendContent(content);
+        }
+    }
 
 }

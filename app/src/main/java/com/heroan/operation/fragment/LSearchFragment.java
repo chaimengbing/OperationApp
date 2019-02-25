@@ -12,7 +12,7 @@ import com.heroan.operation.OperationApplication;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.UiEventEntry;
 
 import zuo.biao.library.base.BaseFragment;
@@ -234,7 +234,7 @@ public class LSearchFragment extends BaseFragment implements EventNotifyHelper.N
 
         resultScroll.setVisibility(View.VISIBLE);
         if (search == UiEventEntry.TAB_SEARCH_LRU_BASIC) {
-            SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadNetParam);
+            ServiceUtils.sendData(ConfigParams.ReadNetParam);
 //            currentSB.append(TotalRainVal);
 //            currentSB.append(MM);
 //            currentSB.append("\n");

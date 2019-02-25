@@ -13,7 +13,7 @@ import android.widget.Switch;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.UiEventEntry;
 
 import zuo.biao.library.base.BaseFragment;
@@ -77,17 +77,17 @@ public class ValveControlRelayFragment extends BaseFragment implements View.OnCl
                 {
                     case R.id.Butterfly_valve_radiobtton:
                         String butterfly = content + "1";
-                        SocketUtil.getSocketUtil().sendContent(butterfly);
+                        ServiceUtils.sendData(butterfly);
 
                         break;
                     case R.id.Pulse_solenoid_valveradiobtton:
                         String pulse = content + "2";
-                        SocketUtil.getSocketUtil().sendContent(pulse);
+                        ServiceUtils.sendData(pulse);
 
                         break;
                     case R.id.valveradiobtton_485:
                         String va = content + "3";
-                        SocketUtil.getSocketUtil().sendContent(va);
+                        ServiceUtils.sendData(va);
 
                         break;
 
@@ -117,7 +117,7 @@ public class ValveControlRelayFragment extends BaseFragment implements View.OnCl
     @Override
     public void initData()
     {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadSystemPara6);
+        ServiceUtils.sendData(ConfigParams.ReadSystemPara6);
 
     }
 
@@ -133,11 +133,11 @@ public class ValveControlRelayFragment extends BaseFragment implements View.OnCl
 
                     if (!isChecked)
                     {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "0" + " " + "1");
+                        ServiceUtils.sendData(ConfigParams.elecrelay + "0" + " " + "1");
                     }
                     else
                     {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "1" + " " + "1");
+                        ServiceUtils.sendData(ConfigParams.elecrelay + "1" + " " + "1");
 
                     }
                 }
@@ -155,11 +155,11 @@ public class ValveControlRelayFragment extends BaseFragment implements View.OnCl
 
                     if (!isChecked)
                     {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "0" + " " + "2");
+                        ServiceUtils.sendData(ConfigParams.elecrelay + "0" + " " + "2");
                     }
                     else
                     {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "1" + " " + "2");
+                        ServiceUtils.sendData(ConfigParams.elecrelay + "1" + " " + "2");
 
                     }
                 }
@@ -177,11 +177,11 @@ public class ValveControlRelayFragment extends BaseFragment implements View.OnCl
 
                     if (!isChecked)
                     {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "0" + " " + "3");
+                        ServiceUtils.sendData(ConfigParams.elecrelay + "0" + " " + "3");
                     }
                     else
                     {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "1" + " " + "3");
+                        ServiceUtils.sendData(ConfigParams.elecrelay + "1" + " " + "3");
 
                     }
                 }
@@ -198,11 +198,11 @@ public class ValveControlRelayFragment extends BaseFragment implements View.OnCl
 
                     if (!isChecked)
                     {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "0" + " " + "4");
+                        ServiceUtils.sendData(ConfigParams.elecrelay + "0" + " " + "4");
                     }
                     else
                     {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "1" + " " + "4");
+                        ServiceUtils.sendData(ConfigParams.elecrelay + "1" + " " + "4");
 
                     }
                 }

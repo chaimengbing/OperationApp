@@ -16,7 +16,6 @@ import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -66,7 +65,7 @@ public class CommRtuChannelFragment extends BaseFragment implements EventNotifyH
         ipItems = getResources().getStringArray(R.array.ip_config);
         ipAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item, ipItems);
         ipSpinner.setAdapter(ipAdapter);
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadStaticIP);
+        ServiceUtils.sendData(ConfigParams.ReadStaticIP);
 
 
     }
@@ -139,7 +138,7 @@ public class CommRtuChannelFragment extends BaseFragment implements EventNotifyH
 
                 String content =
                         ConfigParams.SetStaticIP + "1 " + devip + " " + ConfigParams.IPFlags + currentConfig;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.gprs_button:
                 String ip = ipEditView.getText().toString().trim();
@@ -158,7 +157,7 @@ public class CommRtuChannelFragment extends BaseFragment implements EventNotifyH
                 // String content1 = ConfigParams.SetIP + "1 " +
                 // ServiceUtils.getRegxIp(ip) + " " + ConfigParams.PORT +
                 // currentConfig;
-                SocketUtil.getSocketUtil().sendContent(content1);
+                ServiceUtils.sendData(content1);
                 break;
 
             default:
@@ -175,7 +174,7 @@ public class CommRtuChannelFragment extends BaseFragment implements EventNotifyH
 //                @Override
 //                public void run()
 //                {
-//                    SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadCommPara2);
+//                    ServiceUtils.sendData(ConfigParams.ReadCommPara2);
 //                }
 //            },1500);
         } else if (result.contains(ConfigParams.IPFlags)) {
@@ -190,7 +189,7 @@ public class CommRtuChannelFragment extends BaseFragment implements EventNotifyH
             String mac = result.replaceAll(ConfigParams.Module_MAC, "").replaceAll(" ", "0");
             mac = ServiceUtils.getMac(mac);
             macTextView.setText(mac);
-            SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadCommPara2);
+            ServiceUtils.sendData(ConfigParams.ReadCommPara2);
         } else if (result.contains(ConfigParams.SetIP + "1")) {
             // 读取参数，更新适配器
             String[] ipArray = result.split(ConfigParams.setPort.trim());

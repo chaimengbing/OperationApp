@@ -10,7 +10,7 @@ import android.widget.RadioGroup;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.UiEventEntry;
 
 import zuo.biao.library.base.BaseFragment;
@@ -69,7 +69,7 @@ public class ChannelSelectFragment extends BaseFragment implements View.OnClickL
 
     @Override
     public void initData() {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadCommPara1);
+        ServiceUtils.sendData(ConfigParams.ReadCommPara1);
 
     }
 
@@ -85,11 +85,11 @@ public class ChannelSelectFragment extends BaseFragment implements View.OnClickL
                 }
                 String content = ConfigParams.SetCenterType + "1 ";
                 if (checkedId == R.id.no_use) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.gprs_radiobutton) {
-                    SocketUtil.getSocketUtil().sendContent(content + "2");
+                    ServiceUtils.sendData(content + "2");
                 } else if (checkedId == R.id.gprs_gsm_radiobutton) {
-                    SocketUtil.getSocketUtil().sendContent(content + "7");
+                    ServiceUtils.sendData(content + "7");
                 }
             }
         });
@@ -103,11 +103,11 @@ public class ChannelSelectFragment extends BaseFragment implements View.OnClickL
                 }
                 String content = ConfigParams.SetCenterType + "2 ";
                 if (checkedId == R.id.no_use_2) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.gprs_radiobutton_2) {
-                    SocketUtil.getSocketUtil().sendContent(content + "2");
+                    ServiceUtils.sendData(content + "2");
                 } else if (checkedId == R.id.gprs_gsm_radiobutton_2) {
-                    SocketUtil.getSocketUtil().sendContent(content + "7");
+                    ServiceUtils.sendData(content + "7");
                 }
             }
         });
@@ -121,11 +121,11 @@ public class ChannelSelectFragment extends BaseFragment implements View.OnClickL
                 }
                 String content = ConfigParams.SetCenterType + "3 ";
                 if (checkedId == R.id.no_use_3) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.gprs_radiobutton_3) {
-                    SocketUtil.getSocketUtil().sendContent(content + "2");
+                    ServiceUtils.sendData(content + "2");
                 } else if (checkedId == R.id.gprs_gsm_radiobutton_3) {
-                    SocketUtil.getSocketUtil().sendContent(content + "7");
+                    ServiceUtils.sendData(content + "7");
                 }
             }
         });
@@ -139,9 +139,9 @@ public class ChannelSelectFragment extends BaseFragment implements View.OnClickL
                 }
                 String content = ConfigParams.SetRS232_1_ADD_Channel + "1 ";
                 if (checkedId == R.id.no_use_4) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.gprs_radiobutton_4) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 }
 
             }
@@ -157,11 +157,11 @@ public class ChannelSelectFragment extends BaseFragment implements View.OnClickL
                 }
                 String content = ConfigParams.SetReserveType + "1 ";
                 if (checkedId == R.id.no_use_sencond) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.sms_radiobutton) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 } else if (checkedId == R.id.beidou_radiobutton) {
-                    SocketUtil.getSocketUtil().sendContent(content + "3");
+                    ServiceUtils.sendData(content + "3");
                 }
             }
         });
@@ -176,11 +176,11 @@ public class ChannelSelectFragment extends BaseFragment implements View.OnClickL
                 }
                 String content = ConfigParams.SetReserveType + "2 ";
                 if (checkedId == R.id.no_use_sencond_2) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.sms_radiobutton_2) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 } else if (checkedId == R.id.beidou_radiobutton_2) {
-                    SocketUtil.getSocketUtil().sendContent(content + "3");
+                    ServiceUtils.sendData(content + "3");
                 }
             }
         });
@@ -194,11 +194,11 @@ public class ChannelSelectFragment extends BaseFragment implements View.OnClickL
                 }
                 String content = ConfigParams.SetReserveType + "3 ";
                 if (checkedId == R.id.no_use_sencond_3) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.sms_radiobutton_3) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 } else if (checkedId == R.id.beidou_radiobutton_3) {
-                    SocketUtil.getSocketUtil().sendContent(content + "3");
+                    ServiceUtils.sendData(content + "3");
                 }
             }
         });
@@ -213,11 +213,11 @@ public class ChannelSelectFragment extends BaseFragment implements View.OnClickL
                 }
                 String content = ConfigParams.SetReserveType + "4 ";
                 if (checkedId == R.id.no_use_sencond_4) {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 } else if (checkedId == R.id.sms_radiobutton_4) {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 } else if (checkedId == R.id.beidou_radiobutton_4) {
-                    SocketUtil.getSocketUtil().sendContent(content + "3");
+                    ServiceUtils.sendData(content + "3");
                 }
             }
         });

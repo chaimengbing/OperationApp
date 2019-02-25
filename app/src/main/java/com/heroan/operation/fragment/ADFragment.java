@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -168,7 +168,7 @@ public class ADFragment extends BaseFragment implements View.OnClickListener,
                     ToastUtil.showToastLong(getString(R.string.AD_current_calibration_large_value_empty));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SETHA + wayNum + " " + adH);
+                ServiceUtils.sendData(ConfigParams.SETHA + wayNum + " " + adH);
                 break;
             case R.id.ad_tla_button:
                 adH = adTlaEdittext.getText().toString().trim();
@@ -176,7 +176,7 @@ public class ADFragment extends BaseFragment implements View.OnClickListener,
                     ToastUtil.showToastLong(getString(R.string.AD_current_calibration_small_value_empty));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SETLA + wayNum + " " + adH);
+                ServiceUtils.sendData(ConfigParams.SETLA + wayNum + " " + adH);
                 break;
             case R.id.ad_thv_button:
                 adH = adThvEdittext.getText().toString().trim();
@@ -184,7 +184,7 @@ public class ADFragment extends BaseFragment implements View.OnClickListener,
                     ToastUtil.showToastLong(getString(R.string.AD_voltage_calibration_large_value_null));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SETHV + wayNum + " " + adH);
+                ServiceUtils.sendData(ConfigParams.SETHV + wayNum + " " + adH);
                 break;
             case R.id.ad_tlv_button:
                 adH = adTlvEdittext.getText().toString().trim();
@@ -192,7 +192,7 @@ public class ADFragment extends BaseFragment implements View.OnClickListener,
                     ToastUtil.showToastLong(getString(R.string.AD_voltage_calibration_small_value_null));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SETLV + wayNum + " " + adH);
+                ServiceUtils.sendData(ConfigParams.SETLV + wayNum + " " + adH);
 
                 break;
 
@@ -206,7 +206,7 @@ public class ADFragment extends BaseFragment implements View.OnClickListener,
     public void setData() {
 
         currentSB.delete(0, currentSB.length());
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.READAD);
+        ServiceUtils.sendData(ConfigParams.READAD);
         currentSB.append(ADV1);
         currentSB.append("\n");
         currentSB.append(ADV2);

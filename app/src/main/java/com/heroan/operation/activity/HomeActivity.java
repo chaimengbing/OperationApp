@@ -93,6 +93,8 @@ import zuo.biao.library.base.BaseActivity;
 import zuo.biao.library.util.Log;
 import zuo.biao.library.util.ScreenUtil;
 
+import static com.heroan.operation.utils.ServiceUtils.sendData;
+
 
 /**
  * Created by Vcontrol on 2016/11/24.
@@ -486,14 +488,6 @@ public class HomeActivity extends BaseActivity implements PopupWindow.OnDismissL
 //        moveTaskToBack(true);
     }
 
-
-    private void sendData(String content) {
-        if (currentType == UiEventEntry.LRU_BLE_3300) {
-            BleUtils.getInstance().sendData(bleDevice, content.getBytes());
-        } else {
-            SocketUtil.getSocketUtil().sendContent(content);
-        }
-    }
 
     private void updateData() {
         if (currentTab == UiEventEntry.TAB_SETTING) {

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.UiEventEntry;
 
 import zuo.biao.library.base.BaseFragment;
@@ -161,7 +161,7 @@ public class WQualitySearchFragment extends BaseFragment implements View.OnClick
         NH4N = getString(R.string.NH4N);
 
         String content = ConfigParams.Read_SHUIZHI_data;
-        SocketUtil.getSocketUtil().sendContent(content);
+        ServiceUtils.sendData(content);
         currentSB.delete(0, currentSB.length());
 
         currentSB.append(Temperature_Water);

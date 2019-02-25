@@ -19,7 +19,7 @@ import com.heroan.operation.R;
 import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -134,7 +134,7 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     public void initData() {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadFunctionData);
+        ServiceUtils.sendData(ConfigParams.ReadFunctionData);
 
         timeItems = getResources().getStringArray(R.array.pictime_interval);
         timeAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item,
@@ -180,7 +180,7 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
                 timeAdapter.setSelectedItem(position);
 
                 String content = ConfigParams.SetPacketInterval + position;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
             }
 
             @Override
@@ -200,7 +200,7 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
                 customLzAdapter.setSelectedItem(position);
 
                 String content = ConfigParams.SetVideoInterval + position;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
             }
 
             @Override
@@ -222,7 +222,7 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
                 collectionAdapter.setSelectedItem(i);
 
                 String content = ConfigParams.SetCollectionInterval + i;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
             }
 
             @Override
@@ -244,12 +244,12 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
                 switch (i) {
                     case R.id.low_power_fun_radiobtton:
                         String low = content + "0";
-                        SocketUtil.getSocketUtil().sendContent(low);
+                        ServiceUtils.sendData(low);
 
                         break;
                     case R.id.always_online_fun_radiobtton:
                         String always = content + "1";
-                        SocketUtil.getSocketUtil().sendContent(always);
+                        ServiceUtils.sendData(always);
 
                         break;
 
@@ -271,13 +271,13 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
                 switch (i) {
                     case R.id.Take_pictures_regularly:
                         String regularly = content + "0";
-                        SocketUtil.getSocketUtil().sendContent(regularly);
+                        ServiceUtils.sendData(regularly);
 //                        lz.setVisibility(View.VISIBLE);
                         break;
 
                     case R.id.Plus_pictures_taken:
                         String plus = content + "1";
-                        SocketUtil.getSocketUtil().sendContent(plus);
+                        ServiceUtils.sendData(plus);
 //                        lz.setVisibility(View.GONE);
                         break;
 
@@ -317,9 +317,9 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
                 break;
             case R.id.time_fun_button:
                 if (TextUtils.isEmpty(setTime)) {
-                    SocketUtil.getSocketUtil().sendContent(ConfigParams.SETTIME + sendTimeFormat.format(System.currentTimeMillis()));
+                    ServiceUtils.sendData(ConfigParams.SETTIME + sendTimeFormat.format(System.currentTimeMillis()));
                 } else {
-                    SocketUtil.getSocketUtil().sendContent(ConfigParams.SETTIME + setTime);
+                    ServiceUtils.sendData(ConfigParams.SETTIME + setTime);
                 }
                 break;
 
@@ -335,7 +335,7 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
                 String check3 = checkBox3 != null && checkBox3.isChecked() ? "1" : "0";
                 String check4 = checkBox4 != null && checkBox4.isChecked() ? "1" : "0";
                 String content1 = ConfigParams.SetScadaFactor + check1 + check2 + check3 + check4;
-                SocketUtil.getSocketUtil().sendContent(content1);
+                ServiceUtils.sendData(content1);
                 break;
 
             case R.id.take_pictures:
@@ -346,7 +346,7 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
                 break;
         }
 
-        SocketUtil.getSocketUtil().sendContent(content);
+        ServiceUtils.sendData(content);
     }
 
     private Runnable timeRunnable = new Runnable() {
@@ -358,11 +358,11 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
     };
 
     private void sendData() {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadStatus);
+        ServiceUtils.sendData(ConfigParams.ReadStatus);
     }
 
     private void startupStatus() {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.StartUp);
+        ServiceUtils.sendData(ConfigParams.StartUp);
         OperationApplication.applicationHandler.postDelayed(timeRunnable, UiEventEntry.TIME);
     }
 
@@ -439,7 +439,7 @@ public class RcmFunPamarsFragment extends BaseFragment implements View.OnClickLi
 //                {
 //                    customAdapter.setSelectedItem(position);
 //                    String content = ConfigParams.CustomerSelect + position;
-//                    SocketUtil.getSocketUtil().sendContent(content);
+//                    ServiceUtils.sendData(content);
 //                }
 //
 //                @Override

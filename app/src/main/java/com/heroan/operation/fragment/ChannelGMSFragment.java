@@ -11,7 +11,7 @@ import android.widget.EditText;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -70,7 +70,7 @@ public class ChannelGMSFragment extends BaseFragment implements View.OnClickList
 
     @Override
     public void initData() {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadCommPara2);
+        ServiceUtils.sendData(ConfigParams.ReadCommPara2);
     }
 
     @Override
@@ -141,7 +141,7 @@ public class ChannelGMSFragment extends BaseFragment implements View.OnClickList
                 break;
         }
 
-        SocketUtil.getSocketUtil().sendContent(content);
+        ServiceUtils.sendData(content);
     }
 
 

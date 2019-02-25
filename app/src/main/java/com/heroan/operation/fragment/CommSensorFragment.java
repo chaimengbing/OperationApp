@@ -17,7 +17,6 @@ import com.heroan.operation.R;
 import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -309,7 +308,7 @@ public class CommSensorFragment extends BaseFragment implements View.OnClickList
         if (TextUtils.isEmpty(content)) {
             return;
         }
-        SocketUtil.getSocketUtil().sendContent(content);
+        ServiceUtils.sendData(content);
     }
 
 

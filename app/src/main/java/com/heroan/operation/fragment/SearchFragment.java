@@ -20,7 +20,6 @@ import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 import com.heroan.operation.view.ZoomImageView;
@@ -857,7 +856,7 @@ public class SearchFragment extends BaseFragment implements EventNotifyHelper.No
         if (search == UiEventEntry.TAB_SEARCH_BASIC) {
             rainValue.setVisibility(View.VISIBLE);
             cumulativeFlowValue.setVisibility(View.VISIBLE);
-            SocketUtil.getSocketUtil().sendContent(ConfigParams.Readdata);
+            ServiceUtils.sendData(ConfigParams.Readdata);
 //            currentSB.append(TotalRainVal);
 //            currentSB.append(MM);
 //            currentSB.append("\n");
@@ -1007,7 +1006,7 @@ public class SearchFragment extends BaseFragment implements EventNotifyHelper.No
 
         } else if (search == UiEventEntry.TAB_SEARCH_GPRS) {
             control.setVisibility(View.VISIBLE);
-            SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadRunStatus1);
+            ServiceUtils.sendData(ConfigParams.ReadRunStatus1);
             currentSB.append(GPRS_CSQ);
             currentSB.append("\n");
             currentSB.append(GPRS_Status);
@@ -1045,7 +1044,7 @@ public class SearchFragment extends BaseFragment implements EventNotifyHelper.No
             currentSB.append("\n");
         } else if (search == UiEventEntry.TAB_SEARCH_CAMERA) {
             control.setVisibility(View.VISIBLE);
-            SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadRunStatus2);
+            ServiceUtils.sendData(ConfigParams.ReadRunStatus2);
             currentSB.append(PIC_Sta);
             currentSB.append("\n");
             currentSB.append(PIC_Send_Sta1);
@@ -1075,7 +1074,7 @@ public class SearchFragment extends BaseFragment implements EventNotifyHelper.No
             currentSB.append(Camerapercent);
             currentSB.append("\n");
         } else if (search == UiEventEntry.TAB_SEARCH_SENSOR) {
-            SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadRunStatus3);
+            ServiceUtils.sendData(ConfigParams.ReadRunStatus3);
             currentSB.append(Equipment_Status);
             currentSB.append("\n");
             currentSB.append(STATUS1);
@@ -1134,7 +1133,7 @@ public class SearchFragment extends BaseFragment implements EventNotifyHelper.No
                 stopUpdate();
                 break;
             case R.id.sens_2_pic_button:
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SEND2PIC);
+                ServiceUtils.sendData(ConfigParams.SEND2PIC);
                 break;
             case R.id.rainvalue_button:
                 String rain = rainValueEdittext.getText().toString().trim();
@@ -1142,7 +1141,7 @@ public class SearchFragment extends BaseFragment implements EventNotifyHelper.No
                     ToastUtil.showToastLong(getString(R.string.cumulative_rainfall_value_empty));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.TotalRainVal + rain);
+                ServiceUtils.sendData(ConfigParams.TotalRainVal + rain);
                 break;
             case R.id.Cumulative_Flow_button:
                 String cumulative = cumulativeFlowEdittext.getText().toString().trim();
@@ -1150,7 +1149,7 @@ public class SearchFragment extends BaseFragment implements EventNotifyHelper.No
                     ToastUtil.showToastLong(getString(R.string.cumulative_empty));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.Cumulative_Flowa + cumulative);
+                ServiceUtils.sendData(ConfigParams.Cumulative_Flowa + cumulative);
                 break;
 
             default:

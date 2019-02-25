@@ -12,7 +12,6 @@ import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -64,7 +63,7 @@ public class AtherPamarsFragment extends BaseFragment implements View.OnClickLis
 
     @Override
     public void initData() {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadSensorPara2);
+        ServiceUtils.sendData(ConfigParams.ReadSensorPara2);
     }
 
     @Override
@@ -90,7 +89,7 @@ public class AtherPamarsFragment extends BaseFragment implements View.OnClickLis
                     ToastUtil.showToastLong(getString(R.string.waiting_time_enter));
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetSample_Delay_Time + ServiceUtils.getStr(values, 3));
+                ServiceUtils.sendData(ConfigParams.SetSample_Delay_Time + ServiceUtils.getStr(values, 3));
 
                 break;
             case R.id.lv_values_button:
@@ -105,7 +104,7 @@ public class AtherPamarsFragment extends BaseFragment implements View.OnClickLis
                 if (temp < 800 || temp > 2000) {
                     return;
                 }
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.SetBatteryVoltLow + ServiceUtils.getStr(level + "", 4));
+                ServiceUtils.sendData(ConfigParams.SetBatteryVoltLow + ServiceUtils.getStr(level + "", 4));
                 break;
 
             default:

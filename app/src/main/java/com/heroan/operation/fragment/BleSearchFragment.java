@@ -9,15 +9,15 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.heroan.operation.R;
-import com.heroan.operation.utils.BleUtils;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
 import cn.com.heaton.blelibrary.ble.BleDevice;
 import zuo.biao.library.base.BaseFragment;
+
+import static com.heroan.operation.utils.ServiceUtils.sendData;
 
 /**
  * Created by linxi on 2018/5/23.
@@ -61,13 +61,6 @@ public class BleSearchFragment extends BaseFragment implements EventNotifyHelper
 
 
 
-    private void sendData(String content) {
-        if (isBleDevice) {
-            BleUtils.getInstance().sendData(bleDevice, content.getBytes());
-        } else {
-            SocketUtil.getSocketUtil().sendContent(content);
-        }
-    }
 
     @Override
     public void onDestroy() {

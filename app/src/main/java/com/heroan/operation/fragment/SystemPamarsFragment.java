@@ -22,7 +22,6 @@ import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -168,7 +167,7 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
         workModelAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item,
                 workModelItems);
         workModelSpinner.setAdapter(workModelAdapter);
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadSystemPara);
+        ServiceUtils.sendData(ConfigParams.ReadSystemPara);
 
         timeFormat = new SimpleDateFormat(DEFAULT_TIME_FORMAT);
         sendTimeFormat = new SimpleDateFormat(SEND_TIME_FORMAT);
@@ -210,9 +209,9 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
                 if (elecrelaySwitch.isPressed()) {
 
                     if (!isChecked) {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "0");
+                        ServiceUtils.sendData(ConfigParams.elecrelay + "0");
                     } else {
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "1");
+                        ServiceUtils.sendData(ConfigParams.elecrelay + "1");
 
                     }
                 }
@@ -233,12 +232,12 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
                 switch (i) {
                     case R.id.low_power_radiobtton:
                         String low = content + "0";
-                        SocketUtil.getSocketUtil().sendContent(low);
+                        ServiceUtils.sendData(low);
 
                         break;
                     case R.id.always_online_radiobtton:
                         String always = content + "1";
-                        SocketUtil.getSocketUtil().sendContent(always);
+                        ServiceUtils.sendData(always);
 
                         break;
 
@@ -259,17 +258,17 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
                 switch (i) {
                     case R.id.Butterfly_valve_radiobtton:
                         String butterfly = content + "1";
-                        SocketUtil.getSocketUtil().sendContent(butterfly);
+                        ServiceUtils.sendData(butterfly);
 
                         break;
                     case R.id.Pulse_solenoid_valveradiobtton:
                         String pulse = content + "2";
-                        SocketUtil.getSocketUtil().sendContent(pulse);
+                        ServiceUtils.sendData(pulse);
 
                         break;
                     case R.id.valveradiobtton_485:
                         String va = content + "3";
-                        SocketUtil.getSocketUtil().sendContent(va);
+                        ServiceUtils.sendData(va);
 
                         break;
 
@@ -290,14 +289,14 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
                 switch (i) {
                     case R.id.site_num_8:
                         String low = content + "0";
-                        SocketUtil.getSocketUtil().sendContent(low);
+                        ServiceUtils.sendData(low);
                         is8Add = true;
                         xingLinearLayout.setVisibility(View.GONE);
 
                         break;
                     case R.id.site_num_10:
                         String always = content + "1";
-                        SocketUtil.getSocketUtil().sendContent(always);
+                        ServiceUtils.sendData(always);
 
                         is8Add = false;
                         xingLinearLayout.setVisibility(View.VISIBLE);
@@ -331,7 +330,7 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
 
                 if (deviceid.length() == 14) {
                     String content1 = ConfigParams.SetRTUid18 + deviceid;
-                    SocketUtil.getSocketUtil().sendContent(content1);
+                    ServiceUtils.sendData(content1);
                 } else {
                     ToastUtil.showToastLong(getString(R.string.Device_ID_14));
                 }
@@ -361,7 +360,7 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
                 }
 
 
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
             case R.id.xingzheng_setting_button:
                 if (is8Add) {
@@ -375,7 +374,7 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
                 }
                 String co = ConfigParams.SetRTUidxz + ServiceUtils.getStr(xing, 6);
 
-                SocketUtil.getSocketUtil().sendContent(co);
+                ServiceUtils.sendData(co);
                 break;
             case R.id.save_setting_button:
 
@@ -392,20 +391,20 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
                 }
                 content = ConfigParams.SetSaveInterval + ServiceUtils.getStr(data, 4);
 
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
 
             case R.id.reset_factory:
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.RESETALL);
+                ServiceUtils.sendData(ConfigParams.RESETALL);
                 break;
             case R.id.save_and_reset:
-                SocketUtil.getSocketUtil().sendContent(ConfigParams.RESETUNIT);
+                ServiceUtils.sendData(ConfigParams.RESETUNIT);
                 break;
             case R.id.time_button:
                 if (TextUtils.isEmpty(setTime)) {
-                    SocketUtil.getSocketUtil().sendContent(ConfigParams.SETTIME + sendTimeFormat.format(System.currentTimeMillis()));
+                    ServiceUtils.sendData(ConfigParams.SETTIME + sendTimeFormat.format(System.currentTimeMillis()));
                 } else {
-                    SocketUtil.getSocketUtil().sendContent(ConfigParams.SETTIME + setTime);
+                    ServiceUtils.sendData(ConfigParams.SETTIME + setTime);
                 }
                 break;
 
@@ -416,11 +415,11 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
 //                boolean isChecked = true;
 //                if (isChecked)
 //                {
-//                    SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "1");
+//                    ServiceUtils.sendData(ConfigParams.elecrelay + "1");
 //                }
 //                else
 //                {
-//                    SocketUtil.getSocketUtil().sendContent(ConfigParams.elecrelay + "0");
+//                    ServiceUtils.sendData(ConfigParams.elecrelay + "0");
 //                }
 //                break;
 
@@ -434,7 +433,7 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
         siteTypeAdapter.setSelectedItem(i);
 
         String content = ConfigParams.SetStationMode + i;
-        SocketUtil.getSocketUtil().sendContent(content);
+        ServiceUtils.sendData(content);
     }
 
     @Override
@@ -507,7 +506,7 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
                     workModelAdapter.setSelectedItem(i);
 
                     String content = ConfigParams.SetWorkModel + i;
-                    SocketUtil.getSocketUtil().sendContent(content);
+                    ServiceUtils.sendData(content);
                 }
 
                 @Override

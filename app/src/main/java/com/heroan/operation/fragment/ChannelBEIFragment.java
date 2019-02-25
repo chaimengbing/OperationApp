@@ -15,7 +15,6 @@ import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -94,7 +93,7 @@ public class ChannelBEIFragment extends BaseFragment implements View.OnClickList
 
     @Override
     public void initData() {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadCommPara3);
+        ServiceUtils.sendData(ConfigParams.ReadCommPara3);
     }
 
     @Override
@@ -113,9 +112,9 @@ public class ChannelBEIFragment extends BaseFragment implements View.OnClickList
                 }
                 String content = ConfigParams.SetBeidouType;
                 if (checkedId == R.id.beidou_button) {
-                    SocketUtil.getSocketUtil().sendContent(content + "00");
+                    ServiceUtils.sendData(content + "00");
                 } else if (checkedId == R.id.beidou_button_2) {
-                    SocketUtil.getSocketUtil().sendContent(content + "01");
+                    ServiceUtils.sendData(content + "01");
 
                 }
 
@@ -167,7 +166,7 @@ public class ChannelBEIFragment extends BaseFragment implements View.OnClickList
                 break;
         }
 
-        SocketUtil.getSocketUtil().sendContent(content);
+        ServiceUtils.sendData(content);
     }
 
 

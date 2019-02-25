@@ -13,7 +13,6 @@ import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -72,15 +71,15 @@ public class YPTFragment extends BaseFragment implements View.OnClickListener,Ev
                 String content = ConfigParams.SetCenterType + "4 ";
                 if (checkedId == R.id.no_use_4)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 }
                 else if (checkedId == R.id.gprs_radiobutton_4)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "2");
+                    ServiceUtils.sendData(content + "2");
                 }
                 else if (checkedId == R.id.gprs_gsm_radiobutton_4)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "7");
+                    ServiceUtils.sendData(content + "7");
                 }
             }
         });
@@ -98,15 +97,15 @@ public class YPTFragment extends BaseFragment implements View.OnClickListener,Ev
                 String content = ConfigParams.SetReserveType + "4 ";
                 if (checkedId == R.id.no_use_sencond_4)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 }
                 else if (checkedId == R.id.sms_radiobutton_4)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 }
                 else if (checkedId == R.id.beidou_radiobutton_4)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "3");
+                    ServiceUtils.sendData(content + "3");
                 }
             }
         });
@@ -124,11 +123,11 @@ public class YPTFragment extends BaseFragment implements View.OnClickListener,Ev
                 String content = ConfigParams.Setconnect_Type4;
                 if (checkedId == R.id.tcp_4)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "0");
+                    ServiceUtils.sendData(content + "0");
                 }
                 else if (checkedId == R.id.udp_4)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 }
             }
         });
@@ -146,11 +145,11 @@ public class YPTFragment extends BaseFragment implements View.OnClickListener,Ev
                 String content = ConfigParams.SetYUN_SETTIME_SendMode;
                 if (checkedId == R.id.timing)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 }
                 else if (checkedId == R.id.no_timing)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "2");
+                    ServiceUtils.sendData(content + "2");
                 }
             }
         });
@@ -168,11 +167,11 @@ public class YPTFragment extends BaseFragment implements View.OnClickListener,Ev
                 String content = ConfigParams.SetYUN_ELEMENT_SendMode;
                 if (checkedId == R.id.upload)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "1");
+                    ServiceUtils.sendData(content + "1");
                 }
                 else if (checkedId == R.id.no_upload)
                 {
-                    SocketUtil.getSocketUtil().sendContent(content + "2");
+                    ServiceUtils.sendData(content + "2");
                 }
             }
         });
@@ -197,7 +196,7 @@ public class YPTFragment extends BaseFragment implements View.OnClickListener,Ev
     @Override
     public void initData()
     {
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.READYUN);
+        ServiceUtils.sendData(ConfigParams.READYUN);
     }
 
     @Override
@@ -225,7 +224,7 @@ public class YPTFragment extends BaseFragment implements View.OnClickListener,Ev
                 if (deviceid.length() == 14)
                 {
                     String content1 = ConfigParams.SetRTUid18 + deviceid;
-                    SocketUtil.getSocketUtil().sendContent(content1);
+                    ServiceUtils.sendData(content1);
                 }
                 else
 
@@ -249,7 +248,7 @@ public class YPTFragment extends BaseFragment implements View.OnClickListener,Ev
                 }
                 // 设置状态参数
                 String string = ConfigParams.SetIP +  4 + " " + ServiceUtils.getRegxIp(data) + ConfigParams.setPort + ServiceUtils.getStr(content + "", 5);
-                SocketUtil.getSocketUtil().sendContent(string);
+                ServiceUtils.sendData(string);
                 break;
             default:
                 break;

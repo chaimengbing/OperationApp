@@ -13,7 +13,6 @@ import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
 import zuo.biao.library.base.BaseFragment;
@@ -66,7 +65,7 @@ public class WeatherParamFragment extends BaseFragment implements View.OnClickLi
         waterQualityAdapter = new SimpleSpinnerAdapter(getActivity(),
                 R.layout.simple_spinner_item, waterQualityItems);
         waterQualitySpinner.setAdapter(waterQualityAdapter);
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadWeatherParam);
+        ServiceUtils.sendData(ConfigParams.ReadWeatherParam);
     }
 
     @Override
@@ -83,7 +82,7 @@ public class WeatherParamFragment extends BaseFragment implements View.OnClickLi
                 waterQualityAdapter.setSelectedItem(i);
 
                 String content = ConfigParams.SetWaterQuality + i;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
             }
 
             @Override
@@ -123,7 +122,7 @@ public class WeatherParamFragment extends BaseFragment implements View.OnClickLi
                         if ("无".equals(water485)) {
                             return;
                         }
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadWeatherParam + ServiceUtils.getStr("" + position, 2));
+                        ServiceUtils.sendData(ConfigParams.ReadWeatherParam + ServiceUtils.getStr("" + position, 2));
                     }
 
                     @Override

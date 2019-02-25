@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
@@ -98,7 +99,7 @@ public class SearchDataFragment extends BaseFragment implements View.OnClickList
                 }
                 SocketUtil.getSocketUtil().startReceHostory();
                 String content = ConfigParams.RDDATATIME + begin + " " + finish;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
 
             default:

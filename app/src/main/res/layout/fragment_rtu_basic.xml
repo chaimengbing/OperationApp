@@ -1,32 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/activity_page">
 
-    <RelativeLayout
+    <include
         android:id="@+id/hh"
-        style="@style/topbar_bg">
-
-        <ImageView
-            android:id="@+id/title_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/main_radius"
-            android:src="@drawable/back2"/>
-
-        <TextView
-            android:id="@+id/title"
-            style="@style/text_middle_white"
-            android:layout_centerInParent="true"
-            android:text="主菜单" />
-
-        <TextView
-            android:id="@+id/title_right"
-            style="@style/text_middle_white"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/main_radius"
-            android:text="主菜单" />
-    </RelativeLayout>
+        layout="@layout/toolbar_layout" />
 
     <LinearLayout
         android:id="@+id/bottom_layout"

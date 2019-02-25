@@ -13,14 +13,14 @@ import android.widget.Spinner;
 
 import com.heroan.operation.R;
 import com.heroan.operation.adapter.SimpleSpinnerAdapter;
-import com.heroan.operation.utils.BleUtils;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
 import cn.com.heaton.blelibrary.ble.BleDevice;
 import zuo.biao.library.base.BaseFragment;
+
+import static com.heroan.operation.utils.ServiceUtils.sendData;
 
 /**
  * 墒情
@@ -88,13 +88,6 @@ public class SQFragment extends BaseFragment implements View.OnClickListener, Ev
 
 
 
-    private void sendData(String content) {
-        if (isBleDevice) {
-            BleUtils.getInstance().sendData(bleDevice, content.getBytes());
-        } else {
-            SocketUtil.getSocketUtil().sendContent(content);
-        }
-    }
 
     private void initView(final View view) {
 

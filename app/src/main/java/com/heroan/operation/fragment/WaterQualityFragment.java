@@ -15,7 +15,6 @@ import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
 import zuo.biao.library.base.BaseFragment;
@@ -85,7 +84,7 @@ public class WaterQualityFragment extends BaseFragment implements View.OnClickLi
         waterQualityAdapter = new SimpleSpinnerAdapter(getActivity(),
                 R.layout.simple_spinner_item, waterQualityItems);
         waterQualitySpinner.setAdapter(waterQualityAdapter);
-        SocketUtil.getSocketUtil().sendContent(ConfigParams.ReadWaterQuality);
+        ServiceUtils.sendData(ConfigParams.ReadWaterQuality);
     }
 
     @Override
@@ -104,7 +103,7 @@ public class WaterQualityFragment extends BaseFragment implements View.OnClickLi
                 waterQualityAdapter.setSelectedItem(i);
 
                 String content = ConfigParams.SetWaterQuality + i;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
 
             }
 
@@ -132,7 +131,7 @@ public class WaterQualityFragment extends BaseFragment implements View.OnClickLi
 
                 String content =
                         ConfigParams.Setsz_select + check1 + check2 + check3 + check4 + check5 + check6 + check7 + check8 + check9;
-                SocketUtil.getSocketUtil().sendContent(content);
+                ServiceUtils.sendData(content);
                 break;
             default:
                 break;
@@ -168,7 +167,7 @@ public class WaterQualityFragment extends BaseFragment implements View.OnClickLi
                         if ("无".equals(water485)) {
                             return;
                         }
-                        SocketUtil.getSocketUtil().sendContent(ConfigParams.SetWaterQuality + ServiceUtils.getStr("" + position, 2));
+                        ServiceUtils.sendData(ConfigParams.SetWaterQuality + ServiceUtils.getStr("" + position, 2));
                     }
 
                     @Override

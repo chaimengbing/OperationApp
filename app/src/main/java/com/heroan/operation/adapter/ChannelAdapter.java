@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.ServiceUtils;
-import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -196,7 +195,7 @@ public class ChannelAdapter extends BaseAdapter
                         // 设置状态参数
                         String content = ConfigParams.SetIP + (channel + 1) + " " + ServiceUtils.getRegxIp(ip) + ConfigParams.setPort + ServiceUtils.getStr(port + "", 5);
                         String content1 = ConfigParams.SetIP + (channel + 1) + " " + ip + ConfigParams.setPort + port;
-                        SocketUtil.getSocketUtil().sendContent(content);
+                        ServiceUtils.sendData(content);
                         if (dataList.size() > 0)
                         {
                             dataList.set(holder.pos, content1);
@@ -290,7 +289,7 @@ public class ChannelAdapter extends BaseAdapter
                             content = ConfigParams.SetSMS + "4" + " " + sms;
                         }
                         dataList.set(holder.pos, content);
-                        SocketUtil.getSocketUtil().sendContent(content);
+                        ServiceUtils.sendData(content);
                     }
                 });
                 if (dataList.size() > 0)
@@ -362,7 +361,7 @@ public class ChannelAdapter extends BaseAdapter
                         {
                             content = ConfigParams.SetBeiDou + "4" + " " + ServiceUtils.getStr(bei, 6);
                         }
-                        SocketUtil.getSocketUtil().sendContent(content);
+                        ServiceUtils.sendData(content);
                         dataList.set(holder.pos, content);
                     }
                 });
@@ -462,7 +461,7 @@ public class ChannelAdapter extends BaseAdapter
                             content = ConfigParams.Setcenternumber + "4" + " " + ServiceUtils.getStr(center,3);
                         }
                         dataList.set(holder.pos, content);
-                        SocketUtil.getSocketUtil().sendContent(content);
+                        ServiceUtils.sendData(content);
                     }
                 });
                 if (dataList.size() > 0)
