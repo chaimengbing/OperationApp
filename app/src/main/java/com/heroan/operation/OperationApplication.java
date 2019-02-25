@@ -11,6 +11,7 @@ public class OperationApplication extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        BaseApplication.init(this);
         applicationHandler = new Handler(this.getMainLooper());
     }
 }

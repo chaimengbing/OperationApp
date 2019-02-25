@@ -985,7 +985,12 @@
 
     <string name="line_success">连接成功</string>
     <string name="line_disconnect">断开连接</string>
-
+    <string name="yr_4000">YR-4000</string>
+    <string name="message">消息</string>
+    <string name="rtu_list">RTU清单</string>
+    <string name="operation_cloud">运维云</string>
+    <string name="system_setting">系统设置</string>
+    <string name="operation_sign_in">运维打卡</string>
 
 
 </resources>

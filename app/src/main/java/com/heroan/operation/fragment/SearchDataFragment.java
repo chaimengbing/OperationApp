@@ -64,11 +64,11 @@ public class SearchDataFragment extends BaseFragment implements View.OnClickList
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_RESULT_ERROR);
 
 
-        beginTime = (TextView) view.findViewById(R.id.begin_time_textview);
-        finishTime = (TextView) view.findViewById(R.id.finish_time_textview);
-        historyTextView = (TextView) view.findViewById(R.id.read_history_textview);
+        beginTime = view.findViewById(R.id.begin_time_textview);
+        finishTime = view.findViewById(R.id.finish_time_textview);
+        historyTextView = view.findViewById(R.id.read_history_textview);
 
-        searchButton = (Button) view.findViewById(R.id.search_button);
+        searchButton = view.findViewById(R.id.search_button);
     }
 
     @Override
@@ -87,10 +87,10 @@ public class SearchDataFragment extends BaseFragment implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.begin_time_textview:
-//                ServiceUtils.getServiceUtils().seletSearchDate(getActivity(), 1);
+                ServiceUtils.getServiceUtils().seletSearchDate(getActivity(), 1);
                 break;
             case R.id.finish_time_textview:
-//                ServiceUtils.getServiceUtils().seletSearchDate(getActivity(), 2);
+                ServiceUtils.getServiceUtils().seletSearchDate(getActivity(), 2);
                 break;
             case R.id.search_button:
                 if (TextUtils.isEmpty(begin) || TextUtils.isEmpty(finish)) {

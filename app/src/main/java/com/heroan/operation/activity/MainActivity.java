@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.heroan.operation.R;
+import com.heroan.operation.utils.BleUtils;
+import com.heroan.operation.utils.SocketUtil;
 
 import zuo.biao.library.base.BaseActivity;
 import zuo.biao.library.ui.WebViewActivity;
+import zuo.biao.library.util.SettingUtil;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -53,7 +56,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 toActivity(WebViewActivity.createIntent(context, "运维云", "http://www.baidu.com"));
                 break;
             case R.id.main_2:
-                toActivity(new Intent(getApplicationContext(),HomeActivity.class));
+                if (SettingUtil.getSetMode() == SettingUtil.KEY_SET_MODE_BLE) {
+                    toActivity(new Intent(getApplicationContext(),BleDeviceListActivity.class));
+                } else {
+                    toActivity(new Intent(getApplicationContext(),HomeActivity.class));
+                }
                 break;
             case R.id.main_3:
                 break;
@@ -62,6 +69,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.main_5:
                 break;
             case R.id.main_6:
+                toActivity(new Intent(getApplicationContext(),SystemSetActivity.class));
                 break;
             default:
                 break;

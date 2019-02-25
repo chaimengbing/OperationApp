@@ -409,7 +409,7 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
                 break;
 
             case R.id.rtu_time:
-//                 ServiceUtils.getServiceUtils().seletDate(getActivity());
+                 ServiceUtils.getServiceUtils().seletDate(getActivity());
                 break;
 //            case R.id.elecrelay_switch:
 //                boolean isChecked = true;

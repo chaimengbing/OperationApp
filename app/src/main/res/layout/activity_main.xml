@@ -6,8 +6,6 @@
     <LinearLayout style="@style/ll_vertical_match_match">
 
         <RelativeLayout style="@style/main_topbar_bg">
-
-
             <TextView
                 style="@style/topbar_title"
                 android:layout_centerHorizontal="true"
@@ -41,7 +39,7 @@
 
                 <TextView
                     style="@style/text_middle_white_main"
-                    android:text="运维云" />
+                    android:text="@string/operation_cloud" />
 
             </RelativeLayout>
 
@@ -69,7 +67,7 @@
 
                     <TextView
                         style="@style/text_middle_white_main"
-                        android:text="YR-4000" />
+                        android:text="@string/yr_4000" />
 
                 </RelativeLayout>
 
@@ -93,7 +91,7 @@
 
                     <TextView
                         style="@style/text_middle_white_main"
-                        android:text="RTU清单" />
+                        android:text="@string/rtu_list" />
 
                 </RelativeLayout>
 
@@ -127,7 +125,7 @@
 
                         <TextView
                             style="@style/text_middle_white_main"
-                            android:text="消息" />
+                            android:text="@string/message" />
 
                     </RelativeLayout>
 
@@ -157,7 +155,7 @@
 
                         <TextView
                             style="@style/text_middle_white_main"
-                            android:text="YR-4000" />
+                            android:text="@string/operation_sign_in" />
 
                     </RelativeLayout>
 
@@ -180,7 +178,7 @@
 
                         <TextView
                             style="@style/text_middle_white_main"
-                            android:text="RTU清单" />
+                            android:text="@string/system_setting" />
 
                     </RelativeLayout>
 

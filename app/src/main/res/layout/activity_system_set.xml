@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   style="@style/activity_page">
+
+    <include layout="@layout/toolbar_layout"/>
+
+    <LinearLayout
+        android:id="@+id/ll_set_mode"
+        style="@style/content_item_white" >
+
+
+        <TextView
+            style="@style/content_item_lf_tv"
+            android:text="配置方式" />
+
+        <TextView
+            android:id="@+id/set_mode_text"
+            style="@style/content_item_rt_tv"
+            android:layout_weight="1"
+            android:text="WIFI" />
+
+        <ImageView
+            style="@style/content_item_rt_img"
+            android:padding="0dp" />
+    </LinearLayout>
+
+    <View style="@style/divider_horizontal_1px" />
+
+</LinearLayout>

@@ -133,21 +133,21 @@ public class RTUVersionFragment extends BaseFragment implements View.OnClickList
             bleDevice = (BleDevice) getArguments().getSerializable("device");
         }
 
-        appVers = (TextView) view.findViewById(R.id.app_ver);
-        rtuVers = (TextView) view.findViewById(R.id.rtu_ver);
-        vcm = (TextView) view.findViewById(R.id.vcm);
-        downloadTextView = (TextView) view.findViewById(R.id.download_textview);
-        downloadTextView1 = (TextView) view.findViewById(R.id.download_textview1);
-        sumTextView = (TextView) view.findViewById(R.id.sum_data_textview);
-        sumTextView1 = (TextView) view.findViewById(R.id.sum_data_textview1);
-        listTextView = (TextView) view.findViewById(R.id.list_title_textview);
-        listTextView1 = (TextView) view.findViewById(R.id.touch_import_textview);
-        updateButton = (Button) view.findViewById(R.id.update_rtu_button);
-        updateButton1 = (Button) view.findViewById(R.id.touch_import_button);
-        updatelistView = (ListView) view.findViewById(R.id.update_listview);
-        updatelistView1 = (ListView) view.findViewById(R.id.touch_import_listview);
-        packageLayout = (RelativeLayout) view.findViewById(R.id.package_layout);
-        packageLayout1 = (RelativeLayout) view.findViewById(R.id.package_layout1);
+        appVers = view.findViewById(R.id.app_ver);
+        rtuVers = view.findViewById(R.id.rtu_ver);
+        vcm = view.findViewById(R.id.vcm);
+        downloadTextView = view.findViewById(R.id.download_textview);
+        downloadTextView1 = view.findViewById(R.id.download_textview1);
+        sumTextView = view.findViewById(R.id.sum_data_textview);
+        sumTextView1 = view.findViewById(R.id.sum_data_textview1);
+        listTextView = view.findViewById(R.id.list_title_textview);
+        listTextView1 = view.findViewById(R.id.touch_import_textview);
+        updateButton = view.findViewById(R.id.update_rtu_button);
+        updateButton1 = view.findViewById(R.id.touch_import_button);
+        updatelistView =  view.findViewById(R.id.update_listview);
+        updatelistView1 =  view.findViewById(R.id.touch_import_listview);
+        packageLayout =  view.findViewById(R.id.package_layout);
+        packageLayout1 =  view.findViewById(R.id.package_layout1);
 
         appVers.setText(getString(R.string.APP_Version) + getAppVersion());
     }

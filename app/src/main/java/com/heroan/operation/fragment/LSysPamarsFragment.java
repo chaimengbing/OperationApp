@@ -308,7 +308,7 @@ public class LSysPamarsFragment extends BaseFragment implements View.OnClickList
                 }
                 break;
             case R.id.rtu_time:
-//                ServiceUtils.getServiceUtils().seletDate(getActivity());
+                ServiceUtils.getServiceUtils().seletDate(getActivity());
                 break;
             default:
                 break;

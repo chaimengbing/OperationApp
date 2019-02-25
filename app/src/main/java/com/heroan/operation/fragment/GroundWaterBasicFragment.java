@@ -1,10 +1,13 @@
 package com.heroan.operation.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,8 +28,13 @@ import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
+import com.heroan.operation.view.wheel.NumericWheelAdapter;
+import com.heroan.operation.view.wheel.OnWheelScrollListener;
+import com.heroan.operation.view.wheel.StrericWheelAdapter;
+import com.heroan.operation.view.wheel.WheelView;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import zuo.biao.library.base.BaseFragment;
@@ -44,7 +52,7 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
     private static final String TAG = GroundWaterBasicFragment.class.getSimpleName();
     private EditText siteTestEditText;
     private EditText depthEditText;
-
+    private WheelView yearWheel, monthWheel, dayWheel, hourWheel, minuteWheel, secondWheel;
     private EditText gateMeterEditText;
 
     private Spinner sensorTypeSpinner;
@@ -394,7 +402,7 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
                 ServiceUtils.sendData(ConfigParams.RESETALL);
                 break;
             case R.id.rtu_time:
-//                seletDate();
+                seletDate();
                 break;
 
             default:
@@ -635,6 +643,28 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
         }
     }
 
+    OnWheelScrollListener scrollListener = new OnWheelScrollListener()
+    {
+
+        @Override
+        public void onScrollingStarted(WheelView wheel)
+        {
+        }
+
+        @Override
+        public void onScrollingFinished(WheelView wheel)
+        {
+            if (yearWheel != null && monthWheel != null && dayWheel != null)
+            {
+                dayWheel.setAdapter(new NumericWheelAdapter(1, getDay(Integer.parseInt(yearWheel.getCurrentItemValue()), Integer.parseInt(monthWheel.getCurrentItemValue())), "%02d"));
+                dayWheel.setCyclic(true);
+                dayWheel.setInterpolator(new AnticipateOvershootInterpolator());
+
+            }
+        }
+    };
+
+
 
     /**
      * 根据年月算出这个月多少天
@@ -678,110 +708,106 @@ public class GroundWaterBasicFragment extends BaseFragment implements View.OnCli
     /**
      * 选择设置的时间
      */
-//    private void seletDate()
-//    {
-//        View view = ((LayoutInflater) parentActivity.getSystemService(parentActivity
-// .LAYOUT_INFLATER_SERVICE)).inflate(R.layout.time_picker, null);
-//
-//        Calendar calendar = Calendar.getInstance();
-//        int curYear = calendar.get(Calendar.YEAR);
-//        int curMonth = calendar.get(Calendar.MONTH) + 1;
-//        int curDay = calendar.get(Calendar.DAY_OF_MONTH);
-//        int curHour = calendar.get(Calendar.HOUR_OF_DAY);
-//        int curMinute = calendar.get(Calendar.MINUTE);
-//        int curSecond = calendar.get(Calendar.SECOND);
-//
-//        yearWheel = (WheelView) view.findViewById(R.id.yearwheel);
-//        monthWheel = (WheelView) view.findViewById(R.id.monthwheel);
-//        dayWheel = (WheelView) view.findViewById(R.id.daywheel);
-//        hourWheel = (WheelView) view.findViewById(R.id.hourwheel);
-//        minuteWheel = (WheelView) view.findViewById(R.id.minutewheel);
-//        secondWheel = (WheelView) view.findViewById(R.id.secondwheel);
-//
-//
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//        builder.setView(view);
-//
-//        yearWheel.setAdapter(new StrericWheelAdapter(yearContent));
-//        yearWheel.setCurrentItem(curYear - 1970);
-//        yearWheel.setCyclic(true);
-//        yearWheel.setInterpolator(new AnticipateOvershootInterpolator());
-//        yearWheel.addScrollingListener(scrollListener);
-//
-//
-//        monthWheel.setAdapter(new StrericWheelAdapter(monthContent));
-//        monthWheel.setCurrentItem(curMonth - 1);
-//        monthWheel.setCyclic(true);
-//        monthWheel.setInterpolator(new AnticipateOvershootInterpolator());
-//        monthWheel.addScrollingListener(scrollListener);
-//
-//        dayWheel.setAdapter(new NumericWheelAdapter(1, getDay(Integer.parseInt(yearWheel
-// .getCurrentItemValue()), Integer.parseInt(monthWheel.getCurrentItemValue())), "%02d"));
-//        dayWheel.setCurrentItem(curDay - 1);
-//        dayWheel.setCyclic(true);
-//        dayWheel.setInterpolator(new AnticipateOvershootInterpolator());
-//        dayWheel.addScrollingListener(scrollListener);
-//
-//
-//        hourWheel.setAdapter(new StrericWheelAdapter(hourContent));
-//        hourWheel.setCurrentItem(curHour);
-//        hourWheel.setCyclic(true);
-//        hourWheel.setInterpolator(new AnticipateOvershootInterpolator());
-//
-//        minuteWheel.setAdapter(new StrericWheelAdapter(minuteContent));
-//        minuteWheel.setCurrentItem(curMinute);
-//        minuteWheel.setCyclic(true);
-//        minuteWheel.setInterpolator(new AnticipateOvershootInterpolator());
-//
-//        secondWheel.setAdapter(new StrericWheelAdapter(secondContent));
-//        secondWheel.setCurrentItem(curSecond);
-//        secondWheel.setCyclic(true);
-//        secondWheel.setInterpolator(new AnticipateOvershootInterpolator());
-//
-//        builder.setTitle(getString(R.string.Select_time));
-//        builder.setPositiveButton(getString(R.string.Determine), new DialogInterface
-// .OnClickListener()
-//        {
-//
-//            @Override
-//            public void onClick(DialogInterface dialog, int which)
-//            {
-//
-//                setTime = "";
-//                int dayq = dayWheel.getCurrentItem() + 1;
-//                String year = yearWheel.getCurrentItemValue();
-//                String month = monthWheel.getCurrentItemValue();
-//                String day = dayq < 10 ? 0 + "" + dayq : dayq + "";
-//                String hour = hourWheel.getCurrentItemValue();
-//                String min = minuteWheel.getCurrentItemValue();
-//                String second = secondWheel.getCurrentItemValue();
-//                StringBuffer sb = new StringBuffer();
-//                sb.append(year).append(getString(R.string.year))
-//                        .append(month).append(getString(R.string.month))
-//                        .append(day).append(getString(R.string.day)).append(hour)
-//                        .append(getString(R.string.hour)).append(min)
-//                        .append(getString(R.string.minute)).append(second).append(getString(R
-// .string.second));
-//
-//
-//                Log.info(TAG, "date::sb:" + sb.toString());
-//
-//                StringBuffer sb1 = new StringBuffer();
-//                sb1.append(year)
-//                        .append(month)
-//                        .append(day).append(hour).append(min)
-//                        .append(second);
-//
-//                setTime = sb1.toString();
-//
-//                rtuTimeTextView.setText(sb.toString());
-//                dialog.cancel();
-//            }
-//        });
-//
-//        builder.show();
-//
-//    }
+    private void seletDate() {
+        View view = ((LayoutInflater) context.getSystemService(context
+                .LAYOUT_INFLATER_SERVICE)).inflate(R.layout.time_picker, null);
+
+        Calendar calendar = Calendar.getInstance();
+        int curYear = calendar.get(Calendar.YEAR);
+        int curMonth = calendar.get(Calendar.MONTH) + 1;
+        int curDay = calendar.get(Calendar.DAY_OF_MONTH);
+        int curHour = calendar.get(Calendar.HOUR_OF_DAY);
+        int curMinute = calendar.get(Calendar.MINUTE);
+        int curSecond = calendar.get(Calendar.SECOND);
+
+        yearWheel = view.findViewById(R.id.yearwheel);
+        monthWheel = view.findViewById(R.id.monthwheel);
+        dayWheel = view.findViewById(R.id.daywheel);
+        hourWheel = view.findViewById(R.id.hourwheel);
+        minuteWheel = view.findViewById(R.id.minutewheel);
+        secondWheel = view.findViewById(R.id.secondwheel);
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(view);
+
+        yearWheel.setAdapter(new StrericWheelAdapter(yearContent));
+        yearWheel.setCurrentItem(curYear - 1970);
+        yearWheel.setCyclic(true);
+        yearWheel.setInterpolator(new AnticipateOvershootInterpolator());
+        yearWheel.addScrollingListener(scrollListener);
+
+
+        monthWheel.setAdapter(new StrericWheelAdapter(monthContent));
+        monthWheel.setCurrentItem(curMonth - 1);
+        monthWheel.setCyclic(true);
+        monthWheel.setInterpolator(new AnticipateOvershootInterpolator());
+        monthWheel.addScrollingListener(scrollListener);
+
+        dayWheel.setAdapter(new NumericWheelAdapter(1, getDay(Integer.parseInt(yearWheel
+                .getCurrentItemValue()), Integer.parseInt(monthWheel.getCurrentItemValue())), "%02d"));
+        dayWheel.setCurrentItem(curDay - 1);
+        dayWheel.setCyclic(true);
+        dayWheel.setInterpolator(new AnticipateOvershootInterpolator());
+        dayWheel.addScrollingListener(scrollListener);
+
+
+        hourWheel.setAdapter(new StrericWheelAdapter(hourContent));
+        hourWheel.setCurrentItem(curHour);
+        hourWheel.setCyclic(true);
+        hourWheel.setInterpolator(new AnticipateOvershootInterpolator());
+
+        minuteWheel.setAdapter(new StrericWheelAdapter(minuteContent));
+        minuteWheel.setCurrentItem(curMinute);
+        minuteWheel.setCyclic(true);
+        minuteWheel.setInterpolator(new AnticipateOvershootInterpolator());
+
+        secondWheel.setAdapter(new StrericWheelAdapter(secondContent));
+        secondWheel.setCurrentItem(curSecond);
+        secondWheel.setCyclic(true);
+        secondWheel.setInterpolator(new AnticipateOvershootInterpolator());
+
+        builder.setTitle(getString(R.string.Select_time));
+        builder.setPositiveButton(getString(R.string.Determine), new DialogInterface
+                .OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                setTime = "";
+                int dayq = dayWheel.getCurrentItem() + 1;
+                String year = yearWheel.getCurrentItemValue();
+                String month = monthWheel.getCurrentItemValue();
+                String day = dayq < 10 ? 0 + "" + dayq : dayq + "";
+                String hour = hourWheel.getCurrentItemValue();
+                String min = minuteWheel.getCurrentItemValue();
+                String second = secondWheel.getCurrentItemValue();
+                StringBuffer sb = new StringBuffer();
+                sb.append(year).append(getString(R.string.year))
+                        .append(month).append(getString(R.string.month))
+                        .append(day).append(getString(R.string.day)).append(hour)
+                        .append(getString(R.string.hour)).append(min)
+                        .append(getString(R.string.minute)).append(second).append(getString(R
+                        .string.second));
+
+
+                StringBuffer sb1 = new StringBuffer();
+                sb1.append(year)
+                        .append(month)
+                        .append(day).append(hour).append(min)
+                        .append(second);
+
+                setTime = sb1.toString();
+
+                rtuTimeTextView.setText(sb.toString());
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+
+    }
+
     private String getTime(String strDate) {
         // 准备第一个模板，从字符串中提取出日期数字
         String pat1 = "yyyyMMddHHmmss";

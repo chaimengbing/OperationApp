@@ -153,7 +153,6 @@ public class BleDeviceListActivity extends BaseActivity implements AdapterView.O
         if (BleUtils.getInstance().isScanning()) {
             BleUtils.getInstance().stopScan();
         }
-        BleUtils.getInstance().startScan();
     }
 
 

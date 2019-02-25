@@ -1498,6 +1498,7 @@ public class HomeActivity extends BaseActivity implements PopupWindow.OnDismissL
         backImageView =  findViewById(R.id.title_back);
         titleRight =  findViewById(R.id.title_right);
         title =  findViewById(R.id.title);
+        backImageView =  findViewById(R.id.title_back);
         rtuVersion =  findViewById(R.id.rtu_version);
 
         titleLayout =  findViewById(R.id.ll_layout);
@@ -1517,10 +1518,10 @@ public class HomeActivity extends BaseActivity implements PopupWindow.OnDismissL
 
 
     void setTitleName(String text){
-
+        title.setText(text);
     }
     void setTitleMain(String text){
-
+//        titleRight.setText(text);
     }
 
     @Override
@@ -1598,6 +1599,6 @@ public class HomeActivity extends BaseActivity implements PopupWindow.OnDismissL
 
     @Override
     public void initEvent() {
-
+        backImageView.setOnClickListener(this);
     }
 }

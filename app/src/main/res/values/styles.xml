@@ -10,10 +10,10 @@
 
 
     <style name="SplashTheme" parent="android:Theme.NoTitleBar.Fullscreen">
-
-        <!-- 闪屏背景，可用图片 -->
-        <item name="android:windowBackground">@drawable/splash</item>
-        <item name="android:windowFullscreen">true</item>
+        <item name="windowActionBar">false</item>//取消Actionbar
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>//设置全拼
+        <item name="android:windowBackground">@drawable/img_splash</item>//设置背景
     </style>
 
 </resources>
