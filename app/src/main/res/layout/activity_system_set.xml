@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-   style="@style/activity_page">
+    style="@style/activity_page">
 
-    <include layout="@layout/toolbar_layout"/>
+    <include layout="@layout/toolbar_layout" />
 
     <LinearLayout
         android:id="@+id/ll_set_mode"
-        style="@style/content_item_white" >
+        style="@style/content_item_white"
+        android:layout_marginTop="@dimen/x40">
 
 
         <TextView

@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.main_1:
-                toActivity(WebViewActivity.createIntent(context, "运维云", "http://www.baidu.com"));
+                toActivity(WebViewActivity.createIntent(context, "运维云", "http://47.104.107.184"));
                 break;
             case R.id.main_2:
                 if (SettingUtil.getSetMode() == SettingUtil.KEY_SET_MODE_BLE) {
