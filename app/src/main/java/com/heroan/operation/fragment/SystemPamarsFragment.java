@@ -90,6 +90,15 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
     private String setTime = "";
     private int currentType = -1;
 
+    private static SystemPamarsFragment instance;
+
+    public static SystemPamarsFragment createInstance() {
+        if (instance == null) {
+            instance = new SystemPamarsFragment();
+        }
+        return instance;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -409,7 +418,7 @@ public class SystemPamarsFragment extends BaseFragment implements View.OnClickLi
                 break;
 
             case R.id.rtu_time:
-                 ServiceUtils.getServiceUtils().seletDate(getActivity());
+                ServiceUtils.getServiceUtils().seletDate(getActivity());
                 break;
 //            case R.id.elecrelay_switch:
 //                boolean isChecked = true;

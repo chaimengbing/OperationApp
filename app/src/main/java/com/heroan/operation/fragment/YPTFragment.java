@@ -37,6 +37,15 @@ public class YPTFragment extends BaseFragment implements View.OnClickListener,Ev
     private RadioGroup timingGroup;
     private RadioGroup uploadGroup;
 
+    private static YPTFragment instance;
+
+    public static YPTFragment createInstance() {
+        if (instance == null) {
+            instance = new YPTFragment();
+        }
+        return instance;
+    }
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

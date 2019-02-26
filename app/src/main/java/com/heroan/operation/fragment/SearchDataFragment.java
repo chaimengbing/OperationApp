@@ -32,7 +32,14 @@ public class SearchDataFragment extends BaseFragment implements View.OnClickList
     private Button searchButton;
     private String begin = "";
     private String finish = "";
+    private static SearchDataFragment instance;
 
+    public static SearchDataFragment createInstance() {
+        if (instance == null) {
+            instance = new SearchDataFragment();
+        }
+        return instance;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

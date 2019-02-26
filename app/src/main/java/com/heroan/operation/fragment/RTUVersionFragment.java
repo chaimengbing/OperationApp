@@ -47,7 +47,7 @@ public class RTUVersionFragment extends BaseFragment implements View.OnClickList
 
     private ListView updatelistView;
     private ListView updatelistView1;
-    private int currentType;
+    private int currentType = UiEventEntry.WRU_2100;
     private int currentType1;
 
 
@@ -89,6 +89,14 @@ public class RTUVersionFragment extends BaseFragment implements View.OnClickList
     private boolean isBleDevice = false;
     private BleDevice bleDevice = null;
 
+    private static RTUVersionFragment instance;
+
+    public static RTUVersionFragment createInstance() {
+        if (instance == null) {
+            instance = new RTUVersionFragment();
+        }
+        return instance;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -144,10 +152,10 @@ public class RTUVersionFragment extends BaseFragment implements View.OnClickList
         listTextView1 = view.findViewById(R.id.touch_import_textview);
         updateButton = view.findViewById(R.id.update_rtu_button);
         updateButton1 = view.findViewById(R.id.touch_import_button);
-        updatelistView =  view.findViewById(R.id.update_listview);
-        updatelistView1 =  view.findViewById(R.id.touch_import_listview);
-        packageLayout =  view.findViewById(R.id.package_layout);
-        packageLayout1 =  view.findViewById(R.id.package_layout1);
+        updatelistView = view.findViewById(R.id.update_listview);
+        updatelistView1 = view.findViewById(R.id.touch_import_listview);
+        packageLayout = view.findViewById(R.id.package_layout);
+        packageLayout1 = view.findViewById(R.id.package_layout1);
 
         appVers.setText(getString(R.string.APP_Version) + getAppVersion());
     }
@@ -155,7 +163,6 @@ public class RTUVersionFragment extends BaseFragment implements View.OnClickList
     @Override
     public void initData() {
         if (getArguments() != null) {
-            currentType = getArguments().getInt(UiEventEntry.CURRENT_RTU_NAME);
             if (currentType == UiEventEntry.WRU_2800 || currentType == UiEventEntry.WRU_2801 || currentType == UiEventEntry.WRU_2100) {
                 ServiceUtils.sendData(ConfigParams.ReadSensorPara2);
             } else if (currentType == UiEventEntry.WRU_1901) {
@@ -202,6 +209,9 @@ public class RTUVersionFragment extends BaseFragment implements View.OnClickList
 
         adapter1 = new UpdateBinAdapter(getActivity());
         updatelistView1.setAdapter(adapter1);
+
+        listTextView.setVisibility(adapter.getCount() == 0 ? View.GONE : View.VISIBLE);
+        listTextView1.setVisibility(adapter1.getCount() == 0 ? View.GONE : View.VISIBLE);
     }
 
     @Override

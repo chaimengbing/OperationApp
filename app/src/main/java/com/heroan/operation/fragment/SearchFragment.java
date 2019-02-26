@@ -228,6 +228,15 @@ public class SearchFragment extends BaseFragment implements EventNotifyHelper.No
 
     private int currentType = -1;
 
+    private static SearchFragment instance;
+
+    public static SearchFragment createInstance() {
+        if (instance == null) {
+            instance = new SearchFragment();
+        }
+        return instance;
+    }
+
     private Runnable timeRunnable = new Runnable() {
         @Override
         public void run() {
@@ -235,6 +244,10 @@ public class SearchFragment extends BaseFragment implements EventNotifyHelper.No
             OperationApplication.applicationHandler.postDelayed(timeRunnable, UiEventEntry.TIME);
         }
     };
+
+    public void setSearch(int search){
+        this.search = search;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -276,21 +289,21 @@ public class SearchFragment extends BaseFragment implements EventNotifyHelper.No
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.NOTIFY_BUNDLE);
 
 
-        resultTextView = (TextView) view.findViewById(R.id.result_data_textview);
-        resultScroll = (ScrollView) view.findViewById(R.id.result_scroll);
-        receImageView = (ZoomImageView) view.findViewById(R.id.rece_imageview);
-        receLayout = (RelativeLayout) view.findViewById(R.id.img_layout);
+        resultTextView = view.findViewById(R.id.result_data_textview);
+        resultScroll = view.findViewById(R.id.result_scroll);
+        receImageView = view.findViewById(R.id.rece_imageview);
+        receLayout = view.findViewById(R.id.img_layout);
 
-        control = (LinearLayout) view.findViewById(R.id.control);
-        rainValue = (LinearLayout) view.findViewById(R.id.rain_value_max);
-        update = (Button) view.findViewById(R.id.update_button);
-        rainValueButton = (Button) view.findViewById(R.id.rainvalue_button);
-        rainValueEdittext = (EditText) view.findViewById(R.id.rainvalue_edittext);
-        stop = (Button) view.findViewById(R.id.stop_button);
-        send2pic = (Button) view.findViewById(R.id.sens_2_pic_button);
-        cumulativeFlowValue = (LinearLayout) view.findViewById(R.id.Cumulative_Flow);
-        cumulativeFlowButton = (Button) view.findViewById(R.id.Cumulative_Flow_button);
-        cumulativeFlowEdittext = (EditText) view.findViewById(R.id.Cumulative_Flow1);
+        control = view.findViewById(R.id.control);
+        rainValue = view.findViewById(R.id.rain_value_max);
+        update = view.findViewById(R.id.update_button);
+        rainValueButton = view.findViewById(R.id.rainvalue_button);
+        rainValueEdittext = view.findViewById(R.id.rainvalue_edittext);
+        stop = view.findViewById(R.id.stop_button);
+        send2pic = view.findViewById(R.id.sens_2_pic_button);
+        cumulativeFlowValue = view.findViewById(R.id.Cumulative_Flow);
+        cumulativeFlowButton = view.findViewById(R.id.Cumulative_Flow_button);
+        cumulativeFlowEdittext = view.findViewById(R.id.Cumulative_Flow1);
 
 
     }
@@ -324,7 +337,6 @@ public class SearchFragment extends BaseFragment implements EventNotifyHelper.No
     public void stopUpdate() {
         OperationApplication.applicationHandler.removeCallbacks(timeRunnable);
     }
-
 
 
     @Override

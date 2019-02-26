@@ -56,6 +56,14 @@ public class FlowFragment extends BaseFragment implements View.OnClickListener, 
     private EditText planNumEditText;
     private Button planNumButton;
 
+    private static FlowFragment instance;
+
+    public static FlowFragment createInstance() {
+        if (instance == null) {
+            instance = new FlowFragment();
+        }
+        return instance;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

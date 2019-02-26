@@ -43,7 +43,14 @@ public class CollectFragment extends BaseFragment implements View.OnClickListene
     private CheckBox checkBox16;
     private CheckBox checkBox17;
 
+    private static CollectFragment instance;
 
+    public static CollectFragment createInstance() {
+        if (instance == null) {
+            instance = new CollectFragment();
+        }
+        return instance;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

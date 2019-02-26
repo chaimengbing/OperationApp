@@ -30,6 +30,16 @@ public class AmmeterFragment extends BaseFragment implements View.OnClickListene
     private SimpleSpinnerAdapter ammeterAdapter;
     private boolean isFirst = true;
 
+    private static AmmeterFragment instance;
+
+    public static AmmeterFragment createInstance() {
+        if (instance == null) {
+            instance = new AmmeterFragment();
+        }
+        return instance;
+    }
+
+
     @Override
     public void onClick(View v) {
 

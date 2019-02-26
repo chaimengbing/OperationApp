@@ -45,6 +45,15 @@ public class ChannelGPRSFragment extends BaseFragment implements View.OnClickLis
     private Button set2;
     private Button set3;
 
+    private static ChannelGPRSFragment instance;
+
+    public static ChannelGPRSFragment createInstance() {
+        if (instance == null) {
+            instance = new ChannelGPRSFragment();
+        }
+        return instance;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

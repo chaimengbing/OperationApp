@@ -14,8 +14,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UpdateBinAdapter extends BaseAdapter
-{
+public class UpdateBinAdapter extends BaseAdapter {
 
     protected static final String TAG = UpdateBinAdapter.class.getSimpleName();
     private LayoutInflater inflater;
@@ -23,66 +22,56 @@ public class UpdateBinAdapter extends BaseAdapter
     private Context context;
 
 
-    public UpdateBinAdapter(Context context)
-    {
+    public UpdateBinAdapter(Context context) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         initData();
     }
 
-    private void initData()
-    {
+    private void initData() {
         File f = new File(ConfigParams.BinPath);
         File[] files = f.listFiles();// 列出所有文件
 
-        for (File file : files)
-        {
-            if (file.getName().endsWith(".bin"))
-            {
-                dataList.add(file);
+        if (files != null && files.length > 0) {
+            for (File file : files) {
+                if (file != null) {
+                    if (file.getName().endsWith(".bin")) {
+                        dataList.add(file);
+                    }
+                }
             }
         }
 
     }
 
     @Override
-    public int getCount()
-    {
-        if (dataList == null || dataList.size() == 0)
-        {
+    public int getCount() {
+        if (dataList == null || dataList.size() == 0) {
             return 0;
-        }
-        else
-        {
+        } else {
             return dataList.size();
         }
     }
 
     @Override
-    public Object getItem(int position)
-    {
+    public Object getItem(int position) {
         return dataList.get(position);
     }
 
     @Override
-    public long getItemId(int position)
-    {
+    public long getItemId(int position) {
         return position;
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent)
-    {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        if (convertView == null)
-        {
+        if (convertView == null) {
             convertView = inflater.inflate(R.layout.item, null);
             holder = new ViewHolder();
             holder.nameTextView = (TextView) convertView.findViewById(R.id.name);
             convertView.setTag(holder);
-        }
-        else
-        {
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
         holder.nameTextView.setText(dataList.get(position).getName());
@@ -90,9 +79,7 @@ public class UpdateBinAdapter extends BaseAdapter
     }
 
 
-
-    class ViewHolder
-    {
+    class ViewHolder {
         TextView nameTextView;
     }
 

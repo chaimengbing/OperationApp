@@ -42,7 +42,14 @@ public class WaterQualityFragment extends BaseFragment implements View.OnClickLi
     private CheckBox checkBox7;
     private CheckBox checkBox8;
     private CheckBox checkBox9;
+    private static WaterQualityFragment instance;
 
+    public static WaterQualityFragment createInstance() {
+        if (instance == null) {
+            instance = new WaterQualityFragment();
+        }
+        return instance;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

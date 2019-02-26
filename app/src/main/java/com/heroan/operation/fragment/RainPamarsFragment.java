@@ -43,6 +43,15 @@ public class RainPamarsFragment extends BaseFragment implements View.OnClickList
     }
 
 
+    private static RainPamarsFragment instance;
+
+    public static RainPamarsFragment createInstance() {
+        if (instance == null) {
+            instance = new RainPamarsFragment();
+        }
+        return instance;
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
