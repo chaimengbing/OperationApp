@@ -41,6 +41,15 @@ public class WQualitySearchFragment extends BaseFragment implements View.OnClick
     private String COD;
     private String NH4N;
 
+    private static WQualitySearchFragment instance;
+
+    public static WQualitySearchFragment createInstance() {
+        if (instance == null) {
+            instance = new WQualitySearchFragment();
+        }
+        return instance;
+    }
+    
     @Override
     public void onClick(View v) {
 

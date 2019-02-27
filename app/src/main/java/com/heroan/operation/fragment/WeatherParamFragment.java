@@ -30,6 +30,15 @@ public class WeatherParamFragment extends BaseFragment implements View.OnClickLi
     private SimpleSpinnerAdapter waterQualityAdapter;
     private boolean isFirst = true;
 
+    private static WeatherParamFragment instance;
+
+    public static WeatherParamFragment createInstance() {
+        if (instance == null) {
+            instance = new WeatherParamFragment();
+        }
+        return instance;
+    }
+    
     @Override
     public void onClick(View v) {
 

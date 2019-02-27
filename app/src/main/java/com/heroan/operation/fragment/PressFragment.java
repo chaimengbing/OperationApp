@@ -41,6 +41,15 @@ public class  PressFragment extends BaseFragment implements View.OnClickListener
     private String[] pressItems;
     private SimpleSpinnerAdapter pressAdapter;
 
+    private static PressFragment instance;
+
+    public static PressFragment createInstance() {
+        if (instance == null) {
+            instance = new PressFragment();
+        }
+        return instance;
+    }
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

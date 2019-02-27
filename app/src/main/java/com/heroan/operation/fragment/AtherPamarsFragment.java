@@ -32,6 +32,15 @@ public class AtherPamarsFragment extends BaseFragment implements View.OnClickLis
     private EditText collectTimeEditText;
     private EditText lvValuesEditText;
 
+    private static AtherPamarsFragment instance;
+
+    public static AtherPamarsFragment createInstance() {
+        if (instance == null) {
+            instance = new AtherPamarsFragment();
+        }
+        return instance;
+    }
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

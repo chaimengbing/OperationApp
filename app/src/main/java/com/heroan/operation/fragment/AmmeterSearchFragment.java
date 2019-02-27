@@ -37,7 +37,14 @@ public class AmmeterSearchFragment extends BaseFragment implements View.OnClickL
     private String AC_current;
     private String BC_current;
     private String CC_current;
+    private static AmmeterSearchFragment instance;
 
+    public static AmmeterSearchFragment createInstance() {
+        if (instance == null) {
+            instance = new AmmeterSearchFragment();
+        }
+        return instance;
+    }
     @Override
     public void onClick(View v) {
 

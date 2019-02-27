@@ -38,6 +38,14 @@ public class ChannelCENTERFragment extends BaseFragment implements View.OnClickL
     private Button fiveRainButton;
     private Button waterPersonButton;
 
+    private static ChannelCENTERFragment instance;
+
+    public static ChannelCENTERFragment createInstance() {
+        if (instance == null) {
+            instance = new ChannelCENTERFragment();
+        }
+        return instance;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

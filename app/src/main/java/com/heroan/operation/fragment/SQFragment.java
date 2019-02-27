@@ -68,7 +68,14 @@ public class SQFragment extends BaseFragment implements View.OnClickListener, Ev
     private boolean isBleDevice = false;
     private BleDevice bleDevice = null;
 
+    private static SQFragment instance;
 
+    public static SQFragment createInstance() {
+        if (instance == null) {
+            instance = new SQFragment();
+        }
+        return instance;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

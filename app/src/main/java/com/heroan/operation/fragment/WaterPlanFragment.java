@@ -60,6 +60,15 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
     private boolean isBleDevice = false;
     private BleDevice bleDevice = null;
 
+    private static WaterPlanFragment instance;
+
+    public static WaterPlanFragment createInstance() {
+        if (instance == null) {
+            instance = new WaterPlanFragment();
+        }
+        return instance;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

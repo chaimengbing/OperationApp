@@ -33,6 +33,15 @@ public class ChannelSelectFragment extends BaseFragment implements View.OnClickL
     private RadioGroup reserve3Group;
     private RadioGroup reserve4Group;
 
+    private static ChannelSelectFragment instance;
+
+    public static ChannelSelectFragment createInstance() {
+        if (instance == null) {
+            instance = new ChannelSelectFragment();
+        }
+        return instance;
+    }
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

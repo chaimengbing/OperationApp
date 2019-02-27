@@ -32,6 +32,14 @@ public class CameraFragment extends BaseFragment implements EventNotifyHelper.No
     private RadioGroup cameraGroup;
     private RadioGroup sendModelGroup;
 
+    private static CameraFragment instance;
+
+    public static CameraFragment createInstance() {
+        if (instance == null) {
+            instance = new CameraFragment();
+        }
+        return instance;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

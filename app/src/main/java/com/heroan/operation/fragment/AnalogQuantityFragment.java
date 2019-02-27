@@ -67,6 +67,15 @@ public class AnalogQuantityFragment extends BaseFragment implements View.OnClick
 
     private boolean isFirst6 = true;
 
+    private static AnalogQuantityFragment instance;
+
+    public static AnalogQuantityFragment createInstance() {
+        if (instance == null) {
+            instance = new AnalogQuantityFragment();
+        }
+        return instance;
+    }
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

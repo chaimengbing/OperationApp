@@ -66,7 +66,14 @@ public class ChannelFragment extends BaseFragment implements EventNotifyHelper.N
 
     private SimpleSpinnerAdapter ipAdapter;
     private String[] ipItems;
+    private static ChannelFragment instance;
 
+    public static ChannelFragment createInstance() {
+        if (instance == null) {
+            instance = new ChannelFragment();
+        }
+        return instance;
+    }
 
     private List<String> channelList = new ArrayList<>();
 

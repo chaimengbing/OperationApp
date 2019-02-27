@@ -70,7 +70,14 @@ public class CommParamsFragment extends BaseFragment implements View.OnClickList
     private int currentType = -1;
     private LinearLayout apnLayout;
     private LinearLayout picLayout;
+    private static CommParamsFragment instance;
 
+    public static CommParamsFragment createInstance() {
+        if (instance == null) {
+            instance = new CommParamsFragment();
+        }
+        return instance;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

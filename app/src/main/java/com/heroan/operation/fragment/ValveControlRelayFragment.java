@@ -35,6 +35,15 @@ public class ValveControlRelayFragment extends BaseFragment implements View.OnCl
     private RadioButton butterflyRadiobutton;
     private RadioButton pulseRadiobutton;
     private RadioButton vaRadiobutton;
+    private static ValveControlRelayFragment instance;
+
+    public static ValveControlRelayFragment createInstance() {
+        if (instance == null) {
+            instance = new ValveControlRelayFragment();
+        }
+        return instance;
+    }
+    
     @Override
     public void onClick(View v)
     {

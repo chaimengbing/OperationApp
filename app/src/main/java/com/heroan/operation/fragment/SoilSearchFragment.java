@@ -38,6 +38,17 @@ public class SoilSearchFragment extends BaseFragment implements View.OnClickList
 
     private StringBuffer currentSB = new StringBuffer();
     private ScrollView resultScroll;
+
+
+    private static SoilSearchFragment instance;
+
+    public static SoilSearchFragment createInstance() {
+        if (instance == null) {
+            instance = new SoilSearchFragment();
+        }
+        return instance;
+    }
+    
     @Override
     public void onClick(View v)
     {

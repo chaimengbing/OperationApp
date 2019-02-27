@@ -44,6 +44,15 @@ public class ChannelBEIFragment extends BaseFragment implements View.OnClickList
     private Button set4;
 
     private RadioGroup beiDouGroup;
+    private static ChannelBEIFragment instance;
+
+    public static ChannelBEIFragment createInstance() {
+        if (instance == null) {
+            instance = new ChannelBEIFragment();
+        }
+        return instance;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

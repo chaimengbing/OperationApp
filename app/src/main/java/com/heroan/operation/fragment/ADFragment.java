@@ -67,7 +67,14 @@ public class ADFragment extends BaseFragment implements View.OnClickListener,
 
     private StringBuffer currentSB = new StringBuffer();
     private TextView resultTextView;
+    private static ADFragment instance;
 
+    public static ADFragment createInstance() {
+        if (instance == null) {
+            instance = new ADFragment();
+        }
+        return instance;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

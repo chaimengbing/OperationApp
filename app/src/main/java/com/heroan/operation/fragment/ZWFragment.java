@@ -39,6 +39,15 @@ public class ZWFragment extends BaseFragment implements View.OnClickListener, Ev
     private boolean isBleDevice = false;
     private BleDevice bleDevice = null;
 
+    private static ZWFragment instance;
+
+    public static ZWFragment createInstance() {
+        if (instance == null) {
+            instance = new ZWFragment();
+        }
+        return instance;
+    }
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

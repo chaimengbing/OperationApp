@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+    style="@style/activity_page">
 
     <RelativeLayout
         android:id="@+id/top"
@@ -22,7 +20,7 @@
                 android:layout_width="@dimen/x160"
                 android:layout_height="@dimen/x60"
                 android:background="@drawable/bg_button"
-                android:text="@string/update"/>
+                android:text="@string/update" />
 
             <Button
                 android:id="@+id/stop_button"
@@ -30,7 +28,7 @@
                 android:layout_height="@dimen/x60"
                 android:layout_marginLeft="@dimen/x80"
                 android:background="@drawable/bg_button"
-                android:text="@string/Stop_updating"/>
+                android:text="@string/Stop_updating" />
 
             <Button
                 android:id="@+id/sens_2_pic_button"
@@ -38,7 +36,7 @@
                 android:layout_height="@dimen/x60"
                 android:layout_marginLeft="@dimen/x80"
                 android:background="@drawable/bg_button"
-                android:text="@string/Send_2_pic"/>
+                android:text="@string/Send_2_pic" />
 
         </LinearLayout>
 
@@ -47,9 +45,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:visibility="gone"
             android:orientation="vertical"
-            android:padding="10dp" >
+            android:padding="10dp"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="match_parent"
@@ -62,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/rainvalue_edittext"
@@ -87,8 +85,7 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
-                    >
+                    android:layout_weight="0.7">
 
                     <Button
                         android:id="@+id/rainvalue_button"
@@ -104,11 +101,11 @@
             android:id="@+id/Cumulative_Flow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_below="@+id/rain_value_max"
-            android:visibility="gone"
+            android:gravity="center"
             android:orientation="vertical"
-            android:padding="10dp" >
+            android:padding="10dp"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="match_parent"
@@ -121,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/Cumulative_Flow1"
@@ -146,8 +143,7 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
-                    >
+                    android:layout_weight="0.7">
 
                     <Button
                         android:id="@+id/Cumulative_Flow_button"
@@ -166,8 +162,7 @@
         android:id="@+id/result_scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/top"
-        >
+        android:layout_below="@id/top">
 
         <TextView
             android:id="@+id/result_data_textview"
@@ -176,7 +171,7 @@
             android:lineSpacingExtra="5dp"
             android:padding="10dp"
             android:textColor="@color/black"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
     </ScrollView>
 
     <RelativeLayout
@@ -186,12 +181,12 @@
         android:gravity="center"
         android:visibility="gone">
 
-        <com.vcontrol.vcontroliot.view.ZoomImageView
+        <com.heroan.operation.view.ZoomImageView
             android:id="@+id/rece_imageview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@null"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop" />
 
     </RelativeLayout>
 

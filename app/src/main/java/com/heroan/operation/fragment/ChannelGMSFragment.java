@@ -34,6 +34,15 @@ public class ChannelGMSFragment extends BaseFragment implements View.OnClickList
     private Button set3;
     private Button set4;
 
+    private static ChannelGMSFragment instance;
+
+    public static ChannelGMSFragment createInstance() {
+        if (instance == null) {
+            instance = new ChannelGMSFragment();
+        }
+        return instance;
+    }
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

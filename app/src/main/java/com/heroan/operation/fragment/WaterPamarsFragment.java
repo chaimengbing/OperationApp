@@ -44,7 +44,14 @@ public class WaterPamarsFragment extends BaseFragment implements View.OnClickLis
     private EditText waterPhotoUpEditText;
     private EditText waterPhotoDownEditText;
 
+    private static WaterPamarsFragment instance;
 
+    public static WaterPamarsFragment createInstance() {
+        if (instance == null) {
+            instance = new WaterPamarsFragment();
+        }
+        return instance;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
