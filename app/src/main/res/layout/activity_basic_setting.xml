@@ -2,6 +2,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/activity_page">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x260"
+        android:background="@color/query_set_bg">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/params_query" />
+
+        <ImageView
+            android:id="@+id/title_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/main_radius"
+            android:layout_marginTop="@dimen/main_radius"
+            android:src="@drawable/back2" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/senior_setting_textview"

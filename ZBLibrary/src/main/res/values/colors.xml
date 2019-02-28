@@ -17,6 +17,7 @@
     <color name="pop_background">#F5F5F5</color>
     <color name="pop_divier">#e6e6e6</color>
     <color name="colorSuperClassBlueFont">#11aff1</color>
+    <color name="query_set_bg">#414555</color>
 
     <color name="lightsteelblue">#B0C4DE</color><!--亮钢兰色 -->
     <color name="paleturquoise">#AFEEEE</color><!--苍宝石绿 -->
