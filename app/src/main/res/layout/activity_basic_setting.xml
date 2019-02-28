@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/activity_page">
+
+
+    <TextView
+        android:id="@+id/senior_setting_textview"
+        style="@style/text_middle_blue"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/margin_huge"
+        android:layout_marginBottom="@dimen/margin_huge"
+        android:text="@string/senior_setting" />
+
+</RelativeLayout>

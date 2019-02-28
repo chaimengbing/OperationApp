@@ -19,6 +19,8 @@ package zuo.biao.library.util;
  */
 public class ContactUtil {
 
+	public static final String PASSWORD = "123456";
+
 	public static final String NAME_NICK = "称呼";
 	public static final String NAME_NAME = "姓名";
 	public static final String NAME_BIRTHDAY = "生日";
@@ -54,6 +56,8 @@ public class ContactUtil {
 
 	public static final int TYPE_PROFESSION = 11;
 	public static final int TYPE_NOTE = 12;
+
+	public static final int TYPE_PASSWORD = 13;
 
 
 }
