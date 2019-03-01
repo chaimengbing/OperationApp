@@ -7,6 +7,9 @@
 
 
     <color name="dkgray">#80808FF0</color>
+    <color name="basic_bg">#f3f3f5</color>
+    <color name="content_gray">#f7f7f7</color>
+    <color name="text_content">#414555</color>
     <color name="yello">#F8F8FF00</color>
     <color name="darkgray">#938192</color>
     <color name="lightgreen">#7cd12e</color>

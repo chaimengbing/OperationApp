@@ -194,6 +194,10 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="text_black_to_blue" parent="text_middle">
+        <item name="android:textColor">@color/black_to_blue</item>
+    </style>
+
     <style name="text_middle_blue" parent="text_middle">
         <item name="android:textColor">@color/blue</item>
     </style>
@@ -331,11 +335,11 @@
     <style name="divider_horizontal_3dp" parent="divider">
         <item name="android:layout_height">3dp</item>
         <item name="android:layout_width">80dp</item>
-        <item name="android:background">@color/blue</item>
+        <item name="android:background">@color/btn_blue_normal</item>
     </style>
 
     <style name="divider_horizontal_1dp_gray" parent="divider_horizontal_1dp">
-        <item name="android:background">@color/gray_2</item>
+        <item name="android:background">@color/pop_divier</item>
     </style>
 
     <style name="divider_vertical_1dp" parent="divider">
@@ -420,6 +424,20 @@
     <style name="ll_vertical_match_wrap" parent="match_wrap">
         <item name="android:gravity">center_horizontal</item>
         <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="ll_vertical_mw" parent="match_wrap">
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:paddingLeft">@dimen/padding_18</item>
+        <item name="android:paddingTop">@dimen/padding_middle</item>
+    </style>
+
+    <style name="ll_horizontal_ww" parent="wrap_wrap">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:paddingLeft">@dimen/padding_18</item>
+        <item name="android:paddingTop">@dimen/padding_middle</item>
     </style>
     <!-- linearLayout vertical >>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match">
+
+    <LinearLayout
+        style="@style/ll_vertical_match_match"
+        android:background="@color/basic_bg">
+
+        <LinearLayout
+            style="@style/ll_vertical_mw"
+            android:paddingTop="@dimen/margin_large">
+
+            <TextView
+                style="@style/text_set_title"
+                android:text="@string/site_test_address" />
+
+            <LinearLayout style="@style/ll_horizontal_match_wrap">
+
+                <EditText
+                    android:id="@+id/site_test_add_number"
+                    style="@style/edit_text_title_we1"
+                    android:inputType="number" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="3">
+
+                    <TextView
+                        android:id="@+id/site_test_setting_button"
+                        style="@style/btn_set_style"
+                        android:text="@string/setting" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/ll_vertical_mw">
+
+            <TextView
+                style="@style/text_set_title"
+                android:text="@string/rtu_time" />
+
+            <LinearLayout style="@style/ll_horizontal_match_wrap">
+
+                <TextView
+                    android:id="@+id/rtu_time"
+                    style="@style/edit_text_title_we1" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="3">
+
+                    <TextView
+                        android:id="@+id/time_button"
+                        style="@style/btn_set_style"
+                        android:text="@string/setting" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/ll_vertical_mw">
+
+            <TextView
+                style="@style/text_set_title"
+                android:text="网络注册模式" />
+
+            <RadioGroup
+                style="@style/ll_horizontal_match_wrap"
+                android:paddingBottom="@dimen/main_radius">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_bg"
+                    android:text="自动"
+                    android:textColor="@color/black" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:button="@drawable/radio_bg"
+                    android:text="强制2G"
+                    android:textColor="@color/black" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ll_horizontal_match_match"
+            android:layout_marginTop="@dimen/margin_huge"
+            android:paddingBottom="@dimen/margin_huge">
+
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:layout_weight="1">
+
+                <LinearLayout style="@style/ll_vertical_mw">
+
+                    <TextView
+                        style="@style/text_set_title"
+                        android:text="485厂家" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Spinner
+                            android:id="@+id/site_type_spinner"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/spinner_bg"
+                            android:entries="@array/site_type"
+                            android:spinnerMode="dropdown" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:layout_weight="1">
+
+                <LinearLayout style="@style/ll_vertical_mw">
+
+                    <TextView
+                        style="@style/text_set_title"
+                        android:text="测量方式" />
+
+                    <RadioGroup
+                        style="@style/ll_horizontal_match_wrap"
+                        android:paddingBottom="@dimen/main_radius">
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/radio_bg"
+                            android:text="空高"
+                            android:textColor="@color/black" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:button="@drawable/radio_bg"
+                            android:text="水深"
+                            android:textColor="@color/black" />
+                    </RadioGroup>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/ll_horizontal_match_match"
+            android:layout_marginTop="@dimen/margin_huge"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/reset_factory"
+                    style="@style/btn_set_style"
+                    android:text="@string/restart" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/save_and_reset"
+                    style="@style/btn_set_style"
+                    android:text="@string/save_and_restart" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

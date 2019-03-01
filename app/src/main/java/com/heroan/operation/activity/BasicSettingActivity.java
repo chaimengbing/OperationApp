@@ -3,10 +3,14 @@ package com.heroan.operation.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.heroan.operation.R;
+import com.heroan.operation.fragment.BasicQueryFragment;
+import com.heroan.operation.fragment.BasicSetFragment;
 
 import zuo.biao.library.base.BaseActivity;
 import zuo.biao.library.ui.EditTextInfoWindow;
@@ -19,6 +23,8 @@ public class BasicSettingActivity extends BaseActivity implements View.OnClickLi
 
 
     private TextView seniorSetting;
+    private TextView leftText, rightText;
+    private View leftView, rightView;
 
 
     @Override
@@ -33,16 +39,24 @@ public class BasicSettingActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void initView() {
         seniorSetting = findView(R.id.senior_setting_textview);
+        leftView = findView(R.id.left_divider);
+        rightView = findView(R.id.right_divider);
+        leftText = findView(R.id.left_text);
+        rightText = findView(R.id.right_text);
     }
 
     @Override
     public void initData() {
-
+        turnToFragment(R.id.basic_set_layout, BasicSetFragment.createInstance());
+        leftText.setSelected(true);
+        rightText.setSelected(false);
     }
 
     @Override
     public void initEvent() {
         seniorSetting.setOnClickListener(this);
+        leftText.setOnClickListener(this);
+        rightText.setOnClickListener(this);
     }
 
     @Override
@@ -53,9 +67,27 @@ public class BasicSettingActivity extends BaseActivity implements View.OnClickLi
                         , "输入密码", StringUtil.getTrimedString(R.string.input_password)),
                         REQUEST_TO_EDIT_TEXT_INFO);
                 break;
+            case R.id.left_text:
+                rightView.setVisibility(View.GONE);
+                leftView.setVisibility(View.VISIBLE);
+                leftText.setSelected(true);
+                rightText.setSelected(false);
+                turnToFragment(R.id.basic_set_layout, BasicSetFragment.createInstance());
+                break;
+            case R.id.right_text:
+                rightView.setVisibility(View.VISIBLE);
+                leftView.setVisibility(View.GONE);
+                leftText.setSelected(false);
+                rightText.setSelected(true);
+                turnToFragment(R.id.basic_set_layout, BasicQueryFragment.createInstance());
+                break;
             default:
                 break;
         }
+    }
+
+    private void turnToFragment(int containerViewId, Fragment toFragmentClass) {
+        fragmentManager.beginTransaction().replace(containerViewId, toFragmentClass).commitAllowingStateLoss();
     }
 
 
@@ -69,7 +101,7 @@ public class BasicSettingActivity extends BaseActivity implements View.OnClickLi
             case REQUEST_TO_EDIT_TEXT_INFO:
                 if (data != null) {
                     if (SettingUtil.getSetMode() == SettingUtil.KEY_SET_MODE_BLE) {
-                        toActivity(new Intent(getApplicationContext(),BleDeviceListActivity.class));
+                        toActivity(new Intent(getApplicationContext(), BleDeviceListActivity.class));
                     } else {
                         toActivity(new Intent(getApplicationContext(), HomeActivity.class));
                     }
