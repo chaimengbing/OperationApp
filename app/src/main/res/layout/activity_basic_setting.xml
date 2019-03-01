@@ -3,6 +3,7 @@
     style="@style/activity_page">
 
     <RelativeLayout
+        android:id="@+id/toolbar_rl"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x260"
         android:background="@color/query_set_bg">
@@ -22,6 +23,53 @@
             android:src="@drawable/back2" />
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_layout"
+        style="@style/ll_horizontal_match_wrap"
+        android:layout_height="@dimen/x120"
+        android:layout_below="@id/toolbar_rl"
+        android:minHeight="@dimen/x120">
+
+        <RelativeLayout
+            style="@style/match_wrap"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/text_middle_black"
+                android:layout_centerInParent="true"
+                android:text="基本设置" />
+
+            <View
+                style="@style/divider_horizontal_3dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/match_wrap"
+            android:layout_weight="1">
+
+
+            <TextView
+                style="@style/text_middle_black"
+                android:layout_centerInParent="true"
+                android:text="基本查询" />
+
+            <View
+                style="@style/divider_horizontal_3dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <View
+        style="@style/divider_horizontal_1dp_gray"
+        android:layout_below="@id/tab_layout" />
 
     <TextView
         android:id="@+id/senior_setting_textview"

@@ -328,6 +328,12 @@
         <item name="android:layout_width">fill_parent</item>
     </style>
 
+    <style name="divider_horizontal_3dp" parent="divider">
+        <item name="android:layout_height">3dp</item>
+        <item name="android:layout_width">80dp</item>
+        <item name="android:background">@color/blue</item>
+    </style>
+
     <style name="divider_horizontal_1dp_gray" parent="divider_horizontal_1dp">
         <item name="android:background">@color/gray_2</item>
     </style>
