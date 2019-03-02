@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match"
+    android:background="@color/white">
+
+    <LinearLayout style="@style/ll_vertical_white">
+
+        <LinearLayout style="@style/ll_horizontal_match_wrap">
+
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:layout_weight="1">
+
+                <LinearLayout style="@style/ll_vertical_mw">
+
+                    <TextView
+                        style="@style/text_set_title"
+                        android:text="电池电压" />
+
+                    <TextView
+                        android:id="@+id/dianya_text"
+                        style="@style/text_title_150" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:layout_weight="1">
+
+                <LinearLayout style="@style/ll_vertical_mw">
+
+                    <TextView
+                        style="@style/text_set_title"
+                        android:text="信号强度" />
+
+                    <TextView
+                        android:id="@+id/xinhao_text"
+                        style="@style/text_title_150" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/ll_horizontal_match_wrap">
+
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:layout_weight="1">
+
+                <LinearLayout style="@style/ll_vertical_mw">
+
+                    <TextView
+                        style="@style/text_set_title"
+                        android:text="网络状态" />
+
+                    <TextView
+                        android:id="@+id/net_state_text"
+                        style="@style/text_title_150" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:layout_weight="1">
+
+                <LinearLayout style="@style/ll_vertical_mw">
+
+                    <TextView
+                        style="@style/text_set_title"
+                        android:text="发送状态" />
+
+                    <TextView
+                        android:id="@+id/send_state_text"
+                        style="@style/text_title_150" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/ll_horizontal_match_wrap">
+
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:layout_weight="1">
+
+                <LinearLayout style="@style/ll_vertical_mw">
+
+                    <TextView
+                        style="@style/text_set_title"
+                        android:text="定时报发送时间" />
+
+                    <TextView
+                        android:id="@+id/send_time_text"
+                        style="@style/text_title_150" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:layout_weight="1">
+
+                <LinearLayout style="@style/ll_vertical_mw">
+
+                    <TextView
+                        style="@style/text_set_title"
+                        android:text="RTU温度" />
+
+                    <TextView
+                        android:id="@+id/wendu_text"
+                        style="@style/text_title_150" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/ll_horizontal_match_wrap">
+
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:layout_weight="1">
+
+                <LinearLayout style="@style/ll_vertical_mw">
+
+                    <TextView
+                        style="@style/text_set_title"
+                        android:text="累计雨量(mm)" />
+
+                    <TextView
+                        android:id="@+id/yuliang_text"
+                        style="@style/text_title_150" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:layout_weight="1">
+
+                <LinearLayout style="@style/ll_vertical_mw">
+
+                    <TextView
+                        style="@style/text_set_title"
+                        android:text="绝对水位(m)" />
+
+                    <TextView
+                        android:id="@+id/shuiwei_text"
+                        style="@style/text_title_150" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

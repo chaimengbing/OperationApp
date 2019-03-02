@@ -80,7 +80,6 @@
     <FrameLayout
         android:id="@+id/basic_set_layout"
         style="@style/match_match"
-        android:layout_above="@id/senior_setting_textview"
         android:layout_below="@id/divider"></FrameLayout>
 
     <TextView
@@ -89,7 +88,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="@dimen/margin_huge"
-        android:layout_marginBottom="@dimen/margin_huge"
+        android:layout_marginBottom="@dimen/margin_large"
         android:text="@string/senior_setting" />
 
 </RelativeLayout>

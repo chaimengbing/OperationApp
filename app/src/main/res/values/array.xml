@@ -192,6 +192,7 @@
         <item>4-20mA</item>
     </string-array>
     <string-array name="water_select_485">
+        <item>无</item>
         <item>亿力能</item>
         <item>麦克</item>
         <item>古大</item>

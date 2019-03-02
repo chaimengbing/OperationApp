@@ -10,10 +10,18 @@
             <corners android:radius="5dp" />
         </shape>
     </item>
-    <item android:state_enabled="true">
+    <item android:state_selected="true">
         <shape>
             <!--色值-->
-            <solid android:color="@color/btn_blue_normal" />
+            <solid android:color="@color/btn_blue_pressed" />
+            <!--圆角-->
+            <corners android:radius="5dp" />
+        </shape>
+    </item>
+    <item android:state_focused="true">
+        <shape>
+            <!--色值-->
+            <solid android:color="@color/btn_blue_pressed" />
             <!--圆角-->
             <corners android:radius="5dp" />
         </shape>

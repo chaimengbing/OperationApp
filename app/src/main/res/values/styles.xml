@@ -16,6 +16,12 @@
         <item name="android:windowBackground">@drawable/img_splash</item>//设置背景
     </style>
 
+    <style name="radio_button_title" parent="wrap_wrap">
+        <item name="android:button">@drawable/radio_bg</item>
+        <item name="android:textColor">@color/text_content</item>
+        <item name="android:drawablePadding">@dimen/margin_small</item>
+    </style>
+
     <style name="text_set_title" parent="wrap_wrap">
         <item name="android:textSize">@dimen/text_size_middle</item>
         <item name="android:textColor">@color/gray_2</item>
@@ -27,9 +33,27 @@
         <item name="android:textColor">@color/text_content</item>
     </style>
 
+    <style name="text_title_150" parent="wrap_wrap">
+        <item name="android:background">@drawable/bg_content_edittext</item>
+        <item name="android:padding">@dimen/margin_middle</item>
+        <item name="android:textColor">@color/text_content</item>
+        <item name="android:layout_width">@dimen/width_150</item>
+    </style>
+
 
     <style name="edit_text_title_we1" parent="edit_text_title">
         <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="ll_vertical_white" parent="ll_vertical_match_wrap">
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_marginTop">@dimen/margin_huge</item>
+        <item name="android:paddingBottom">@dimen/margin_huge</item>
+    </style>
+
+    <style name="rl_set_button" parent="match_wrap">
+        <item name="android:layout_weight">3</item>
+        <item name="android:layout_marginLeft">@dimen/margin_huge</item>
     </style>
 
     <style name="btn_set_style" parent="wrap_wrap">
@@ -39,6 +63,17 @@
         <item name="android:paddingBottom">@dimen/margin_middle</item>
         <item name="android:paddingRight">@dimen/margin_huge</item>
         <item name="android:paddingLeft">@dimen/margin_huge</item>
+    </style>
+
+    <style name="spinner_text_bg" parent="match_wrap">
+        <item name="android:background">@drawable/spinner_text_bg</item>
+        <item name="android:padding">@dimen/margin_middle</item>
+        <item name="android:textColor">@color/text_content</item>
+        <item name="android:spinnerMode">dropdown</item>
+    </style>
+
+    <style name="spinner_text_bg_we1" parent="spinner_text_bg">
+        <item name="android:layout_weight">1</item>
     </style>
 
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/match_match">
+    style="@style/match_match"
+    android:background="@color/white">
 
     <LinearLayout
         style="@style/ll_vertical_match_match"
@@ -17,18 +18,14 @@
             <LinearLayout style="@style/ll_horizontal_match_wrap">
 
                 <EditText
-                    android:id="@+id/site_test_add_number"
+                    android:id="@+id/address_edittext"
                     style="@style/edit_text_title_we1"
                     android:inputType="number" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="3">
+                <RelativeLayout style="@style/rl_set_button">
 
                     <TextView
-                        android:id="@+id/site_test_setting_button"
+                        android:id="@+id/add_setting_button"
                         style="@style/btn_set_style"
                         android:text="@string/setting" />
                 </RelativeLayout>
@@ -45,14 +42,11 @@
             <LinearLayout style="@style/ll_horizontal_match_wrap">
 
                 <TextView
-                    android:id="@+id/rtu_time"
-                    style="@style/edit_text_title_we1" />
+                    android:id="@+id/time_text"
+                    style="@style/edit_text_title_we1"
+                    android:drawableRight="@mipmap/icon_set_time" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="3">
+                <RelativeLayout style="@style/rl_set_button">
 
                     <TextView
                         android:id="@+id/time_button"
@@ -71,124 +65,207 @@
                 android:text="网络注册模式" />
 
             <RadioGroup
+                android:id="@+id/net_group"
                 style="@style/ll_horizontal_match_wrap"
                 android:paddingBottom="@dimen/main_radius">
 
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@drawable/radio_bg"
-                    android:text="自动"
-                    android:textColor="@color/black" />
+                    android:id="@+id/auto_button"
+                    style="@style/radio_button_title"
+                    android:text="自动" />
 
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/g2_button"
+                    style="@style/radio_button_title"
                     android:layout_marginLeft="10dp"
-                    android:button="@drawable/radio_bg"
-                    android:text="强制2G"
-                    android:textColor="@color/black" />
+                    android:text="强制2G" />
             </RadioGroup>
         </LinearLayout>
 
-        <LinearLayout
-            style="@style/ll_horizontal_match_match"
-            android:layout_marginTop="@dimen/margin_huge"
-            android:paddingBottom="@dimen/margin_huge">
+        <LinearLayout style="@style/ll_vertical_white">
 
-            <RelativeLayout
-                style="@style/match_wrap"
-                android:layout_weight="1">
+            <LinearLayout style="@style/ll_vertical_mw">
 
-                <LinearLayout style="@style/ll_vertical_mw">
+                <TextView
+                    style="@style/text_set_title"
+                    android:text="@string/water_basic_value" />
 
-                    <TextView
-                        style="@style/text_set_title"
-                        android:text="485厂家" />
+                <LinearLayout style="@style/ll_horizontal_match_wrap">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/water_basic_edittext"
+                        style="@style/edit_text_title_we1" />
 
-                        <Spinner
-                            android:id="@+id/site_type_spinner"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/spinner_bg"
-                            android:entries="@array/site_type"
-                            android:spinnerMode="dropdown" />
+                    <RelativeLayout style="@style/rl_set_button">
+
+                        <TextView
+                            android:id="@+id/water_basic_button"
+                            style="@style/btn_set_style"
+                            android:text="@string/setting" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_vertical_mw">
+
+                <TextView
+                    style="@style/text_set_title"
+                    android:text="485厂家" />
+
+                <LinearLayout style="@style/ll_horizontal_match_wrap">
+
+                    <Spinner
+                        android:id="@+id/company_485_spinner"
+                        style="@style/spinner_text_bg_we1"
+                        android:entries="@array/water_select_485" />
+
+                    <RelativeLayout style="@style/rl_set_button">
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_horizontal_match_wrap">
+
+                <RelativeLayout
+                    style="@style/match_wrap"
+                    android:layout_weight="1">
+
+                    <LinearLayout style="@style/ll_vertical_mw">
+
+                        <TextView
+                            style="@style/text_set_title"
+                            android:text="模拟量量程" />
+
+                        <RadioGroup
+                            android:id="@+id/moni_group"
+                            style="@style/ll_horizontal_match_wrap"
+                            android:paddingBottom="@dimen/main_radius">
+
+                            <RadioButton
+                                android:id="@+id/zheng_button"
+                                style="@style/radio_button_title"
+                                android:text="正比" />
+
+                            <RadioButton
+                                android:id="@+id/fan_button"
+                                style="@style/radio_button_title"
+                                android:layout_marginLeft="10dp"
+                                android:text="反比" />
+                        </RadioGroup>
                     </LinearLayout>
-                </LinearLayout>
 
-            </RelativeLayout>
+                </RelativeLayout>
 
-            <RelativeLayout
-                style="@style/match_wrap"
-                android:layout_weight="1">
+                <RelativeLayout
+                    style="@style/match_wrap"
+                    android:layout_weight="1">
 
-                <LinearLayout style="@style/ll_vertical_mw">
+                    <LinearLayout style="@style/ll_vertical_mw">
+
+                        <TextView
+                            style="@style/text_set_title"
+                            android:text="测量方式" />
+
+                        <RadioGroup
+                            android:id="@+id/celiang_group"
+                            style="@style/ll_horizontal_match_wrap"
+                            android:paddingBottom="@dimen/main_radius">
+
+                            <RadioButton
+                                android:id="@+id/konggao_button"
+                                style="@style/radio_button_title"
+                                android:text="空高" />
+
+                            <RadioButton
+                                android:id="@+id/shuishen_button"
+                                style="@style/radio_button_title"
+                                android:layout_marginLeft="10dp"
+                                android:text="水深" />
+                        </RadioGroup>
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/ll_vertical_white">
+
+            <LinearLayout style="@style/ll_vertical_mw">
+
+                <TextView
+                    style="@style/text_set_title"
+                    android:text="雨量分辨率(毫米)" />
+
+
+                <RadioGroup
+                    android:id="@+id/rain_group"
+                    style="@style/ll_horizontal_match_wrap"
+                    android:paddingBottom="@dimen/main_radius">
+
+                    <RadioButton
+                        android:id="@+id/rain_1"
+                        style="@style/radio_button_title"
+                        android:text="1" />
+
+                    <RadioButton
+                        android:id="@+id/rain_2"
+                        style="@style/radio_button_title"
+                        android:layout_marginLeft="10dp"
+                        android:text="0.5" />
+
+                    <RadioButton
+                        android:id="@+id/rain_3"
+                        style="@style/radio_button_title"
+                        android:layout_marginLeft="10dp"
+                        android:text="0.5" />
+
+                    <RadioButton
+                        android:id="@+id/rain_4"
+                        style="@style/radio_button_title"
+                        android:layout_marginLeft="10dp"
+                        android:text="0.5" />
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ll_horizontal_match_match"
+                android:layout_marginTop="@dimen/margin_huge"
+                android:background="@color/white">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
 
                     <TextView
-                        style="@style/text_set_title"
-                        android:text="测量方式" />
+                        android:id="@+id/reset_factory"
+                        style="@style/btn_set_style"
+                        android:text="@string/restart" />
+                </RelativeLayout>
 
-                    <RadioGroup
-                        style="@style/ll_horizontal_match_wrap"
-                        android:paddingBottom="@dimen/main_radius">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
 
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:button="@drawable/radio_bg"
-                            android:text="空高"
-                            android:textColor="@color/black" />
-
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:button="@drawable/radio_bg"
-                            android:text="水深"
-                            android:textColor="@color/black" />
-                    </RadioGroup>
-                </LinearLayout>
-
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/save_and_reset"
+                        style="@style/btn_set_style"
+                        android:text="@string/save_and_restart" />
+                </RelativeLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
-
-        <LinearLayout
-            style="@style/ll_horizontal_match_match"
-            android:layout_marginTop="@dimen/margin_huge"
-            android:background="@color/white">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/reset_factory"
-                    style="@style/btn_set_style"
-                    android:text="@string/restart" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/save_and_reset"
-                    style="@style/btn_set_style"
-                    android:text="@string/save_and_restart" />
-            </RelativeLayout>
-        </LinearLayout>
     </LinearLayout>
 </ScrollView>
