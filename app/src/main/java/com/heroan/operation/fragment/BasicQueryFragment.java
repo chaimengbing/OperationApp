@@ -2,18 +2,21 @@ package com.heroan.operation.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.heroan.operation.R;
+import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.UiEventEntry;
 
 import zuo.biao.library.base.BaseFragment;
 
-public class BasicQueryFragment extends BaseFragment implements EventNotifyHelper.NotificationCenterDelegate{
+public class BasicQueryFragment extends BaseFragment implements EventNotifyHelper.NotificationCenterDelegate {
 
 
     private static BasicQueryFragment instance;
@@ -65,7 +68,7 @@ public class BasicQueryFragment extends BaseFragment implements EventNotifyHelpe
 
     @Override
     public void initData() {
-
+        ServiceUtils.sendData(ConfigParams.ReadTidydata);
     }
 
     @Override
@@ -75,8 +78,35 @@ public class BasicQueryFragment extends BaseFragment implements EventNotifyHelpe
 
     @Override
     public void didReceivedNotification(int id, Object... args) {
-        if (id == UiEventEntry.READ_DATA){
-
+        if (id == UiEventEntry.READ_DATA) {
+            String result = (String) args[0];
+            if (TextUtils.isEmpty(result)) {
+                return;
+            }
+            setData(result);
         }
     }
+
+    private void setData(String result) {
+        if (result.contains(ConfigParams.BatteryVolts.trim())) {// 遥测站地址：
+            dianyaText.setText(result.replaceAll(ConfigParams.BatteryVolts.trim(), "").trim());
+        } else if (result.contains(ConfigParams.GPRS_CSQ.trim())) {
+            xinhaoText.setText(result.replaceAll(ConfigParams.GPRS_CSQ.trim(), "").trim());
+        } else if (result.contains(ConfigParams.GPRS_Status.trim())) {
+            String status = ServiceUtils.getGPRSStatus(result.replaceAll(ConfigParams.GPRS_Status, "").trim(), getActivity());
+            netStateText.setText(status);
+        } else if (result.contains(ConfigParams.Temperature.trim())) {
+            wenduText.setText(result.replaceAll(ConfigParams.Temperature.trim(), "").trim());
+        } else if (result.contains(ConfigParams.TotalRainVal.trim())) {
+            yuliangText.setText(result.replaceAll(ConfigParams.TotalRainVal.trim(), "").trim());
+        } else if (result.contains(ConfigParams.WaterLevel_A.trim())) {
+            shuiweiText.setText(result.replaceAll(ConfigParams.WaterLevel_A.trim(), "").trim());
+        } else if (result.contains(ConfigParams.Send_informa_time_tm1.trim())) {
+            sendTimeText.setText(result.replaceAll(ConfigParams.Send_informa_time_tm1.trim(), "").trim());
+        } else if (result.contains(ConfigParams.SOCKET_STATUS_1.trim())) {
+            String status = ServiceUtils.getSocketStatus(result.replaceAll(ConfigParams.SOCKET_STATUS_1, "").trim(), getActivity());
+            sendstateText.setText(status);
+        }
+    }
+
 }

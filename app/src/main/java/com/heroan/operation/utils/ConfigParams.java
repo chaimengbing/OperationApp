@@ -109,6 +109,10 @@ public class ConfigParams
     public static final String SetYUN_SETTIME_SendMode = "Set_YUNTIME_Mode ";
     public static final String SetYUN_ELEMENT_SendMode = "SetYUN_ELEMENT_SendMode ";
 
+    public static final String SetAutoGSMMode = "SetAutoGSMMode ";
+    public static final String ReadTidySystemPara = "ReadTidySystemPara";
+    public static final String ReadTidydata = "ReadTidydata";
+
 
     // SetId_Type X，设置站号类型，0代表8位站号，1代表10位站号。(系统参数设置)
     public static final String SetId_Type = "SetId_Type ";

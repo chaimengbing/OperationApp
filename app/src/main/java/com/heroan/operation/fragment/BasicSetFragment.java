@@ -117,6 +117,9 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
 
             }
         });
+
+        sendContent(ConfigParams.ReadTidySystemPara);
+
     }
 
     @Override
@@ -172,7 +175,61 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
             timeText.setText(result);
             setTime = (String) args[1];
         } else if (id == UiEventEntry.READ_DATA) {
+            String result = (String) args[0];
+            if (TextUtils.isEmpty(result)) {
+                return;
+            }
+            setData(result);
+        }
+    }
 
+    private void setData(String result) {
+        if (result.contains(ConfigParams.SetAddr.trim())) {// 遥测站地址：
+            addressEdit.setText(result.replaceAll(ConfigParams.SetAddr.trim(), "").trim());
+        } else if (result.contains(ConfigParams.SETTIME.trim())) {
+            timeText.setText(result.replaceAll(ConfigParams.SETTIME.trim(), "").trim());
+        } else if (result.contains(ConfigParams.SetAnaWaterBac.trim())) {
+            waterBasicEdit.setText(result.replaceAll(ConfigParams.SetAnaWaterBac.trim(), "").trim());
+        } else if (result.contains(ConfigParams.SetAnaWaterSignal.trim())) {// 设备ID
+            String data = result.replaceAll(ConfigParams.SetAnaWaterSignal.trim(), "").trim();
+            if ("1".equals(data)) {
+                moniGroup.check(R.id.zheng_button);
+            } else {
+                moniGroup.check(R.id.fan_button);
+            }
+        } else if (result.contains(ConfigParams.SetAutoGSMMode.trim())) {
+            String data = result.replaceAll(ConfigParams.SetAutoGSMMode.trim(), "").trim();
+            if ("0".equals(data)) {
+                netGroup.check(R.id.auto_button);
+            } else {
+                netGroup.check(R.id.g2_button);
+            }
+        } else if (result.contains(ConfigParams.SetWater_caiji_Type.trim())) {
+            String data = result.replaceAll(ConfigParams.SetWater_caiji_Type.trim(), "").trim();
+            if ("1".equals(data)) {
+                celiangGroup.check(R.id.shuishen_button);
+            } else {
+                celiangGroup.check(R.id.konggao_button);
+            }
+        } else if (result.contains(ConfigParams.SetRainMeterPara.trim())) {
+            String data = result.replaceAll(ConfigParams.SetRainMeterPara.trim(), "").trim();
+            if ("0".equals(data)) {
+                rainGroup.check(R.id.rain_1);
+            } else if ("1".equals(data)) {
+                rainGroup.check(R.id.rain_2);
+            } else if ("2".equals(data)) {
+                rainGroup.check(R.id.rain_3);
+            } else {
+                rainGroup.check(R.id.rain_4);
+            }
+        } else if (result.contains(ConfigParams.SetWater485Type)) {
+            String data = result.replaceAll(ConfigParams.SetWater485Type, "").trim();
+            if (ServiceUtils.isNumeric(data)) {
+                int t = Integer.parseInt(data);
+                if (t < water485Items.length) {
+                    companySpinner.setSelection(t, false);
+                }
+            }
         }
     }
 
@@ -222,6 +279,7 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
         }
         switch (group.getId()) {
             case R.id.net_group:
+                GSMModeSet(checkedId);
                 break;
             case R.id.moni_group:
                 moniSet(checkedId);
@@ -243,6 +301,16 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
             content = content + "1";
         } else if (checkedId == R.id.fan_button) {
             content = content + "2";
+        }
+        sendContent(content);
+    }
+
+    private void GSMModeSet(int checkedId) {
+        String content = ConfigParams.SetAutoGSMMode;
+        if (checkedId == R.id.auto_button) {
+            content = content + "0";
+        } else if (checkedId == R.id.g2_button) {
+            content = content + "1";
         }
         sendContent(content);
     }

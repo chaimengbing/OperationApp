@@ -2006,8 +2006,9 @@ public class ServiceUtils {
      * @param content
      */
     public static void sendData(String content) {
-        Log.d(TAG,"sendData::content:" + content + "，mode：" + SettingUtil.getSetMode());
+        Log.d(TAG, "sendData::content:" + content + "，mode：" + SettingUtil.getSetMode());
         if (SettingUtil.getSetMode() == SettingUtil.KEY_SET_MODE_BLE) {
+            content = content + "\n";
             BleUtils.getInstance().sendData(content.getBytes());
         } else {
             SocketUtil.getSocketUtil().sendContent(content);
