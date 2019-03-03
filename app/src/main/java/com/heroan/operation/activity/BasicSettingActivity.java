@@ -11,7 +11,9 @@ import android.widget.TextView;
 import com.heroan.operation.R;
 import com.heroan.operation.fragment.BasicQueryFragment;
 import com.heroan.operation.fragment.BasicSetFragment;
+import com.heroan.operation.utils.UiEventEntry;
 
+import cn.com.heaton.blelibrary.ble.BleDevice;
 import zuo.biao.library.base.BaseActivity;
 import zuo.biao.library.ui.EditTextInfoWindow;
 import zuo.biao.library.util.SettingUtil;
@@ -25,6 +27,7 @@ public class BasicSettingActivity extends BaseActivity implements View.OnClickLi
     private TextView seniorSetting;
     private TextView leftText, rightText;
     private View leftView, rightView;
+    private BleDevice bleDevice;
 
 
     @Override
@@ -50,6 +53,10 @@ public class BasicSettingActivity extends BaseActivity implements View.OnClickLi
         turnToFragment(R.id.basic_set_layout, BasicSetFragment.createInstance());
         leftText.setSelected(true);
         rightText.setSelected(false);
+
+        if (getIntent() != null) {
+            bleDevice = (BleDevice) getIntent().getSerializableExtra(UiEventEntry.NOTIFY_BASIC_DEVICE);
+        }
     }
 
     @Override
@@ -64,7 +71,7 @@ public class BasicSettingActivity extends BaseActivity implements View.OnClickLi
         switch (v.getId()) {
             case R.id.senior_setting_textview:
                 toActivity(EditTextInfoWindow.createIntent(context, EditTextInfoWindow.TYPE_PASSWORD
-                        , "输入密码", StringUtil.getTrimedString(R.string.input_password)),
+                        , "输入密码", StringUtil.getTrimedString(getString(R.string.input_password))),
                         REQUEST_TO_EDIT_TEXT_INFO);
                 break;
             case R.id.left_text:
@@ -100,11 +107,11 @@ public class BasicSettingActivity extends BaseActivity implements View.OnClickLi
         switch (requestCode) {
             case REQUEST_TO_EDIT_TEXT_INFO:
                 if (data != null) {
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                     if (SettingUtil.getSetMode() == SettingUtil.KEY_SET_MODE_BLE) {
-                        toActivity(new Intent(getApplicationContext(), BleDeviceListActivity.class));
-                    } else {
-                        toActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                        intent.putExtra(UiEventEntry.NOTIFY_BASIC_DEVICE, bleDevice);
                     }
+                    toActivity(intent);
                 }
                 break;
         }

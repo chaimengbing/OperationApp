@@ -217,7 +217,7 @@ public class EditTextInfoWindow extends BaseBottomWindow implements OnClickListe
                 break;
         }
         etEditTextInfo.setMaxEms(maxEms);
-        tvEditTextInfoRemind.setText("限" + maxEms / 2 + "个字（或" + maxEms + "个字符）");
+//        tvEditTextInfoRemind.setText("限" + maxEms / 2 + "个字（或" + maxEms + "个字符）");
 
         if (intentType == TYPE_MAILADDRESS || intentType == TYPE_USUALADDRESS) {
             tvEditTextInfoPlace.setVisibility(View.VISIBLE);
@@ -278,7 +278,7 @@ public class EditTextInfoWindow extends BaseBottomWindow implements OnClickListe
             }
         });
 
-        etEditTextInfo.setText(StringUtil.getTrimedString(getIntent().getStringExtra(INTENT_VALUE)));
+        etEditTextInfo.setHint(StringUtil.getTrimedString(getIntent().getStringExtra(INTENT_VALUE)));
         etEditTextInfo.setSelection(StringUtil.getLength(etEditTextInfo, true));
 
     }

@@ -288,7 +288,6 @@ public class HomeActivity extends BaseActivity implements PopupWindow.OnDismissL
                 currentTab = UiEventEntry.TAB_VERSION;
                 currentSel = UiEventEntry.TAB_SETTING_VERSION;
                 bundle.putBoolean("isBleDevice", true);
-                bundle.putSerializable("device", bleDevice);
                 turnToFragmentStack(R.id.detail_layout, RTUVersionFragment.createInstance(), bundle);
 
                 setTitleRightVisible(View.GONE);
@@ -948,8 +947,7 @@ public class HomeActivity extends BaseActivity implements PopupWindow.OnDismissL
         rtuVersion.setOnClickListener(this);
 
         if (getIntent() != null) {
-            String name = getIntent().getStringExtra(UiEventEntry.NOTIFY_BASIC_NAME);
-            bleDevice = (BleDevice) getIntent().getSerializableExtra("device");
+            bleDevice = (BleDevice) getIntent().getSerializableExtra(UiEventEntry.NOTIFY_BASIC_DEVICE);
         }
 
         Bundle bundle = new Bundle();

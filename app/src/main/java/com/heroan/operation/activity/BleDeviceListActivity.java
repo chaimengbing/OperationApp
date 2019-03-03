@@ -156,18 +156,22 @@ public class BleDeviceListActivity extends BaseActivity implements AdapterView.O
     }
 
 
-    private void toBleView() {
-        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-        intent.putExtra(UiEventEntry.NOTIFY_BASIC_NAME, getString(R.string.lru_3300));
-        intent.putExtra(UiEventEntry.NOTIFY_BASIC_TYPE, UiEventEntry.LRU_BLE_3300);
-        startActivity(intent);
+    private void toBleView(BleDevice bleDevice) {
+        Intent intent = new Intent(getApplicationContext(), BasicSettingActivity.class);
+        intent.putExtra(UiEventEntry.NOTIFY_BASIC_DEVICE, bleDevice);
+        toActivity(intent);
     }
 
 
     @Override
     public void didReceivedNotification(int id, Object... args) {
         if (id == UiEventEntry.NOTIFY_BLE_CONNECT_SUCCESS) {
-            toBleView();
+            BleDevice bleDevice = (BleDevice) args[0];
+            if (bleDevice != null) {
+                toBleView(bleDevice);
+            } else {
+                showShortToast(R.string.connect_fail);
+            }
         } else if (id == UiEventEntry.NOTIFY_BLE_SCAN_SUCCESS) {
             BluetoothDevice bleDevice = (BluetoothDevice) args[0];
             if (bleDevice != null) {
@@ -178,7 +182,7 @@ public class BleDeviceListActivity extends BaseActivity implements AdapterView.O
             showEmptyView();
 
         } else if (id == UiEventEntry.NOTIFY_BLE_CONNECT_FAIL) {
-
+            showShortToast(R.string.connect_fail);
         } else if (id == UiEventEntry.NOTIFY_BLE_CONNECT_STOP) {
             hideLoading();
             showEmptyView();

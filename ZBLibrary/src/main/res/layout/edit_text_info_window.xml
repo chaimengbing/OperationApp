@@ -49,7 +49,7 @@
                 android:background="@null"
                 android:cursorVisible="true"
                 android:gravity="center|left"
-                android:hint="请在这里输入"
+                android:hint="请输入密码"
                 android:importantForAutofill="no"
                 android:paddingRight="10dp"
                 android:textColor="@color/black"
@@ -78,6 +78,7 @@
         android:background="@color/white"
         android:paddingTop="@dimen/item_padding_bottom"
         android:paddingBottom="30dp"
+        android:visibility="gone"
         android:text="请输入密码" />
 
     <View style="@style/divider_horizontal_1px_gray" />

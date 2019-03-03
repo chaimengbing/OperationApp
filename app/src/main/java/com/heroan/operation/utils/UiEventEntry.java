@@ -65,6 +65,7 @@ public class UiEventEntry
     public static final String NOTIFY_NOWEL = "NOTIFY_NOWEL";
     public static final String NOTIFY_BASIC_NAME = "NOTIFY_BASIC_NAME";
     public static final String NOTIFY_BASIC_TYPE = "NOTIFY_BASIC_TYPE";
+    public static final String NOTIFY_BASIC_DEVICE = "NOTIFY_BASIC_DEVICE";
 
 
     public static final String NOTIFY_DETAIL_NAME = "NOTIFY_DETAIL_NAME";
