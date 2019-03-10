@@ -1,6 +1,17 @@
 apply plugin: 'com.android.application'
 
 android {
+
+    signingConfigs { //gradle assembleRelease
+        release {
+            storeFile file("operation.jks")
+            storePassword '123456'
+            keyAlias "operationkey"
+            keyPassword '123456'
+
+        }
+    }
+
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.heroan.operation"
@@ -10,10 +21,34 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    lintOptions{
+        abortOnError false
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            buildConfigField "boolean", "IS_DEBUG", "false"
+            buildConfigField "boolean", "IS_FORMAT_JSON_LOG", "false"
+        }
+
+        debug{
+            signingConfig signingConfigs.release
+            buildConfigField "boolean", "IS_DEBUG", "true"
+            buildConfigField "boolean", "IS_FORMAT_JSON_LOG", "false"
+        }
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            if (variant.buildType.isDebuggable()) {
+                outputFileName = "Operation_V${variant.versionName}_debug_" + buildTime() + ".apk"
+            } else {
+                outputFileName = "Operation_V${variant.versionName}_release_" + buildTime() + ".apk"
+            }
         }
     }
 }
@@ -29,4 +64,11 @@ dependencies {
     api project(':blelibrary')
 
     implementation 'com.github.vilyever:AndroidSocketClient:2.0.1'
+}
+
+
+def buildTime() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMdd')
+    return formattedDate
 }

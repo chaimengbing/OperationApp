@@ -93,6 +93,18 @@
             android:name=".activity.BasicSettingActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MessageActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.RtuListActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.OperaSignInActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
 
     </application>
 

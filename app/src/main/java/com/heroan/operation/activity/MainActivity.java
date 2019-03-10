@@ -71,10 +71,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 connectDevice();
                 break;
             case R.id.main_3:
+                toActivity(new Intent(getApplicationContext(), RtuListActivity.class));
                 break;
             case R.id.main_4:
+                toActivity(new Intent(getApplicationContext(), MessageActivity.class));
                 break;
             case R.id.main_5:
+                toActivity(new Intent(getApplicationContext(), OperaSignInActivity.class));
                 break;
             case R.id.main_6:
                 toActivity(new Intent(getApplicationContext(), SystemSetActivity.class));

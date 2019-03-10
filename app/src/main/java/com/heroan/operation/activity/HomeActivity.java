@@ -911,7 +911,6 @@ public class HomeActivity extends BaseActivity implements PopupWindow.OnDismissL
         backImageView = findViewById(R.id.title_back);
         titleRight = findViewById(R.id.title_right);
         title = findViewById(R.id.title);
-        backImageView = findViewById(R.id.title_back);
         rtuVersion = findViewById(R.id.rtu_version);
 
         titleLayout = findViewById(R.id.ll_layout);

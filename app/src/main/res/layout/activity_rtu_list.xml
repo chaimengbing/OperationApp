@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/activity_page">
+
+    <include layout="@layout/toolbar_layout" />
+
+    <View
+        android:id="@+id/divider"
+        style="@style/divider_horizontal_1dp_gray"
+        android:layout_below="@id/tab_layout" />
+
+    <ListView
+        android:id="@+id/message_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="#00000000">
+
+    </ListView>
+
+</LinearLayout>
