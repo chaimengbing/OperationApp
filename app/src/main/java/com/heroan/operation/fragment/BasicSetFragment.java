@@ -12,16 +12,19 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.heroan.operation.OperationApplication;
 import com.heroan.operation.R;
 import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
+import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
 import java.text.SimpleDateFormat;
 
 import zuo.biao.library.base.BaseFragment;
+import zuo.biao.library.util.Log;
 
 public class BasicSetFragment extends BaseFragment implements View.OnClickListener, EventNotifyHelper.NotificationCenterDelegate, RadioGroup.OnCheckedChangeListener {
 
@@ -66,12 +69,14 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onDestroy() {
         super.onDestroy();
+        EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_RESULT_OK);
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.SELECT_TIME);
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
     }
 
     @Override
     public void initView() {
+        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_RESULT_OK);
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.SELECT_TIME);
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
 
@@ -118,7 +123,18 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
             }
         });
 
-        sendContent(ConfigParams.ReadTidySystemPara);
+        OperationApplication.applicationHandler.postAtTime(new Runnable() {
+            @Override
+            public void run() {
+                ServiceUtils.sendData(ConfigParams.ReadTidySystemPara);
+            }
+        },500);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
     }
 
@@ -180,14 +196,29 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
                 return;
             }
             setData(result);
+        } else if (id == UiEventEntry.READ_RESULT_OK) {
+            String result = "";
+            if (args[1] != null) {
+                result = (String) args[1];
+            }
+            if (!TextUtils.isEmpty(result)) {
+                if (result.equals(ConfigParams.RESETALL)) {
+                    ToastUtil.showToastLong(getString(R.string.device_returned_factory) + getString(R.string.Please_click) + "'" + getString(R.string.Save_settings_and_restart) + "'" + getString(R.string.Button_restart_device));
+                } else if (result.equals(ConfigParams.ResetUnit) || result.equals(ConfigParams.RESETALL) || result.equals(ConfigParams.RESETUNIT)) {
+                    ToastUtil.showToastLong(getString(R.string.device_is_restarting));
+                } else if (result.equals(ConfigParams.RESETALL10)) {
+                    ToastUtil.showToastLong(getString(R.string.five_minutes));
+                } else {
+                    ToastUtil.showToastLong(getString(R.string.Set_successfully));
+                }
+            }
+
         }
     }
 
     private void setData(String result) {
         if (result.contains(ConfigParams.SetAddr.trim())) {// 遥测站地址：
             addressEdit.setText(result.replaceAll(ConfigParams.SetAddr.trim(), "").trim());
-        } else if (result.contains(ConfigParams.SETTIME.trim())) {
-            timeText.setText(result.replaceAll(ConfigParams.SETTIME.trim(), "").trim());
         } else if (result.contains(ConfigParams.SetAnaWaterBac.trim())) {
             waterBasicEdit.setText(result.replaceAll(ConfigParams.SetAnaWaterBac.trim(), "").trim());
         } else if (result.contains(ConfigParams.SetAnaWaterSignal.trim())) {// 设备ID
@@ -230,6 +261,37 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
                     companySpinner.setSelection(t, false);
                 }
             }
+        } else if (result.contains(ConfigParams.SETTIME.trim())) {
+            String timeTemp = result.replaceAll(ConfigParams.SETTIME.trim(), "").trim();
+            String time = timeTemp.replaceAll(" ", "0").trim();
+
+            String month = time.substring(4, 6);
+            int intMonth = Integer.valueOf(month);
+            if (intMonth > 12 || intMonth < 1) {
+
+                ToastUtil.showToastLong(getString(R.string.Month_error));
+                return;
+            }
+            int day = Integer.valueOf(time.substring(6, 8));
+
+            if (day > 31 || intMonth < 1) {
+
+                ToastUtil.showToastLong(getString(R.string.Date_error));
+                return;
+            }
+
+            int hour = Integer.valueOf(time.substring(8, 10));
+            int min = Integer.valueOf(time.substring(10, 12));
+            int s = Integer.valueOf(time.substring(12, 14));
+            if (hour > 24 || hour < 0 || min > 60 || min < 0 || s > 60 || s < 0) {
+
+                ToastUtil.showToastLong(getString(R.string.Time_error1));
+                return;
+            }
+
+            String rtuTime = ServiceUtils.getTime(time, getActivity());
+            timeText.setText(rtuTime);
+            setTime = time;
         }
     }
 

@@ -328,11 +328,6 @@ public class HomeActivity extends BaseActivity implements PopupWindow.OnDismissL
     }
 
     private void backMain() {
-        if (SettingUtil.getSetMode() == SettingUtil.KEY_SET_MODE_BLE) {
-            BleUtils.getInstance().disConnectDevice();
-        } else {
-            SocketUtil.getSocketUtil().closeSocketClient();
-        }
         this.finish();
     }
 

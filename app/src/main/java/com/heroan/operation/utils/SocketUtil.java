@@ -215,11 +215,7 @@ public class SocketUtil
             {
                 for (String result : res)
                 {
-                    if (ServiceUtils.isGarbledCode(result))
-                    {
-//                        return;
-                    }
-                    Log.i(TAG, result);
+                    Log.i(TAG, "result:" + result);
                     if (ConfigParams.SetBatteryHigh.equals(send) || ConfigParams.SetBatteryLow.equals(send) || ConfigParams.ReadBatteryHighStatus.equals(send) || ConfigParams.ReadBatteryLowStatus.equals(send))
                     {//AD电压采集单独处理
                         EventNotifyHelper.getInstance().postUiNotification(UiEventEntry.READ_AD_LV, result);

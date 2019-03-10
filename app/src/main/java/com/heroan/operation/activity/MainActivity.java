@@ -86,12 +86,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private long firstTime = 0;//第一次返回按钮计时
+
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        switch(keyCode){
+        switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
                 long secondTime = System.currentTimeMillis();
-                if(secondTime - firstTime > 2000){
+                if (secondTime - firstTime > 2000) {
                     showShortToast("再按一次退出");
                     firstTime = secondTime;
                 } else {//完全退出
@@ -116,6 +117,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public void didReceivedNotification(int id, Object... args) {
         if (id == UiEventEntry.CONNCT_OK) {
+            showShortToast(getString(R.string.Device_connected_successfully));
             toActivity(new Intent(getApplicationContext(), BasicSettingActivity.class));
         } else if (id == UiEventEntry.CONNCT_FAIL) {
             showShortToast(R.string.Device_wifi_settings);

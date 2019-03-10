@@ -11,6 +11,11 @@ import android.widget.TextView;
 import com.heroan.operation.R;
 import com.heroan.operation.fragment.BasicQueryFragment;
 import com.heroan.operation.fragment.BasicSetFragment;
+import com.heroan.operation.utils.BleUtils;
+import com.heroan.operation.utils.ConfigParams;
+import com.heroan.operation.utils.EventNotifyHelper;
+import com.heroan.operation.utils.ServiceUtils;
+import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
 import cn.com.heaton.blelibrary.ble.BleDevice;
@@ -19,7 +24,7 @@ import zuo.biao.library.ui.EditTextInfoWindow;
 import zuo.biao.library.util.SettingUtil;
 import zuo.biao.library.util.StringUtil;
 
-public class BasicSettingActivity extends BaseActivity implements View.OnClickListener {
+public class BasicSettingActivity extends BaseActivity implements View.OnClickListener, EventNotifyHelper.NotificationCenterDelegate {
 
     private static final int REQUEST_TO_EDIT_TEXT_INFO = 20;
 
@@ -40,7 +45,15 @@ public class BasicSettingActivity extends BaseActivity implements View.OnClickLi
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.CONNCT_OK);
+    }
+
+    @Override
     public void initView() {
+        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.CONNCT_OK);
+
         seniorSetting = findView(R.id.senior_setting_textview);
         leftView = findView(R.id.left_divider);
         rightView = findView(R.id.right_divider);
@@ -57,6 +70,7 @@ public class BasicSettingActivity extends BaseActivity implements View.OnClickLi
         if (getIntent() != null) {
             bleDevice = (BleDevice) getIntent().getSerializableExtra(UiEventEntry.NOTIFY_BASIC_DEVICE);
         }
+
     }
 
     @Override
@@ -69,6 +83,9 @@ public class BasicSettingActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.title_back:
+                closeConect();
+                break;
             case R.id.senior_setting_textview:
                 toActivity(EditTextInfoWindow.createIntent(context, EditTextInfoWindow.TYPE_PASSWORD
                         , "输入密码", StringUtil.getTrimedString(getString(R.string.input_password))),
@@ -93,6 +110,21 @@ public class BasicSettingActivity extends BaseActivity implements View.OnClickLi
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        closeConect();
+    }
+
+    private void closeConect() {
+        if (SettingUtil.getSetMode() == SettingUtil.KEY_SET_MODE_BLE) {
+            BleUtils.getInstance().disConnectDevice();
+        } else {
+            SocketUtil.getSocketUtil().closeSocketClient();
+        }
+        finish();
+    }
+
     private void turnToFragment(int containerViewId, Fragment toFragmentClass) {
         fragmentManager.beginTransaction().replace(containerViewId, toFragmentClass).commitAllowingStateLoss();
     }
@@ -114,6 +146,13 @@ public class BasicSettingActivity extends BaseActivity implements View.OnClickLi
                     toActivity(intent);
                 }
                 break;
+        }
+    }
+
+    @Override
+    public void didReceivedNotification(int id, Object... args) {
+        if (id == UiEventEntry.CONNCT_OK) {
+            showShortToast(getString(R.string.Device_connected_successfully));
         }
     }
 }
