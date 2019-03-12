@@ -9,12 +9,21 @@
         style="@style/divider_horizontal_1dp_gray"
         android:layout_below="@id/tab_layout" />
 
-    <ListView
-        android:id="@+id/message_lv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="#00000000">
+    <!-- BaseHttpRecyclerXXX的子类布局layout中，SmartRefreshLayout和RecyclerView必须有，且它们的id必须按以下写法 -->
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@id/srlBaseHttpList"
+        style="@style/match_match"
+        app:srlEnableLoadmore="true"
+        app:srlEnablePreviewInEditMode="true">
 
-    </ListView>
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader style="@style/match_wrap" />
+
+        <ListView
+            android:id="@id/lvBaseList"
+            style="@style/lv" />
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter style="@style/match_wrap" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ll_horizontal_match_wrap">
+
+    <LinearLayout
+        style="@style/ll_horizontal_match_wrap"
+        android:layout_weight="1"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/addr_text"
+            style="@style/text_huge_black"
+            android:text="北京市" />
+    </LinearLayout>
+
+    <View style="@style/divider_vertical_1dp_gray" />
+
+    <LinearLayout
+        style="@style/ll_horizontal_match_wrap"
+        android:layout_weight="1"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/id_text"
+            style="@style/text_huge_black"
+            android:text="北京市" />
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -2,16 +2,26 @@ package com.heroan.operation.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.heroan.operation.R;
+import com.heroan.operation.adapter.RtuListAdapter;
+import com.heroan.operation.model.RtuItem;
+import com.heroan.operation.utils.TestUtil;
+
+import java.util.List;
 
 import zuo.biao.library.base.BaseActivity;
+import zuo.biao.library.base.BaseHttpListActivity;
+import zuo.biao.library.interfaces.AdapterCallBack;
+import zuo.biao.library.util.JSON;
 
-public class RtuListActivity extends BaseActivity implements View.OnClickListener{
+public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, RtuListAdapter> implements View.OnClickListener {
 
     private TextView titleRight;
     private TextView title;
@@ -25,6 +35,8 @@ public class RtuListActivity extends BaseActivity implements View.OnClickListene
         initView();
         initData();
         initEvent();
+
+        srlBaseHttpList.autoRefresh();
     }
 
     @Override
@@ -34,6 +46,7 @@ public class RtuListActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void initView() {
+        super.initView();
 
         backImageView = findViewById(R.id.title_back);
         titleRight = findViewById(R.id.title_right);
@@ -41,13 +54,47 @@ public class RtuListActivity extends BaseActivity implements View.OnClickListene
     }
 
     @Override
+    public void setList(final List<RtuItem> list) {
+        setList(new AdapterCallBack<RtuListAdapter>() {
+
+            @Override
+            public RtuListAdapter createAdapter() {
+                return new RtuListAdapter(context);
+            }
+
+            @Override
+            public void refreshAdapter() {
+                adapter.refresh(list);
+            }
+        });
+    }
+
+    @Override
     public void initData() {
+        super.initData();
         title.setText(getString(R.string.rtu_list));
         titleRight.setVisibility(View.GONE);
     }
 
     @Override
+    public void getListAsync(final int page) {
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                onHttpResponse(-page, page >= 5 ? null : JSON.toJSONString(TestUtil.getUserList(page, 10)), null);
+            }
+        }, 1000);
+    }
+
+    @Override
+    public List<RtuItem> parseArray(String json) {
+        return JSON.parseArray(json, RtuItem.class);
+    }
+
+    @Override
     public void initEvent() {
+        super.initEvent();
         backImageView.setOnClickListener(this);
     }
 
@@ -67,8 +114,6 @@ public class RtuListActivity extends BaseActivity implements View.OnClickListene
         super.onBackPressed();
         finish();
     }
-
-
 
 
     @Override
