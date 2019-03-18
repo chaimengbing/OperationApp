@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.heroan.operation.R;
+import com.heroan.operation.interfaces.OnHttpResponseListener;
+import com.heroan.operation.manager.OnHttpResponseListenerImpl;
+import com.heroan.operation.utils.HttpRequest;
 
 import zuo.biao.library.base.BaseActivity;
 
@@ -33,7 +36,17 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void initData() {
+        HttpRequest.translate("library", 0, new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
+            @Override
+            public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
 
+            }
+
+            @Override
+            public void onHttpError(int requestCode, Exception e) {
+
+            }
+        }));
     }
 
     @Override
