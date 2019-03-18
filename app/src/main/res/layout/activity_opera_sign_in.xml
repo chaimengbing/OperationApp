@@ -4,14 +4,156 @@
 
     <include layout="@layout/toolbar_layout" />
 
-    <View
-        android:id="@+id/divider"
-        style="@style/divider_horizontal_1dp_gray"
-        android:layout_below="@id/tab_layout" />
+    <LinearLayout
+        style="@style/ll_vertical_match_match"
+        android:background="@color/pop_background">
 
-    <TextView
-       style="@style/text_title_150"
-        android:text="@string/operation_sign_in"/>
+        <View
+            android:id="@+id/divider"
+            style="@style/divider_horizontal_1dp_gray"
+            android:layout_below="@id/tab_layout" />
+
+        <RelativeLayout
+            style="@style/ll_update_white"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/update_operation_imageview"
+                style="@style/img_centercrop"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/padding_12"
+                android:src="@mipmap/update_operation_list" />
+
+
+            <TextView
+                style="@style/text_huge_black"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/padding_10"
+                android:layout_toRightOf="@id/update_operation_imageview"
+                android:text="@string/operation_sign_in" />
+
+
+            <ImageView
+                style="@style/content_item_rt_img"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout style="@style/ll_selimg_white">
+
+            <ImageView style="@style/img_select" />
+
+            <TextView
+                style="@style/text_middle"
+                android:layout_marginLeft="@dimen/padding_12"
+                android:text="环境照片" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/ll_selimg_white">
+
+            <ImageView style="@style/img_select" />
+
+            <TextView
+                style="@style/text_middle"
+                android:layout_marginLeft="@dimen/padding_12"
+                android:text="运维前照片" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/ll_selimg_white">
+
+            <ImageView style="@style/img_select" />
+
+            <TextView
+                style="@style/text_middle"
+                android:layout_marginLeft="@dimen/padding_12"
+                android:text="运维后照片" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/ll_info_white">
+
+
+            <LinearLayout
+                style="@style/ll_horizontal_match_wrap"
+                android:paddingLeft="@dimen/padding_12"
+                android:paddingTop="@dimen/padding_10"
+                android:paddingRight="@dimen/padding_12">
+
+                <LinearLayout style="@style/ll_vertical_we1">
+
+                    <TextView
+                        style="@style/text_set_title"
+                        android:text="当前经度" />
+
+                    <TextView
+                        style="@style/edit_text_title"
+                        android:layout_marginRight="@dimen/padding_12" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/ll_vertical_we1">
+
+                    <TextView
+                        style="@style/text_set_title"
+                        android:text="当前纬度" />
+
+                    <TextView
+                        style="@style/edit_text_title"
+                        android:layout_marginRight="@dimen/padding_12" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/ll_horizontal_match_wrap"
+                android:layout_marginTop="@dimen/padding_18"
+                android:paddingLeft="@dimen/padding_12"
+                android:paddingTop="@dimen/padding_10"
+                android:paddingRight="@dimen/padding_12">
+
+                <LinearLayout style="@style/ll_vertical_we1">
+
+                    <TextView
+                        style="@style/text_set_title"
+                        android:text="当前海拔" />
+
+                    <TextView
+                        style="@style/edit_text_title"
+                        android:layout_marginRight="@dimen/padding_12" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ll_vertical_we1"
+                    android:visibility="invisible">
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/ll_info_white">
+
+            <TextView
+                style="@style/text_set_title"
+                android:layout_margin="@dimen/padding_10"
+                android:text="运维过程描述" />
+
+            <EditText
+                style="@style/edit_text_bg"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </LinearLayout>

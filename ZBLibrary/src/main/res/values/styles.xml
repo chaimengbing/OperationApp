@@ -277,6 +277,7 @@
     <style name="img_centercrop" parent="wrap_wrap">
         <item name="android:scaleType">centerCrop</item>
         <item name="android:gravity">center</item>
+
     </style>
 
     <style name="img_centerInside" parent="wrap_wrap">
@@ -423,6 +424,10 @@
 
     <style name="ll_vertical_match_wrap" parent="match_wrap">
         <item name="android:gravity">center_horizontal</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="ll_vertical_we1" parent="match_wrap">
+        <item name="android:layout_weight">1</item>
         <item name="android:orientation">vertical</item>
     </style>
 

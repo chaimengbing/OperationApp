@@ -76,4 +76,30 @@
         <item name="android:layout_weight">1</item>
     </style>
 
+
+    <style name="ll_update_white">
+        <item name="android:layout_marginTop">@dimen/padding_6</item>
+        <item name="android:layout_marginBottom">@dimen/padding_6</item>
+        <item name="android:layout_marginLeft">@dimen/padding_12</item>
+        <item name="android:layout_marginRight">@dimen/padding_12</item>
+        <item name="android:layout_height">@dimen/update_height</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingBottom">@dimen/padding_5</item>
+    </style>
+
+    <style name="ll_selimg_white" parent="ll_update_white">
+        <item name="android:layout_height">@dimen/white_ll_height</item>
+    </style>
+    <style name="ll_info_white" parent="ll_update_white">
+        <item name="android:layout_height">@dimen/white_ll_height</item>
+    </style>
+
+    <style name="img_select" parent="match_wrap">
+        <item name="android:layout_height">@dimen/img_height</item>
+        <item name="android:src">@drawable/add_light</item>
+        <item name="android:scaleType">center</item>
+    </style>
+
 </resources>
