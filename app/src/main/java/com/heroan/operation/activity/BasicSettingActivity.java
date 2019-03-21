@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.SocketUtil;
+import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
 import cn.com.heaton.blelibrary.ble.BleDevice;
@@ -47,11 +49,13 @@ public class BasicSettingActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_RESULT_OK);
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.CONNCT_OK);
     }
 
     @Override
     public void initView() {
+        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_RESULT_OK);
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.CONNCT_OK);
 
         seniorSetting = findView(R.id.senior_setting_textview);
@@ -78,6 +82,7 @@ public class BasicSettingActivity extends BaseActivity implements View.OnClickLi
         seniorSetting.setOnClickListener(this);
         leftText.setOnClickListener(this);
         rightText.setOnClickListener(this);
+        findView(R.id.title_back).setOnClickListener(this);
     }
 
     @Override
@@ -153,6 +158,23 @@ public class BasicSettingActivity extends BaseActivity implements View.OnClickLi
     public void didReceivedNotification(int id, Object... args) {
         if (id == UiEventEntry.CONNCT_OK) {
             showShortToast(getString(R.string.Device_connected_successfully));
+        } else if (id == UiEventEntry.READ_RESULT_OK) {
+            String result = "";
+            if (args[1] != null) {
+                result = (String) args[1];
+            }
+            if (!TextUtils.isEmpty(result)) {
+                if (result.equals(ConfigParams.RESETALL)) {
+                    ToastUtil.showToastLong(getString(R.string.device_returned_factory) + getString(R.string.Please_click) + "'" + getString(R.string.Save_settings_and_restart) + "'" + getString(R.string.Button_restart_device));
+                } else if (result.equals(ConfigParams.ResetUnit) || result.equals(ConfigParams.RESETALL) || result.equals(ConfigParams.RESETUNIT)) {
+                    ToastUtil.showToastLong(getString(R.string.device_is_restarting));
+                } else if (result.equals(ConfigParams.RESETALL10)) {
+                    ToastUtil.showToastLong(getString(R.string.five_minutes));
+                } else {
+                    ToastUtil.showToastLong(getString(R.string.Set_successfully));
+                }
+            }
+
         }
     }
 }

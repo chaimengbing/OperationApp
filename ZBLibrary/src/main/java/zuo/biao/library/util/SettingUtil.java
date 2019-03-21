@@ -247,6 +247,7 @@ public final class SettingUtil {
 
     /**
      * TODO 改为你的正式服务器地址
+     * http://rtuyun.cn/registerAjax
      */
     public static final String URL_SERVER_ADDRESS_NORMAL_HTTP = "http://rtuyun.cn";//正式服务器
     /**

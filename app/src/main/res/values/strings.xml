@@ -727,6 +727,7 @@
     <string name="five_minutes">配置保存中，请勿操作，五分钟后自动重启设备</string>
     <string name="username">用户名：</string>
     <string name="passWord">密码：</string>
+    <string name="name_or_pass_no_null">用户名或密码不能为空</string>
     <string name="yes">确定</string>
     <string name="Password_error">密码错误重新输入！</string>
     <string name="cancel">取消</string>

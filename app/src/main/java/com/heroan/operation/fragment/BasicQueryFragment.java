@@ -6,22 +6,27 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.heroan.operation.R;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.ServiceUtils;
+import com.heroan.operation.utils.ToastUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
 import zuo.biao.library.base.BaseFragment;
 
-public class BasicQueryFragment extends BaseFragment implements EventNotifyHelper.NotificationCenterDelegate {
+public class BasicQueryFragment extends BaseFragment implements EventNotifyHelper.NotificationCenterDelegate, View.OnClickListener {
 
 
     private static BasicQueryFragment instance;
 
-    private TextView dianyaText, xinhaoText, netStateText, sendstateText, sendTimeText, wenduText, yuliangText, shuiweiText;
+    private TextView dianyaText, xinhaoText, netStateText, sendstateText, sendTimeText, wenduText, yuliangText, shuiweiText,currentYuliangText;
+    private TextView yuliangSet;
+    private EditText yuliangEdit;
 
     public static BasicQueryFragment createInstance() {
         if (instance == null) {
@@ -64,16 +69,20 @@ public class BasicQueryFragment extends BaseFragment implements EventNotifyHelpe
         wenduText = findView(R.id.wendu_text);
         yuliangText = findView(R.id.yuliang_text);
         shuiweiText = findView(R.id.shuiwei_text);
+        yuliangEdit = findView(R.id.yuliang_edittext);
+        yuliangSet = findView(R.id.yuliang_button);
+        currentYuliangText = findView(R.id.current_yuliang_text);
     }
 
     @Override
     public void initData() {
-        ServiceUtils.sendData(ConfigParams.ReadTidydata);
+        ServiceUtils.sendData(ConfigParams.Readdata);
+//        ServiceUtils.sendData(ConfigParams.ReadTidydata);
     }
 
     @Override
     public void initEvent() {
-
+        yuliangSet.setOnClickListener(this);
     }
 
     @Override
@@ -88,17 +97,22 @@ public class BasicQueryFragment extends BaseFragment implements EventNotifyHelpe
     }
 
     private void setData(String result) {
-        if (result.contains(ConfigParams.BatteryVolts.trim())) {// 遥测站地址：
-            dianyaText.setText(result.replaceAll(ConfigParams.BatteryVolts.trim(), "").trim());
+        if (result.contains(ConfigParams.BatteryVolts.trim())) {
+            if (result.contains(ConfigParams.SHIDIANBatteryVolts)) {
+            } else {
+                dianyaText.setText(result.replaceAll(ConfigParams.BatteryVolts.trim(), "").trim());
+            }
         } else if (result.contains(ConfigParams.GPRS_CSQ.trim())) {
             xinhaoText.setText(result.replaceAll(ConfigParams.GPRS_CSQ.trim(), "").trim());
         } else if (result.contains(ConfigParams.GPRS_Status.trim())) {
             String status = ServiceUtils.getGPRSStatus(result.replaceAll(ConfigParams.GPRS_Status, "").trim(), getActivity());
             netStateText.setText(status);
-        } else if (result.contains(ConfigParams.Temperature.trim())) {
+        } else if (result.contains(ConfigParams.Temperature.trim()) && (!result.contains(ConfigParams.Temperature_A)) && (!result.contains(ConfigParams.Temperature_G))) {
             wenduText.setText(result.replaceAll(ConfigParams.Temperature.trim(), "").trim());
         } else if (result.contains(ConfigParams.TotalRainVal.trim())) {
-            yuliangText.setText(result.replaceAll(ConfigParams.TotalRainVal.trim(), "").trim());
+            String rain = result.replaceAll(ConfigParams.TotalRainVal, "").trim();
+            yuliangEdit.setText(rain);
+//            yuliangEdit.setText(result.replaceAll(ConfigParams.TotalRainVal.trim(), "").trim());
         } else if (result.contains(ConfigParams.WaterLevel_A.trim())) {
             shuiweiText.setText(result.replaceAll(ConfigParams.WaterLevel_A.trim(), "").trim());
         } else if (result.contains(ConfigParams.Send_informa_time_tm1.trim())) {
@@ -106,7 +120,20 @@ public class BasicQueryFragment extends BaseFragment implements EventNotifyHelpe
         } else if (result.contains(ConfigParams.SOCKET_STATUS_1.trim())) {
             String status = ServiceUtils.getSocketStatus(result.replaceAll(ConfigParams.SOCKET_STATUS_1, "").trim(), getActivity());
             sendstateText.setText(status);
+        } else if (result.contains(ConfigParams.PrecentRainVal)) {
+            currentYuliangText.setText(result.replaceAll(ConfigParams.PrecentRainVal, "").trim());
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.yuliang_button) {
+            String rain = yuliangEdit.getText().toString().trim();
+            if (TextUtils.isEmpty(rain)) {
+                ToastUtil.showToastLong(getString(R.string.cumulative_rainfall_value_empty));
+                return;
+            }
+            ServiceUtils.sendData(ConfigParams.TotalRainVal + rain);
+        }
+    }
 }

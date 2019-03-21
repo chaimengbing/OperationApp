@@ -12,7 +12,6 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.heroan.operation.OperationApplication;
 import com.heroan.operation.R;
 import com.heroan.operation.adapter.SimpleSpinnerAdapter;
 import com.heroan.operation.utils.ConfigParams;
@@ -24,7 +23,6 @@ import com.heroan.operation.utils.UiEventEntry;
 import java.text.SimpleDateFormat;
 
 import zuo.biao.library.base.BaseFragment;
-import zuo.biao.library.util.Log;
 
 public class BasicSetFragment extends BaseFragment implements View.OnClickListener, EventNotifyHelper.NotificationCenterDelegate, RadioGroup.OnCheckedChangeListener {
 
@@ -69,14 +67,12 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onDestroy() {
         super.onDestroy();
-        EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_RESULT_OK);
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.SELECT_TIME);
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
     }
 
     @Override
     public void initView() {
-        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_RESULT_OK);
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.SELECT_TIME);
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
 
@@ -122,13 +118,13 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
 
             }
         });
-
-        OperationApplication.applicationHandler.postAtTime(new Runnable() {
-            @Override
-            public void run() {
-                ServiceUtils.sendData(ConfigParams.ReadTidySystemPara);
-            }
-        },500);
+        ServiceUtils.sendData(ConfigParams.ReadSystemPara);
+//        OperationApplication.applicationHandler.postAtTime(new Runnable() {
+//            @Override
+//            public void run() {
+//                ServiceUtils.sendData(ConfigParams.ReadTidySystemPara);
+//            }
+//        },500);
 
     }
 
@@ -196,23 +192,6 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
                 return;
             }
             setData(result);
-        } else if (id == UiEventEntry.READ_RESULT_OK) {
-            String result = "";
-            if (args[1] != null) {
-                result = (String) args[1];
-            }
-            if (!TextUtils.isEmpty(result)) {
-                if (result.equals(ConfigParams.RESETALL)) {
-                    ToastUtil.showToastLong(getString(R.string.device_returned_factory) + getString(R.string.Please_click) + "'" + getString(R.string.Save_settings_and_restart) + "'" + getString(R.string.Button_restart_device));
-                } else if (result.equals(ConfigParams.ResetUnit) || result.equals(ConfigParams.RESETALL) || result.equals(ConfigParams.RESETUNIT)) {
-                    ToastUtil.showToastLong(getString(R.string.device_is_restarting));
-                } else if (result.equals(ConfigParams.RESETALL10)) {
-                    ToastUtil.showToastLong(getString(R.string.five_minutes));
-                } else {
-                    ToastUtil.showToastLong(getString(R.string.Set_successfully));
-                }
-            }
-
         }
     }
 
