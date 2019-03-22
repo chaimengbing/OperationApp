@@ -131,7 +131,7 @@
                     android:id="@+id/flow_type_button2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/Analog"
@@ -141,7 +141,7 @@
                     android:id="@+id/flow_type_button3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/Water_fitting"
@@ -151,7 +151,7 @@
                     android:id="@+id/flow_type_button4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/Parshall_flume"
@@ -254,8 +254,8 @@
 
                     <Button
                         android:id="@+id/plan_num_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -314,8 +314,8 @@
 
                     <Button
                         android:id="@+id/flow_speed_add_value_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -376,8 +376,8 @@
 
                     <Button
                         android:id="@+id/flow_add_value_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -434,8 +434,8 @@
 
                     <Button
                         android:id="@+id/Flow_coefficient_button0"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -492,8 +492,8 @@
 
                     <Button
                         android:id="@+id/Flow_coefficient_button1"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -550,8 +550,8 @@
 
                     <Button
                         android:id="@+id/Flow_coefficient_button2"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -608,8 +608,8 @@
 
                     <Button
                         android:id="@+id/Flow_coefficient_button3"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>

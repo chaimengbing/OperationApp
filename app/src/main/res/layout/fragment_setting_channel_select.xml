@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="true"
-            android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,13 +14,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="@dimen/qb_px_10">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/center_1_channel1"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <RadioGroup
                 android:id="@+id/center_radiogroup"
@@ -34,27 +34,27 @@
                     android:layout_height="wrap_content"
                     android:button="@drawable/radio_bg"
                     android:text="@string/no_use"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <RadioButton
                     android:id="@+id/gprs_radiobutton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/gprs"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <RadioButton
                     android:id="@+id/gprs_gsm_radiobutton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/gprs_gsm"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
             </RadioGroup>
         </LinearLayout>
 
@@ -62,13 +62,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="@dimen/qb_px_10">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/recenter_1_channel1"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <RadioGroup
                 android:id="@+id/reserve_radiogroup"
@@ -83,27 +83,27 @@
                     android:layout_height="wrap_content"
                     android:button="@drawable/radio_bg"
                     android:text="@string/no_use"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <RadioButton
                     android:id="@+id/sms_radiobutton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/sms"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <RadioButton
                     android:id="@+id/beidou_radiobutton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/beidou"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
             </RadioGroup>
         </LinearLayout>
 
@@ -111,13 +111,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="@dimen/qb_px_10">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/center_2_channel1"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <RadioGroup
                 android:id="@+id/center_radiogroup_2"
@@ -132,27 +132,27 @@
                     android:layout_height="wrap_content"
                     android:button="@drawable/radio_bg"
                     android:text="@string/no_use"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <RadioButton
                     android:id="@+id/gprs_radiobutton_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/gprs"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <RadioButton
                     android:id="@+id/gprs_gsm_radiobutton_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/gprs_gsm"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
             </RadioGroup>
         </LinearLayout>
 
@@ -160,13 +160,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="@dimen/qb_px_10">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/recenter_2_channel1"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <RadioGroup
                 android:id="@+id/reserve_radiogroup_2"
@@ -181,27 +181,27 @@
                     android:layout_height="wrap_content"
                     android:button="@drawable/radio_bg"
                     android:text="@string/no_use"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <RadioButton
                     android:id="@+id/sms_radiobutton_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/sms"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <RadioButton
                     android:id="@+id/beidou_radiobutton_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/beidou"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
             </RadioGroup>
         </LinearLayout>
 
@@ -209,13 +209,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="@dimen/qb_px_10">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/center_3_channel1"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <RadioGroup
                 android:id="@+id/center_radiogroup_3"
@@ -230,27 +230,27 @@
                     android:layout_height="wrap_content"
                     android:button="@drawable/radio_bg"
                     android:text="@string/no_use"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <RadioButton
                     android:id="@+id/gprs_radiobutton_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/gprs"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <RadioButton
                     android:id="@+id/gprs_gsm_radiobutton_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/gprs_gsm"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
             </RadioGroup>
         </LinearLayout>
 
@@ -258,13 +258,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="@dimen/qb_px_10">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/recenter_3_channel1"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <RadioGroup
                 android:id="@+id/reserve_radiogroup_3"
@@ -279,27 +279,27 @@
                     android:layout_height="wrap_content"
                     android:button="@drawable/radio_bg"
                     android:text="@string/no_use"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <RadioButton
                     android:id="@+id/sms_radiobutton_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/sms"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <RadioButton
                     android:id="@+id/beidou_radiobutton_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/beidou"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
             </RadioGroup>
         </LinearLayout>
 
@@ -307,14 +307,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp"
-            >
+            android:padding="@dimen/qb_px_10">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Central_Station_1_Channels"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <RadioGroup
                 android:id="@+id/center_radiogroup_4"
@@ -329,28 +328,28 @@
                     android:layout_height="wrap_content"
                     android:button="@drawable/radio_bg"
                     android:text="@string/Close"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <RadioButton
                     android:id="@+id/gprs_radiobutton_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/Open"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <RadioButton
                     android:id="@+id/gprs_gsm_radiobutton_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/gprs_gsm"
                     android:textColor="@color/black"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
             </RadioGroup>
         </LinearLayout>
 
@@ -358,14 +357,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp"
+            android:padding="@dimen/qb_px_10"
             android:visibility="gone">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/recenter_4_channel1"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <RadioGroup
                 android:id="@+id/reserve_radiogroup_4"
@@ -380,27 +379,27 @@
                     android:layout_height="wrap_content"
                     android:button="@drawable/radio_bg"
                     android:text="@string/no_use"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <RadioButton
                     android:id="@+id/sms_radiobutton_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/sms"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <RadioButton
                     android:id="@+id/beidou_radiobutton_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/beidou"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
             </RadioGroup>
         </LinearLayout>
     </LinearLayout>

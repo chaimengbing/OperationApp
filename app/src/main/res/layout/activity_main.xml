@@ -6,6 +6,7 @@
     <LinearLayout style="@style/ll_vertical_match_match">
 
         <RelativeLayout style="@style/main_topbar_bg">
+
             <TextView
                 style="@style/topbar_title"
                 android:layout_centerHorizontal="true"
@@ -17,174 +18,198 @@
                 android:layout_alignParentBottom="true"
                 android:background="@color/edit_gray" />
         </RelativeLayout>
-        <ImageView
-            style="@style/main_bg"
-            android:scaleType="fitXY"
-            android:src="@mipmap/icon_main_bg" />
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/main_1"
-            style="@style/main_bg"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="#6ccabc"
-            app:cardCornerRadius="@dimen/main_radius">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="109dp">
+            <LinearLayout style="@style/ll_vertical_match_match">
 
                 <ImageView
-                    style="@style/icon_main"
-                    android:src="@mipmap/main_1" />
+                    style="@style/main_bg"
+                    android:layout_marginTop="@dimen/qb_px_9"
+                    android:layout_marginBottom="@dimen/qb_px_6"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/icon_main_bg" />
 
-                <TextView
-                    style="@style/text_middle_white_main"
-                    android:text="@string/operation_cloud" />
+                <android.support.v7.widget.CardView
+                    android:id="@+id/main_1"
+                    style="@style/main_bg"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="#6ccabc"
+                    app:cardCornerRadius="@dimen/qb_px_10"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardUseCompatPadding="true">
 
-            </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/qb_px_125">
 
-        </android.support.v7.widget.CardView>
+                        <ImageView
+                            style="@style/icon_main"
+                            android:src="@mipmap/main_1" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                        <TextView
+                            style="@style/text_middle_white_main"
+                            android:text="@string/operation_cloud" />
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/main_2"
-                style="@style/main_bg_left"
-                android:layout_weight="1"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="#a5a0ed"
-                app:cardCornerRadius="@dimen/main_radius">
+                    </RelativeLayout>
 
-                <RelativeLayout
+                </android.support.v7.widget.CardView>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp">
+                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        style="@style/icon_main"
-                        android:src="@mipmap/main_2" />
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/main_2"
+                        style="@style/main_bg_left"
+                        android:layout_weight="1"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="#a5a0ed"
+                        app:cardCornerRadius="@dimen/qb_px_10"
+                        app:cardPreventCornerOverlap="false"
+                        app:cardUseCompatPadding="true">
 
-                    <TextView
-                        style="@style/text_middle_white_main"
-                        android:text="@string/yr_4000" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/qb_px_85">
 
-                </RelativeLayout>
+                            <ImageView
+                                style="@style/icon_main"
+                                android:src="@mipmap/main_2" />
 
-            </android.support.v7.widget.CardView>
+                            <TextView
+                                style="@style/text_middle_white_main"
+                                android:text="@string/yr_4000" />
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/main_3"
-                style="@style/main_bg_right"
-                android:layout_weight="1"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="#67bdee"
-                app:cardCornerRadius="@dimen/main_radius">
+                        </RelativeLayout>
 
-                <RelativeLayout
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/main_3"
+                        style="@style/main_bg_right"
+                        android:layout_weight="1"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="#67bdee"
+                        app:cardCornerRadius="@dimen/qb_px_10"
+                        app:cardPreventCornerOverlap="false"
+                        app:cardUseCompatPadding="true">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/qb_px_85">
+
+                            <ImageView
+                                style="@style/icon_main"
+                                android:src="@mipmap/main_3" />
+
+                            <TextView
+                                style="@style/text_middle_white_main"
+                                android:text="@string/rtu_list" />
+
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp">
+                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        style="@style/icon_main"
-                        android:src="@mipmap/main_3" />
-
-                    <TextView
-                        style="@style/text_middle_white_main"
-                        android:text="@string/rtu_list" />
-
-                </RelativeLayout>
-
-            </android.support.v7.widget.CardView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/main_4"
-                    style="@style/main_bg_left"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:cardBackgroundColor="#e7b0e1"
-                    app:cardCornerRadius="@dimen/main_radius">
-
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="146dp">
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
 
-                        <ImageView
-                            style="@style/icon_main"
-                            android:src="@mipmap/main_4" />
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/main_4"
+                            style="@style/main_bg_left"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            app:cardBackgroundColor="#e7b0e1"
+                            app:cardCornerRadius="@dimen/qb_px_10"
+                            app:cardPreventCornerOverlap="false"
+                            app:cardUseCompatPadding="true">
 
-                        <TextView
-                            style="@style/text_middle_white_main"
-                            android:text="@string/message" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/qb_px_178">
 
-                    </RelativeLayout>
+                                <ImageView
+                                    style="@style/icon_main"
+                                    android:src="@mipmap/main_4" />
 
-                </android.support.v7.widget.CardView>
+                                <TextView
+                                    style="@style/text_middle_white_main"
+                                    android:text="@string/message" />
+
+                            </RelativeLayout>
+
+                        </android.support.v7.widget.CardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/main_5"
+                            style="@style/main_bg_right"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            app:cardBackgroundColor="#7c8ff4"
+                            app:cardCornerRadius="@dimen/qb_px_10"
+                            app:cardPreventCornerOverlap="false"
+                            app:cardUseCompatPadding="true">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/qb_px_85">
+
+                                <ImageView
+                                    style="@style/icon_main"
+                                    android:src="@mipmap/main_6" />
+
+                                <TextView
+                                    style="@style/text_middle_white_main"
+                                    android:text="@string/operation_sign_in" />
+
+                            </RelativeLayout>
+
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/main_6"
+                            style="@style/main_bg_right"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            app:cardBackgroundColor="#78a3f0"
+                            app:cardCornerRadius="@dimen/qb_px_10"
+                            app:cardPreventCornerOverlap="false"
+                            app:cardUseCompatPadding="true">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/qb_px_85">
+
+                                <ImageView
+                                    style="@style/icon_main"
+                                    android:src="@mipmap/main_7" />
+
+                                <TextView
+                                    style="@style/text_middle_white_main"
+                                    android:text="@string/system_setting" />
+
+                            </RelativeLayout>
+
+                        </android.support.v7.widget.CardView>
+
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/main_5"
-                    style="@style/main_bg_right"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:cardBackgroundColor="#7c8ff4"
-                    app:cardCornerRadius="@dimen/main_radius">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp">
-
-                        <ImageView
-                            style="@style/icon_main"
-                            android:src="@mipmap/main_6" />
-
-                        <TextView
-                            style="@style/text_middle_white_main"
-                            android:text="@string/operation_sign_in" />
-
-                    </RelativeLayout>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/main_6"
-                    style="@style/main_bg_right"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:cardBackgroundColor="#78a3f0"
-                    app:cardCornerRadius="@dimen/main_radius">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp">
-
-                        <ImageView
-                            style="@style/icon_main"
-                            android:src="@mipmap/main_7" />
-
-                        <TextView
-                            style="@style/text_middle_white_main"
-                            android:text="@string/system_setting" />
-
-                    </RelativeLayout>
-
-                </android.support.v7.widget.CardView>
-
-            </LinearLayout>
-        </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </FrameLayout>

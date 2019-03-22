@@ -64,8 +64,8 @@
 
             <Button
                  android:id="@+id/sms_button"
-                android:layout_width="@dimen/x80"
-                android:layout_height="@dimen/x60"
+                android:layout_width="@dimen/qb_px_40"
+                android:layout_height="@dimen/qb_px_30"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/bg_button"

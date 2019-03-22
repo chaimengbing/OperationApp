@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <LinearLayout
@@ -12,7 +12,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="10dp" >
+        android:padding="10dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/rain_type_button"
@@ -39,9 +39,9 @@
                 android:id="@+id/rain_type_button_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/qb_px_10"
                 android:button="@drawable/radio_bg"
                 android:checked="false"
-                android:layout_marginLeft="@dimen/x20"
                 android:text="SEBA"
                 android:textColor="@color/black" />
 
@@ -49,9 +49,9 @@
                 android:id="@+id/rain_type_button_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/qb_px_10"
                 android:button="@drawable/radio_bg"
                 android:checked="false"
-                android:layout_marginLeft="@dimen/x20"
                 android:text="OTT"
                 android:textColor="@color/black" />
 
@@ -62,11 +62,11 @@
         android:id="@+id/ra1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_below="@id/ra"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="10dp" >
+        android:padding="10dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -79,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/rain_button"
@@ -93,9 +93,9 @@
                 android:id="@+id/rain_button_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/qb_px_10"
                 android:button="@drawable/radio_bg"
                 android:checked="false"
-                android:layout_marginLeft="@dimen/x20"
                 android:text="@string/rain_0_5mm"
                 android:textColor="@color/black" />
 
@@ -103,9 +103,9 @@
                 android:id="@+id/rain_button_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/qb_px_10"
                 android:button="@drawable/radio_bg"
                 android:checked="false"
-                android:layout_marginLeft="@dimen/x20"
                 android:text="@string/rain_0_2mm"
                 android:textColor="@color/black" />
 
@@ -113,8 +113,8 @@
                 android:id="@+id/rain_button_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/qb_px_10"
                 android:button="@drawable/radio_bg"
-                android:layout_marginLeft="@dimen/x20"
                 android:checked="false"
                 android:text="0.1mm"
                 android:textColor="@color/black" />
@@ -125,10 +125,10 @@
         android:id="@+id/ra2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_below="@id/ra1"
+        android:gravity="center"
         android:orientation="vertical"
-        android:padding="10dp" >
+        android:padding="10dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -141,7 +141,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/values_edittext"
@@ -167,13 +167,13 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:layout_below="@id/ra2">
+                android:layout_below="@id/ra2"
+                android:layout_weight="0.7">
 
                 <Button
                     android:id="@+id/rainset_button"
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/x60"
+                    android:layout_width="@dimen/qb_px_40"
+                    android:layout_height="@dimen/qb_px_30"
                     android:background="@drawable/bg_button"
                     android:text="@string/setting" />
             </RelativeLayout>

@@ -33,8 +33,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout style="@style/ll_vertical_mw"
-            android:visibility="gone">
+        <LinearLayout style="@style/ll_vertical_mw">
 
             <TextView
                 style="@style/text_set_title"

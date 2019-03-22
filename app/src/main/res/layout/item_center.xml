@@ -46,8 +46,8 @@
 
                 <Button
                     android:id="@+id/center_button"
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/x60"
+                    android:layout_width="@dimen/qb_px_40"
+                    android:layout_height="@dimen/qb_px_30"
                     android:background="@drawable/bg_button"
                     android:text="@string/setting"
                     android:textColor="@color/black"/>

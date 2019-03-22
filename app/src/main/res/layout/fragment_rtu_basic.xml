@@ -90,7 +90,7 @@
         <LinearLayout
             android:id="@+id/ll_layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x120"
+            android:layout_height="@dimen/qb_px_60"
             android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical">
@@ -98,7 +98,7 @@
             <LinearLayout
                 android:id="@+id/ll_setting"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x119"
+                android:layout_height="@dimen/qb_px_50"
                 android:gravity="center_vertical|center_horizontal"
                 android:orientation="horizontal">
 
@@ -142,9 +142,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/ll_layout"
-            android:layout_marginLeft="@dimen/x40"
-            android:layout_marginTop="@dimen/x20"
-            android:layout_marginBottom="@dimen/x20">
+            android:layout_marginLeft="@dimen/qb_px_20"
+            android:layout_marginTop="@dimen/qb_px_10"
+            android:layout_marginBottom="@dimen/qb_px_10">
 
         </FrameLayout>
 

@@ -47,8 +47,8 @@
 
                     <Button
                         android:id="@+id/device_id_setting_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
                 </RelativeLayout>
@@ -133,8 +133,8 @@
 
                     <Button
                         android:id="@+id/xingzheng_setting_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
                 </RelativeLayout>
@@ -179,8 +179,8 @@
 
                     <Button
                         android:id="@+id/site_test_setting_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
                 </RelativeLayout>
@@ -214,7 +214,7 @@
 
                     <EditText
                         android:id="@+id/save_number"
-                        android:layout_width="@dimen/x350"
+                        android:layout_width="@dimen/qb_px_175"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_edittext"
                         android:inputType="number"
@@ -225,7 +225,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/x10"
+                        android:layout_marginLeft="@dimen/qb_px_10"
                         android:layout_toRightOf="@id/save_number"
                         android:text="@string/min"
                         android:textColor="@color/black"/>
@@ -241,8 +241,8 @@
 
                     <Button
                         android:id="@+id/save_setting_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
                 </RelativeLayout>
@@ -269,7 +269,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/x140"/>
+                android:layout_marginRight="@dimen/qb_px_70"/>
 
 
         </RelativeLayout>
@@ -454,8 +454,8 @@
 
                     <Button
                         android:id="@+id/time_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
 
@@ -481,8 +481,8 @@
 
                 <Button
                     android:id="@+id/reset_factory"
-                    android:layout_width="@dimen/x280"
-                    android:layout_height="@dimen/x80"
+                    android:layout_width="@dimen/qb_px_140"
+                    android:layout_height="@dimen/qb_px_40"
                     android:background="@drawable/bg_button"
                     android:text="@string/restart"
                     android:textColor="@color/black"/>
@@ -497,8 +497,8 @@
 
                 <Button
                     android:id="@+id/save_and_reset"
-                    android:layout_width="@dimen/x280"
-                    android:layout_height="@dimen/x80"
+                    android:layout_width="@dimen/qb_px_140"
+                    android:layout_height="@dimen/qb_px_40"
                     android:background="@drawable/bg_button"
                     android:text="@string/save_and_restart"
                     android:textColor="@color/black"/>

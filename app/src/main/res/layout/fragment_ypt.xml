@@ -46,8 +46,8 @@
 
                     <Button
                         android:id="@+id/device_id_setting_button1"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
                 </RelativeLayout>
@@ -186,7 +186,7 @@
                     android:id="@+id/udp_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="UDP"
@@ -226,7 +226,7 @@
                     android:id="@+id/no_timing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/Not_school"
@@ -266,7 +266,7 @@
                     android:id="@+id/no_upload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/Do_upload"
@@ -277,7 +277,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/x20"
+            android:layout_marginTop="@dimen/qb_px_10"
             android:text="@string/junction_center_4"
             android:textColor="@color/black" />
         <LinearLayout
@@ -286,7 +286,7 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:layout_width="@dimen/x80"
+                android:layout_width="@dimen/qb_px_40"
                 android:layout_height="wrap_content"
                 android:text="@string/ip_"
                 android:gravity="right"
@@ -294,7 +294,7 @@
 
             <EditText
                 android:id="@+id/ip_4_edittext"
-                android:layout_width="@dimen/x400"
+                android:layout_width="@dimen/qb_px_200"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:padding="5dp"
@@ -304,7 +304,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:layout_marginTop="@dimen/x15"
+            android:layout_marginTop="@dimen/qb_px_10"
             android:orientation="horizontal" >
 
             <LinearLayout
@@ -313,7 +313,7 @@
                 android:orientation="horizontal" >
 
                 <TextView
-                    android:layout_width="@dimen/x80"
+                    android:layout_width="@dimen/qb_px_40"
                     android:layout_height="wrap_content"
                     android:text="@string/port"
                     android:gravity="right"
@@ -321,7 +321,7 @@
 
                 <EditText
                     android:id="@+id/port_4_edittext"
-                    android:layout_width="@dimen/x400"
+                    android:layout_width="@dimen/qb_px_200"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:padding="5dp"
@@ -331,10 +331,10 @@
 
                 <Button
                     android:id="@+id/gprs_4_button"
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/x60"
+                    android:layout_width="@dimen/qb_px_40"
+                    android:layout_height="@dimen/qb_px_30"
                     android:text="@string/setting"
-                    android:layout_marginLeft="@dimen/x40"
+                    android:layout_marginLeft="@dimen/qb_px_20"
                     android:background="@drawable/bg_button"
                     android:textColor="@color/black" />
             </LinearLayout>

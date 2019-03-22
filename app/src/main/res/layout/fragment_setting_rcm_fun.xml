@@ -47,8 +47,8 @@
 
                     <Button
                         android:id="@+id/site_fun_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
                 </RelativeLayout>
@@ -305,8 +305,8 @@
 
                     <Button
                         android:id="@+id/customer_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
                 </RelativeLayout>
@@ -372,8 +372,8 @@
 
                 <Button
                     android:id="@+id/start_up"
-                    android:layout_width="@dimen/x280"
-                    android:layout_height="@dimen/x80"
+                    android:layout_width="@dimen/qb_px_140"
+                    android:layout_height="@dimen/qb_px_40"
                     android:background="@drawable/bg_button"
                     android:text="开机"
                     android:textColor="@color/black"/>
@@ -387,8 +387,8 @@
 
                 <Button
                     android:id="@+id/shut_down"
-                    android:layout_width="@dimen/x280"
-                    android:layout_height="@dimen/x80"
+                    android:layout_width="@dimen/qb_px_140"
+                    android:layout_height="@dimen/qb_px_40"
                     android:background="@drawable/bg_button"
                     android:text="关机"
                     android:textColor="@color/black"/>
@@ -413,8 +413,8 @@
 
                 <Button
                     android:id="@+id/take_photo"
-                    android:layout_width="@dimen/x280"
-                    android:layout_height="@dimen/x80"
+                    android:layout_width="@dimen/qb_px_140"
+                    android:layout_height="@dimen/qb_px_40"
                     android:background="@drawable/bg_button"
                     android:text="拍照并保存上传"
                     android:textColor="@color/black"/>
@@ -428,8 +428,8 @@
 
                 <Button
                     android:id="@+id/clear_sd_card"
-                    android:layout_width="@dimen/x280"
-                    android:layout_height="@dimen/x80"
+                    android:layout_width="@dimen/qb_px_140"
+                    android:layout_height="@dimen/qb_px_40"
                     android:background="@drawable/bg_button"
                     android:text="清空SD卡"
                     android:textColor="@color/black"/>
@@ -473,8 +473,8 @@
 
                     <Button
                         android:id="@+id/time_fun_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
 
@@ -563,8 +563,8 @@
 
                 <Button
                     android:id="@+id/collect_button_two"
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/x60"
+                    android:layout_width="@dimen/qb_px_40"
+                    android:layout_height="@dimen/qb_px_30"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/bg_button"
@@ -580,8 +580,8 @@
             
             <Button
                 android:id="@+id/take_pictures"
-                android:layout_width="@dimen/x100"
-                android:layout_height="@dimen/x75"
+                android:layout_width="@dimen/qb_px_50"
+                android:layout_height="@dimen/qb_px_35"
                 android:layout_marginLeft="20dp"
                 android:layout_alignParentLeft="true"
                 android:background="@drawable/bg_button"

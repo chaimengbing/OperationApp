@@ -1,14 +1,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/pop_background">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pop_background">
 
     <LinearLayout
         android:id="@+id/ll_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x100"
-        android:gravity="center"
+        android:layout_height="@dimen/qb_px_50"
         android:background="@color/white"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -26,13 +26,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:text="@string/system_params_setting"
-                android:textColor="#4d4d4d"/>
+                android:textColor="#4d4d4d" />
 
             <ImageView
                 android:id="@+id/icon_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/icon_default"/>
+                android:src="@mipmap/icon_default" />
         </LinearLayout>
 
     </LinearLayout>
@@ -42,14 +42,14 @@
         android:layout_width="match_parent"
         android:layout_height="1dip"
         android:layout_below="@id/ll_layout"
-        android:background="@color/pop_divier"/>
+        android:background="@color/pop_divier" />
 
     <RelativeLayout
         android:id="@+id/detail_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/x40"
-        android:layout_below="@id/divier">
+        android:layout_below="@id/divier"
+        android:layout_marginTop="@dimen/qb_px_20">
 
     </RelativeLayout>
 

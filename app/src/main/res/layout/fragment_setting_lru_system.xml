@@ -47,8 +47,8 @@
 
                     <Button
                         android:id="@+id/mac_add_setting_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
                 </RelativeLayout>
@@ -94,8 +94,8 @@
 
                     <Button
                         android:id="@+id/standby_time_setting_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
                 </RelativeLayout>
@@ -192,8 +192,8 @@
 
             <Button
                 android:id="@+id/init_lru"
-                android:layout_width="@dimen/x280"
-                android:layout_height="@dimen/x80"
+                android:layout_width="@dimen/qb_px_140"
+                android:layout_height="@dimen/qb_px_40"
                 android:background="@drawable/bg_button"
                 android:text="初始化参数"
                 android:textColor="@color/black"/>
@@ -237,8 +237,8 @@
 
                     <Button
                         android:id="@+id/over_time_setting_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
                 </RelativeLayout>
@@ -284,8 +284,8 @@
 
                     <Button
                         android:id="@+id/id_logic_setting_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
                 </RelativeLayout>
@@ -330,8 +330,8 @@
 
                     <Button
                         android:id="@+id/tran_add_setting_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
                 </RelativeLayout>
@@ -376,8 +376,8 @@
 
                     <Button
                         android:id="@+id/physics_channel_setting_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
                 </RelativeLayout>
@@ -422,8 +422,8 @@
 
                     <Button
                         android:id="@+id/air_speed_setting_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
                 </RelativeLayout>
@@ -450,7 +450,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/x140"/>
+                android:layout_marginRight="@dimen/qb_px_30"/>
 
 
         </RelativeLayout>
@@ -474,7 +474,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/x140"/>
+                android:layout_marginRight="@dimen/qb_px_30"/>
 
 
         </RelativeLayout>

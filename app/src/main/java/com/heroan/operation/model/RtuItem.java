@@ -4,23 +4,36 @@ import zuo.biao.library.base.BaseModel;
 
 public class RtuItem extends BaseModel {
 
-    private String station_id;
-    private String station_addr;
+    /**
+     * {"projectId":"119361810131214","stationId":"120001808140027","projectAlias":"龙慧德鸿
+     */
 
-    public String getStation_id() {
-        return station_id;
+    private String projectId;
+    private String stationId;
+    private String projectAlias;
+
+    public String getProjectId() {
+        return projectId;
     }
 
-    public void setStation_id(String station_id) {
-        this.station_id = station_id;
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 
-    public String getStation_addr() {
-        return station_addr;
+    public String getStationId() {
+        return stationId;
     }
 
-    public void setStation_addr(String station_addr) {
-        this.station_addr = station_addr;
+    public void setStationId(String stationId) {
+        this.stationId = stationId;
+    }
+
+    public String getProjectAlias() {
+        return projectAlias;
+    }
+
+    public void setProjectAlias(String projectAlias) {
+        this.projectAlias = projectAlias;
     }
 
     @Override

@@ -22,7 +22,6 @@ import java.util.Map;
 import zuo.biao.library.interfaces.OnHttpResponseListener;
 import zuo.biao.library.manager.HttpManager;
 import zuo.biao.library.model.Parameter;
-import zuo.biao.library.util.MD5Util;
 import zuo.biao.library.util.SettingUtil;
 import zuo.biao.library.util.StringUtil;
 
@@ -62,6 +61,7 @@ public class HttpRequest {
 
     public static final String PHONE = "phone";
     public static final String PASSWORD = "password";
+    public static final String INFO_DES = "INFO_DES";
 
 
     /**
@@ -102,7 +102,7 @@ public class HttpRequest {
         Map<String, Object> request = new HashMap<>();
         request.put(PHONE, phone);
         request.put(PASSWORD, password);
-        request.put(PASSWORD, infoDes);
+        request.put(INFO_DES, infoDes);
 
         HttpManager.getInstance().post(request, URL_BASE + "/registerAjax", requestCode, listener);
     }
@@ -118,7 +118,7 @@ public class HttpRequest {
                              final int requestCode, final OnHttpResponseListener listener) {
         Map<String, Object> request = new HashMap<>();
         request.put(PHONE, phone);
-        request.put(PASSWORD, MD5Util.MD5(password));
+        request.put(PASSWORD, password);
 
         HttpManager.getInstance().post(request, URL_BASE + "/loginAjax", requestCode, listener);
     }

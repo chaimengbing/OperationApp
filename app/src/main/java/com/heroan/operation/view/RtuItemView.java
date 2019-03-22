@@ -29,7 +29,7 @@ public class RtuItemView extends BaseView<RtuItem> {
     @Override
     public void bindView(RtuItem data_) {
         super.bindView(data_);
-        addrText.setText(data.getStation_addr());
-        idText.setText(data.getStation_id());
+        addrText.setText(data.getProjectAlias());
+        idText.setText(data.getStationId());
     }
 }

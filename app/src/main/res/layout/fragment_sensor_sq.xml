@@ -43,7 +43,7 @@
                     android:id="@+id/water_soil_model_button2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/water_soil_rs_485"
@@ -53,7 +53,7 @@
                     android:id="@+id/water_soil_model_button3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/no"
@@ -96,7 +96,7 @@
                     android:id="@+id/water_soil_485_button2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/Star_instrument"
@@ -106,7 +106,7 @@
                     android:id="@+id/water_soil_485_button3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="5TE"
@@ -197,14 +197,14 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:layout_marginRight="10dp"
                     android:layout_weight="0.8">
 
                     <Button
                         android:id="@+id/water_soil_type_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -252,14 +252,14 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:layout_marginRight="10dp"
                     android:layout_weight="0.8">
 
                     <Button
                         android:id="@+id/water_soil_type_1_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -305,14 +305,14 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:layout_marginRight="10dp"
                     android:layout_weight="0.8">
 
                     <Button
                         android:id="@+id/water_soil_type_2_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -357,14 +357,14 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:layout_marginRight="10dp"
                     android:layout_weight="0.8">
 
                     <Button
                         android:id="@+id/water_soil_type_3_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>

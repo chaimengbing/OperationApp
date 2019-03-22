@@ -44,8 +44,8 @@
 
                 <Button
                     android:id="@+id/center_1_add_button"
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/x60"
+                    android:layout_width="@dimen/qb_px_40"
+                    android:layout_height="@dimen/qb_px_30"
                     android:background="@drawable/bg_button"
                     android:text="@string/setting"
                     android:textColor="@color/black"/>
@@ -93,8 +93,8 @@
 
                 <Button
                     android:id="@+id/center_2_add_button"
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/x60"
+                    android:layout_width="@dimen/qb_px_40"
+                    android:layout_height="@dimen/qb_px_30"
                     android:background="@drawable/bg_button"
                     android:text="@string/setting"
                     android:textColor="@color/black"/>
@@ -142,8 +142,8 @@
 
                 <Button
                     android:id="@+id/center_3_add_button"
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/x60"
+                    android:layout_width="@dimen/qb_px_40"
+                    android:layout_height="@dimen/qb_px_30"
                     android:background="@drawable/bg_button"
                     android:text="@string/setting"
                     android:textColor="@color/black"/>
@@ -191,8 +191,8 @@
 
                 <Button
                     android:id="@+id/center_4_add_button"
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/x60"
+                    android:layout_width="@dimen/qb_px_40"
+                    android:layout_height="@dimen/qb_px_30"
                     android:background="@drawable/bg_button"
                     android:text="@string/setting"
                     android:textColor="@color/black"/>
@@ -240,8 +240,8 @@
 
                 <Button
                     android:id="@+id/five_rain_button"
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/x60"
+                    android:layout_width="@dimen/qb_px_40"
+                    android:layout_height="@dimen/qb_px_30"
                     android:background="@drawable/bg_button"
                     android:text="@string/setting"
                     android:textColor="@color/black"/>
@@ -289,8 +289,8 @@
 
                 <Button
                     android:id="@+id/water_person_button"
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/x60"
+                    android:layout_width="@dimen/qb_px_40"
+                    android:layout_height="@dimen/qb_px_30"
                     android:background="@drawable/bg_button"
                     android:text="@string/setting"
                     android:textColor="@color/black"/>

@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">OperationApp</string>
+    <string name="app_name">运维云</string>
     <string name="input_phone">请输入手机号</string>
     <string name="login">登录</string>
-    <string name="wel_rtu_cloud">欢迎来到RTU运维云</string>
+    <string name="wel_rtu_cloud">欢迎来到测站管理平台</string>
     <string name="set_password">设置密码</string>
     <string name="cofirm_password">确认密码</string>
     <string name="register">注册</string>
@@ -951,7 +951,6 @@
 
     <string name="Central_Station_1_Channels">中心站1附加串口信道</string>
     <string name="connect_fail">设备连接失败</string>
-
 
 
     <!--<string name="ble_not_supported">BLE is not supported</string>-->

@@ -7,7 +7,6 @@ import android.view.KeyEvent;
 import android.view.View;
 
 import com.heroan.operation.R;
-import com.heroan.operation.utils.BleUtils;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.SocketUtil;
@@ -114,6 +113,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             toActivity(new Intent(getApplicationContext(), BleDeviceListActivity.class));
         } else {
             SocketUtil.getSocketUtil().connectRTU(ConfigParams.IP, ConfigParams.PORT);
+            toActivity(new Intent(getApplicationContext(), BasicSettingActivity.class));
         }
     }
 
@@ -121,7 +121,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public void didReceivedNotification(int id, Object... args) {
         if (id == UiEventEntry.CONNCT_OK) {
             showShortToast(getString(R.string.Device_connected_successfully));
-            toActivity(new Intent(getApplicationContext(), BasicSettingActivity.class));
         } else if (id == UiEventEntry.CONNCT_FAIL) {
             showShortToast(R.string.Device_wifi_settings);
         }

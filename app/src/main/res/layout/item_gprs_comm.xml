@@ -23,7 +23,7 @@
 
             <EditText
                 android:id="@+id/ip_edittext"
-                android:layout_width="@dimen/x500"
+                android:layout_width="@dimen/qb_px_250"
                 android:layout_height="wrap_content"
                  android:textColor="@color/black"
                 android:padding="5dp"
@@ -51,7 +51,7 @@
 
             <EditText
                 android:id="@+id/port_edittext"
-                android:layout_width="@dimen/x500"
+                android:layout_width="@dimen/qb_px_250"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:padding="5dp"
@@ -69,8 +69,8 @@
 
             <Button
                 android:id="@+id/gprs_button"
-                android:layout_width="@dimen/x80"
-                android:layout_height="@dimen/x60"
+                android:layout_width="@dimen/qb_px_40"
+                android:layout_height="@dimen/qb_px_30"
                 android:text="@string/setting"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"

@@ -11,30 +11,30 @@
             android:id="@+id/control"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/x30"
+            android:layout_marginTop="@dimen/qb_px_15"
             android:gravity="center_horizontal"
             android:visibility="gone">
 
             <Button
                 android:id="@+id/update_button"
-                android:layout_width="@dimen/x160"
-                android:layout_height="@dimen/x60"
+                android:layout_width="@dimen/qb_px_80"
+                android:layout_height="@dimen/qb_px_30"
                 android:background="@drawable/bg_button"
                 android:text="@string/update" />
 
             <Button
                 android:id="@+id/stop_button"
-                android:layout_width="@dimen/x160"
-                android:layout_height="@dimen/x60"
-                android:layout_marginLeft="@dimen/x80"
+                android:layout_width="@dimen/qb_px_80"
+                android:layout_height="@dimen/qb_px_30"
+                android:layout_marginLeft="@dimen/qb_px_40"
                 android:background="@drawable/bg_button"
                 android:text="@string/Stop_updating" />
 
             <Button
                 android:id="@+id/sens_2_pic_button"
-                android:layout_width="@dimen/x200"
-                android:layout_height="@dimen/x60"
-                android:layout_marginLeft="@dimen/x80"
+                android:layout_width="@dimen/qb_px_100"
+                android:layout_height="@dimen/qb_px_30"
+                android:layout_marginLeft="@dimen/qb_px_40"
                 android:background="@drawable/bg_button"
                 android:text="@string/Send_2_pic" />
 
@@ -89,8 +89,8 @@
 
                     <Button
                         android:id="@+id/rainvalue_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting" />
                 </RelativeLayout>
@@ -147,8 +147,8 @@
 
                     <Button
                         android:id="@+id/Cumulative_Flow_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting" />
                 </RelativeLayout>

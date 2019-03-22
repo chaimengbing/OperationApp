@@ -277,8 +277,8 @@
 
             <Button
                 android:id="@+id/collect_button"
-                android:layout_width="@dimen/x100"
-                android:layout_height="@dimen/x80"
+                android:layout_width="@dimen/qb_px_50"
+                android:layout_height="@dimen/qb_px_40"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/bg_button"

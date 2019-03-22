@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/Pressure_gauge_manufacturers"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 android:layout_weight="1.8"
                 android:background="@drawable/spinner_bg"
                 android:entries="@array/Pressure_manufacturers"
-                android:spinnerMode="dropdown"/>
+                android:spinnerMode="dropdown" />
 
             <TextView
                 android:layout_width="0dp"
@@ -42,7 +42,7 @@
                 android:layout_weight="0.5"
                 android:text="@string/min"
                 android:textColor="@color/black"
-                android:visibility="invisible"/>
+                android:visibility="invisible" />
         </LinearLayout>
     </LinearLayout>
 
@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Manometer_type"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black" />
 
         <RadioGroup
             android:id="@+id/press_type"
@@ -73,26 +73,26 @@
                 android:layout_height="wrap_content"
                 android:button="@drawable/radio_bg"
                 android:text="@string/zha_plan_type_1"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <RadioButton
                 android:id="@+id/press_type_button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginLeft="@dimen/qb_px_10"
                 android:button="@drawable/radio_bg"
                 android:text="@string/flow_type_1"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <RadioButton
                 android:id="@+id/press_type_button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginLeft="@dimen/qb_px_10"
                 android:button="@drawable/radio_bg"
                 android:checked="false"
                 android:text="@string/no"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
         </RadioGroup>
     </LinearLayout>
 
@@ -101,15 +101,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center|center_vertical"
-        android:visibility="gone"
         android:orientation="vertical"
-        android:padding="5dp">
+        android:padding="5dp"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Manometer_485"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black" />
 
         <RadioGroup
             android:id="@+id/press485_type"
@@ -124,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:button="@drawable/radio_bg"
                 android:text="@string/New_HP"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
         </RadioGroup>
     </LinearLayout>
@@ -140,7 +140,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/Analog_range"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -158,7 +158,7 @@
                 android:inputType="numberDecimal"
                 android:maxLines="2"
                 android:padding="5dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <TextView
                 android:layout_width="0dp"
@@ -167,7 +167,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="0.3"
                 android:text="Mpa"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <RelativeLayout
                 android:layout_width="0dp"
@@ -177,11 +177,11 @@
 
                 <Button
                     android:id="@+id/press_model_button"
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/x60"
+                    android:layout_width="@dimen/qb_px_40"
+                    android:layout_height="@dimen/qb_px_30"
                     android:background="@drawable/bg_button"
                     android:text="@string/setting"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
             </RelativeLayout>
 
 

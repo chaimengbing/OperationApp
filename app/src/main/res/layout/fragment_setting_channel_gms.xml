@@ -57,7 +57,7 @@
             android:id="@+id/channel_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/x20"
+            android:layout_marginTop="@dimen/qb_px_10"
             android:text="@string/SMS_channel_1"
             android:textColor="@color/black"/>
 
@@ -73,7 +73,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="@dimen/x80"
+                    android:layout_width="@dimen/qb_px_40"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text="@string/number"
@@ -81,7 +81,7 @@
 
                 <EditText
                     android:id="@+id/num_1_edittext"
-                    android:layout_width="@dimen/x400"
+                    android:layout_width="@dimen/qb_px_200"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_edittext"
                     android:inputType="number"
@@ -91,9 +91,9 @@
 
                 <Button
                     android:id="@+id/gms_1_button"
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/x60"
-                    android:layout_marginLeft="@dimen/x40"
+                    android:layout_width="@dimen/qb_px_40"
+                    android:layout_height="@dimen/qb_px_30"
+                    android:layout_marginLeft="@dimen/qb_px_20"
                     android:background="@drawable/bg_button"
                     android:text="@string/setting"
                     android:textColor="@color/black"/>
@@ -105,7 +105,7 @@
             android:id="@+id/channel_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/x20"
+            android:layout_marginTop="@dimen/qb_px_10"
             android:text="@string/SMS_channel_2"
             android:textColor="@color/black"/>
 
@@ -121,7 +121,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="@dimen/x80"
+                    android:layout_width="@dimen/qb_px_40"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text="@string/number"
@@ -129,7 +129,7 @@
 
                 <EditText
                     android:id="@+id/num_2_edittext"
-                    android:layout_width="@dimen/x400"
+                    android:layout_width="@dimen/qb_px_200"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_edittext"
                     android:inputType="number"
@@ -139,9 +139,9 @@
 
                 <Button
                     android:id="@+id/gms_2_button"
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/x60"
-                    android:layout_marginLeft="@dimen/x40"
+                    android:layout_width="@dimen/qb_px_40"
+                    android:layout_height="@dimen/qb_px_30"
+                    android:layout_marginLeft="@dimen/qb_px_20"
                     android:background="@drawable/bg_button"
                     android:text="@string/setting"
                     android:textColor="@color/black"/>
@@ -152,7 +152,7 @@
             android:id="@+id/channel_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/x20"
+            android:layout_marginTop="@dimen/qb_px_10"
             android:text="@string/SMS_channel_3"
             android:textColor="@color/black"/>
 
@@ -168,7 +168,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="@dimen/x80"
+                    android:layout_width="@dimen/qb_px_40"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text="@string/number"
@@ -176,7 +176,7 @@
 
                 <EditText
                     android:id="@+id/num_3_edittext"
-                    android:layout_width="@dimen/x400"
+                    android:layout_width="@dimen/qb_px_200"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_edittext"
                     android:inputType="number"
@@ -186,9 +186,9 @@
 
                 <Button
                     android:id="@+id/gms_3_button"
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/x60"
-                    android:layout_marginLeft="@dimen/x40"
+                    android:layout_width="@dimen/qb_px_40"
+                    android:layout_height="@dimen/qb_px_30"
+                    android:layout_marginLeft="@dimen/qb_px_20"
                     android:background="@drawable/bg_button"
                     android:text="@string/setting"
                     android:textColor="@color/black"/>
@@ -199,7 +199,7 @@
             android:id="@+id/channel_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/x20"
+            android:layout_marginTop="@dimen/qb_px_10"
             android:text="@string/SMS_channel_4"
             android:textColor="@color/black"/>
 
@@ -215,7 +215,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="@dimen/x80"
+                    android:layout_width="@dimen/qb_px_40"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text="@string/number"
@@ -223,7 +223,7 @@
 
                 <EditText
                     android:id="@+id/num_4_edittext"
-                    android:layout_width="@dimen/x400"
+                    android:layout_width="@dimen/qb_px_200"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_edittext"
                     android:inputType="number"
@@ -233,9 +233,9 @@
 
                 <Button
                     android:id="@+id/gms_4_button"
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/x60"
-                    android:layout_marginLeft="@dimen/x40"
+                    android:layout_width="@dimen/qb_px_40"
+                    android:layout_height="@dimen/qb_px_30"
+                    android:layout_marginLeft="@dimen/qb_px_20"
                     android:background="@drawable/bg_button"
                     android:text="@string/setting"
                     android:textColor="@color/black"/>

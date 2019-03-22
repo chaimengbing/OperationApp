@@ -45,7 +45,7 @@
                     android:id="@+id/sim_unicom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x30"
+                    android:layout_marginLeft="@dimen/qb_px_20"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/China_Unicom"
@@ -55,7 +55,7 @@
                     android:id="@+id/sim_telecom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x30"
+                    android:layout_marginLeft="@dimen/qb_px_20"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/China_Telecom"
@@ -96,7 +96,7 @@
                     android:id="@+id/no_call_test"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x30"
+                    android:layout_marginLeft="@dimen/qb_px_20"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/no_call_test"
@@ -192,8 +192,8 @@
 
                         <Button
                             android:id="@+id/apn_set_button"
-                            android:layout_width="@dimen/x80"
-                            android:layout_height="@dimen/x60"
+                            android:layout_width="@dimen/qb_px_40"
+                            android:layout_height="@dimen/qb_px_30"
                             android:background="@drawable/bg_button"
                             android:text="@string/setting"
                             android:textColor="@color/black"/>
@@ -240,8 +240,8 @@
 
                         <Button
                             android:id="@+id/apn_user_button"
-                            android:layout_width="@dimen/x80"
-                            android:layout_height="@dimen/x60"
+                            android:layout_width="@dimen/qb_px_40"
+                            android:layout_height="@dimen/qb_px_30"
                             android:background="@drawable/bg_button"
                             android:text="@string/setting"
                             android:textColor="@color/black"/>
@@ -288,8 +288,8 @@
 
                         <Button
                             android:id="@+id/apn_psd_button"
-                            android:layout_width="@dimen/x80"
-                            android:layout_height="@dimen/x60"
+                            android:layout_width="@dimen/qb_px_40"
+                            android:layout_height="@dimen/qb_px_30"
                             android:background="@drawable/bg_button"
                             android:text="@string/setting"
                             android:textColor="@color/black"/>
@@ -337,8 +337,8 @@
 
                         <Button
                             android:id="@+id/comm_psd_button"
-                            android:layout_width="@dimen/x80"
-                            android:layout_height="@dimen/x60"
+                            android:layout_width="@dimen/qb_px_40"
+                            android:layout_height="@dimen/qb_px_30"
                             android:background="@drawable/bg_button"
                             android:text="@string/setting"
                             android:textColor="@color/black"/>
@@ -397,8 +397,8 @@
 
                     <Button
                         android:id="@+id/time_interval_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -532,8 +532,8 @@
 
                     <Button
                         android:id="@+id/day_begin_add_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -580,8 +580,8 @@
 
                     <Button
                         android:id="@+id/comm_num_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>

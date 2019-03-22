@@ -39,7 +39,7 @@
                 android:id="@+id/temp_type_button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginLeft="@dimen/qb_px_10"
                 android:button="@drawable/radio_bg"
                 android:text="@string/flow_type_1"
                 android:textColor="@color/black"/>
@@ -48,7 +48,7 @@
                 android:id="@+id/temp_type_button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginLeft="@dimen/qb_px_10"
                 android:button="@drawable/radio_bg"
                 android:checked="false"
                 android:text="@string/no"

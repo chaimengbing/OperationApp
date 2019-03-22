@@ -41,7 +41,7 @@
                     android:id="@+id/water_button2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="0.5cm"
@@ -51,7 +51,7 @@
                     android:id="@+id/water_button3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/qb_px_10"
                     android:button="@drawable/radio_bg"
                     android:checked="false"
                     android:text="@string/value_0_1cm"
@@ -108,8 +108,8 @@
 
                     <Button
                         android:id="@+id/add_water_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -166,8 +166,8 @@
 
                     <Button
                         android:id="@+id/add_water_up_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -224,8 +224,8 @@
 
                     <Button
                         android:id="@+id/add_water_down_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -282,8 +282,8 @@
 
                     <Button
                         android:id="@+id/add_time_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -339,8 +339,8 @@
 
                     <Button
                         android:id="@+id/water_modify_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -396,8 +396,8 @@
 
                     <Button
                         android:id="@+id/water_basic_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -455,8 +455,8 @@
 
                     <Button
                         android:id="@+id/photo_water_up_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -513,8 +513,8 @@
 
                     <Button
                         android:id="@+id/photo_water_down_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>

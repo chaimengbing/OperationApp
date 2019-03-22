@@ -60,8 +60,8 @@ public class TestUtil {
             }
 
             user = new RtuItem();
-            user.setStation_id(userId + "");
-            user.setStation_addr("北京市");
+            user.setStationId(userId + "");
+            user.setProjectAlias("北京市");
             list.add(user);
         }
         return list;

@@ -10,7 +10,7 @@
         android:padding="5dp">
 
         <EditText
-            android:layout_width="@dimen/x600"
+            android:layout_width="@dimen/qb_px_300"
             android:layout_height="wrap_content"/>
 
         <Button

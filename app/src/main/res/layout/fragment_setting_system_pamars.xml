@@ -46,8 +46,8 @@
 
                     <Button
                         android:id="@+id/site_test_setting_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
                 </RelativeLayout>
@@ -92,8 +92,8 @@
 
                     <Button
                         android:id="@+id/ground_setting_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
                 </RelativeLayout>
@@ -137,8 +137,8 @@
 
                     <Button
                         android:id="@+id/apn_set_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"
                         android:textColor="@color/black"/>
@@ -185,8 +185,8 @@
 
                     <Button
                         android:id="@+id/gate_meter_setting_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
                 </RelativeLayout>
@@ -194,8 +194,8 @@
             </LinearLayout>
             <Button
                 android:id="@+id/sam_gate_now_button"
-                android:layout_width="@dimen/x280"
-                android:layout_height="@dimen/x80"
+                android:layout_width="@dimen/qb_px_140"
+                android:layout_height="@dimen/qb_px_40"
                 android:layout_margin="10dp"
                 android:background="@drawable/bg_button"
                 android:text="@string/sam_gate_now"/>
@@ -224,7 +224,7 @@
 
                 <Spinner
                     android:id="@+id/sensor_type_spinner"
-                    android:layout_width="@dimen/x400"
+                    android:layout_width="@dimen/qb_px_200"
                     android:layout_height="wrap_content"
                     android:background="@drawable/spinner_bg"
                     android:entries="@array/sensor_type"
@@ -247,7 +247,7 @@
 
             <Spinner
                 android:id="@+id/time_interval_spinner"
-                android:layout_width="@dimen/x400"
+                android:layout_width="@dimen/qb_px_200"
                 android:layout_height="wrap_content"
                 android:background="@drawable/spinner_bg"
                 android:entries="@array/ground_collect_time"
@@ -274,7 +274,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/x140"/>
+                android:layout_marginRight="@dimen/qb_px_70"/>
 
 
         </RelativeLayout>
@@ -465,8 +465,8 @@
                     android:layout_weight="3">
                     <Button
                         android:id="@+id/time_button"
-                        android:layout_width="@dimen/x80"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/qb_px_40"
+                        android:layout_height="@dimen/qb_px_30"
                         android:background="@drawable/bg_button"
                         android:text="@string/setting"/>
 
@@ -521,16 +521,16 @@
             android:layout_height="wrap_content">
             <Button
                 android:id="@+id/reset_button"
-                android:layout_width="@dimen/x280"
-                android:layout_height="@dimen/x80"
+                android:layout_width="@dimen/qb_px_140"
+                android:layout_height="@dimen/qb_px_40"
                 android:layout_margin="10dp"
                 android:background="@drawable/bg_button"
                 android:text="@string/reset"/>
 
             <Button
                 android:id="@+id/restart_button"
-                android:layout_width="@dimen/x280"
-                android:layout_height="@dimen/x80"
+                android:layout_width="@dimen/qb_px_140"
+                android:layout_height="@dimen/qb_px_40"
                 android:layout_margin="10dp"
                 android:background="@drawable/bg_button"
                 android:text="@string/restart"/>
