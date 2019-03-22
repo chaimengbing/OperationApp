@@ -6,6 +6,45 @@
 
     <View
         android:id="@+id/divider"
+        style="@style/divider_horizontal_1dp_gray" />
+
+    <LinearLayout
+        android:id="@+id/tab_layout"
+        style="@style/ll_horizontal_match_wrap"
+        android:layout_height="@dimen/qb_px_50"
+        android:layout_below="@id/toolbar_rl"
+        android:minHeight="@dimen/qb_px_50">
+
+        <RelativeLayout
+            style="@style/match_wrap"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/left_text"
+                style="@style/text_middle_black"
+                android:layout_centerInParent="true"
+                android:text="项目名称" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/match_wrap"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/center_text"
+                style="@style/text_middle_black"
+                android:layout_centerInParent="true"
+                android:text="项目编号" />
+
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+    <View
         style="@style/divider_horizontal_1dp_gray"
         android:layout_below="@id/tab_layout" />
 

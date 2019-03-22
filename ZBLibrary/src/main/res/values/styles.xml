@@ -352,7 +352,7 @@
     </style>
 
     <style name="divider_vertical_1dp_gray" parent="divider_vertical_1dp">
-        <item name="android:background">@color/gray_2</item>
+        <item name="android:background">@color/alpha_3</item>
     </style>
 
     <style name="divider_vertical_1dp_white" parent="divider_vertical_1dp">

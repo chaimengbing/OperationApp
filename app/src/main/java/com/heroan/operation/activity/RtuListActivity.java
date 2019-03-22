@@ -10,10 +10,7 @@ import android.widget.TextView;
 
 import com.heroan.operation.R;
 import com.heroan.operation.adapter.RtuListAdapter;
-import com.heroan.operation.interfaces.OnHttpResponseListener;
-import com.heroan.operation.manager.OnHttpResponseListenerImpl;
 import com.heroan.operation.model.RtuItem;
-import com.heroan.operation.utils.HttpRequest;
 
 import java.util.List;
 
@@ -80,26 +77,15 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
 
     @Override
     public void getListAsync(final int page) {
-        HttpRequest.getDevicesList(userCode, 0,
-                new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
-                    @Override
-                    public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
-                        showShortToast(resultData);
-                    }
 
-                    @Override
-                    public void onHttpError(int requestCode, Exception e) {
-                    }
-                }));
+        onHttpResponse(0, "[{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140027\",\"projectAlias\":\"龙慧德鸿\"},{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140027\",\"projectAlias\":\"龙慧德鸿\"}]", new Exception());
 
-//        new Handler().postDelayed(new Runnable() {
-//
+//        HttpRequest.getDevicesList(userCode, 0, new OnHttpResponseListener() {
 //            @Override
-//            public void run() {
-//                onHttpResponse(-page, page >= 5 ? null : JSON.toJSONString(TestUtil.getUserList
-// (page, 10)), null);
+//            public void onHttpResponse(int requestCode, String resultJson, Exception e) {
+//                onHttpResponse(requestCode, resultJson, e);
 //            }
-//        }, 1000);
+//        });
     }
 
     @Override

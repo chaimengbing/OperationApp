@@ -65,7 +65,7 @@ public class HttpRequest {
      * register_id
      */
 
-    public static final String PHONE = "phone";
+    public static final String PHONE = "code";
     public static final String PASSWORD = "password";
     public static final String INFO_DES = "INFO_DES";
 
