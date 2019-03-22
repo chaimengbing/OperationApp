@@ -36,10 +36,10 @@
                 android:id="@+id/center_text"
                 style="@style/text_middle_black"
                 android:layout_centerInParent="true"
-                android:text="项目编号" />
+                android:text="设备编号" />
 
 
-        </RelativeLayout>
+        </RelativeLayout>o
 
 
 

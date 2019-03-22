@@ -102,12 +102,12 @@ public class WheelView extends View
     /**
      * Additional items height (is added to standard text item height)
      */
-    private static final int ADDITIONAL_ITEM_HEIGHT = 15;
+    private static final int ADDITIONAL_ITEM_HEIGHT = 25;
 
     /**
      * Text size
      */
-    private static final int TEXT_SIZE = 22;
+    private static final int TEXT_SIZE = 40;
 
     /**
      * Top and bottom items offset (to hide that)

@@ -44,7 +44,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/qb_px_125">
+                        android:layout_height="@dimen/qb_px_130">
 
                         <ImageView
                             style="@style/icon_main"
@@ -74,7 +74,7 @@
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/qb_px_85">
+                            android:layout_height="@dimen/qb_px_90">
 
                             <ImageView
                                 style="@style/icon_main"
@@ -100,7 +100,7 @@
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/qb_px_85">
+                            android:layout_height="@dimen/qb_px_90">
 
                             <ImageView
                                 style="@style/icon_main"
@@ -136,7 +136,7 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/qb_px_178">
+                                android:layout_height="@dimen/qb_px_188">
 
                                 <ImageView
                                     style="@style/icon_main"
@@ -168,7 +168,7 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/qb_px_85">
+                                android:layout_height="@dimen/qb_px_90">
 
                                 <ImageView
                                     style="@style/icon_main"
@@ -193,7 +193,7 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/qb_px_85">
+                                android:layout_height="@dimen/qb_px_90">
 
                                 <ImageView
                                     style="@style/icon_main"

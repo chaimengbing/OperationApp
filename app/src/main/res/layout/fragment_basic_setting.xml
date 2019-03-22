@@ -33,7 +33,8 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout style="@style/ll_vertical_mw">
+        <LinearLayout style="@style/ll_vertical_mw"
+            android:paddingBottom="@dimen/qb_px_20">
 
             <TextView
                 style="@style/text_set_title"
@@ -198,9 +199,10 @@
         </LinearLayout>
 
         <LinearLayout style="@style/ll_vertical_white"
-            android:visibility="gone">
+            android:visibility="visible">
 
-            <LinearLayout style="@style/ll_vertical_mw">
+            <LinearLayout style="@style/ll_vertical_mw"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/text_set_title"
