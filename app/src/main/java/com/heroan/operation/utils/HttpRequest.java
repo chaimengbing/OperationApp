@@ -59,6 +59,12 @@ public class HttpRequest {
     public static final String USER_ID = "userId";
     public static final String CURRENT_USER_ID = "currentUserId";
 
+    /**
+     * code
+     * password
+     * register_id
+     */
+
     public static final String PHONE = "phone";
     public static final String PASSWORD = "password";
     public static final String INFO_DES = "INFO_DES";

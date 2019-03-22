@@ -58,52 +58,50 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
 
-        <activity
-            android:name=".activity.MainActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.LoginActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" />
+        </activity>
         <activity
             android:name=".activity.RegisterActivity"
-            android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.HomeActivity"
-            android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SystemSetActivity"
-            android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.BleDeviceListActivity"
-            android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.BasicSettingActivity"
-            android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MessageActivity"
-            android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.RtuListActivity"
-            android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.OperaSignInActivity"
-            android:label="@string/app_name"
             android:screenOrientation="portrait" />
 
     </application>

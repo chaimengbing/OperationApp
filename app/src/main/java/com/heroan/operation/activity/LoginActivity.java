@@ -45,31 +45,34 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void initData() {
-        HttpRequest.translate("library", 0, new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
-            @Override
-            public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
-                showShortToast(resultData);
-            }
+        HttpRequest.translate("library", 0,
+                new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
+                    @Override
+                    public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
+                        showShortToast(resultData);
+                    }
 
-            @Override
-            public void onHttpError(int requestCode, Exception e) {
+                    @Override
+                    public void onHttpError(int requestCode, Exception e) {
 
-            }
-        }));
+                    }
+                }));
 
 
     }
 
     @Override
     public void initEvent() {
-        findView(R.id.login).setOnClickListener(this);
+        loginButton.setOnClickListener(this);
+        findView(R.id.register_text).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.login) {
             login(nameEdittext.getText().toString(), passEdittext.getText().toString());
-
+        } else if (v.getId() == R.id.register_text) {
+            startActivity(RegisterActivity.createIntent(getApplicationContext()));
         }
     }
 
@@ -78,17 +81,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             showShortToast(getString(R.string.name_or_pass_no_null));
             return;
         }
-        HttpRequest.login(name, password, 0, new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
-            @Override
-            public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
-                showShortToast(resultData);
-                toActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
+        HttpRequest.login(name, password, 0,
+                new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
+                    @Override
+                    public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
+                        showShortToast(resultData);
+                        toActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    }
 
-            @Override
-            public void onHttpError(int requestCode, Exception e) {
+                    @Override
+                    public void onHttpError(int requestCode, Exception e) {
 
-            }
-        }));
+                    }
+                }));
     }
 }

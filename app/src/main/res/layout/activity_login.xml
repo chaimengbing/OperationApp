@@ -43,8 +43,27 @@
         <Button
             android:id="@+id/login"
             style="@style/btn_blue_middle"
-            android:layout_margin="@dimen/padding_large"
+            android:layout_marginLeft="@dimen/qb_px_20"
+            android:layout_marginTop="@dimen/qb_px_20"
+            android:layout_marginRight="@dimen/qb_px_20"
             android:text="@string/login" />
+
+        <RelativeLayout
+            style="@style/match_wrap"
+            android:layout_margin="@dimen/qb_px_20">
+
+            <TextView
+                style="@style/text_middle_blue"
+                android:text="忘记密码"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/register_text"
+                style="@style/text_middle_blue"
+                android:layout_alignParentRight="true"
+                android:text="@string/User_registration" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 

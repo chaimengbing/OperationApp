@@ -8,11 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.heroan.operation.R;
-import com.heroan.operation.interfaces.OnHttpResponseListener;
-import com.heroan.operation.manager.OnHttpResponseListenerImpl;
 import com.heroan.operation.utils.HttpRequest;
 
 import zuo.biao.library.base.BaseActivity;
+import zuo.biao.library.interfaces.OnHttpResponseListener;
 import zuo.biao.library.util.StringUtil;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
@@ -59,7 +58,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             register(phoneEdit.getText().toString().trim(), passEdit.getText().toString().trim(),
                     cofirmPassEdit.getText().toString().trim(),
                     infoDesEdit.getText().toString().trim());
-            toActivity(new Intent(getApplicationContext(), LoginActivity.class));
         }
     }
 
@@ -81,17 +79,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             return;
         }
 
-        HttpRequest.register(phone, pass, infoDes, 0,
-                new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
-                    @Override
-                    public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
-                        showShortToast(resultData);
-                    }
-
-                    @Override
-                    public void onHttpError(int requestCode, Exception e) {
-
-                    }
-                }));
+        HttpRequest.register(phone, pass, infoDes, 0, new OnHttpResponseListener() {
+            @Override
+            public void onHttpResponse(int requestCode, String resultJson, Exception e) {
+                showShortToast(resultJson);
+            }
+        });
     }
 }
