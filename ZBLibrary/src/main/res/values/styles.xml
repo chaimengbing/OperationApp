@@ -343,6 +343,12 @@
         <item name="android:background">@color/pop_divier</item>
     </style>
 
+    <style name="divider_horizontal_gray" parent="divider_horizontal_1dp_gray">
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
     <style name="divider_vertical_1dp" parent="divider">
         <item name="android:layout_width">1dp</item>
         <item name="android:layout_height">fill_parent</item>
@@ -426,6 +432,7 @@
         <item name="android:gravity">center_horizontal</item>
         <item name="android:orientation">vertical</item>
     </style>
+
     <style name="ll_vertical_we1" parent="match_wrap">
         <item name="android:layout_weight">1</item>
         <item name="android:orientation">vertical</item>
@@ -970,14 +977,14 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16sp</item>
         <item name="android:paddingTop">8dp</item>
-        <item name="android:paddingBottom">8dp</item>
         <item name="android:paddingRight">12dp</item>
         <item name="android:layout_marginLeft">30dp</item>
         <item name="android:layout_marginRight">30dp</item>
         <item name="android:layout_marginTop">12dp</item>
-        <item name="android:layout_marginBottom">12dp</item>
-        <item name="colorControlNormal">@color/edit_gray</item>
-        <item name="colorControlActivated">@color/blue</item>
+        <item name="android:background">@null</item>
+    </style>
+    <style name="edit_login_text_bg_60" parent="edit_login_text_bg">
+        <item name="android:layout_height">60dp</item>
     </style>
 
     <style name="edit_item_tv" parent="edit_item">

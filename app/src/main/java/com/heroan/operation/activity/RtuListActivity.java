@@ -2,7 +2,6 @@ package com.heroan.operation.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,12 +10,13 @@ import android.widget.TextView;
 
 import com.heroan.operation.R;
 import com.heroan.operation.adapter.RtuListAdapter;
+import com.heroan.operation.interfaces.OnHttpResponseListener;
+import com.heroan.operation.manager.OnHttpResponseListenerImpl;
 import com.heroan.operation.model.RtuItem;
-import com.heroan.operation.utils.TestUtil;
+import com.heroan.operation.utils.HttpRequest;
 
 import java.util.List;
 
-import zuo.biao.library.base.BaseActivity;
 import zuo.biao.library.base.BaseHttpListActivity;
 import zuo.biao.library.interfaces.AdapterCallBack;
 import zuo.biao.library.util.JSON;
@@ -26,6 +26,8 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
     private TextView titleRight;
     private TextView title;
     private ImageView backImageView;
+
+    private String userCode = "";
 
 
     @Override
@@ -78,13 +80,26 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
 
     @Override
     public void getListAsync(final int page) {
-        new Handler().postDelayed(new Runnable() {
+        HttpRequest.getDevicesList(userCode, 0,
+                new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
+                    @Override
+                    public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
+                        showShortToast(resultData);
+                    }
 
-            @Override
-            public void run() {
-                onHttpResponse(-page, page >= 5 ? null : JSON.toJSONString(TestUtil.getUserList(page, 10)), null);
-            }
-        }, 1000);
+                    @Override
+                    public void onHttpError(int requestCode, Exception e) {
+                    }
+                }));
+
+//        new Handler().postDelayed(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                onHttpResponse(-page, page >= 5 ? null : JSON.toJSONString(TestUtil.getUserList
+// (page, 10)), null);
+//            }
+//        }, 1000);
     }
 
     @Override

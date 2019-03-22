@@ -73,7 +73,8 @@ public class HttpRequest {
      * @param requestCode
      * @param listener
      */
-    public static void translate(String word, final int requestCode, final OnHttpResponseListener listener) {
+    public static void translate(String word, final int requestCode,
+                                 final OnHttpResponseListener listener) {
         Map<String, Object> request = new HashMap<>();
         request.put("q", word);
         request.put("keyfrom", "ZBLibrary");
@@ -82,7 +83,8 @@ public class HttpRequest {
         request.put("doctype", "json");
         request.put("version", "1.1");
 
-        HttpManager.getInstance().get(request, "http://fanyi.youdao.com/openapi.do", requestCode, listener);
+        HttpManager.getInstance().get(request, "http://fanyi.youdao.com/openapi.do", requestCode,
+                listener);
     }
 
 
@@ -95,11 +97,12 @@ public class HttpRequest {
      * @param password
      * @param listener
      */
-    public static void register(final String phone, final String password,
+    public static void register(final String phone, final String password, final String infoDes,
                                 final int requestCode, final OnHttpResponseListener listener) {
         Map<String, Object> request = new HashMap<>();
         request.put(PHONE, phone);
-        request.put(PASSWORD, MD5Util.MD5(password));
+        request.put(PASSWORD, password);
+        request.put(PASSWORD, infoDes);
 
         HttpManager.getInstance().post(request, URL_BASE + "/registerAjax", requestCode, listener);
     }
@@ -130,11 +133,13 @@ public class HttpRequest {
      * @param requestCode
      * @param listener
      */
-    public static void getDevicesList(String userCode, final int requestCode, final OnHttpResponseListener listener) {
+    public static void getDevicesList(String userCode, final int requestCode,
+                                      final OnHttpResponseListener listener) {
         Map<String, Object> request = new HashMap<>();
         request.put(USER_CODE, userCode);
 
-        HttpManager.getInstance().get(request, URL_BASE + "/equipmentListAjax", requestCode, listener);
+        HttpManager.getInstance().get(request, URL_BASE + "/equipmentListAjax", requestCode,
+                listener);
     }
 
     public static final int USER_LIST_RANGE_ALL = 0;
@@ -147,11 +152,13 @@ public class HttpRequest {
      * @param requestCode
      * @param listener
      */
-    public static void operational(String userCode, final int requestCode, final OnHttpResponseListener listener) {
+    public static void operational(String userCode, final int requestCode,
+                                   final OnHttpResponseListener listener) {
         Map<String, Object> request = new HashMap<>();
         request.put(USER_CODE, userCode);
 
-        HttpManager.getInstance().get(request, URL_BASE + "/operationalAjax", requestCode, listener);
+        HttpManager.getInstance().get(request, URL_BASE + "/operationalAjax", requestCode,
+                listener);
     }
 
 
@@ -163,13 +170,15 @@ public class HttpRequest {
      * @param requestCode
      * @param listener
      */
-    public static void singleOrders(String userCode, String orderId, final int requestCode, final OnHttpResponseListener listener) {
+    public static void singleOrders(String userCode, String orderId, final int requestCode,
+                                    final OnHttpResponseListener listener) {
         Map<String, Object> request = new HashMap<>();
         request.put(USER_CODE, userCode);
         request.put(ORDER_ID, orderId);
 
 
-        HttpManager.getInstance().get(request, URL_BASE + "/singleOrdersAjax", requestCode, listener);
+        HttpManager.getInstance().get(request, URL_BASE + "/singleOrdersAjax", requestCode,
+                listener);
     }
 
     /**
@@ -179,7 +188,9 @@ public class HttpRequest {
      * @param requestCode
      * @param listener
      */
-    public static void addProduct(String userCode, String orderId, String summary, String createTime, final int requestCode, final OnHttpResponseListener listener) {
+    public static void addProduct(String userCode, String orderId, String summary,
+                                  String createTime, final int requestCode,
+                                  final OnHttpResponseListener listener) {
         Map<String, Object> request = new HashMap<>();
         request.put(USER_CODE, userCode);
         request.put(ORDER_ID, orderId);

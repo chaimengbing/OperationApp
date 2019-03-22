@@ -892,6 +892,7 @@
     <string name="Project_list">项目列表</string>
     <string name="Message_list">消息列表</string>
     <string name="Phone_number_empty">手机号不能为空</string>
+    <string name="info_des_no_empty">身份信息描述不能为空</string>
     <string name="Check_updates">检查更新</string>
     <string name="Version_Information">版本信息</string>
     <string name="Exited">已退出</string>
@@ -993,6 +994,7 @@
     <string name="system_setting">系统设置</string>
     <string name="operation_sign_in">运维打卡</string>
     <string name="senior_setting">高级设置</string>
+    <string name="info_des">身份信息描述</string>
 
 
 </resources>

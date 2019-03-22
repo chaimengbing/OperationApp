@@ -17,15 +17,28 @@
         android:layout_marginTop="@dimen/margin_top"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/name_edit"
-            style="@style/edit_login_text_bg"
-            android:hint="@string/input_phone" />
+        <LinearLayout style="@style/ll_vertical_match_wrap">
 
-        <EditText
-            android:id="@+id/pass_edit"
-            style="@style/edit_login_text_bg"
-            android:hint="@string/input_password" />
+            <EditText
+                android:id="@+id/name_edit"
+                style="@style/edit_login_text_bg"
+                android:hint="@string/input_phone" />
+
+            <View style="@style/divider_horizontal_gray" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/ll_vertical_match_wrap">
+
+            <EditText
+                android:id="@+id/pass_edit"
+                style="@style/edit_login_text_bg"
+                android:hint="@string/input_password" />
+
+            <View style="@style/divider_horizontal_gray" />
+
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/login"
