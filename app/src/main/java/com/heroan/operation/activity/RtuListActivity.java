@@ -25,6 +25,31 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
     private ImageView backImageView;
 
     private String userCode = "";
+    private boolean isFirst = true;
+    private String resultData = "[{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140027\",\"projectAlias\":\"舟山市定海区\"}," +
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140028\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140029\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140030\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140031\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140032\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140033\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140034\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140035\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140036\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140037\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140038\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140039\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140040\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140041\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140042\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140043\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140044\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140045\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140046\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140047\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140048\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140049\",\"projectAlias\":\"舟山市定海区\"},"+
+            "{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140050\",\"projectAlias\":\"舟山市定海区\"}]";
 
 
     @Override
@@ -78,7 +103,12 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
     @Override
     public void getListAsync(final int page) {
 
-        onHttpResponse(0, "[{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140027\",\"projectAlias\":\"龙慧德鸿\"},{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140027\",\"projectAlias\":\"龙慧德鸿\"}]", new Exception());
+        if (isFirst){
+            isFirst = false;
+            onHttpResponse(0, resultData, new Exception());
+        }else {
+            srlBaseHttpList.finishLoadmore();
+        }
 
 //        HttpRequest.getDevicesList(userCode, 0, new OnHttpResponseListener() {
 //            @Override

@@ -90,10 +90,10 @@
     </style>
 
     <style name="ll_selimg_white" parent="ll_update_white">
-        <item name="android:layout_height">@dimen/white_ll_height</item>
+        <item name="android:layout_height">@dimen/qb_px_170</item>
     </style>
     <style name="ll_info_white" parent="ll_update_white">
-        <item name="android:layout_height">@dimen/white_ll_height</item>
+        <item name="android:layout_height">@dimen/qb_px_170</item>
     </style>
 
     <style name="img_select" parent="match_wrap">
