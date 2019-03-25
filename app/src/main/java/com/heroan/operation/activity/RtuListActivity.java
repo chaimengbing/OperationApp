@@ -29,6 +29,8 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
     private TextView title;
     private ImageView backImageView;
 
+    private TextView noData;
+
     private String userCode = "";
     private boolean isFirst = true;
     private String resultData = "[{\"projectId\":\"119361810131214\",\"stationId\":\"120001808140027\",\"projectAlias\":\"舟山市定海区\"}," +
@@ -80,6 +82,7 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
         backImageView = findViewById(R.id.title_back);
         titleRight = findViewById(R.id.title_right);
         title = findViewById(R.id.title);
+        noData = findViewById(R.id.noData);
     }
 
     @Override
@@ -93,7 +96,15 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
 
             @Override
             public void refreshAdapter() {
-                adapter.refresh(list);
+                if (list != null && list.size() > 0) {
+                    adapter.refresh(list);
+                    lvBaseList.setVisibility(View.VISIBLE);
+                    noData.setVisibility(View.GONE);
+                } else {
+                    noData.setVisibility(View.VISIBLE);
+                    lvBaseList.setVisibility(View.GONE);
+
+                }
             }
         });
     }
@@ -104,7 +115,7 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
         title.setText(getString(R.string.rtu_list));
         titleRight.setVisibility(View.GONE);
         userCode = SettingUtil.getSaveValue(SettingUtil.PHONE);
-        userCode = "110";
+//        userCode = "110";
     }
 
     @Override

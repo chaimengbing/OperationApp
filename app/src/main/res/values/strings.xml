@@ -996,6 +996,7 @@
     <string name="senior_setting">高级设置</string>
     <string name="info_des">身份信息描述</string>
     <string name="please_sel_operation_order">请选择运维工单</string>
+    <string name="no_data">暂无数据</string>
 
 
 </resources>

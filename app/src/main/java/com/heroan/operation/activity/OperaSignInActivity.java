@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.EventLog;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,9 +23,9 @@ import zuo.biao.library.interfaces.OnHttpResponseListener;
 import zuo.biao.library.ui.CutPictureActivity;
 import zuo.biao.library.ui.ItemDialog;
 import zuo.biao.library.ui.SelectPictureActivity;
-import zuo.biao.library.util.CommonUtil;
 import zuo.biao.library.util.DataKeeper;
 import zuo.biao.library.util.JSON;
+import zuo.biao.library.util.SettingUtil;
 import zuo.biao.library.util.StringUtil;
 
 public class OperaSignInActivity extends BaseActivity implements View.OnClickListener, GpsUtils.OnLocationResultListener, ItemDialog.OnDialogItemClickListener {
@@ -99,11 +98,16 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void getOperationOrderList() {
-        HttpRequest.operational("110", 0, new OnHttpResponseListener() {
+        HttpRequest.operational(SettingUtil.getSaveValue(SettingUtil.PHONE), 0, new OnHttpResponseListener() {
             @Override
             public void onHttpResponse(int requestCode, String resultJson, Exception e) {
                 if (StringUtil.isNotEmpty(resultJson, true)) {
                     operationOrderList = JSON.parseArray(resultJson, OperationOrder.class);
+                    if (operationOrderList == null || operationOrderList.size() == 0) {
+                        showShortToast("没有未完成的工单");
+                    }
+                } else {
+                    showShortToast("没有未完成的工单");
                 }
             }
         });
@@ -175,7 +179,7 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
      * 运维打卡
      */
     private void orderSignIn() {
-        if (currentOperationOrder == null){
+        if (currentOperationOrder == null) {
             showShortToast(R.string.please_sel_operation_order);
             return;
         }
