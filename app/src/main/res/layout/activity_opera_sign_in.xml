@@ -36,7 +36,7 @@
                     android:layout_toLeftOf="@id/right"
                     android:layout_toRightOf="@id/update_operation_imageview"
                     android:gravity="left"
-                    android:text="@string/operation_sign_in" />
+                    android:text="@string/please_sel_operation_order" />
 
 
                 <ImageView
@@ -152,9 +152,9 @@
                                 style="@style/edit_text_title" />
 
                             <!--<TextView-->
-                                <!--style="@style/text_set_title"-->
-                                <!--android:layout_weight="1"-->
-                                <!--android:text="m" />-->
+                            <!--style="@style/text_set_title"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:text="m" />-->
                         </LinearLayout>
                     </LinearLayout>
 
@@ -181,6 +181,13 @@
 
             </LinearLayout>
 
+            <Button
+                android:id="@+id/sign_in_button"
+                style="@style/btn_blue_middle"
+                android:layout_marginLeft="@dimen/qb_px_20"
+                android:layout_marginTop="@dimen/qb_px_20"
+                android:layout_marginRight="@dimen/qb_px_20"
+                android:text="@string/operation_sign_in" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

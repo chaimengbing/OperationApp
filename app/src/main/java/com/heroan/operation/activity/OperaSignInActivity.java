@@ -12,18 +12,27 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.heroan.operation.R;
+import com.heroan.operation.model.OperationOrder;
 import com.heroan.operation.utils.GpsUtils;
+import com.heroan.operation.utils.HttpRequest;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 import zuo.biao.library.base.BaseActivity;
+import zuo.biao.library.interfaces.OnHttpResponseListener;
 import zuo.biao.library.ui.CutPictureActivity;
+import zuo.biao.library.ui.ItemDialog;
 import zuo.biao.library.ui.SelectPictureActivity;
+import zuo.biao.library.util.CommonUtil;
 import zuo.biao.library.util.DataKeeper;
+import zuo.biao.library.util.JSON;
 import zuo.biao.library.util.StringUtil;
 
-public class OperaSignInActivity extends BaseActivity implements View.OnClickListener, GpsUtils.OnLocationResultListener {
+public class OperaSignInActivity extends BaseActivity implements View.OnClickListener, GpsUtils.OnLocationResultListener, ItemDialog.OnDialogItemClickListener {
     private final static String TAG = OperaSignInActivity.class.getName();
+
+    private static final int DIALOG_SET_OPERATION_ORDER = 1;
 
     private static final int REQUEST_TO_SELECT_PICTURE = 20;
     private static final int REQUEST_TO_CUT_PICTURE = 21;
@@ -45,6 +54,8 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
     private int currentSelImage = SEL_ENV;
     private String picturePath = "";
     private DecimalFormat decimalFormat = new DecimalFormat("###.000000");
+    private List<OperationOrder> operationOrderList;
+    private OperationOrder currentOperationOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +94,29 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
 
         GpsUtils.getInstance(getApplicationContext()).getLngAndLat(this);
 
+        getOperationOrderList();
+
     }
+
+    private void getOperationOrderList() {
+        HttpRequest.operational("110", 0, new OnHttpResponseListener() {
+            @Override
+            public void onHttpResponse(int requestCode, String resultJson, Exception e) {
+                if (StringUtil.isNotEmpty(resultJson, true)) {
+                    operationOrderList = JSON.parseArray(resultJson, OperationOrder.class);
+                }
+            }
+        });
+    }
+
+
+    /**
+     * 显示列表选择弹窗
+     */
+    private void showItemDialog(String[] operationOrderArray) {
+        new ItemDialog(context, operationOrderArray, getString(R.string.please_sel_operation_order), DIALOG_SET_OPERATION_ORDER, this).show();
+    }
+
 
     @Override
     public void initEvent() {
@@ -93,6 +126,7 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
         envImage.setOnClickListener(this);
         beforeOperaImage.setOnClickListener(this);
         afterOperaImage.setOnClickListener(this);
+        findView(R.id.sign_in_button).setOnClickListener(this);
     }
 
     @Override
@@ -103,9 +137,19 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.update_operation_imageview:
                 //刷新工单列表
+                getOperationOrderList();
                 break;
             case R.id.sign_in_text:
                 //运维任务选择
+                if (operationOrderList != null && operationOrderList.size() > 0) {
+                    String[] orderArray = new String[operationOrderList.size()];
+                    for (int i = 0; i < operationOrderList.size(); i++) {
+                        orderArray[i] = operationOrderList.get(i).getOrder_name();
+                    }
+                    showItemDialog(orderArray);
+                } else {
+                    showShortToast("没有未完成的运维工单");
+                }
                 break;
             case R.id.env_image:
                 currentSelImage = SEL_ENV;
@@ -119,8 +163,21 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
                 currentSelImage = SEL_AFTER_OPERA;
                 selectPicture();
                 break;
+            case R.id.sign_in_button:
+                orderSignIn();
+                break;
             default:
                 break;
+        }
+    }
+
+    /**
+     * 运维打卡
+     */
+    private void orderSignIn() {
+        if (currentOperationOrder == null){
+            showShortToast(R.string.please_sel_operation_order);
+            return;
         }
     }
 
@@ -213,5 +270,13 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void OnLocationChange(Location location) {
 
+    }
+
+    @Override
+    public void onDialogItemClick(int requestCode, int position, String item) {
+        if (requestCode == DIALOG_SET_OPERATION_ORDER) {
+            signInText.setText(item);
+            currentOperationOrder = operationOrderList.get(position);
+        }
     }
 }
