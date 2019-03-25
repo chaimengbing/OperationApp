@@ -27,4 +27,12 @@
 
     <View style="@style/divider_horizontal_1px" />
 
+    <Button
+        android:id="@+id/exit_login"
+        style="@style/btn_blue_middle"
+        android:layout_marginLeft="@dimen/qb_px_20"
+        android:layout_marginTop="@dimen/qb_px_20"
+        android:layout_marginRight="@dimen/qb_px_20"
+        android:text="@string/exit_login" />
+
 </LinearLayout>

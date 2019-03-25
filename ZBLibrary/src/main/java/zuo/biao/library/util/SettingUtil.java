@@ -38,6 +38,10 @@ public final class SettingUtil {
 
     private SettingUtil() {/*不能实例化**/}
 
+    public static final String PHONE = "phone";
+    public static final String PASSWORD = "password";
+    public static final String LOGIN_TIME = "login_time";
+
 
     public static final String KEY_CACHE = "KEY_CACHE";//开启缓存
     public static final String KEY_PRELOAD = "KEY_PRELOAD";//开启预加载
@@ -249,11 +253,11 @@ public final class SettingUtil {
      * TODO 改为你的正式服务器地址
      * http://rtuyun.cn/registerAjax
      */
-    public static final String URL_SERVER_ADDRESS_NORMAL_HTTP = "http://47.99.189.101:8080/vcontrolCloud";//正式服务器
+    public static final String URL_SERVER_ADDRESS_NORMAL_HTTP = "http://47.99.189.101/vcontrolCloud";//正式服务器
     /**
      * TODO 改为你的正式服务器地址
      */
-    public static final String URL_SERVER_ADDRESS_NORMAL_HTTPS = "http://47.99.189.101:8080/vcontrolCloud";//正式服务器
+    public static final String URL_SERVER_ADDRESS_NORMAL_HTTPS = "http://47.99.189.101/vcontrolCloud";//正式服务器
     /**
      * TODO 改为你的测试服务器地址,如果有的话
      */
@@ -328,5 +332,31 @@ public final class SettingUtil {
         SharedPreferences sdf = context.getSharedPreferences(APP_SETTING, Context.MODE_PRIVATE);
         return sdf.getInt(KEY_SET_MODE, KEY_SET_MODE_WIFI);
     }
+
+    public static void setSaveValue(String key, String values) {
+        SharedPreferences sdf = context.getSharedPreferences(APP_SETTING, Context.MODE_PRIVATE);
+        sdf.edit().putString(key, values).commit();
+
+    }
+
+
+    public static String getSaveValue(String key) {
+        SharedPreferences sdf = context.getSharedPreferences(APP_SETTING, Context.MODE_PRIVATE);
+        return sdf.getString(key, "");
+    }
+
+
+    public static void setSaveLongValue(String key, long values) {
+        SharedPreferences sdf = context.getSharedPreferences(APP_SETTING, Context.MODE_PRIVATE);
+        sdf.edit().putLong(key, values).commit();
+
+    }
+
+
+    public static long getSaveLongValue(String key) {
+        SharedPreferences sdf = context.getSharedPreferences(APP_SETTING, Context.MODE_PRIVATE);
+        return sdf.getLong(key, 0);
+    }
+
 
 }

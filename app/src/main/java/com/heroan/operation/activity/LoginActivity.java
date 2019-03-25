@@ -13,6 +13,7 @@ import com.heroan.operation.manager.OnHttpResponseListenerImpl;
 import com.heroan.operation.utils.HttpRequest;
 
 import zuo.biao.library.base.BaseActivity;
+import zuo.biao.library.util.SettingUtil;
 import zuo.biao.library.util.StringUtil;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
@@ -45,20 +46,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void initData() {
-        HttpRequest.translate("library", 0,
-                new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
-                    @Override
-                    public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
-                        showShortToast(resultData);
-                    }
-
-                    @Override
-                    public void onHttpError(int requestCode, Exception e) {
-
-                    }
-                }));
-
-
+        String name = SettingUtil.getSaveValue(SettingUtil.PHONE);
+        if (StringUtil.isNotEmpty(name, true)) {
+            nameEdittext.setText(name);
+            nameEdittext.setSelection(name.length());
+        }
     }
 
     @Override
@@ -76,23 +68,25 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
     }
 
-    private void login(String name, String password) {
+    private void login(final String name, final String password) {
         if (StringUtil.isEmpty(name) || StringUtil.isEmpty(password)) {
             showShortToast(getString(R.string.name_or_pass_no_null));
             return;
         }
-        HttpRequest.login(name, password, 0,
-                new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
-                    @Override
-                    public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
-                        showShortToast(resultData);
-                        toActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    }
+        HttpRequest.login(name, password, 0, new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
+            @Override
+            public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
+                SettingUtil.setSaveValue(SettingUtil.PHONE, name);
+                SettingUtil.setSaveValue(SettingUtil.PASSWORD, password);
+                SettingUtil.setSaveLongValue(SettingUtil.LOGIN_TIME, System.currentTimeMillis());
 
-                    @Override
-                    public void onHttpError(int requestCode, Exception e) {
+                startActivity(MainActivity.createIntent(getApplicationContext()));
+            }
 
-                    }
-                }));
+            @Override
+            public void onHttpError(int requestCode, String resultData) {
+                showShortToast(resultData);
+            }
+        }));
     }
 }

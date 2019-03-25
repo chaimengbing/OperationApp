@@ -5,6 +5,12 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.heroan.operation.R;
+import com.heroan.operation.utils.DateUtils;
+
+import java.util.Set;
+
+import zuo.biao.library.util.SettingUtil;
+import zuo.biao.library.util.StringUtil;
 
 
 public class SplashActivity extends Activity {
@@ -17,7 +23,13 @@ public class SplashActivity extends Activity {
 
             @Override
             public void run() {
-                startActivity(MainActivity.createIntent(SplashActivity.this));
+                String name = SettingUtil.getSaveValue(SettingUtil.PHONE);
+                long loginTime = SettingUtil.getSaveLongValue(SettingUtil.LOGIN_TIME);
+                if (loginTime != 0 && StringUtil.isNotEmpty(name, true) && DateUtils.isSameData(loginTime, System.currentTimeMillis())) {
+                    startActivity(MainActivity.createIntent(SplashActivity.this));
+                } else {
+                    startActivity(LoginActivity.createIntent(SplashActivity.this));
+                }
                 finish();
             }
         }, 1000);

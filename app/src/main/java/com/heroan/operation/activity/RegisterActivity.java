@@ -8,10 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.heroan.operation.R;
+import com.heroan.operation.interfaces.OnHttpResponseListener;
+import com.heroan.operation.manager.OnHttpResponseListenerImpl;
 import com.heroan.operation.utils.HttpRequest;
 
 import zuo.biao.library.base.BaseActivity;
-import zuo.biao.library.interfaces.OnHttpResponseListener;
+import zuo.biao.library.util.SettingUtil;
 import zuo.biao.library.util.StringUtil;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
@@ -61,7 +63,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
-    private void register(String phone, String pass, String confirmPass, String infoDes) {
+    private void register(final String phone, String pass, String confirmPass, String infoDes) {
         if (StringUtil.isEmpty(phone)) {
             showShortToast(getString(R.string.Phone_number_empty));
             return;
@@ -79,11 +81,18 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             return;
         }
 
-        HttpRequest.register(phone, pass, infoDes, 0, new OnHttpResponseListener() {
+        HttpRequest.register(phone, pass, infoDes, 0, new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
             @Override
-            public void onHttpResponse(int requestCode, String resultJson, Exception e) {
-                showShortToast(resultJson);
+            public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
+                SettingUtil.setSaveValue(SettingUtil.PHONE, phone);
+                showShortToast("注册成功");
+                startActivity(LoginActivity.createIntent(getApplicationContext()));
             }
-        });
+
+            @Override
+            public void onHttpError(int requestCode, String resultData) {
+                showShortToast(resultData);
+            }
+        }));
     }
 }

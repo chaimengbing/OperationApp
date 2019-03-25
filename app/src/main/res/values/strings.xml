@@ -2,6 +2,7 @@
     <string name="app_name">运维云</string>
     <string name="input_phone">请输入手机号</string>
     <string name="login">登录</string>
+    <string name="exit_login">退出登录</string>
     <string name="wel_rtu_cloud">欢迎来到测站管理平台</string>
     <string name="set_password">设置密码</string>
     <string name="cofirm_password">确认密码</string>

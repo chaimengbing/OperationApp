@@ -33,6 +33,7 @@
             <EditText
                 android:id="@+id/pass_edit"
                 style="@style/edit_login_text_bg"
+                android:inputType="textPassword"
                 android:hint="@string/set_password" />
 
             <View style="@style/divider_horizontal_gray" />
@@ -44,6 +45,7 @@
             <EditText
                 android:id="@+id/cofirm_pass_edit"
                 style="@style/edit_login_text_bg"
+                android:inputType="textPassword"
                 android:hint="@string/cofirm_password" />
 
             <View style="@style/divider_horizontal_gray" />

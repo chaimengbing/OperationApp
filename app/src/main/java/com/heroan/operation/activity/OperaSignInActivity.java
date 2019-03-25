@@ -14,6 +14,8 @@ import com.bumptech.glide.Glide;
 import com.heroan.operation.R;
 import com.heroan.operation.utils.GpsUtils;
 
+import java.text.DecimalFormat;
+
 import zuo.biao.library.base.BaseActivity;
 import zuo.biao.library.ui.CutPictureActivity;
 import zuo.biao.library.ui.SelectPictureActivity;
@@ -42,7 +44,7 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
 
     private int currentSelImage = SEL_ENV;
     private String picturePath = "";
-
+    private DecimalFormat decimalFormat = new DecimalFormat("###.000000");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -201,10 +203,10 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onLocationResult(Location location) {
-        if (location != null){
-            longitudeText.setText(String.valueOf(location.getLongitude()));
-            latitudeText.setText(String.valueOf(location.getLatitude()));
-            altitudeText.setText(String.valueOf(location.getAltitude()));
+        if (location != null) {
+            longitudeText.setText(decimalFormat.format(location.getLongitude()));
+            latitudeText.setText(decimalFormat.format(location.getLatitude()));
+            altitudeText.setText(decimalFormat.format(location.getAltitude()));
         }
     }
 
