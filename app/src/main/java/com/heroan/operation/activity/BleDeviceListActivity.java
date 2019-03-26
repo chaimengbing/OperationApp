@@ -127,6 +127,11 @@ public class BleDeviceListActivity extends BaseActivity implements AdapterView.O
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     //请求权限
     private void requestPermission() {

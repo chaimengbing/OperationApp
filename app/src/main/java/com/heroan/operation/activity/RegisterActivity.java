@@ -104,19 +104,23 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             showShortToast(getString(R.string.check_code_bad));
             return;
         }
+        showProgressDialog(getString(R.string.loading));
         String registerId = JPushInterface.getRegistrationID(context);
 
         HttpRequest.register(phone, pass, infoDes, registerId, 0,
                 new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
                     @Override
                     public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
+                        dismissProgressDialog();
                         SettingUtil.setSaveValue(SettingUtil.PHONE, phone);
                         showShortToast("注册成功");
                         startActivity(LoginActivity.createIntent(getApplicationContext()));
+                        finish();
                     }
 
                     @Override
                     public void onHttpError(int requestCode, String resultData) {
+                        dismissProgressDialog();
                         showShortToast(resultData);
                     }
                 }));

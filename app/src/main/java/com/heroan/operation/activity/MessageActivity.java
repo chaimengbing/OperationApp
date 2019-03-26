@@ -135,6 +135,7 @@ public class MessageActivity extends BaseRecyclerActivity<ContentValues, Message
         rightText.setOnClickListener(this);
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

@@ -73,18 +73,22 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             showShortToast(getString(R.string.name_or_pass_no_null));
             return;
         }
+        showProgressDialog(getString(R.string.loading));
         HttpRequest.login(name, password, 0, new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
             @Override
             public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
+                dismissProgressDialog();
                 SettingUtil.setSaveValue(SettingUtil.PHONE, name);
                 SettingUtil.setSaveValue(SettingUtil.PASSWORD, password);
                 SettingUtil.setSaveLongValue(SettingUtil.LOGIN_TIME, System.currentTimeMillis());
 
                 startActivity(MainActivity.createIntent(getApplicationContext()));
+                finish();
             }
 
             @Override
             public void onHttpError(int requestCode, String resultData) {
+                dismissProgressDialog();
                 showShortToast(resultData);
             }
         }));
