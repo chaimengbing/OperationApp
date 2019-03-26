@@ -56,6 +56,7 @@ public class HttpRequest {
     public static final String ORDER_ID = "order_id";
     public static final String CREATE_TIME = "create_time";
     public static final String SUMMARY = "summary";
+    public static final String REGISTER_ID = "register_id";
     public static final String USER_ID = "userId";
     public static final String CURRENT_USER_ID = "currentUserId";
 
@@ -103,11 +104,13 @@ public class HttpRequest {
      * @param listener
      */
     public static void register(final String phone, final String password, final String infoDes,
+                                final String registerId,
                                 final int requestCode, final OnHttpResponseListener listener) {
         Map<String, Object> request = new HashMap<>();
         request.put(PHONE, phone);
         request.put(PASSWORD, password);
         request.put(SUMMARY, infoDes);
+        request.put(REGISTER_ID, registerId);
 
         HttpManager.getInstance().post(request, URL_BASE + "/registerAjax", requestCode, listener);
     }

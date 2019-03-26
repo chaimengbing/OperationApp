@@ -6,20 +6,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.heroan.operation.R;
 import com.heroan.operation.interfaces.OnHttpResponseListener;
 import com.heroan.operation.manager.OnHttpResponseListenerImpl;
 import com.heroan.operation.utils.HttpRequest;
+import com.heroan.operation.utils.IdentifyingCode;
 
+import cn.jpush.android.api.JPushInterface;
 import zuo.biao.library.base.BaseActivity;
 import zuo.biao.library.util.SettingUtil;
 import zuo.biao.library.util.StringUtil;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 
-    private EditText phoneEdit, passEdit, cofirmPassEdit, infoDesEdit;
+    private EditText phoneEdit, passEdit, cofirmPassEdit, infoDesEdit, checkCodeEdit;
     private Button registerButton;
+    private ImageView checkCodeImage;
+
+    private String realCode = "";
 
 
     public static Intent createIntent(Context context) {
@@ -42,6 +48,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         cofirmPassEdit = findView(R.id.cofirm_pass_edit);
         infoDesEdit = findView(R.id.info_des_edit);
         registerButton = findView(R.id.register);
+        checkCodeImage = findView(R.id.check_code_image);
+        checkCodeEdit = findView(R.id.check_code_edit);
+
+        checkCodeImage.setImageBitmap(IdentifyingCode.getInstance().createBitmap());
+        realCode = IdentifyingCode.getInstance().getCode().toLowerCase();
     }
 
     @Override
@@ -52,6 +63,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void initEvent() {
         registerButton.setOnClickListener(this);
+        checkCodeImage.setOnClickListener(this);
     }
 
     @Override
@@ -59,11 +71,15 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         if (v.getId() == R.id.register) {
             register(phoneEdit.getText().toString().trim(), passEdit.getText().toString().trim(),
                     cofirmPassEdit.getText().toString().trim(),
-                    infoDesEdit.getText().toString().trim());
+                    infoDesEdit.getText().toString().trim(), checkCodeEdit.getText().toString());
+        } else if (v.getId() == R.id.check_code_image) {
+            checkCodeImage.setImageBitmap(IdentifyingCode.getInstance().createBitmap());
+            realCode = IdentifyingCode.getInstance().getCode().toLowerCase();
         }
     }
 
-    private void register(final String phone, String pass, String confirmPass, String infoDes) {
+    private void register(final String phone, String pass, String confirmPass, String infoDes,
+                          String checkCode) {
         if (StringUtil.isEmpty(phone)) {
             showShortToast(getString(R.string.Phone_number_empty));
             return;
@@ -80,19 +96,29 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             showShortToast(getString(R.string.info_des_no_empty));
             return;
         }
+        if (StringUtil.isEmpty(checkCode)) {
+            showShortToast(getString(R.string.check_code_no_empty));
+            return;
+        }
+        if (!realCode.equals(checkCode.toLowerCase())) {
+            showShortToast(getString(R.string.check_code_bad));
+            return;
+        }
+        String registerId = JPushInterface.getRegistrationID(context);
 
-        HttpRequest.register(phone, pass, infoDes, 0, new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
-            @Override
-            public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
-                SettingUtil.setSaveValue(SettingUtil.PHONE, phone);
-                showShortToast("注册成功");
-                startActivity(LoginActivity.createIntent(getApplicationContext()));
-            }
+        HttpRequest.register(phone, pass, infoDes, registerId, 0,
+                new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
+                    @Override
+                    public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
+                        SettingUtil.setSaveValue(SettingUtil.PHONE, phone);
+                        showShortToast("注册成功");
+                        startActivity(LoginActivity.createIntent(getApplicationContext()));
+                    }
 
-            @Override
-            public void onHttpError(int requestCode, String resultData) {
-                showShortToast(resultData);
-            }
-        }));
+                    @Override
+                    public void onHttpError(int requestCode, String resultData) {
+                        showShortToast(resultData);
+                    }
+                }));
     }
 }
