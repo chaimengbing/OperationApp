@@ -63,6 +63,9 @@ dependencies {
     api project(':ZBLibrary')
     api project(':blelibrary')
 
+    api files('libs/jpush-android-3.2.0.jar')
+    api files('libs/jcore-android-1.2.7.jar')
+
     implementation 'com.github.vilyever:AndroidSocketClient:2.0.1'
 }
 

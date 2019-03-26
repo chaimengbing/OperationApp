@@ -1,5 +1,6 @@
 package com.heroan.operation.activity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,10 +9,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.heroan.operation.R;
+import com.heroan.operation.adapter.MessageAdapter;
+import com.heroan.operation.manager.SQLHelper;
+import com.heroan.operation.view.MessageItemView;
 
-import zuo.biao.library.base.BaseActivity;
+import java.util.List;
 
-public class MessageActivity extends BaseActivity implements View.OnClickListener {
+import zuo.biao.library.base.BaseRecyclerActivity;
+import zuo.biao.library.interfaces.AdapterCallBack;
+
+public class MessageActivity extends BaseRecyclerActivity<ContentValues, MessageItemView,
+        MessageAdapter> implements View.OnClickListener {
 
 
     private TextView titleRight;
@@ -19,6 +27,10 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
     private ImageView backImageView;
     private TextView leftText, rightText, centerText;
     private View leftView, rightView, centerView;
+
+    private TextView noData;
+
+    private SQLHelper sqlHelper;
 
 
     @Override
@@ -28,6 +40,9 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
         initView();
         initData();
         initEvent();
+
+        onRefresh();
+
     }
 
     @Override
@@ -37,6 +52,7 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void initView() {
+        super.initView();
 
         backImageView = findViewById(R.id.title_back);
         titleRight = findViewById(R.id.title_right);
@@ -46,11 +62,38 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
         rightView = findView(R.id.right_divider);
         leftText = findView(R.id.left_text);
         rightText = findView(R.id.right_text);
+        noData = findView(R.id.noData);
         centerView = findView(R.id.center_divider);
+
+    }
+
+    @Override
+    public void setList(final List<ContentValues> list) {
+        setList(new AdapterCallBack<MessageAdapter>() {
+            @Override
+            public MessageAdapter createAdapter() {
+                return new MessageAdapter(context);
+            }
+
+            @Override
+            public void refreshAdapter() {
+                if (list != null && list.size() > 0) {
+                    adapter.refresh(list);
+                    rvBaseRecycler.setVisibility(View.VISIBLE);
+                    noData.setVisibility(View.GONE);
+                } else {
+                    noData.setVisibility(View.VISIBLE);
+                    rvBaseRecycler.setVisibility(View.GONE);
+
+                }
+            }
+        });
     }
 
     @Override
     public void initData() {
+        super.initData();
+
         leftText.setSelected(true);
         rightText.setSelected(false);
         centerText.setSelected(false);
@@ -58,10 +101,34 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
         title.setText(getString(R.string.message));
         titleRight.setVisibility(View.GONE);
 
+        sqlHelper = new SQLHelper(context);
+
+        initTestMessage();
+
+    }
+
+    private void initTestMessage() {
+        for (int i = 0; i < 10; i++) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(SQLHelper.COLUMN_TITLE, "测试数据" + i);
+            contentValues.put(SQLHelper.COLUMN_CONTENT, "测试内容" + i);
+            contentValues.put(SQLHelper.COLUMN_TYPE, 1);
+            contentValues.put(SQLHelper.COLUMN_TIME, "2019年3月26日");
+            sqlHelper.insert(contentValues);
+        }
     }
 
     @Override
+    public void getListAsync(int page) {
+        showProgressDialog(R.string.loading);
+        List<ContentValues> list = sqlHelper.getAll();
+        onLoadSucceed(page, list);
+    }
+
+
+    @Override
     public void initEvent() {
+        super.initEvent();
         backImageView.setOnClickListener(this);
         centerText.setOnClickListener(this);
         leftText.setOnClickListener(this);

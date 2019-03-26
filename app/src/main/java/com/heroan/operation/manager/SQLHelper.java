@@ -23,10 +23,10 @@ public class SQLHelper extends SQLiteOpenHelper {
 
 	public static final String TABLE_NAME = "heroanDB";
 	public static final String COLUMN_ID = "_id";//long类型的id不能自增，primary key autoincrement会出错
-	public static final String COLUMN_NAME = "name";
-	public static final String COLUMN_PHONE = "phone";
-	public static final String COLUMN_MAIL = "mail";
-	public static final String COLUMN_OTHER = "other";
+	public static final String COLUMN_TITLE = "title";
+	public static final String COLUMN_CONTENT = "content";
+	public static final String COLUMN_TYPE = "type";
+	public static final String COLUMN_TIME = "time";
 
 
 	public SQLHelper(Context context) {
@@ -36,7 +36,7 @@ public class SQLHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		String sql = "CREATE TABLE " + TABLE_NAME + " (" + COLUMN_ID + " INTEGER primary key autoincrement, "
-				+ COLUMN_NAME + " text, " + COLUMN_PHONE + " text, " + COLUMN_MAIL + " text, " + COLUMN_OTHER + " text)";
+				+ COLUMN_TITLE + " text, " + COLUMN_CONTENT + " text, " + COLUMN_TYPE + " text, " + COLUMN_TIME + " text)";
 
 		db.execSQL(sql);
 	}
@@ -60,10 +60,10 @@ public class SQLHelper extends SQLiteOpenHelper {
 
 			if (cursor.moveToFirst()) {
 				values.put(COLUMN_ID, cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
-				values.put(COLUMN_NAME, cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-				values.put(COLUMN_PHONE, cursor.getString(cursor.getColumnIndex(COLUMN_PHONE)));
-				values.put(COLUMN_MAIL, cursor.getString(cursor.getColumnIndex(COLUMN_MAIL)));
-				values.put(COLUMN_OTHER, cursor.getString(cursor.getColumnIndex(COLUMN_OTHER)));
+				values.put(COLUMN_TITLE, cursor.getString(cursor.getColumnIndex(COLUMN_TITLE)));
+				values.put(COLUMN_CONTENT, cursor.getString(cursor.getColumnIndex(COLUMN_CONTENT)));
+				values.put(COLUMN_TYPE, cursor.getString(cursor.getColumnIndex(COLUMN_TYPE)));
+				values.put(COLUMN_TIME, cursor.getString(cursor.getColumnIndex(COLUMN_TIME)));
 			}
 			cursor.close();
 		}
@@ -82,10 +82,10 @@ public class SQLHelper extends SQLiteOpenHelper {
 			while (cursor.moveToNext()) {
 				values = new ContentValues();
 				values.put(COLUMN_ID, cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
-				values.put(COLUMN_NAME, cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-				values.put(COLUMN_PHONE, cursor.getString(cursor.getColumnIndex(COLUMN_PHONE)));
-				values.put(COLUMN_MAIL, cursor.getString(cursor.getColumnIndex(COLUMN_MAIL)));
-				values.put(COLUMN_OTHER, cursor.getString(cursor.getColumnIndex(COLUMN_OTHER)));
+				values.put(COLUMN_TITLE, cursor.getString(cursor.getColumnIndex(COLUMN_TITLE)));
+				values.put(COLUMN_CONTENT, cursor.getString(cursor.getColumnIndex(COLUMN_CONTENT)));
+				values.put(COLUMN_TYPE, cursor.getString(cursor.getColumnIndex(COLUMN_TYPE)));
+				values.put(COLUMN_TIME, cursor.getString(cursor.getColumnIndex(COLUMN_TIME)));
 
 				list.add(values);
 			}
@@ -162,7 +162,6 @@ public class SQLHelper extends SQLiteOpenHelper {
 		return getValueList(query(column, value));
 	}
 	/**获取所有数据
-	 * @param id
 	 * @return
 	 */
 	public List<ContentValues> getAll() {

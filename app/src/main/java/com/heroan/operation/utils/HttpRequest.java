@@ -67,7 +67,6 @@ public class HttpRequest {
 
     public static final String PHONE = "phone";
     public static final String PASSWORD = "password";
-    public static final String INFO_DES = "info_des";
 
 
     /**
@@ -108,7 +107,7 @@ public class HttpRequest {
         Map<String, Object> request = new HashMap<>();
         request.put(PHONE, phone);
         request.put(PASSWORD, password);
-        request.put(INFO_DES, infoDes);
+        request.put(SUMMARY, infoDes);
 
         HttpManager.getInstance().post(request, URL_BASE + "/registerAjax", requestCode, listener);
     }
