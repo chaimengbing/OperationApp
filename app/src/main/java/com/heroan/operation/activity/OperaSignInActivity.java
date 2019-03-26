@@ -1,6 +1,8 @@
 package com.heroan.operation.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -28,7 +30,8 @@ import zuo.biao.library.util.JSON;
 import zuo.biao.library.util.SettingUtil;
 import zuo.biao.library.util.StringUtil;
 
-public class OperaSignInActivity extends BaseActivity implements View.OnClickListener, GpsUtils.OnLocationResultListener, ItemDialog.OnDialogItemClickListener {
+public class OperaSignInActivity extends BaseActivity implements View.OnClickListener,
+        GpsUtils.OnLocationResultListener, ItemDialog.OnDialogItemClickListener {
     private final static String TAG = OperaSignInActivity.class.getName();
 
     private static final int DIALOG_SET_OPERATION_ORDER = 1;
@@ -55,6 +58,8 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
     private DecimalFormat decimalFormat = new DecimalFormat("###.000000");
     private List<OperationOrder> operationOrderList;
     private OperationOrder currentOperationOrder;
+    private int imageWidth = 200;
+    private int imageHeight = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,19 +103,20 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void getOperationOrderList() {
-        HttpRequest.operational(SettingUtil.getSaveValue(SettingUtil.PHONE), 0, new OnHttpResponseListener() {
-            @Override
-            public void onHttpResponse(int requestCode, String resultJson, Exception e) {
-                if (StringUtil.isNotEmpty(resultJson, true)) {
-                    operationOrderList = JSON.parseArray(resultJson, OperationOrder.class);
-                    if (operationOrderList == null || operationOrderList.size() == 0) {
-                        showShortToast("没有未完成的工单");
+        HttpRequest.operational(SettingUtil.getSaveValue(SettingUtil.PHONE), 0,
+                new OnHttpResponseListener() {
+                    @Override
+                    public void onHttpResponse(int requestCode, String resultJson, Exception e) {
+                        if (StringUtil.isNotEmpty(resultJson, true)) {
+                            operationOrderList = JSON.parseArray(resultJson, OperationOrder.class);
+                            if (operationOrderList == null || operationOrderList.size() == 0) {
+                                showShortToast("没有未完成的工单");
+                            }
+                        } else {
+                            showShortToast("没有未完成的工单");
+                        }
                     }
-                } else {
-                    showShortToast("没有未完成的工单");
-                }
-            }
-        });
+                });
     }
 
 
@@ -118,7 +124,8 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
      * 显示列表选择弹窗
      */
     private void showItemDialog(String[] operationOrderArray) {
-        new ItemDialog(context, operationOrderArray, getString(R.string.please_sel_operation_order), DIALOG_SET_OPERATION_ORDER, this).show();
+        new ItemDialog(context, operationOrderArray,
+                getString(R.string.please_sel_operation_order), DIALOG_SET_OPERATION_ORDER, this).show();
     }
 
 
@@ -205,7 +212,8 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
      */
     private void setPicture(String path) {
         if (StringUtil.isFilePath(path) == false) {
-            Log.e(TAG, "setPicture  StringUtil.isFilePath(path) == false >> showShortToast(找不到图片);return;");
+            Log.e(TAG, "setPicture  StringUtil.isFilePath(path) == false >> showShortToast(找不到图片)" +
+                    ";return;");
             showShortToast("找不到图片");
             return;
         }
@@ -228,14 +236,16 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
      */
     private void cutPicture(String path) {
         if (StringUtil.isFilePath(path) == false) {
-            Log.e(TAG, "cutPicture  StringUtil.isFilePath(path) == false >> showShortToast(找不到图片);return;");
+            Log.e(TAG, "cutPicture  StringUtil.isFilePath(path) == false >> showShortToast(找不到图片)" +
+                    ";return;");
             showShortToast("找不到图片");
             return;
         }
         this.picturePath = path;
 
         toActivity(CutPictureActivity.createIntent(context, path
-                , DataKeeper.imagePath, "photo" + System.currentTimeMillis(), 200)
+                , DataKeeper.imagePath, "photo" + System.currentTimeMillis(), imageWidth,
+                imageHeight)
                 , REQUEST_TO_CUT_PICTURE);
     }
 
@@ -249,7 +259,11 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
         switch (requestCode) {
             case REQUEST_TO_SELECT_PICTURE:
                 if (data != null) {
-                    cutPicture(data.getStringExtra(SelectPictureActivity.RESULT_PICTURE_PATH));
+                    String imagePath =
+                            data.getStringExtra(SelectPictureActivity.RESULT_PICTURE_PATH);
+                    Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+                    imageHeight = bitmap.getHeight() * imageWidth / bitmap.getWidth();
+                    cutPicture(imagePath);
                 }
                 break;
             case REQUEST_TO_CUT_PICTURE:
