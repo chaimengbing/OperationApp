@@ -19,7 +19,6 @@ import com.heroan.operation.interfaces.OnHttpResponseListener;
 import org.json.JSONObject;
 
 import zuo.biao.library.util.Log;
-import zuo.biao.library.util.StringUtil;
 
 /**
  * Http请求结果解析类
@@ -72,7 +71,7 @@ public class OnHttpResponseListenerImpl implements OnHttpResponseListener
         if (listener == null) {
             listener = this;
         }
-        if ((e == null && exception == null) || resultState || StringUtil.isNotEmpty(resultData, true)) {
+        if (resultState) {
             requestCode = 1;
             listener.onHttpSuccess(requestCode, resultCode, resultData);
         } else {
