@@ -14,6 +14,9 @@ limitations under the License.*/
 
 package com.heroan.operation.utils;
 
+import com.heroan.operation.model.OperationOrder;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,8 +57,12 @@ public class HttpRequest {
     public static final String ID = "id";
     public static final String USER_CODE = "user_code";
     public static final String ORDER_ID = "order_id";
+    public static final String COMPANY_ID = "company_id";
     public static final String CREATE_TIME = "create_time";
     public static final String SUMMARY = "summary";
+    public static final String IMAGEFILES0 = "Imagefiles0";
+    public static final String IMAGEFILES1 = "Imagefiles1";
+    public static final String IMAGEFILES2 = "Imagefiles2";
     public static final String REGISTER_ID = "register_id";
     public static final String USER_ID = "userId";
     public static final String CURRENT_USER_ID = "currentUserId";
@@ -154,18 +161,27 @@ public class HttpRequest {
     public static final int USER_LIST_RANGE_RECOMMEND = 1;
 
     /**
-     * 运维工单同步
+     * 运维打卡
      *
      * @param phone
      * @param requestCode
      * @param listener
      */
-    public static void operational(String phone, final int requestCode,
-                                   final OnHttpResponseListener listener) {
+    public static void addProduct(String phone, OperationOrder operationOrder, File envFile,
+                                  File beforeFile, File afterFile, final int requestCode,
+                                  final OnHttpResponseListener listener) {
         Map<String, Object> request = new HashMap<>();
         request.put(PHONE, phone);
+        request.put(IMAGEFILES0, envFile);
+        request.put(IMAGEFILES1, beforeFile);
+        request.put(IMAGEFILES2, afterFile);
+        request.put(ORDER_ID, operationOrder.getOrder_id());
+        request.put(SUMMARY, operationOrder.getOrder_summary());
+        request.put(CREATE_TIME, operationOrder.getCreate_time());
+        request.put(COMPANY_ID, operationOrder.getCompany_id());
 
-        HttpManager.getInstance().get(request, URL_BASE + "/operationalAjax", requestCode,
+
+        HttpManager.getInstance().get(request, URL_BASE + "/addProductAjax", requestCode,
                 listener);
     }
 
@@ -190,21 +206,18 @@ public class HttpRequest {
     }
 
     /**
-     * 运维打卡
+     * 运维工单同步
      *
      * @param phone
      * @param requestCode
      * @param listener
      */
-    public static void addProduct(String phone, String orderId, String summary,
-                                  String createTime, final int requestCode,
-                                  final OnHttpResponseListener listener) {
+    public static void operational(String phone, final int requestCode,
+                                   final OnHttpResponseListener listener) {
         Map<String, Object> request = new HashMap<>();
         request.put(PHONE, phone);
-        request.put(ORDER_ID, orderId);
-        request.put(SUMMARY, summary);
-        request.put(CREATE_TIME, createTime);
-        HttpManager.getInstance().get(request, URL_BASE + "/addProductAjax", requestCode, listener);
+        HttpManager.getInstance().get(request, URL_BASE + "/operationalAjax", requestCode,
+                listener);
     }
 
 

@@ -1000,6 +1000,11 @@
     <string name="please_sel_operation_order">请选择运维工单</string>
     <string name="no_data">暂无数据</string>
     <string name="please_input_check_code">请输入图中验证码</string>
+    <string name="please_env_image">请选择环境照片</string>
+    <string name="please_opera_before_image">请选择运维前照片</string>
+    <string name="please_opera_after_image">请选择运维后照片</string>
+    <string name="sign_in_success">打卡成功</string>
+    <string name="no_unfinished_order">没有未完成的工单</string>
 
 
 </resources>

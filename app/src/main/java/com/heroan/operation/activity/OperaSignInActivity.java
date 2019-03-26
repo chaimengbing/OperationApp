@@ -13,10 +13,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.heroan.operation.R;
+import com.heroan.operation.manager.OnHttpResponseListenerImpl;
 import com.heroan.operation.model.OperationOrder;
 import com.heroan.operation.utils.GpsUtils;
 import com.heroan.operation.utils.HttpRequest;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -60,6 +62,7 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
     private OperationOrder currentOperationOrder;
     private int imageWidth = 200;
     private int imageHeight = 200;
+    private File imageFileEnv, imageFileBefore, imageFileAfter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,10 +113,10 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
                         if (StringUtil.isNotEmpty(resultJson, true)) {
                             operationOrderList = JSON.parseArray(resultJson, OperationOrder.class);
                             if (operationOrderList == null || operationOrderList.size() == 0) {
-                                showShortToast("没有未完成的工单");
+                                showShortToast(R.string.no_unfinished_order);
                             }
                         } else {
-                            showShortToast("没有未完成的工单");
+                            showShortToast(R.string.no_unfinished_order);
                         }
                     }
                 });
@@ -159,7 +162,7 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
                     }
                     showItemDialog(orderArray);
                 } else {
-                    showShortToast("没有未完成的运维工单");
+                    showShortToast(R.string.no_unfinished_order);
                 }
                 break;
             case R.id.env_image:
@@ -190,6 +193,35 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
             showShortToast(R.string.please_sel_operation_order);
             return;
         }
+        if (imageFileEnv == null) {
+            showShortToast(R.string.please_env_image);
+            return;
+        }
+        if (currentOperationOrder == null) {
+            showShortToast(R.string.please_opera_before_image);
+            return;
+        }
+        if (currentOperationOrder == null) {
+            showShortToast(R.string.please_opera_after_image);
+            return;
+        }
+
+        showProgressDialog(R.string.loading);
+        HttpRequest.addProduct(SettingUtil.getSaveValue(SettingUtil.PHONE), currentOperationOrder
+                , imageFileEnv, imageFileBefore, imageFileAfter, 0,
+                new OnHttpResponseListenerImpl(new com.heroan.operation.interfaces.OnHttpResponseListener() {
+                    @Override
+                    public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
+                        dismissProgressDialog();
+                        showShortToast(R.string.sign_in_success);
+                    }
+
+                    @Override
+                    public void onHttpError(int requestCode, String resultData) {
+                        dismissProgressDialog();
+                        showShortToast(resultData);
+                    }
+                }));
     }
 
     @Override
@@ -221,10 +253,13 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
 
         if (currentSelImage == SEL_ENV) {
             Glide.with(context).load(path).into(envImage);
+            imageFileEnv = new File(path);
         } else if (currentSelImage == SEL_BEFORE_OPERA) {
             Glide.with(context).load(path).into(beforeOperaImage);
+            imageFileBefore = new File(path);
         } else if (currentSelImage == SEL_AFTER_OPERA) {
             Glide.with(context).load(path).into(afterOperaImage);
+            imageFileAfter = new File(path);
         }
     }
 
