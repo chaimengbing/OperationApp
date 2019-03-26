@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -177,6 +178,14 @@ public class MessageActivity extends BaseRecyclerActivity<ContentValues, Message
         finish();
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        super.onItemClick(parent, view, position, id);
+        ContentValues contentValues = adapter.getItem(position);
+        Intent intent = new Intent(context, DisplayMessageActivity.class);
+        intent.putExtra("contentValues", contentValues);
+        toActivity(intent);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

@@ -113,6 +113,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             public void onHttpError(int requestCode, String resultData) {
                 dismissProgressDialog();
                 showShortToast(resultData);
+                startActivity(MainActivity.createIntent(getApplicationContext()));
+                finish();
             }
         }));
     }

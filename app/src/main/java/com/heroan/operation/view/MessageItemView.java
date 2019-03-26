@@ -16,6 +16,7 @@ public class MessageItemView extends BaseView<ContentValues> {
     private TextView titleText;
     private TextView timeTextview;
 
+
     public MessageItemView(Activity context, ViewGroup parent) {
         super(context, R.layout.item_message, parent);
     }
@@ -33,4 +34,5 @@ public class MessageItemView extends BaseView<ContentValues> {
         titleText.setText(data.get(SQLHelper.COLUMN_TITLE).toString());
         timeTextview.setText(data.get(SQLHelper.COLUMN_TIME).toString());
     }
+
 }

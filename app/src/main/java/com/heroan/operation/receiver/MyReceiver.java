@@ -28,9 +28,6 @@ import cn.jpush.android.api.JPushInterface;
 public class MyReceiver extends BroadcastReceiver {
     private static final String TAG = "MyReceiver";
 
-    public static String regID = "";
-
-
     @Override
     public void onReceive(Context context, Intent intent) {
 
@@ -41,7 +38,6 @@ public class MyReceiver extends BroadcastReceiver {
 
         if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
-            regID = regId;
             Log.d(TAG, "[MyReceiver] 接收Registration Id : " + regId);
             //send the Registration Id to your server...
 
@@ -77,7 +73,6 @@ public class MyReceiver extends BroadcastReceiver {
             //打开自定义的Activity
             Intent i = new Intent(context, MessageActivity.class);
             i.putExtras(bundle);
-            //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
 

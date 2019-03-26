@@ -9,6 +9,15 @@
 
     <!-- Required  一些系统要求的权限，如访问网络等-->
     <uses-permission android:name="com.heroan.operation.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <!-- Optional. Required for location feature -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在 6.0 系统上的层叠窗口权限 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <!-- 需要的权限和功能 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 
@@ -48,6 +57,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!-- 全面屏 -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
 
         <activity
             android:name=".activity.SplashActivity"
@@ -86,6 +99,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.DisplayMessageActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.RtuListActivity"
@@ -148,6 +164,18 @@
             android:exported="false"
             android:process=":pushcore" />
 
+        <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
+        <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
+        <service
+            android:name="cn.jpush.android.service.DaemonService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DaemonService" />
+                <category android:name="com.heroan.operation" />
+            </intent-filter>
+
+        </service>
         <!-- since 3.1.0 Required SDK 核心功能-->
         <provider
             android:name="cn.jpush.android.service.DownloadProvider"
@@ -208,7 +236,7 @@
             android:value="developer-default" />
         <meta-data
             android:name="JPUSH_APPKEY"
-            android:value="您应用的Appkey" /> <!--  </>值来自开发者平台取得的AppKey-->
+            android:value="e6b257d67d71e3b2897fd249" /> <!--  </>值来自开发者平台取得的AppKey-->
 
     </application>
 
