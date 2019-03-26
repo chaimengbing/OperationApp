@@ -3,6 +3,7 @@ package com.heroan.operation.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,13 +69,35 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
     }
 
+    private long firstTime = 0;//第一次返回按钮计时
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                long secondTime = System.currentTimeMillis();
+                if (secondTime - firstTime > 2000) {
+                    showShortToast("再按一次退出");
+                    firstTime = secondTime;
+                } else {//完全退出
+                    moveTaskToBack(false);//应用退到后台
+                    System.exit(0);
+                }
+                return true;
+        }
+
+        return super.onKeyUp(keyCode, event);
+    }
+
+
     private void login(final String name, final String password) {
         if (StringUtil.isEmpty(name) || StringUtil.isEmpty(password)) {
             showShortToast(getString(R.string.name_or_pass_no_null));
             return;
         }
         showProgressDialog(getString(R.string.loading));
-        HttpRequest.login(name, password, 0, new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
+        HttpRequest.login(name, password, 0,
+                new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
             @Override
             public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
                 dismissProgressDialog();
