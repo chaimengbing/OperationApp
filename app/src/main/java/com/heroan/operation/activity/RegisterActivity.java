@@ -21,7 +21,7 @@ import zuo.biao.library.util.StringUtil;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 
-    private EditText phoneEdit, passEdit, cofirmPassEdit, infoDesEdit, checkCodeEdit;
+    private EditText phoneEdit, passEdit, infoDesEdit, checkCodeEdit;
     private Button registerButton;
     private ImageView checkCodeImage;
 
@@ -45,7 +45,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void initView() {
         phoneEdit = findView(R.id.phone_edit);
         passEdit = findView(R.id.pass_edit);
-        cofirmPassEdit = findView(R.id.cofirm_pass_edit);
         infoDesEdit = findView(R.id.info_des_edit);
         registerButton = findView(R.id.register);
         checkCodeImage = findView(R.id.check_code_image);
@@ -70,7 +69,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         if (v.getId() == R.id.register) {
             register(phoneEdit.getText().toString().trim(), passEdit.getText().toString().trim(),
-                    cofirmPassEdit.getText().toString().trim(),
                     infoDesEdit.getText().toString().trim(), checkCodeEdit.getText().toString());
         } else if (v.getId() == R.id.check_code_image) {
             checkCodeImage.setImageBitmap(IdentifyingCode.getInstance().createBitmap());
@@ -78,18 +76,14 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
-    private void register(final String phone, String pass, String confirmPass, String infoDes,
+    private void register(final String phone, String pass, String infoDes,
                           String checkCode) {
         if (StringUtil.isEmpty(phone)) {
             showShortToast(getString(R.string.Phone_number_empty));
             return;
         }
-        if (StringUtil.isEmpty(pass) || StringUtil.isEmpty(confirmPass)) {
+        if (StringUtil.isEmpty(pass)) {
             showShortToast(getString(R.string.tip_password_can_not_be_empty));
-            return;
-        }
-        if (!pass.equals(confirmPass)) {
-            showShortToast(getString(R.string.Two_input_match));
             return;
         }
         if (StringUtil.isEmpty(infoDes)) {
@@ -113,7 +107,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
                         dismissProgressDialog();
                         SettingUtil.setSaveValue(SettingUtil.PHONE, phone);
-                        showShortToast("注册成功");
+                        showShortToast("激活成功");
                         startActivity(LoginActivity.createIntent(getApplicationContext()));
                         finish();
                     }

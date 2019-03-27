@@ -6,7 +6,7 @@
     <string name="wel_rtu_cloud">欢迎来到测站管理平台</string>
     <string name="set_password">设置密码</string>
     <string name="cofirm_password">确认密码</string>
-    <string name="register">注册</string>
+    <string name="register">激活</string>
 
 
     <string name="action_settings">Settings</string>
@@ -903,6 +903,7 @@
     <string name="account_number">账号</string>
     <string name="password1">密码</string>
     <string name="User_registration">用户注册</string>
+    <string name="user_active">用户激活</string>
     <string name="login_successful">登录成功！</string>
     <string name="registered">注册</string>
     <string name="Two_input_match">两次输入密码不匹配！</string>

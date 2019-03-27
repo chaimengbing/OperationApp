@@ -40,7 +40,9 @@
 
         </LinearLayout>
 
-        <LinearLayout style="@style/ll_vertical_match_wrap">
+        <LinearLayout
+            style="@style/ll_vertical_match_wrap"
+            android:visibility="gone">
 
             <EditText
                 android:id="@+id/cofirm_pass_edit"
@@ -90,10 +92,10 @@
             <ImageView
                 android:id="@+id/check_code_image"
                 style="@style/match_match"
-                android:layout_marginRight="30dp"
-                android:gravity="bottom"
                 android:layout_gravity="bottom"
-                android:layout_weight="2" />
+                android:layout_marginRight="30dp"
+                android:layout_weight="2"
+                android:gravity="bottom" />
 
 
         </LinearLayout>

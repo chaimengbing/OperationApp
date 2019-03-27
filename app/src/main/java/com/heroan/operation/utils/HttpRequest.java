@@ -63,7 +63,7 @@ public class HttpRequest {
     public static final String IMAGEFILES0 = "Imagefiles0";
     public static final String IMAGEFILES1 = "Imagefiles1";
     public static final String IMAGEFILES2 = "Imagefiles2";
-    public static final String REGISTER_ID = "register_id";
+    public static final String REGISTER_ID = "registerId";
     public static final String USER_ID = "userId";
     public static final String CURRENT_USER_ID = "currentUserId";
 
@@ -73,6 +73,7 @@ public class HttpRequest {
      * register_id
      */
 
+    public static final String CODE = "code";
     public static final String PHONE = "phone";
     public static final String PASSWORD = "password";
 
@@ -133,6 +134,7 @@ public class HttpRequest {
                              final int requestCode, final OnHttpResponseListener listener) {
         Map<String, Object> request = new HashMap<>();
         request.put(PHONE, phone);
+        request.put(CODE, phone);
         request.put(PASSWORD, password);
 
         HttpManager.getInstance().post(request, URL_BASE + "/loginAjax", requestCode, listener);

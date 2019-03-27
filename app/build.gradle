@@ -58,11 +58,11 @@ android {
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            if (variant.buildType.isDebuggable()) {
-//                outputFileName = "Operation_V${variant.versionName}_debug_" + buildTime() + ".apk"
-            } else {
+//            if (variant.buildType.isDebuggable()) {
+////                outputFileName = "Operation_V${variant.versionName}_debug_" + buildTime() + ".apk"
+//            } else {
                 outputFileName = "Operation_V${variant.versionName}_release_" + buildTime() + ".apk"
-            }
+//            }
         }
     }
 }

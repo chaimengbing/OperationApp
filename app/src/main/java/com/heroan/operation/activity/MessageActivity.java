@@ -18,6 +18,7 @@ import java.util.List;
 
 import zuo.biao.library.base.BaseRecyclerActivity;
 import zuo.biao.library.interfaces.AdapterCallBack;
+import zuo.biao.library.util.SettingUtil;
 
 public class MessageActivity extends BaseRecyclerActivity<ContentValues, MessageItemView,
         MessageAdapter> implements View.OnClickListener {
@@ -109,13 +110,16 @@ public class MessageActivity extends BaseRecyclerActivity<ContentValues, Message
     }
 
     private void initTestMessage() {
-        for (int i = 0; i < 10; i++) {
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(SQLHelper.COLUMN_TITLE, "测试数据" + i);
-            contentValues.put(SQLHelper.COLUMN_CONTENT, "测试内容" + i);
-            contentValues.put(SQLHelper.COLUMN_TYPE, 1);
-            contentValues.put(SQLHelper.COLUMN_TIME, "2019年3月26日");
-            sqlHelper.insert(contentValues);
+        if (!"1".equals(SettingUtil.getSaveValue("isHaveMessage"))) {
+            SettingUtil.setSaveValue("isHaveMessage", "1");
+            for (int i = 0; i < 10; i++) {
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(SQLHelper.COLUMN_TITLE, "西湖0" + i + "，电池电压异常");
+                contentValues.put(SQLHelper.COLUMN_CONTENT, "西湖0" + i + "，电池电压异常");
+                contentValues.put(SQLHelper.COLUMN_TYPE, 1);
+                contentValues.put(SQLHelper.COLUMN_TIME, "2019-03-26 14:2" + i);
+                sqlHelper.insert(contentValues);
+            }
         }
     }
 

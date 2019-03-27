@@ -164,12 +164,13 @@ public class CutPictureActivity extends BaseActivity {
 
         if (width < height) {
             // aspectX aspectY 是宽高的比例
-            intent.putExtra("aspectX", 4);
-            intent.putExtra("aspectY", 3);
-        } else if (width > height) {
-            // aspectX aspectY 是宽高的比例
             intent.putExtra("aspectX", 3);
             intent.putExtra("aspectY", 4);
+        } else if (width > height) {
+            // aspectX aspectY 是宽高的比例
+            intent.putExtra("aspectX", 4);
+            intent.putExtra("aspectY", 3);
+
         } else {
             // aspectX aspectY 是宽高的比例
             intent.putExtra("aspectX", 1);

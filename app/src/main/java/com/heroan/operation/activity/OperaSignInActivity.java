@@ -106,7 +106,8 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void getOperationOrderList() {
-        HttpRequest.operational(SettingUtil.getSaveValue(SettingUtil.PHONE), 0,
+//        SettingUtil.getSaveValue(SettingUtil.PHONE)
+        HttpRequest.operational("110", 0,
                 new OnHttpResponseListener() {
                     @Override
                     public void onHttpResponse(int requestCode, String resultJson, Exception e) {

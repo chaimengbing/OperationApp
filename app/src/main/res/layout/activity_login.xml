@@ -33,8 +33,8 @@
             <EditText
                 android:id="@+id/pass_edit"
                 style="@style/edit_login_text_bg"
-                android:inputType="textPassword"
-                android:hint="@string/input_password" />
+                android:hint="@string/input_password"
+                android:inputType="textPassword" />
 
             <View style="@style/divider_horizontal_gray" />
 
@@ -62,7 +62,7 @@
                 android:id="@+id/register_text"
                 style="@style/text_middle_blue"
                 android:layout_alignParentRight="true"
-                android:text="@string/User_registration" />
+                android:text="@string/user_active" />
 
         </RelativeLayout>
 
