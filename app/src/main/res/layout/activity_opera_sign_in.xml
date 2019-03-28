@@ -169,6 +169,67 @@
 
             </LinearLayout>
 
+            <LinearLayout style="@style/ll_info_white"
+                android:layout_height="@dimen/qb_px_100">
+
+
+                <LinearLayout
+                    style="@style/ll_horizontal_match_wrap"
+                    android:paddingLeft="@dimen/padding_12"
+                    android:paddingTop="@dimen/qb_px_15"
+                    android:paddingRight="@dimen/padding_12">
+
+                    <LinearLayout style="@style/ll_vertical_we1">
+
+                        <CheckBox
+                            android:id="@+id/change_battery"
+                            style="@style/radio_button_title"
+                            android:text="更换电池" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ll_vertical_we1">
+
+                        <CheckBox
+                            android:id="@+id/change_solar_battery"
+                            style="@style/radio_button_title"
+                            android:text="更换太阳能电池板" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    style="@style/ll_horizontal_match_wrap"
+                    android:layout_marginTop="@dimen/padding_18"
+                    android:paddingLeft="@dimen/padding_12"
+                    android:paddingTop="@dimen/padding_10"
+                    android:paddingRight="@dimen/padding_12">
+
+                    <LinearLayout style="@style/ll_vertical_we1">
+
+                        <CheckBox
+                            android:id="@+id/change_wire"
+                            style="@style/radio_button_title"
+                            android:text="更换天线" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ll_vertical_we1">
+
+                        <CheckBox
+                            android:id="@+id/change_rtu"
+                            style="@style/radio_button_title"
+                            android:text="更换RTU" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
             <LinearLayout style="@style/ll_info_white">
 
                 <TextView
@@ -177,6 +238,7 @@
                     android:text="运维过程描述" />
 
                 <EditText
+                    android:id="@+id/opera_info_edit"
                     style="@style/edit_text_bg"
                     android:layout_height="match_parent" />
 

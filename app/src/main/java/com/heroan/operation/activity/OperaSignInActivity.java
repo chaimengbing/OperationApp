@@ -6,8 +6,11 @@ import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,10 +52,13 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
     private TextView title;
     private ImageView backImageView;
 
+    private EditText operaInfoEdit;
+
     private ImageView updateImage;
     private TextView signInText;
     private ImageView envImage, beforeOperaImage, afterOperaImage;
     private TextView longitudeText, latitudeText, altitudeText;
+    private CheckBox changeBattery, changeSolar, changeWire, changeRTU;
 
 
     private int currentSelImage = SEL_ENV;
@@ -92,6 +98,11 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
         longitudeText = findViewById(R.id.longitude_text);
         latitudeText = findViewById(R.id.latitude_text);
         altitudeText = findViewById(R.id.altitude_text);
+        changeBattery = findViewById(R.id.change_battery);
+        changeWire = findViewById(R.id.change_wire);
+        changeSolar = findViewById(R.id.change_solar_battery);
+        changeRTU = findViewById(R.id.change_rtu);
+        operaInfoEdit = findViewById(R.id.opera_info_edit);
     }
 
     @Override
@@ -207,8 +218,14 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
             return;
         }
 
+        String operaInfo = operaInfoEdit.getText().toString();
+        if (TextUtils.isEmpty(operaInfo)) {
+            showShortToast("运维过程描述不能为空");
+            return;
+        }
         showProgressDialog(R.string.loading);
         HttpRequest.addProduct(SettingUtil.getSaveValue(SettingUtil.PHONE), currentOperationOrder
+                , operaInfo, changeBattery.isChecked() ? "1" : "0", changeSolar.isChecked() ? "1" : "0", changeWire.isChecked() ? "1" : "0", changeRTU.isChecked() ? "1" : "0"
                 , imageFileEnv, imageFileBefore, imageFileAfter, 0,
                 new OnHttpResponseListenerImpl(new com.heroan.operation.interfaces.OnHttpResponseListener() {
                     @Override

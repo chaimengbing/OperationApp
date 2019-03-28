@@ -1,6 +1,7 @@
 package com.heroan.operation.receiver;
 
 import android.content.BroadcastReceiver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.heroan.operation.activity.MessageActivity;
+import com.heroan.operation.manager.SQLHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,6 +29,8 @@ import cn.jpush.android.api.JPushInterface;
  */
 public class MyReceiver extends BroadcastReceiver {
     private static final String TAG = "MyReceiver";
+
+    private SQLHelper sqlHelper;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -59,12 +63,17 @@ public class MyReceiver extends BroadcastReceiver {
             //获取当前时间
             String str = formatter.format(curDate);
 
+            if (sqlHelper == null) {
+                sqlHelper = new SQLHelper(context);
+            }
             //自动保存至数据库
-//			messageDao.insert(new Message(null, title, content,str));
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(SQLHelper.COLUMN_CONTENT, content);
+            contentValues.put(SQLHelper.COLUMN_TIME, str);
+            contentValues.put(SQLHelper.COLUMN_TITLE, title);
+            contentValues.put(SQLHelper.COLUMN_TYPE, "1");
+            sqlHelper.insert(contentValues);
             //打开数据库弹窗，手动选择是否保存
-//			Intent intent1 = new Intent(context, MainActivity.class);
-//			intent1.putExtra("MESSAGE", content);
-//			context.startActivity(intent1);
             Log.d(TAG, "[MyReceiver] 接收到推送下来的通知的ID: " + notifactionId);
 
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {

@@ -17,9 +17,10 @@
     </style>
 
     <style name="radio_button_title" parent="wrap_wrap">
-        <item name="android:button">@drawable/radio_bg</item>
+        <item name="android:drawableLeft">@drawable/radio_bg</item>
+        <item name="android:button">@null</item>
         <item name="android:textColor">@color/text_content</item>
-        <item name="android:drawablePadding">@dimen/margin_small</item>
+        <item name="android:drawablePadding">@dimen/qb_px_5</item>
     </style>
 
     <style name="text_set_title" parent="wrap_wrap">
@@ -93,7 +94,7 @@
         <item name="android:layout_height">@dimen/qb_px_170</item>
     </style>
     <style name="ll_info_white" parent="ll_update_white">
-        <item name="android:layout_height">@dimen/qb_px_170</item>
+        <item name="android:layout_height">@dimen/qb_px_150</item>
     </style>
 
     <style name="img_select" parent="match_wrap">

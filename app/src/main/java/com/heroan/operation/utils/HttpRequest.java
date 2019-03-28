@@ -17,11 +17,20 @@ package com.heroan.operation.utils;
 import com.heroan.operation.model.OperationOrder;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import zuo.biao.library.interfaces.OnHttpResponseListener;
 import zuo.biao.library.manager.HttpManager;
 import zuo.biao.library.model.Parameter;
@@ -63,6 +72,10 @@ public class HttpRequest {
     public static final String IMAGEFILES0 = "Imagefiles0";
     public static final String IMAGEFILES1 = "Imagefiles1";
     public static final String IMAGEFILES2 = "Imagefiles2";
+    public static final String ISCHANGE_BATTERY = "ischange_battery";
+    public static final String ISCHANGE_SOLAR_BATTERY = "ischange_solar_battery";
+    public static final String ISCHANGE_WIRE = "ischange_wire";
+    public static final String ISCHANGE_RTU = "ischange_rtu";
     public static final String REGISTER_ID = "registerId";
     public static final String USER_ID = "userId";
     public static final String CURRENT_USER_ID = "currentUserId";
@@ -161,6 +174,8 @@ public class HttpRequest {
 
     public static final int USER_LIST_RANGE_ALL = 0;
     public static final int USER_LIST_RANGE_RECOMMEND = 1;
+    //1.创建对应的MediaType
+    private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
 
     /**
      * 运维打卡
@@ -169,22 +184,66 @@ public class HttpRequest {
      * @param requestCode
      * @param listener
      */
-    public static void addProduct(String phone, OperationOrder operationOrder, File envFile,
+    public static void addProduct(String phone, OperationOrder operationOrder, String operaInfo,
+                                  String changeBattery, String changeSolar, String changeWire, String changeRTU, File envFile,
                                   File beforeFile, File afterFile, final int requestCode,
                                   final OnHttpResponseListener listener) {
-        Map<String, Object> request = new HashMap<>();
-        request.put(PHONE, phone);
-        request.put(IMAGEFILES0, envFile);
-        request.put(IMAGEFILES1, beforeFile);
-        request.put(IMAGEFILES2, afterFile);
-        request.put(ORDER_ID, operationOrder.getOrder_id());
-        request.put(SUMMARY, operationOrder.getOrder_summary());
-        request.put(CREATE_TIME, operationOrder.getCreate_time());
-        request.put(COMPANY_ID, operationOrder.getCompany_id());
+//        Map<String, Object> requestParams = new HashMap<>();
+//        requestParams.put(PHONE, phone);
+//        requestParams.put(IMAGEFILES0, envFile);
+//        requestParams.put(IMAGEFILES1, beforeFile);
+//        requestParams.put(IMAGEFILES2, afterFile);
+//        requestParams.put(ORDER_ID, operationOrder.getOrder_id());
+//        requestParams.put(SUMMARY, operationOrder.getOrder_summary());
+//        requestParams.put(CREATE_TIME, operationOrder.getCreate_time());
+//        requestParams.put(COMPANY_ID, operationOrder.getCompany_id());
+
+        //2.创建RequestBody
+        MultipartBody.Builder fileBody = new MultipartBody.Builder().setType(MultipartBody.FORM);
+        fileBody.addFormDataPart(IMAGEFILES0, envFile.getName(), RequestBody.create(MEDIA_TYPE_PNG, envFile));
+        fileBody.addFormDataPart(IMAGEFILES1, beforeFile.getName(), RequestBody.create(MEDIA_TYPE_PNG, beforeFile));
+        fileBody.addFormDataPart(IMAGEFILES2, afterFile.getName(), RequestBody.create(MEDIA_TYPE_PNG, afterFile));
+        fileBody.addFormDataPart(PHONE, phone);
+        fileBody.addFormDataPart(ORDER_ID, operationOrder.getOrder_id());
+        fileBody.addFormDataPart(SUMMARY, operaInfo);
+        fileBody.addFormDataPart(ISCHANGE_BATTERY, changeBattery);
+        fileBody.addFormDataPart(ISCHANGE_SOLAR_BATTERY, changeSolar);
+        fileBody.addFormDataPart(ISCHANGE_WIRE, changeWire);
+        fileBody.addFormDataPart(ISCHANGE_RTU, changeRTU);
+        fileBody.addFormDataPart(CREATE_TIME, operationOrder.getCreate_time());
+        fileBody.addFormDataPart(COMPANY_ID, operationOrder.getCompany_id());
+        //3.构建MultipartBody
+        RequestBody requestBody = fileBody.build();
+
+        String url = URL_BASE + "/addProductAjax";
+        //4.构建请求
+        final Request request = new Request.Builder()
+                .url(url)
+                .post(requestBody)
+                .build();
+
+        final OkHttpClient okHttpClient = HttpManager.getInstance().getHttpClient(url);
+        //5.发送请求
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    String result = HttpManager.getInstance().getResponseJson(okHttpClient, request);
+                    listener.onHttpResponse(requestCode, result, null);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 
-        HttpManager.getInstance().get(request, URL_BASE + "/addProductAjax", requestCode,
-                listener);
+//        HttpManager.getInstance().get(request, URL_BASE + "/addProductAjax", requestCode,
+//                listener);
     }
 
 

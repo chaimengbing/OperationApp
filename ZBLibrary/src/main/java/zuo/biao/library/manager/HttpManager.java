@@ -288,7 +288,7 @@ public class HttpManager {
 	 * @param url
 	 * @return
 	 */
-	private OkHttpClient getHttpClient(String url) {
+	public OkHttpClient getHttpClient(String url) {
 		Log.i(TAG, "getHttpClient  url = " + url);
 		if (StringUtil.isEmpty(url)) {
 			Log.e(TAG, "getHttpClient  StringUtil.isEmpty(url) >> return null;");
@@ -378,7 +378,7 @@ public class HttpManager {
 	 * @return
 	 * @throws Exception
 	 */
-	private String getResponseJson(OkHttpClient client, Request request) throws Exception {
+	public String getResponseJson(OkHttpClient client, Request request) throws Exception {
 		if (client == null || request == null) {
 			Log.e(TAG, "getResponseJson  client == null || request == null >> return null;");
 			return null;
