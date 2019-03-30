@@ -36,7 +36,6 @@ public class BasicSettingActivity extends BaseActivity implements View.OnClickLi
     private View leftView, rightView;
     private BleDevice bleDevice;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

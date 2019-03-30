@@ -86,6 +86,7 @@ public class SystemSetActivity extends BaseActivity implements View.OnClickListe
                             SettingUtil.setSaveValue(SettingUtil.PASSWORD, "");
                             SettingUtil.setSaveLongValue(SettingUtil.LOGIN_TIME, 0);
                             startActivity(LoginActivity.createIntent(getApplicationContext()));
+                            finish();
                         }
                     }
                 }).show();

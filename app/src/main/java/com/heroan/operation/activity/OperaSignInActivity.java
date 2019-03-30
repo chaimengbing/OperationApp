@@ -232,6 +232,7 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
                     public void onHttpSuccess(int requestCode, int resultCode, String resultData) {
                         dismissProgressDialog();
                         showShortToast(R.string.sign_in_success);
+                        finish();
                     }
 
                     @Override

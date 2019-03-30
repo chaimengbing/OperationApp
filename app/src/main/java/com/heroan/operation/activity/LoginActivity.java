@@ -105,8 +105,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 SettingUtil.setSaveValue(SettingUtil.PASSWORD, password);
                 SettingUtil.setSaveLongValue(SettingUtil.LOGIN_TIME, System.currentTimeMillis());
 
-                startActivity(MainActivity.createIntent(getApplicationContext()));
                 finish();
+                startActivity(MainActivity.createIntent(getApplicationContext()));
             }
 
             @Override

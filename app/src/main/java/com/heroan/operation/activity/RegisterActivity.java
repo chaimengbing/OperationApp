@@ -60,6 +60,12 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
     public void initEvent() {
         registerButton.setOnClickListener(this);
         checkCodeImage.setOnClickListener(this);
@@ -108,8 +114,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         dismissProgressDialog();
                         SettingUtil.setSaveValue(SettingUtil.PHONE, phone);
                         showShortToast("激活成功");
-                        startActivity(LoginActivity.createIntent(getApplicationContext()));
                         finish();
+                        startActivity(LoginActivity.createIntent(getApplicationContext()));
                     }
 
                     @Override
