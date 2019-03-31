@@ -5,7 +5,7 @@
     <RelativeLayout
         android:id="@+id/toolbar_rl"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/qb_px_150"
+        android:layout_height="@dimen/qb_px_130"
         android:background="@color/query_set_bg">
 
         <ImageView
@@ -27,7 +27,7 @@
     <LinearLayout
         android:id="@+id/tab_layout"
         style="@style/ll_horizontal_match_wrap"
-        android:layout_height="@dimen/qb_px_60"
+        android:layout_height="@dimen/qb_px_40"
         android:layout_below="@id/toolbar_rl"
         android:minHeight="@dimen/qb_px_60">
 
@@ -87,8 +87,8 @@
         style="@style/text_middle_blue"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="@dimen/margin_huge"
-        android:layout_marginBottom="@dimen/margin_large"
+        android:layout_marginRight="@dimen/qb_px_20"
+        android:layout_marginBottom="@dimen/qb_px_20"
         android:text="@string/senior_setting" />
 
 </RelativeLayout>

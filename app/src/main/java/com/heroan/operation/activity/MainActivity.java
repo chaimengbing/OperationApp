@@ -116,7 +116,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             toActivity(new Intent(getApplicationContext(), BleDeviceListActivity.class));
         } else {
             SocketUtil.getSocketUtil().connectRTU(ConfigParams.IP, ConfigParams.PORT);
-            toActivity(new Intent(getApplicationContext(), BasicSettingActivity.class));
+//            toActivity(new Intent(getApplicationContext(), BasicSettingActivity.class));
         }
     }
 

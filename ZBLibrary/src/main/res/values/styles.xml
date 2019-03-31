@@ -439,7 +439,7 @@
         <item name="android:orientation">vertical</item>
         <item name="android:background">@color/white</item>
         <item name="android:paddingLeft">@dimen/padding_18</item>
-        <item name="android:paddingTop">@dimen/padding_10</item>
+        <item name="android:paddingTop">@dimen/qb_px_10</item>
     </style>
 
     <style name="ll_horizontal_ww" parent="wrap_wrap">
