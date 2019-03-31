@@ -24,7 +24,7 @@ public class BasicQueryFragment extends BaseFragment implements EventNotifyHelpe
 
     private static BasicQueryFragment instance;
 
-    private TextView dianyaText, xinhaoText, netStateText, sendstateText, sendTimeText, wenduText, yuliangText, shuiweiText,currentYuliangText;
+    private TextView dianyaText, xinhaoText, netStateText, sendstateText, sendTimeText, wenduText, shuiweiText, currentYuliangText;
     private TextView yuliangSet;
     private EditText yuliangEdit;
 
@@ -67,7 +67,6 @@ public class BasicQueryFragment extends BaseFragment implements EventNotifyHelpe
         sendstateText = findView(R.id.send_state_text);
         sendTimeText = findView(R.id.send_time_text);
         wenduText = findView(R.id.wendu_text);
-        yuliangText = findView(R.id.yuliang_text);
         shuiweiText = findView(R.id.shuiwei_text);
         yuliangEdit = findView(R.id.yuliang_edittext);
         yuliangSet = findView(R.id.yuliang_button);
@@ -76,8 +75,8 @@ public class BasicQueryFragment extends BaseFragment implements EventNotifyHelpe
 
     @Override
     public void initData() {
-        ServiceUtils.sendData(ConfigParams.Readdata);
-//        ServiceUtils.sendData(ConfigParams.ReadTidydata);
+//        ServiceUtils.sendData(ConfigParams.Readdata);
+        ServiceUtils.sendData(ConfigParams.ReadTidydata);
     }
 
     @Override
@@ -112,7 +111,6 @@ public class BasicQueryFragment extends BaseFragment implements EventNotifyHelpe
         } else if (result.contains(ConfigParams.TotalRainVal.trim())) {
             String rain = result.replaceAll(ConfigParams.TotalRainVal, "").trim();
             yuliangEdit.setText(rain);
-//            yuliangEdit.setText(result.replaceAll(ConfigParams.TotalRainVal.trim(), "").trim());
         } else if (result.contains(ConfigParams.WaterLevel_A.trim())) {
             shuiweiText.setText(result.replaceAll(ConfigParams.WaterLevel_A.trim(), "").trim());
         } else if (result.contains(ConfigParams.Send_informa_time_tm1.trim())) {

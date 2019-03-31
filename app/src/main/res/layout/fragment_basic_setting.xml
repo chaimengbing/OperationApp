@@ -33,7 +33,8 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout style="@style/ll_vertical_mw"
+        <LinearLayout
+            style="@style/ll_vertical_mw"
             android:paddingBottom="@dimen/qb_px_20">
 
             <TextView
@@ -59,8 +60,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout style="@style/ll_vertical_mw"
-            android:visibility="gone">
+        <LinearLayout style="@style/ll_vertical_mw">
 
             <TextView
                 style="@style/text_set_title"
@@ -84,8 +84,7 @@
             </RadioGroup>
         </LinearLayout>
 
-        <LinearLayout style="@style/ll_vertical_white"
-            android:visibility="gone">
+        <LinearLayout style="@style/ll_vertical_white">
 
             <LinearLayout style="@style/ll_vertical_mw">
 
@@ -111,8 +110,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout style="@style/ll_vertical_mw"
-                android:visibility="gone">
+            <LinearLayout style="@style/ll_vertical_mw">
 
                 <TextView
                     style="@style/text_set_title"
@@ -131,8 +129,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout style="@style/ll_horizontal_match_wrap"
-                android:visibility="gone">
+            <LinearLayout style="@style/ll_horizontal_match_wrap">
 
                 <RelativeLayout
                     style="@style/match_wrap"
@@ -198,11 +195,11 @@
 
         </LinearLayout>
 
-        <LinearLayout style="@style/ll_vertical_white"
+        <LinearLayout
+            style="@style/ll_vertical_white"
             android:visibility="visible">
 
-            <LinearLayout style="@style/ll_vertical_mw"
-                android:visibility="gone">
+            <LinearLayout style="@style/ll_vertical_mw">
 
                 <TextView
                     style="@style/text_set_title"

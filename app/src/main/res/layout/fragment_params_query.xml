@@ -4,29 +4,54 @@
     style="@style/match_match"
     android:background="@color/white">
 
+
     <LinearLayout style="@style/ll_vertical_white">
 
+
         <LinearLayout
-            style="@style/ll_horizontal_match_wrap"
-            android:visibility="gone">
+            style="@style/ll_vertical_mw"
+            android:paddingTop="@dimen/margin_large">
 
-            <!--<RelativeLayout-->
-            <!--style="@style/match_wrap"-->
-            <!--android:layout_weight="1"-->
-            <!--&gt;-->
+            <TextView
+                style="@style/text_set_title"
+                android:text="累计雨量(mm)" />
 
-            <!--<LinearLayout style="@style/ll_vertical_mw">-->
+            <LinearLayout style="@style/ll_horizontal_match_wrap">
 
-            <!--<TextView-->
-            <!--style="@style/text_set_title"-->
-            <!--android:text="电池电压" />-->
+                <EditText
+                    android:id="@+id/yuliang_edittext"
+                    style="@style/edit_text_title_we1"
+                    android:inputType="numberDecimal" />
 
-            <!--<TextView-->
-            <!--android:id="@+id/dianya_text"-->
-            <!--style="@style/text_title_150" />-->
-            <!--</LinearLayout>-->
+                <RelativeLayout style="@style/rl_set_button">
 
-            <!--</RelativeLayout>-->
+                    <TextView
+                        android:id="@+id/yuliang_button"
+                        style="@style/btn_set_style"
+                        android:text="@string/setting" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/ll_horizontal_match_wrap">
+
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:layout_weight="1">
+
+                <LinearLayout style="@style/ll_vertical_mw">
+
+                    <TextView
+                        style="@style/text_set_title"
+                        android:text="电池电压(V)" />
+
+                    <TextView
+                        android:id="@+id/dianya_text"
+                        style="@style/text_title_150" />
+                </LinearLayout>
+
+            </RelativeLayout>
 
             <RelativeLayout
                 style="@style/match_wrap"
@@ -45,11 +70,11 @@
 
             </RelativeLayout>
 
+
+
         </LinearLayout>
 
-        <LinearLayout
-            style="@style/ll_horizontal_match_wrap"
-            android:visibility="gone">
+        <LinearLayout style="@style/ll_horizontal_match_wrap">
 
             <RelativeLayout
                 style="@style/match_wrap"
@@ -87,31 +112,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            style="@style/ll_vertical_mw"
-            android:paddingTop="@dimen/margin_large">
-
-            <TextView
-                style="@style/text_set_title"
-                android:text="累计雨量(mm)" />
-
-            <LinearLayout style="@style/ll_horizontal_match_wrap">
-
-                <EditText
-                    android:id="@+id/yuliang_edittext"
-                    style="@style/edit_text_title_we1"
-                    android:inputType="numberDecimal" />
-
-                <RelativeLayout style="@style/rl_set_button">
-
-                    <TextView
-                        android:id="@+id/yuliang_button"
-                        style="@style/btn_set_style"
-                        android:text="@string/setting" />
-                </RelativeLayout>
-
-            </LinearLayout>
-        </LinearLayout>
 
         <LinearLayout
             style="@style/ll_vertical_mw"
@@ -124,6 +124,49 @@
             <TextView
                 android:id="@+id/yuliang_text"
                 style="@style/text_title_150" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ll_horizontal_match_wrap"
+            android:layout_marginTop="@dimen/padding_12">
+
+
+
+
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:layout_weight="1">
+
+                <LinearLayout style="@style/ll_vertical_mw">
+
+                    <TextView
+                        style="@style/text_set_title"
+                        android:text="RTU温度(℃)" />
+
+                    <TextView
+                        android:id="@+id/wendu_text"
+                        style="@style/text_title_150" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:layout_weight="1">
+
+                <LinearLayout style="@style/ll_vertical_mw">
+
+                    <TextView
+                        style="@style/text_set_title"
+                        android:text="定时报发送时间" />
+
+                    <TextView
+                        android:id="@+id/send_time_text"
+                        style="@style/text_title_150" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -159,64 +202,6 @@
 
                     <TextView
                         android:id="@+id/shuiwei_text"
-                        style="@style/text_title_150" />
-                </LinearLayout>
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/ll_horizontal_match_wrap"
-            android:layout_marginTop="@dimen/padding_12">
-
-            <RelativeLayout
-                style="@style/match_wrap"
-                android:layout_weight="1">
-
-                <LinearLayout style="@style/ll_vertical_mw">
-
-                    <TextView
-                        style="@style/text_set_title"
-                        android:text="电池电压(V)" />
-
-                    <TextView
-                        android:id="@+id/dianya_text"
-                        style="@style/text_title_150" />
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                style="@style/match_wrap"
-                android:layout_weight="1"
-                android:visibility="gone">
-
-                <LinearLayout style="@style/ll_vertical_mw">
-
-                    <TextView
-                        style="@style/text_set_title"
-                        android:text="定时报发送时间" />
-
-                    <TextView
-                        android:id="@+id/send_time_text"
-                        style="@style/text_title_150" />
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                style="@style/match_wrap"
-                android:layout_weight="1">
-
-                <LinearLayout style="@style/ll_vertical_mw">
-
-                    <TextView
-                        style="@style/text_set_title"
-                        android:text="RTU温度(℃)" />
-
-                    <TextView
-                        android:id="@+id/wendu_text"
                         style="@style/text_title_150" />
                 </LinearLayout>
 

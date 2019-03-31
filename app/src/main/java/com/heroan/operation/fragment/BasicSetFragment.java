@@ -118,13 +118,8 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
 
             }
         });
-        ServiceUtils.sendData(ConfigParams.ReadSystemPara);
-//        OperationApplication.applicationHandler.postAtTime(new Runnable() {
-//            @Override
-//            public void run() {
-//                ServiceUtils.sendData(ConfigParams.ReadTidySystemPara);
-//            }
-//        },500);
+//        ServiceUtils.sendData(ConfigParams.ReadSystemPara);
+        ServiceUtils.sendData(ConfigParams.ReadTidySystemPara);
 
     }
 
