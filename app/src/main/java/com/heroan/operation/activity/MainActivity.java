@@ -101,6 +101,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     showShortToast("再按一次退出");
                     firstTime = secondTime;
                 } else {//完全退出
+                    Intent intent = new Intent(ACTION_EXIT_APP);
+                    sendBroadcast(intent);
                     moveTaskToBack(false);//应用退到后台
                     System.exit(0);
                 }

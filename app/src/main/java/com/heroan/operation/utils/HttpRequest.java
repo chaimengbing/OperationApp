@@ -76,6 +76,7 @@ public class HttpRequest {
     public static final String ISCHANGE_SOLAR_BATTERY = "ischangeSolarBattery";
     public static final String ISCHANGE_WIRE = "ischangeWire";
     public static final String ISCHANGE_RTU = "ischangeRtu";
+    public static final String SCH_ID = "schId";
     public static final String REGISTER_ID = "registerId";
     public static final String USER_ID = "userId";
     public static final String CURRENT_USER_ID = "currentUserId";
@@ -185,7 +186,7 @@ public class HttpRequest {
      * @param listener
      */
     public static void addProduct(String phone, OperationOrder operationOrder, String operaInfo,
-                                  String changeBattery, String changeSolar, String changeWire, String changeRTU, File envFile,
+                                  String changeBattery, String changeSolar, String changeWire, String changeRTU, String finishOrder, File envFile,
                                   File beforeFile, File afterFile, final int requestCode,
                                   final OnHttpResponseListener listener) {
 //        Map<String, Object> requestParams = new HashMap<>();
@@ -210,6 +211,7 @@ public class HttpRequest {
         fileBody.addFormDataPart(ISCHANGE_SOLAR_BATTERY, changeSolar);
         fileBody.addFormDataPart(ISCHANGE_WIRE, changeWire);
         fileBody.addFormDataPart(ISCHANGE_RTU, changeRTU);
+        fileBody.addFormDataPart(SCH_ID, finishOrder);
         fileBody.addFormDataPart(CREATE_TIME, operationOrder.getCreate_time());
         fileBody.addFormDataPart(COMPANY_ID, operationOrder.getCompany_id());
         //3.构建MultipartBody
@@ -231,10 +233,9 @@ public class HttpRequest {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call, Response response) {
                 try {
-                    String result = HttpManager.getInstance().getResponseJson(okHttpClient, request);
-                    listener.onHttpResponse(requestCode, result, null);
+                    listener.onHttpResponse(requestCode, response.body().string(), null);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

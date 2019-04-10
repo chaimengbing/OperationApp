@@ -255,32 +255,6 @@ public class BleUtils {
     }
 
 
-//    protected Queue<DataInfo> splitPacketFor20Byte(byte[] data) {
-//        LinkedList dataInfoQueue = new LinkedList();
-//        if(data != null) {
-//            int index = 0;
-//            do {
-//                byte[] surplusData = new byte[data.length - index];
-//                System.arraycopy(data, index, surplusData, 0, data.length - index);
-//                byte[] currentData;
-//                if(surplusData.length <= 20) {
-//                    currentData = new byte[surplusData.length];
-//                    System.arraycopy(surplusData, 0, currentData, 0, surplusData.length);
-//                    index += surplusData.length;
-//                } else {
-//                    currentData = new byte[20];
-//                    System.arraycopy(data, index, currentData, 0, 20);
-//                    index += 20;
-//                }
-//                DataInfo dataInfo = new DataInfo();
-//                dataInfo.setDataType(1);
-//                dataInfo.setData(currentData);
-//                dataInfoQueue.offer(dataInfo);
-//            } while(index < data.length);
-//        }
-//
-//        return dataInfoQueue;
-//    }
 
     private void notifyData(String data) {
         String[] res = data.split("\r\n");

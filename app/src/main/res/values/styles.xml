@@ -8,7 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-
     <style name="SplashTheme" parent="android:Theme.NoTitleBar.Fullscreen">
         <item name="windowActionBar">false</item>//取消Actionbar
         <item name="windowNoTitle">true</item>

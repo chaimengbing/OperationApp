@@ -58,7 +58,7 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
     private TextView signInText;
     private ImageView envImage, beforeOperaImage, afterOperaImage;
     private TextView longitudeText, latitudeText, altitudeText;
-    private CheckBox changeBattery, changeSolar, changeWire, changeRTU;
+    private CheckBox changeBattery, changeSolar, changeWire, changeRTU,finishOrder;
 
 
     private int currentSelImage = SEL_ENV;
@@ -103,6 +103,7 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
         changeSolar = findViewById(R.id.change_solar_battery);
         changeRTU = findViewById(R.id.change_rtu);
         operaInfoEdit = findViewById(R.id.opera_info_edit);
+        finishOrder = findViewById(R.id.finish_order);
     }
 
     @Override
@@ -117,8 +118,7 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void getOperationOrderList() {
-//        SettingUtil.getSaveValue(SettingUtil.PHONE)
-        HttpRequest.operational("110", 0,
+        HttpRequest.operational(SettingUtil.getSaveValue(SettingUtil.PHONE), 0,
                 new OnHttpResponseListener() {
                     @Override
                     public void onHttpResponse(int requestCode, String resultJson, Exception e) {
@@ -225,7 +225,7 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
         }
         showProgressDialog(R.string.loading);
         HttpRequest.addProduct(SettingUtil.getSaveValue(SettingUtil.PHONE), currentOperationOrder
-                , operaInfo, changeBattery.isChecked() ? "1" : "0", changeSolar.isChecked() ? "1" : "0", changeWire.isChecked() ? "1" : "0", changeRTU.isChecked() ? "1" : "0"
+                , operaInfo, changeBattery.isChecked() ? "1" : "0", changeSolar.isChecked() ? "1" : "0", changeWire.isChecked() ? "1" : "0", changeRTU.isChecked() ? "1" : "0", finishOrder.isChecked() ? "1" : "0"
                 , imageFileEnv, imageFileBefore, imageFileAfter, 0,
                 new OnHttpResponseListenerImpl(new com.heroan.operation.interfaces.OnHttpResponseListener() {
                     @Override

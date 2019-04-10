@@ -230,6 +230,35 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                style="@style/ll_horizontal_match_wrap"
+                android:layout_marginTop="@dimen/qb_px_10"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/padding_12"
+                android:layout_marginRight="@dimen/padding_12"
+                android:paddingTop="@dimen/padding_10"
+                android:paddingBottom="@dimen/padding_10"
+                android:layout_marginLeft="@dimen/padding_12">
+
+                <LinearLayout style="@style/ll_vertical_we1">
+
+                    <CheckBox
+                        android:id="@+id/finish_order"
+                        style="@style/radio_button_title"
+                        android:text="工单是否完成" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/ll_vertical_we1"
+                    android:visibility="invisible">
+
+                    <CheckBox
+                        style="@style/radio_button_title"
+                        android:text="更换RTU" />
+
+                </LinearLayout>
+            </LinearLayout>
+
             <LinearLayout style="@style/ll_info_white">
 
                 <TextView

@@ -2,7 +2,6 @@ package com.heroan.operation.activity;
 
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -153,11 +152,12 @@ public class BleDeviceListActivity extends BaseActivity implements AdapterView.O
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        BluetoothDevice device = mLeDeviceListAdapter.getDevice(i);
+        BleDevice device = mLeDeviceListAdapter.getDevice(i);
         if (device == null) return;
         if (BleUtils.getInstance().isScanning()) {
             BleUtils.getInstance().stopScan();
         }
+        BleUtils.getInstance().connectDevice(device);
     }
 
 
@@ -178,7 +178,7 @@ public class BleDeviceListActivity extends BaseActivity implements AdapterView.O
                 showShortToast(R.string.connect_fail);
             }
         } else if (id == UiEventEntry.NOTIFY_BLE_SCAN_SUCCESS) {
-            BluetoothDevice bleDevice = (BluetoothDevice) args[0];
+            BleDevice bleDevice = (BleDevice) args[0];
             if (bleDevice != null) {
                 mLeDeviceListAdapter.addDevice(bleDevice);
                 mLeDeviceListAdapter.notifyDataSetChanged();
