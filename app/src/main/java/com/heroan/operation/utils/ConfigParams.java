@@ -21,6 +21,7 @@ public class ConfigParams
 //    public static final int LRU_PORT = 3000;
 
 
+    public static final String READRTUID = "READRTUID";
     public static final String FTP_SERVER_IP = "139.129.109.197";
     public static final String FTP_SERVER_ACCOUNT = "4gcam";
     public static final String FTP_SERVER_PSD = "123456";

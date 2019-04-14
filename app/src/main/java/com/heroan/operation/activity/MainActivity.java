@@ -3,17 +3,25 @@ package com.heroan.operation.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 
 import com.heroan.operation.R;
+import com.heroan.operation.model.RtuItem;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
+import com.heroan.operation.utils.HttpRequest;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
+import java.util.List;
+
 import zuo.biao.library.base.BaseActivity;
+import zuo.biao.library.interfaces.OnHttpResponseListener;
 import zuo.biao.library.ui.WebViewActivity;
+import zuo.biao.library.util.JSON;
 import zuo.biao.library.util.SettingUtil;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener, EventNotifyHelper.NotificationCenterDelegate {
@@ -36,6 +44,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     protected void onDestroy() {
         super.onDestroy();
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.CONNCT_OK);
+        EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.READ_DATA);
         EventNotifyHelper.getInstance().removeObserver(this, UiEventEntry.CONNCT_FAIL);
     }
 
@@ -43,11 +52,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public void initView() {
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.CONNCT_OK);
         EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.CONNCT_FAIL);
+        EventNotifyHelper.getInstance().addObserver(this, UiEventEntry.READ_DATA);
     }
 
     @Override
     public void initData() {
-
+        HttpRequest.getDevicesList(SettingUtil.getSaveValue(SettingUtil.PHONE), 0, new OnHttpResponseListener() {
+            @Override
+            public void onHttpResponse(int requestCode, String resultJson, Exception e) {
+                if (!TextUtils.isEmpty(resultJson)){
+                    SettingUtil.setSaveValue(SettingUtil.RTU_LIST,resultJson);
+                }
+            }
+        });
     }
 
     @Override
@@ -70,6 +87,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 toActivity(WebViewActivity.createIntent(context, "运维云", "http://cloud.zjswxjs.com/"));
                 break;
             case R.id.main_2:
+
                 connectDevice();
                 break;
             case R.id.main_3:
@@ -118,7 +136,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             toActivity(new Intent(getApplicationContext(), BleDeviceListActivity.class));
         } else {
             SocketUtil.getSocketUtil().connectRTU(ConfigParams.IP, ConfigParams.PORT);
-//            toActivity(new Intent(getApplicationContext(), BasicSettingActivity.class));
+//
         }
     }
 
@@ -126,8 +144,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public void didReceivedNotification(int id, Object... args) {
         if (id == UiEventEntry.CONNCT_OK) {
             showShortToast(getString(R.string.Device_connected_successfully));
+            ServiceUtils.sendData(ConfigParams.READRTUID);
         } else if (id == UiEventEntry.CONNCT_FAIL) {
             showShortToast(R.string.Device_wifi_settings);
+        }else if (id == UiEventEntry.READ_DATA){
+            String result = (String) args[0];
+            if (result != null){
+                String rtuListString = SettingUtil.getSaveValue(SettingUtil.RTU_LIST);
+                if (TextUtils.isEmpty(rtuListString)){
+                    showShortToast("清先获取设备清单");
+                    return;
+                }
+                String rtuId = result.replaceAll(ConfigParams.READRTUID,"").trim();
+                List<RtuItem> rtuItems = JSON.parseArray(rtuListString, RtuItem.class);
+                if (rtuItems != null && rtuItems.size() > 0){
+                    for (RtuItem rtuItem:rtuItems){
+                        if (rtuId.equals(rtuItem.getStationId())){
+                            toActivity(new Intent(getApplicationContext(), BasicSettingActivity.class));
+                        }
+                    }
+                }
+            }
         }
     }
 }

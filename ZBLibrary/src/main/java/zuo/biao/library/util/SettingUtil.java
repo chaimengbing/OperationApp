@@ -38,6 +38,7 @@ public final class SettingUtil {
 
     private SettingUtil() {/*不能实例化**/}
 
+    public static final String RTU_LIST = "rtu_list";
     public static final String PHONE = "phone";
     public static final String PASSWORD = "password";
     public static final String LOGIN_TIME = "login_time";
