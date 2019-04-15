@@ -255,7 +255,7 @@ public class SQLHelper extends SQLiteOpenHelper {
 	public Cursor query(String column, String value) {
 		SQLiteDatabase db = this.getReadableDatabase();
 		try {
-			return db.query(TABLE_NAME, null, getSelection(column), getSelectionArgs(column, value), null, null, null);
+			return db.query(TABLE_NAME, null, getSelection(column), getSelectionArgs(column, value), null, null, SQLHelper.COLUMN_TIME + " DESC");
 		} catch (Exception e) {
 			Log.e(TAG, "query  try { return db.query(...} catch (Exception e) {\n" + e.getMessage());
 		}

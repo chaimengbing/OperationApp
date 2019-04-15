@@ -13,6 +13,7 @@ import com.heroan.operation.interfaces.OnHttpResponseListener;
 import com.heroan.operation.manager.OnHttpResponseListenerImpl;
 import com.heroan.operation.utils.HttpRequest;
 
+import cn.jpush.android.api.JPushInterface;
 import zuo.biao.library.base.BaseActivity;
 import zuo.biao.library.util.SettingUtil;
 import zuo.biao.library.util.StringUtil;
@@ -98,7 +99,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             return;
         }
         showProgressDialog(getString(R.string.loading));
-        HttpRequest.login(name, password, 0,
+        String registerId = JPushInterface.getRegistrationID(context);
+        HttpRequest.login(name, password,registerId, 0,
                 new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
             @Override
             public void onHttpSuccess(int requestCode, int resultCode, String resultData) {

@@ -144,12 +144,13 @@ public class HttpRequest {
      * @param password
      * @param listener
      */
-    public static void login(final String phone, final String password,
+    public static void login(final String phone, final String password,String registerId,
                              final int requestCode, final OnHttpResponseListener listener) {
         Map<String, Object> request = new HashMap<>();
         request.put(PHONE, phone);
         request.put(CODE, phone);
         request.put(PASSWORD, password);
+        request.put(REGISTER_ID, registerId);
 
         HttpManager.getInstance().post(request, URL_BASE + "/loginAjax", requestCode, listener);
     }

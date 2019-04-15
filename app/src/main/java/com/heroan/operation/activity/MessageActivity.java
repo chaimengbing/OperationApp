@@ -143,6 +143,7 @@ public class MessageActivity extends BaseRecyclerActivity<ContentValues, Message
 
     @Override
     public void onClick(View v) {
+        List<ContentValues> list = null;
         switch (v.getId()) {
             case R.id.title_back:
                 finish();
@@ -150,17 +151,29 @@ public class MessageActivity extends BaseRecyclerActivity<ContentValues, Message
             case R.id.left_text:
                 selectTag(leftText, centerText, rightText);
                 selectTagView(leftView, centerView, rightView);
+               list = sqlHelper.getList(SQLHelper.COLUMN_TYPE,"1");
+                onLoadSucceed(0, list);
                 break;
             case R.id.right_text:
                 selectTag(rightText, centerText, leftText);
                 selectTagView(rightView, centerView, leftView);
+               list = sqlHelper.getList(SQLHelper.COLUMN_TYPE,"2");
+                onLoadSucceed(0, list);
                 break;
             case R.id.center_text:
                 selectTag(centerText, leftText, rightText);
                 selectTagView(centerView, leftView, rightView);
+                 list = sqlHelper.getList(SQLHelper.COLUMN_TYPE,"3");
                 break;
             default:
                 break;
+        }
+
+        if (list != null){
+            onLoadSucceed(0, list);
+        }else {
+            noData.setVisibility(View.VISIBLE);
+            rvBaseRecycler.setVisibility(View.GONE);
         }
     }
 

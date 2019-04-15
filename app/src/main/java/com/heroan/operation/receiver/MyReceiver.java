@@ -53,15 +53,19 @@ public class MyReceiver extends BroadcastReceiver {
 
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
             Log.d(TAG, "[MyReceiver] 接收到推送下来的通知:" + bundle.getString(JPushInterface.EXTRA_ALERT));
-            String content = bundle.getString(JPushInterface.EXTRA_ALERT);
+            int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
 //            mContentBean.setN_content(bundle.getString(JPushInterface.EXTRA_ALERT));
 //            Log.e("mContentBean-Content",mContentBean.getN_content());
-            int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日   HH:mm");
+            String content = bundle.getString(JPushInterface.EXTRA_ALERT);
             String title = bundle.getString(JPushInterface.EXTRA_NOTIFICATION_TITLE);
+            String type = bundle.getString(JPushInterface.EXTRA_NOTI_TYPE);
+            if (TextUtils.isEmpty(type)){
+                type = "1";
+            }
             Date curDate = new Date(System.currentTimeMillis());
             //获取当前时间
-            String str = formatter.format(curDate);
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日   HH:mm");
+            String time = formatter.format(curDate);
 
             if (sqlHelper == null) {
                 sqlHelper = new SQLHelper(context);
@@ -69,9 +73,9 @@ public class MyReceiver extends BroadcastReceiver {
             //自动保存至数据库
             ContentValues contentValues = new ContentValues();
             contentValues.put(SQLHelper.COLUMN_CONTENT, content);
-            contentValues.put(SQLHelper.COLUMN_TIME, str);
+            contentValues.put(SQLHelper.COLUMN_TIME, time);
             contentValues.put(SQLHelper.COLUMN_TITLE, title);
-            contentValues.put(SQLHelper.COLUMN_TYPE, "1");
+            contentValues.put(SQLHelper.COLUMN_TYPE, type);
             sqlHelper.insert(contentValues);
             //打开数据库弹窗，手动选择是否保存
             Log.d(TAG, "[MyReceiver] 接收到推送下来的通知的ID: " + notifactionId);
