@@ -105,7 +105,7 @@ public class MessageActivity extends BaseRecyclerActivity<ContentValues, Message
 
         sqlHelper = new SQLHelper(context);
 
-        initTestMessage();
+//        initTestMessage();
 
     }
 
