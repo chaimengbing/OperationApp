@@ -151,6 +151,7 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
 
     @Override
     public List<RtuItem> parseArray(String json) {
+        SettingUtil.setSaveValue(SettingUtil.RTU_LIST,json);
         return JSON.parseArray(json, RtuItem.class);
     }
 
