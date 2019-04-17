@@ -14,7 +14,7 @@ import zuo.biao.library.base.BaseActivity;
  * Created by linxi on 2018/2/5.
  */
 
-public class DisplayMessageActivity extends BaseActivity implements View.OnClickListener {
+public class  DisplayMessageActivity extends BaseActivity implements View.OnClickListener {
 
 
     public TextView title;

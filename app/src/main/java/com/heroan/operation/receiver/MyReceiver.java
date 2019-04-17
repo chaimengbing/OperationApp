@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.heroan.operation.activity.DisplayMessageActivity;
 import com.heroan.operation.activity.MessageActivity;
 import com.heroan.operation.manager.SQLHelper;
 
@@ -56,38 +57,15 @@ public class MyReceiver extends BroadcastReceiver {
             int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
 //            mContentBean.setN_content(bundle.getString(JPushInterface.EXTRA_ALERT));
 //            Log.e("mContentBean-Content",mContentBean.getN_content());
-            String content = bundle.getString(JPushInterface.EXTRA_ALERT);
-            String title = bundle.getString(JPushInterface.EXTRA_NOTIFICATION_TITLE);
-            String type = bundle.getString(JPushInterface.EXTRA_NOTI_TYPE);
-            if (TextUtils.isEmpty(type)){
-                type = "1";
-            }
-            Date curDate = new Date(System.currentTimeMillis());
-            //获取当前时间
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日   HH:mm");
-            String time = formatter.format(curDate);
+            handNotify(bundle, false, context);
 
-            if (sqlHelper == null) {
-                sqlHelper = new SQLHelper(context);
-            }
-            //自动保存至数据库
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(SQLHelper.COLUMN_CONTENT, content);
-            contentValues.put(SQLHelper.COLUMN_TIME, time);
-            contentValues.put(SQLHelper.COLUMN_TITLE, title);
-            contentValues.put(SQLHelper.COLUMN_TYPE, type);
-            sqlHelper.insert(contentValues);
             //打开数据库弹窗，手动选择是否保存
             Log.d(TAG, "[MyReceiver] 接收到推送下来的通知的ID: " + notifactionId);
 
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
             Log.d(TAG, "[MyReceiver] 用户点击打开了通知");
+            handNotify(bundle, true, context);
 
-            //打开自定义的Activity
-            Intent i = new Intent(context, MessageActivity.class);
-            i.putExtras(bundle);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(i);
 
         } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent.getAction())) {
             Log.d(TAG,
@@ -101,6 +79,49 @@ public class MyReceiver extends BroadcastReceiver {
                     "[MyReceiver]" + intent.getAction() + " connected state change to " + connected);
         } else {
             Log.d(TAG, "[MyReceiver] Unhandled intent - " + intent.getAction());
+        }
+    }
+
+    private void handNotify(Bundle bundle, boolean isOpen, Context context) {
+        String content = bundle.getString(JPushInterface.EXTRA_ALERT);
+        String title = bundle.getString(JPushInterface.EXTRA_NOTIFICATION_TITLE);
+        String type;
+        if (!TextUtils.isEmpty(title)) {
+            if ("报警".equals(title)) {
+                type = "1";
+            } else if ("工单".equals(title)) {
+                type = "2";
+            } else {
+                type = "3";
+            }
+        } else {
+            title = "通知";
+            type = "1";
+        }
+        Date curDate = new Date(System.currentTimeMillis());
+        //获取当前时间
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日   HH:mm");
+        String time = formatter.format(curDate);
+
+        //自动保存至数据库
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SQLHelper.COLUMN_CONTENT, content);
+        contentValues.put(SQLHelper.COLUMN_TIME, time);
+        contentValues.put(SQLHelper.COLUMN_TITLE, title);
+        contentValues.put(SQLHelper.COLUMN_TYPE, type);
+
+        if (isOpen) {
+            //打开自定义的Activity
+            Intent i = new Intent(context, DisplayMessageActivity.class);
+            i.putExtra("contentValues", contentValues);
+            i.putExtras(bundle);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(i);
+        }else {
+            if (sqlHelper == null) {
+                sqlHelper = new SQLHelper(context);
+            }
+            sqlHelper.insert(contentValues);
         }
     }
 
