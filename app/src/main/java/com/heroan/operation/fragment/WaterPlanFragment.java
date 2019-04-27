@@ -395,8 +395,12 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
             data = result.replaceAll(ConfigParams.SetWater485Type, "").trim();
             if (ServiceUtils.isNumeric(data)) {
                 int t = Integer.parseInt(data);
-                if (t < water485Items.length) {
-                    selwater485Spinner.setSelection(t, false);
+                try {
+                    if (t < water485Items.length) {
+                        selwater485Spinner.setSelection(t + 1, false);
+                    }
+                }catch (Exception e){
+
                 }
                 selwater485Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -407,7 +411,7 @@ public class WaterPlanFragment extends BaseFragment implements View.OnClickListe
                         if ("无".equals(water485)) {
                             return;
                         }
-                        String content = ConfigParams.SetWater485Type + ServiceUtils.getStr("" + position, 2);
+                        String content = ConfigParams.SetWater485Type + ServiceUtils.getStr("" + (position - 1), 2);
                         ServiceUtils.sendData(content);
                     }
 

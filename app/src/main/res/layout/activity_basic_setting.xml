@@ -80,6 +80,8 @@
     <FrameLayout
         android:id="@+id/basic_set_layout"
         style="@style/match_match"
+        android:layout_above="@id/senior_setting_textview"
+        android:layout_marginBottom="@dimen/qb_px_10"
         android:layout_below="@id/divider"></FrameLayout>
 
     <TextView

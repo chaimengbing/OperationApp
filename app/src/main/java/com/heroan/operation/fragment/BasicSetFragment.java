@@ -109,7 +109,7 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
                 if ("无".equals(water485)) {
                     return;
                 }
-                String content = ConfigParams.SetWater485Type + ServiceUtils.getStr("" + position, 2);
+                String content = ConfigParams.SetWater485Type + ServiceUtils.getStr("" + (position - 1), 2);
                 sendContent(content);
             }
 
@@ -194,7 +194,13 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
         if (result.contains(ConfigParams.SetAddr.trim())) {// 遥测站地址：
             addressEdit.setText(result.replaceAll(ConfigParams.SetAddr.trim(), "").trim());
         } else if (result.contains(ConfigParams.SetAnaWaterBac.trim())) {
-            waterBasicEdit.setText(result.replaceAll(ConfigParams.SetAnaWaterBac.trim(), "").trim());
+            String data = result.replaceAll(ConfigParams.SetAnaWaterBac.trim(), "").trim();
+            if (ServiceUtils.isNumeric(data))
+            {
+                double level = Double.parseDouble(data) / 1000.0;
+                String temp = String.valueOf(level);
+                waterBasicEdit.setText(temp);
+            }
         } else if (result.contains(ConfigParams.SetAnaWaterSignal.trim())) {// 设备ID
             String data = result.replaceAll(ConfigParams.SetAnaWaterSignal.trim(), "").trim();
             if ("1".equals(data)) {
@@ -231,9 +237,14 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
             String data = result.replaceAll(ConfigParams.SetWater485Type, "").trim();
             if (ServiceUtils.isNumeric(data)) {
                 int t = Integer.parseInt(data);
-                if (t < water485Items.length) {
-                    companySpinner.setSelection(t, false);
+                try {
+                    if (t < water485Items.length) {
+                        companySpinner.setSelection(t + 1, false);
+                    }
+                }catch (Exception e){
+
                 }
+
             }
         } else if (result.contains(ConfigParams.SETTIME.trim())) {
             String timeTemp = result.replaceAll(ConfigParams.SETTIME.trim(), "").trim();

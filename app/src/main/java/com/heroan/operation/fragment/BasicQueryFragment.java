@@ -111,8 +111,8 @@ public class BasicQueryFragment extends BaseFragment implements EventNotifyHelpe
         } else if (result.contains(ConfigParams.TotalRainVal.trim())) {
             String rain = result.replaceAll(ConfigParams.TotalRainVal, "").trim();
             yuliangEdit.setText(rain);
-        } else if (result.contains(ConfigParams.WaterLevel_A.trim())) {
-            shuiweiText.setText(result.replaceAll(ConfigParams.WaterLevel_A.trim(), "").trim());
+        } else if (result.contains(ConfigParams.WaterLevel_R.trim())) {
+            shuiweiText.setText(result.replaceAll(ConfigParams.WaterLevel_R.trim(), "").trim());
         } else if (result.contains(ConfigParams.Send_informa_time_tm1.trim())) {
             sendTimeText.setText(result.replaceAll(ConfigParams.Send_informa_time_tm1.trim(), "").trim());
         } else if (result.contains(ConfigParams.SOCKET_STATUS_1.trim())) {

@@ -60,8 +60,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         HttpRequest.getDevicesList(SettingUtil.getSaveValue(SettingUtil.PHONE), 0, new OnHttpResponseListener() {
             @Override
             public void onHttpResponse(int requestCode, String resultJson, Exception e) {
-                if (!TextUtils.isEmpty(resultJson)){
-                    SettingUtil.setSaveValue(SettingUtil.RTU_LIST,resultJson);
+                if (!TextUtils.isEmpty(resultJson)) {
+                    SettingUtil.setSaveValue(SettingUtil.RTU_LIST, resultJson);
                 }
             }
         });
@@ -84,7 +84,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 /**
                  * 运维云的跳转链接改成这个地址。http://cloud.zjswxjs.com/
                  */
-                toActivity(WebViewActivity.createIntent(context, "运维云", "http://cloud.zjswxjs.com/"));
+                toActivity(WebViewActivity.createIntent(context, "运维云", "http://rtuyun.cn/"));
+//                toActivity(WebViewActivity.createIntent(context, "运维云", "http://cloud.zjswxjs.com/"));
                 break;
             case R.id.main_2:
 
@@ -143,27 +144,35 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public void didReceivedNotification(int id, Object... args) {
         if (id == UiEventEntry.CONNCT_OK) {
-            showShortToast(getString(R.string.Device_connected_successfully));
             ServiceUtils.sendData(ConfigParams.READRTUID);
         } else if (id == UiEventEntry.CONNCT_FAIL) {
             showShortToast(R.string.Device_wifi_settings);
-        }else if (id == UiEventEntry.READ_DATA){
+        } else if (id == UiEventEntry.READ_DATA) {
             String result = (String) args[0];
-            if (result != null){
+            if (result != null) {
                 String rtuListString = SettingUtil.getSaveValue(SettingUtil.RTU_LIST);
-                if (TextUtils.isEmpty(rtuListString)){
+                if (TextUtils.isEmpty(rtuListString)) {
                     showShortToast("清先获取设备清单");
                     return;
                 }
-                String rtuId = result.replaceAll(ConfigParams.READRTUID,"").trim();
+                String rtuId = result.replaceAll(ConfigParams.READRTUID, "").trim();
                 List<RtuItem> rtuItems = JSON.parseArray(rtuListString, RtuItem.class);
-                if (rtuItems != null && rtuItems.size() > 0){
-                    for (RtuItem rtuItem:rtuItems){
-                        if (rtuId.equals(rtuItem.getStationId())){
-                            toActivity(new Intent(getApplicationContext(), BasicSettingActivity.class));
+                boolean isSuccess = false;
+                if (rtuItems != null && rtuItems.size() > 0) {
+                    for (RtuItem rtuItem : rtuItems) {
+                        if (rtuId.equals(rtuItem.getStationId())) {
+                            isSuccess = true;
                         }
                     }
                 }
+                if (isSuccess) {
+                    showShortToast("设备连接成功");
+                    toActivity(new Intent(getApplicationContext(), BasicSettingActivity.class));
+                } else {
+                    showShortToast("这不是您的设备");
+                }
+            } else {
+                showShortToast("未获取到设备ID，请更新RTU程序");
             }
         }
     }

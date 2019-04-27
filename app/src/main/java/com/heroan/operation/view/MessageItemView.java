@@ -15,6 +15,7 @@ public class MessageItemView extends BaseView<ContentValues> {
 
     private TextView titleText;
     private TextView timeTextview;
+    private TextView contentTextView;
 
 
     public MessageItemView(Activity context, ViewGroup parent) {
@@ -25,6 +26,7 @@ public class MessageItemView extends BaseView<ContentValues> {
     public View createView() {
         titleText = findView(R.id.item_title);
         timeTextview = findView(R.id.time_textview);
+        contentTextView = findView(R.id.item_content);
         return super.createView();
     }
 
@@ -33,6 +35,7 @@ public class MessageItemView extends BaseView<ContentValues> {
         super.bindView(data_);
         titleText.setText(data.get(SQLHelper.COLUMN_TITLE).toString());
         timeTextview.setText(data.get(SQLHelper.COLUMN_TIME).toString());
+        contentTextView.setText(data.get(SQLHelper.COLUMN_CONTENT).toString());
     }
 
 }

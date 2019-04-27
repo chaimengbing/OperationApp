@@ -115,8 +115,6 @@ public class HomeActivity extends BaseActivity implements PopupWindow.OnDismissL
 
 
     private SearchFragment gprsFragment = null;
-    private ADFragment adFragment = null;
-    private ChannelFragment channelFragment = null;
     private LSearchFragment lSearchFragment = null;
 
 
@@ -936,9 +934,6 @@ public class HomeActivity extends BaseActivity implements PopupWindow.OnDismissL
         //显示toolbar
         setTitleName(rtuSetting.getText().toString().trim());
 
-        rtuSetting.setOnClickListener(this);
-        rtuSearch.setOnClickListener(this);
-        rtuVersion.setOnClickListener(this);
 
         if (getIntent() != null) {
             bleDevice = (BleDevice) getIntent().getSerializableExtra(UiEventEntry.NOTIFY_BASIC_DEVICE);
@@ -966,5 +961,10 @@ public class HomeActivity extends BaseActivity implements PopupWindow.OnDismissL
     @Override
     public void initEvent() {
         backImageView.setOnClickListener(this);
+        rtuSetting.setOnClickListener(this);
+        rtuSearch.setOnClickListener(this);
+        rtuVersion.setOnClickListener(this);
+        titleRight.setOnClickListener(this);
+
     }
 }

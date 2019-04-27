@@ -234,6 +234,7 @@
     <string name="limit_0_59">0-59</string>
     <string name="water_am_value">水位修正值</string>
     <string name="water_basic_value">水位基值</string>
+    <string name="water_basic_value_mm">水位基值（m）</string>
     <string name="center_1">"中心站1 "</string>
     <string name="beidou_channel">北斗信道:</string>
     <string name="beidou_number">北斗号码:</string>

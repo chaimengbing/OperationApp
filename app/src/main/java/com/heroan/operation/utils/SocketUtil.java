@@ -26,12 +26,11 @@ import java.util.Arrays;
 
 import zuo.biao.library.util.Log;
 
-public class SocketUtil
-{
+public class SocketUtil {
 
     private static final String TAG = SocketUtil.class.getSimpleName();
 
-    private int search = 0 ;
+    private int search = 0;
     private FileOutputStream imageFos;
     private FileOutputStream historyFos;
     private boolean isReSend = true;
@@ -47,21 +46,17 @@ public class SocketUtil
     private String send;
     private byte[] sendByte;
 
-    public static SocketUtil getSocketUtil()
-    {
+    public static SocketUtil getSocketUtil() {
 
-        if (socketUtil == null)
-        {
+        if (socketUtil == null) {
             socketUtil = new SocketUtil();
         }
         return socketUtil;
     }
 
 
-    public void connectRTU(String ip, int port)
-    {
-        try
-        {
+    public void connectRTU(String ip, int port) {
+        try {
             Log.i(TAG, "connectRTU::");
             closeSocketClient();
             socketClient = new SocketClient();
@@ -74,73 +69,60 @@ public class SocketUtil
             // 设置编码为UTF-8
             socketClient.setCharsetName(CharsetUtil.UTF_8);
 
-            socketClient.registerSocketClientDelegate(new SocketClientDelegate()
-            {
+            socketClient.registerSocketClientDelegate(new SocketClientDelegate() {
                 @Override
-                public void onConnected(SocketClient client)
-                {
+                public void onConnected(SocketClient client) {
                     Log.i(TAG, "onConnected::");
                     EventNotifyHelper.getInstance().postUiNotification(UiEventEntry.CONNCT_OK);
                 }
 
                 @Override
-                public void onDisconnected(SocketClient client)
-                {
+                public void onDisconnected(SocketClient client) {
                     Log.i(TAG, "onDisconnected::");
                     closeSocketClient();
                     EventNotifyHelper.getInstance().postUiNotification(UiEventEntry.CONNCT_FAIL);
                 }
 
                 @Override
-                public void onResponse(SocketClient client, @NonNull SocketResponsePacket responsePacket)
-                {
+                public void onResponse(SocketClient client, @NonNull SocketResponsePacket responsePacket) {
                     handReceData(responsePacket);
                 }
             });
 
 
-            socketClient.registerSocketClientSendingDelegate(new SocketClientSendingDelegate()
-            {
+            socketClient.registerSocketClientSendingDelegate(new SocketClientSendingDelegate() {
                 @Override
-                public void onSendPacketBegin(SocketClient client, SocketPacket packet)
-                {
+                public void onSendPacketBegin(SocketClient client, SocketPacket packet) {
 
                 }
 
                 @Override
-                public void onSendPacketCancel(SocketClient client, SocketPacket packet)
-                {
+                public void onSendPacketCancel(SocketClient client, SocketPacket packet) {
 
                 }
 
                 @Override
-                public void onSendPacketEnd(SocketClient client, SocketPacket packet)
-                {
+                public void onSendPacketEnd(SocketClient client, SocketPacket packet) {
                     reSendContent();
                 }
 
                 @Override
-                public void onSendPacketProgress(SocketClient client, SocketPacket packet, float progress)
-                {
+                public void onSendPacketProgress(SocketClient client, SocketPacket packet, float progress) {
                 }
             });
             socketClient.connect();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             Log.e(TAG, e.toString());
         }
 
     }
 
-    private void reSendContent()
-    {
-        if (socketClient == null)
-        {
+    private void reSendContent() {
+        if (socketClient == null) {
             return;
         }
 
-        if (send.contains(ConfigParams.RDDATA) || send.contains(ConfigParams.RDDATAEND) || send.contains(ConfigParams.ReadImage) || isDownload )
-        {
+        if (send.contains(ConfigParams.RDDATA) || send.contains(ConfigParams.RDDATAEND) || send.contains(ConfigParams.ReadImage) || isDownload) {
             //2秒未收到重复发送数据
             OperationApplication.applicationHandler.removeCallbacks(reSendRunnable);
             OperationApplication.applicationHandler.postDelayed(reSendRunnable, UiEventEntry.TIME);
@@ -149,26 +131,17 @@ public class SocketUtil
     }
 
 
-    private Runnable reSendRunnable = new Runnable()
-    {
+    private Runnable reSendRunnable = new Runnable() {
         @Override
-        public void run()
-        {
-            if (isReSend)
-            {
-                if (isDownload)
-                {
-                    if (sendByte == null || sendByte.length == 0)
-                    {
+        public void run() {
+            if (isReSend) {
+                if (isDownload) {
+                    if (sendByte == null || sendByte.length == 0) {
                         return;
                     }
                     sendContent(sendByte, true);
-                }
-
-                else
-                {
-                    if (TextUtils.isEmpty(send))
-                    {
+                } else {
+                    if (TextUtils.isEmpty(send)) {
                         return;
                     }
                     sendContent(send);
@@ -178,8 +151,7 @@ public class SocketUtil
     };
 
 
-    private void handReceData(@NonNull SocketResponsePacket responsePacket)
-    {
+    private void handReceData(@NonNull SocketResponsePacket responsePacket) {
         Log.i(TAG, "handReceData::");
         String data = responsePacket.getMessage();
         String[] res = data.split("\r\n");
@@ -187,75 +159,45 @@ public class SocketUtil
 
 //        Log.info(TAG, "data:" + data);
 
-        if (isDownload)
-        {
+        if (isDownload) {
             isReSend = false;
-            for (String result : res)
-            {
+            for (String result : res) {
                 Log.i(TAG, result);
                 EventNotifyHelper.getInstance().postNotification(UiEventEntry.DOWNLOADING, result);
                 EventNotifyHelper.getInstance().postNotification(UiEventEntry.SetAllConfigInfo, result);
 
             }
-        }
-        else
-        {
+        } else {
 
-            if (send.contains(ConfigParams.RDDATATIME) || send.contains(ConfigParams.RDDATA))
-            {// 请求历史文件
+            if (send.contains(ConfigParams.RDDATATIME) || send.contains(ConfigParams.RDDATA)) {// 请求历史文件
                 isReSend = false;
                 receiveHistory(data1);
-            }
-            else if (send.contains(ConfigParams.ReadImage))
-            {// 请求图片
+            } else if (send.contains(ConfigParams.ReadImage)) {// 请求图片
                 isReSend = false;
                 receiveImage(data1);
-            }
-            else
-            {
-                for (String result : res)
-                {
+            } else {
+                for (String result : res) {
                     Log.i(TAG, "result:" + result);
-                    if (ConfigParams.SetBatteryHigh.equals(send) || ConfigParams.SetBatteryLow.equals(send) || ConfigParams.ReadBatteryHighStatus.equals(send) || ConfigParams.ReadBatteryLowStatus.equals(send))
-                    {//AD电压采集单独处理
+                    if (ConfigParams.SetBatteryHigh.equals(send) || ConfigParams.SetBatteryLow.equals(send) || ConfigParams.ReadBatteryHighStatus.equals(send) || ConfigParams.ReadBatteryLowStatus.equals(send)) {//AD电压采集单独处理
                         EventNotifyHelper.getInstance().postUiNotification(UiEventEntry.READ_AD_LV, result);
-                    }
-                    else
-                    {
-                        if (result != null && result.toUpperCase().contains("OK"))
-                        {
+                    } else {
+                        if (result != null && result.toUpperCase().contains("OK")) {
                             EventNotifyHelper.getInstance().postUiNotification(UiEventEntry.READ_RESULT_OK, result, send);
-                        }
-                        else if (result != null && result.toUpperCase().contains("ERROR"))
-                        {
+                        } else if (result != null && result.toUpperCase().contains("ERROR")) {
                             EventNotifyHelper.getInstance().postUiNotification(UiEventEntry.READ_RESULT_ERROR, result, send);
-                        }
-                        else if (result != null && result.contains("Not Started"))
-                        {// System Not Started
+                        } else if (result != null && result.contains("Not Started")) {// System Not Started
                             ToastUtil.showToastLong(OperationApplication.getInstance().getString(R.string.Device_again_later));
-                        }
-                        else
-                        {
+                        } else {
                             EventNotifyHelper.getInstance().postUiNotification(UiEventEntry.READ_DATA, result, send);
-                            if (search == UiEventEntry.TAB_SEARCH_CAMERA){
-
-                                return;
-                        }else {
-                                if (search == UiEventEntry.TAB_SEARCH_GPRS)
-                                {
-                                    return;
-                                }else {
-                                    ToastUtil.showToastLong(OperationApplication.getInstance().getString(R.string.Get_data_successfully));
-                                }
-
-
+                            if (!ConfigParams.READRTUID.equals(send)) {
+                                ToastUtil.showToastLong(OperationApplication.getInstance().getString(R.string.Get_data_successfully));
                             }
-
                         }
                     }
                 }
             }
         }
+
     }
 
 
@@ -264,14 +206,11 @@ public class SocketUtil
      *
      * @param content
      */
-    public void sendContent(String content)
-    {
-        if (TextUtils.isEmpty(content))
-        {
+    public void sendContent(String content) {
+        if (TextUtils.isEmpty(content)) {
             return;
         }
-        if (socketClient == null)
-        {
+        if (socketClient == null) {
             return;
         }
         this.send = content;
@@ -283,13 +222,9 @@ public class SocketUtil
     }
 
 
-
-    public void setDownload(boolean isDownload)
-    {
+    public void setDownload(boolean isDownload) {
         this.isDownload = isDownload;
     }
-
-
 
 
     /**
@@ -297,33 +232,26 @@ public class SocketUtil
      *
      * @param data
      */
-    public void sendContent(byte[] data, boolean isDownload)
-    {
-        if (data == null)
-        {
+    public void sendContent(byte[] data, boolean isDownload) {
+        if (data == null) {
             return;
         }
-        if (socketClient == null)
-        {
+        if (socketClient == null) {
             return;
         }
         Log.i(TAG, "sendContent::data:");
         this.isDownload = isDownload;
         this.sendByte = data;
         isReSend = true;
-        socketClient.sendData(data );
+        socketClient.sendData(data);
     }
-
-
 
 
     /**
      * 关闭Socket连接
      */
-    public void closeSocketClient()
-    {
-        if (socketClient != null)
-        {
+    public void closeSocketClient() {
+        if (socketClient != null) {
             socketClient.disconnect();
             socketClient = null;
         }
@@ -332,101 +260,79 @@ public class SocketUtil
     /**
      * Socket是否连接
      */
-    public boolean isConnected()
-    {
-        if (socketClient != null)
-        {
+    public boolean isConnected() {
+        if (socketClient != null) {
             return socketClient.isConnected();
         }
         return false;
     }
 
 
-    public void startReceImage()
-    {
-        try
-        {
+    public void startReceImage() {
+        try {
             File file = new File(ConfigParams.ImagePath + ConfigParams.ImageName);
-            if (!file.exists())
-            {
+            if (!file.exists()) {
                 // 图片文件不存在 创建文件
                 file.createNewFile();
             }
             imageFos = new FileOutputStream(file);
 
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             Log.e(TAG, e.toString());
         }
     }
 
 
-    public void startReceHostory()
-    {
-        try
-        {
-            if (historyFos != null)
-            {
+    public void startReceHostory() {
+        try {
+            if (historyFos != null) {
                 return;
             }
 
             Log.i(TAG, "startReceHostory::");
             File file = new File(ConfigParams.ImagePath + ServiceUtils.getStringDate() + ConfigParams.HistoryName);
-            if (!file.exists())
-            {
+            if (!file.exists()) {
                 // 图片文件不存在 创建文件
                 file.createNewFile();
             }
             historyFos = new FileOutputStream(file);
 
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             Log.e(TAG, e.toString());
         }
     }
 
-    public void stopReceHistory()
-    {
+    public void stopReceHistory() {
         Log.i(TAG, "stopReceHistory::");
 
-        try
-        {
-            if (historyFos != null)
-            {
+        try {
+            if (historyFos != null) {
                 historyFos.close();
                 historyFos = null;
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             Log.e(TAG, e.toString());
         }
 
     }
 
-    public void stopReceImages()
-    {
+    public void stopReceImages() {
         Log.i(TAG, "stopReceImages::");
 
-        try
-        {
-            if (imageFos != null)
-            {
+        try {
+            if (imageFos != null) {
                 imageFos.close();
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             Log.e(TAG, e.toString());
         }
 
     }
 
 
-    private void receiveImage(byte[] buffer)
-    {
-        try
-        {
-            if (imageFos == null)
-            {
+    private void receiveImage(byte[] buffer) {
+        try {
+            if (imageFos == null) {
                 return;
             }
             // 上一包
@@ -452,8 +358,7 @@ public class SocketUtil
             imageFos.flush();
 
             byte[] lengthByte = new byte[10];
-            for (int i = 0; i < 7; i++)
-            {
+            for (int i = 0; i < 7; i++) {
                 lengthByte[i] = imageInfoBuffer[i + 13];
             }
             String lengthS = new String(lengthByte);
@@ -461,54 +366,42 @@ public class SocketUtil
             current = lengthS.substring(0, 3);
             length = lengthS.substring(4, 7);
 
-            if (ServiceUtils.isGarbledCode(current))
-            {// 如果当前包有乱码，再次获取上一包数据
+            if (ServiceUtils.isGarbledCode(current)) {// 如果当前包有乱码，再次获取上一包数据
                 sendContent(ConfigParams.ReadImage + before);
-            }
-            else
-            {
+            } else {
                 before = current;
             }
 
             // 总包数等于当前包数
-            if (!TextUtils.isEmpty(current) && !TextUtils.isEmpty(length) && current.equals(length))
-            {
+            if (!TextUtils.isEmpty(current) && !TextUtils.isEmpty(length) && current.equals(length)) {
                 EventNotifyHelper.getInstance().postUiNotification(UiEventEntry.READ_IMAGE_SUCCESS);
                 stopReceImages();
                 return;
             }
 
             // 取完一包，在去获取下一包
-            if (!ServiceUtils.isGarbledCode(current))
-            {
+            if (!ServiceUtils.isGarbledCode(current)) {
                 sendContent(ConfigParams.ReadImage + current);
-            }
-            else
-            {
+            } else {
                 sendContent(ConfigParams.ReadImage + before);
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             ToastUtil.showToastLong(OperationApplication.getInstance().getString(R.string.Image_failed));
             Log.e(TAG, e.toString());
         }
 
     }
 
-    private void receiveHistory(byte[] buffer)
-    {
-        try
-        {
-            if (historyFos == null)
-            {
+    private void receiveHistory(byte[] buffer) {
+        try {
+            if (historyFos == null) {
                 return;
             }
 
             String end = new String(buffer);
             Log.i(TAG, "end:" + end);
             // 读取文件完成
-            if (!TextUtils.isEmpty(end) && end.contains(ConfigParams.RDDATAEND))
-            {
+            if (!TextUtils.isEmpty(end) && end.contains(ConfigParams.RDDATAEND)) {
                 EventNotifyHelper.getInstance().postUiNotification(UiEventEntry.READ_HISTORY_SUCCESS);
                 stopReceHistory();
                 OperationApplication.applicationHandler.removeCallbacks(reSendRunnable);
@@ -516,8 +409,7 @@ public class SocketUtil
             }
 
             // 读取文件错误
-            if (!TextUtils.isEmpty(end) && end.contains("error"))
-            {
+            if (!TextUtils.isEmpty(end) && end.contains("error")) {
                 EventNotifyHelper.getInstance().postUiNotification(UiEventEntry.READ_RESULT_ERROR);
                 stopReceHistory();
                 OperationApplication.applicationHandler.removeCallbacks(reSendRunnable);
@@ -551,12 +443,10 @@ public class SocketUtil
 
 
             // 取完一包，在去获取下一包
-            if (!ServiceUtils.isGarbledCode(current))
-            {
+            if (!ServiceUtils.isGarbledCode(current)) {
                 sendContent(ConfigParams.RDDATA + current + " OK");
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
 //            ToastUtil.showToastLong("历史文件获取失败！");
             Log.e(TAG, e.toString());
         }

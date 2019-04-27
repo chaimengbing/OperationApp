@@ -90,7 +90,7 @@
 
                 <TextView
                     style="@style/text_set_title"
-                    android:text="@string/water_basic_value" />
+                    android:text="@string/water_basic_value_mm" />
 
                 <LinearLayout style="@style/ll_horizontal_match_wrap">
 
@@ -114,7 +114,7 @@
 
                 <TextView
                     style="@style/text_set_title"
-                    android:text="485厂家" />
+                    android:text="水位计型号" />
 
                 <LinearLayout style="@style/ll_horizontal_match_wrap">
 
@@ -139,7 +139,7 @@
 
                         <TextView
                             style="@style/text_set_title"
-                            android:text="模拟量量程" />
+                            android:text="模拟量正反比" />
 
                         <RadioGroup
                             android:id="@+id/moni_group"
