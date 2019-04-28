@@ -240,23 +240,28 @@
                 android:paddingBottom="@dimen/padding_10"
                 android:layout_marginLeft="@dimen/padding_12">
 
-                <LinearLayout style="@style/ll_vertical_we1">
 
-                    <CheckBox
-                        android:id="@+id/finish_order"
+                    <TextView
+                       style="@style/text_middle_black"
+                        android:text="工单是否完成"/>
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        android:id="@+id/yes_button"
                         style="@style/radio_button_title"
-                        android:text="工单是否完成" />
+                        android:text="是" />
 
-                </LinearLayout>
-
-                <LinearLayout style="@style/ll_vertical_we1"
-                    android:visibility="invisible">
-
-                    <CheckBox
+                    <RadioButton
+                        android:id="@+id/no_button"
+                        android:layout_marginLeft="@dimen/qb_px_20"
                         style="@style/radio_button_title"
-                        android:text="更换RTU" />
+                        android:text="否" />
+                </RadioGroup>
 
-                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout style="@style/ll_info_white">

@@ -162,20 +162,10 @@ public class CutPictureActivity extends BaseActivity {
         intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(fileUri, "image/*");
 
-        if (width < height) {
-            // aspectX aspectY 是宽高的比例
-            intent.putExtra("aspectX", 3);
-            intent.putExtra("aspectY", 4);
-        } else if (width > height) {
-            // aspectX aspectY 是宽高的比例
-            intent.putExtra("aspectX", 4);
-            intent.putExtra("aspectY", 3);
+        // aspectX aspectY 是宽高的比例
+        intent.putExtra("aspectX", 4);
+        intent.putExtra("aspectY", 3);
 
-        } else {
-            // aspectX aspectY 是宽高的比例
-            intent.putExtra("aspectX", 1);
-            intent.putExtra("aspectY", 1);
-        }
 
         // outputX,outputY 是剪裁图片的宽高
         intent.putExtra("outputX", width);

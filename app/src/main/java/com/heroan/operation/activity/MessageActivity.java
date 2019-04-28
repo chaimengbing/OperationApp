@@ -18,6 +18,7 @@ import java.util.List;
 
 import zuo.biao.library.base.BaseRecyclerActivity;
 import zuo.biao.library.interfaces.AdapterCallBack;
+import zuo.biao.library.ui.AlertDialog;
 import zuo.biao.library.util.SettingUtil;
 
 public class MessageActivity extends BaseRecyclerActivity<ContentValues, MessageItemView,
@@ -33,6 +34,7 @@ public class MessageActivity extends BaseRecyclerActivity<ContentValues, Message
     private TextView noData;
 
     private SQLHelper sqlHelper;
+    private String currentType = "1";
 
 
     @Override
@@ -126,7 +128,7 @@ public class MessageActivity extends BaseRecyclerActivity<ContentValues, Message
     @Override
     public void getListAsync(int page) {
         showProgressDialog(R.string.loading);
-        List<ContentValues> list = sqlHelper.getList(SQLHelper.COLUMN_TYPE,"1");
+        List<ContentValues> list = sqlHelper.getList(SQLHelper.COLUMN_TYPE, "1");
         onLoadSucceed(page, list);
     }
 
@@ -151,27 +153,31 @@ public class MessageActivity extends BaseRecyclerActivity<ContentValues, Message
             case R.id.left_text:
                 selectTag(leftText, centerText, rightText);
                 selectTagView(leftView, centerView, rightView);
-               list = sqlHelper.getList(SQLHelper.COLUMN_TYPE,"1");
+                currentType = "1";
+                list = sqlHelper.getList(SQLHelper.COLUMN_TYPE, "1");
                 onLoadSucceed(0, list);
                 break;
             case R.id.right_text:
                 selectTag(rightText, centerText, leftText);
                 selectTagView(rightView, centerView, leftView);
-               list = sqlHelper.getList(SQLHelper.COLUMN_TYPE,"3");
+                currentType = "3";
+                list = sqlHelper.getList(SQLHelper.COLUMN_TYPE, "3");
                 onLoadSucceed(0, list);
                 break;
             case R.id.center_text:
                 selectTag(centerText, leftText, rightText);
                 selectTagView(centerView, leftView, rightView);
-                 list = sqlHelper.getList(SQLHelper.COLUMN_TYPE,"2");
+                currentType = "2";
+                list = sqlHelper.getList(SQLHelper.COLUMN_TYPE, "2");
+                onLoadSucceed(0, list);
                 break;
             default:
                 break;
         }
 
-        if (list != null){
+        if (list != null) {
             onLoadSucceed(0, list);
-        }else {
+        } else {
             noData.setVisibility(View.VISIBLE);
             rvBaseRecycler.setVisibility(View.GONE);
         }
@@ -193,6 +199,20 @@ public class MessageActivity extends BaseRecyclerActivity<ContentValues, Message
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        final ContentValues contentValues = adapter.getItem(position);
+        new AlertDialog(context, "提示", "确定删除么？", true, 0, new AlertDialog.OnDialogButtonClickListener() {
+            @Override
+            public void onDialogButtonClick(int requestCode, boolean isPositive) {
+                sqlHelper.delete(SQLHelper.COLUMN_ID, contentValues.get(SQLHelper.COLUMN_ID).toString());
+                List<ContentValues> list = sqlHelper.getList(SQLHelper.COLUMN_TYPE, currentType);
+                adapter.refresh(list);
+            }
+        }).show();
+        return super.onItemLongClick(parent, view, position, id);
     }
 
     @Override

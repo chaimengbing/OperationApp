@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -58,7 +59,8 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
     private TextView signInText;
     private ImageView envImage, beforeOperaImage, afterOperaImage;
     private TextView longitudeText, latitudeText, altitudeText;
-    private CheckBox changeBattery, changeSolar, changeWire, changeRTU,finishOrder;
+    private CheckBox changeBattery, changeSolar, changeWire, changeRTU;
+    private RadioButton yesButton,noButton;
 
 
     private int currentSelImage = SEL_ENV;
@@ -103,7 +105,8 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
         changeSolar = findViewById(R.id.change_solar_battery);
         changeRTU = findViewById(R.id.change_rtu);
         operaInfoEdit = findViewById(R.id.opera_info_edit);
-        finishOrder = findViewById(R.id.finish_order);
+        yesButton = findViewById(R.id.yes_button);
+        noButton = findViewById(R.id.no_button);
     }
 
     @Override
@@ -209,11 +212,11 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
             showShortToast(R.string.please_env_image);
             return;
         }
-        if (currentOperationOrder == null) {
+        if (imageFileBefore == null) {
             showShortToast(R.string.please_opera_before_image);
             return;
         }
-        if (currentOperationOrder == null) {
+        if (imageFileAfter == null) {
             showShortToast(R.string.please_opera_after_image);
             return;
         }
@@ -225,7 +228,7 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
         }
         showProgressDialog(R.string.loading);
         HttpRequest.addProduct(SettingUtil.getSaveValue(SettingUtil.PHONE), currentOperationOrder
-                , operaInfo, changeBattery.isChecked() ? "1" : "0", changeSolar.isChecked() ? "1" : "0", changeWire.isChecked() ? "1" : "0", changeRTU.isChecked() ? "1" : "0", finishOrder.isChecked() ? "1" : "0"
+                , operaInfo, changeBattery.isChecked() ? "1" : "0", changeSolar.isChecked() ? "1" : "0", changeWire.isChecked() ? "1" : "0", changeRTU.isChecked() ? "1" : "0", yesButton.isChecked() ? "1" : "0"
                 , imageFileEnv, imageFileBefore, imageFileAfter, 0,
                 new OnHttpResponseListenerImpl(new com.heroan.operation.interfaces.OnHttpResponseListener() {
                     @Override

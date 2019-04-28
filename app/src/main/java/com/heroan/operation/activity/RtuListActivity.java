@@ -29,6 +29,7 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
     private ImageView backImageView;
 
     private TextView noData;
+    private TextView numText;
 
     private String userCode = "";
     private boolean isFirst = true;
@@ -105,7 +106,17 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
         backImageView = findViewById(R.id.title_back);
         titleRight = findViewById(R.id.title_right);
         title = findViewById(R.id.title);
+        numText = findViewById(R.id.num_text);
         noData = findViewById(R.id.noData);
+    }
+
+    private void setNum() {
+        if (adapter != null) {
+            numText.setText("总台数：" + adapter.getCount());
+        } else {
+            numText.setText("总台数：0");
+
+        }
     }
 
     @Override
@@ -128,6 +139,7 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
                     lvBaseList.setVisibility(View.GONE);
 
                 }
+                setNum();
             }
         });
     }
@@ -138,6 +150,7 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
         title.setText(getString(R.string.rtu_list));
         titleRight.setVisibility(View.GONE);
         userCode = SettingUtil.getSaveValue(SettingUtil.PHONE);
+        setNum();
 //        userCode = "110";
     }
 
@@ -151,7 +164,7 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
 
     @Override
     public List<RtuItem> parseArray(String json) {
-        SettingUtil.setSaveValue(SettingUtil.RTU_LIST,json);
+        SettingUtil.setSaveValue(SettingUtil.RTU_LIST, json);
         return JSON.parseArray(json, RtuItem.class);
     }
 

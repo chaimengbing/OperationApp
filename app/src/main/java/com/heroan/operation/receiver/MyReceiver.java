@@ -87,9 +87,9 @@ public class MyReceiver extends BroadcastReceiver {
         String title = bundle.getString(JPushInterface.EXTRA_NOTIFICATION_TITLE);
         String type;
         if (!TextUtils.isEmpty(title)) {
-            if ("报警".equals(title)) {
+            if (title.startsWith("报警")) {
                 type = "1";
-            } else if ("工单".equals(title)) {
+            } else if (title.startsWith("工单")) {
                 type = "2";
             } else {
                 type = "3";

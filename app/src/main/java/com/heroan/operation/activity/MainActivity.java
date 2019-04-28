@@ -82,9 +82,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         switch (v.getId()) {
             case R.id.main_1:
                 /**
+                 * http://rtuyun.cn/
                  * 运维云的跳转链接改成这个地址。http://cloud.zjswxjs.com/
                  */
-                toActivity(WebViewActivity.createIntent(context, "运维云", "http://rtuyun.cn/"));
+                toActivity(WebViewActivity.createIntent(context, "运维云", "http://cloud.zjswxjs.com/"));
 //                toActivity(WebViewActivity.createIntent(context, "运维云", "http://cloud.zjswxjs.com/"));
                 break;
             case R.id.main_2:
