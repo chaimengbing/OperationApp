@@ -83,13 +83,14 @@ public class HttpRequest {
 
     /**
      * code
-     * password
      * register_id
      */
 
     public static final String CODE = "code";
     public static final String PHONE = "phone";
     public static final String PASSWORD = "password";
+    public static final String LONGITUDE = "longitude";
+    public static final String LATITUDE = "latitude";
 
 
     /**
@@ -144,7 +145,7 @@ public class HttpRequest {
      * @param password
      * @param listener
      */
-    public static void login(final String phone, final String password,String registerId,
+    public static void login(final String phone, final String password, String registerId,
                              final int requestCode, final OnHttpResponseListener listener) {
         Map<String, Object> request = new HashMap<>();
         request.put(PHONE, phone);
@@ -181,31 +182,31 @@ public class HttpRequest {
 
     /**
      * 运维打卡
+     * String longitude = request.getParameter("longitude");// 经度
+     * * 		String latitude = request.getParameter("latitude");// 维度
      *
      * @param phone
      * @param requestCode
      * @param listener
      */
-    public static void addProduct(String phone, OperationOrder operationOrder, String operaInfo,
-                                  String changeBattery, String changeSolar, String changeWire, String changeRTU, String finishOrder, File envFile,
+    public static void addProduct(String phone, String longitude, String latitude,
+                                  OperationOrder operationOrder, String operaInfo,
+                                  String changeBattery, String changeSolar, String changeWire,
+                                  String changeRTU, String finishOrder, File envFile,
                                   File beforeFile, File afterFile, final int requestCode,
                                   final OnHttpResponseListener listener) {
-//        Map<String, Object> requestParams = new HashMap<>();
-//        requestParams.put(PHONE, phone);
-//        requestParams.put(IMAGEFILES0, envFile);
-//        requestParams.put(IMAGEFILES1, beforeFile);
-//        requestParams.put(IMAGEFILES2, afterFile);
-//        requestParams.put(ORDER_ID, operationOrder.getOrder_id());
-//        requestParams.put(SUMMARY, operationOrder.getOrder_summary());
-//        requestParams.put(CREATE_TIME, operationOrder.getCreate_time());
-//        requestParams.put(COMPANY_ID, operationOrder.getCompany_id());
 
         //2.创建RequestBody
         MultipartBody.Builder fileBody = new MultipartBody.Builder().setType(MultipartBody.FORM);
-        fileBody.addFormDataPart(IMAGEFILES0, envFile.getName(), RequestBody.create(MEDIA_TYPE_PNG, envFile));
-        fileBody.addFormDataPart(IMAGEFILES1, beforeFile.getName(), RequestBody.create(MEDIA_TYPE_PNG, beforeFile));
-        fileBody.addFormDataPart(IMAGEFILES2, afterFile.getName(), RequestBody.create(MEDIA_TYPE_PNG, afterFile));
+        fileBody.addFormDataPart(IMAGEFILES0, envFile.getName(),
+                RequestBody.create(MEDIA_TYPE_PNG, envFile));
+        fileBody.addFormDataPart(IMAGEFILES1, beforeFile.getName(),
+                RequestBody.create(MEDIA_TYPE_PNG, beforeFile));
+        fileBody.addFormDataPart(IMAGEFILES2, afterFile.getName(),
+                RequestBody.create(MEDIA_TYPE_PNG, afterFile));
         fileBody.addFormDataPart(PHONE, phone);
+        fileBody.addFormDataPart(LONGITUDE, longitude);
+        fileBody.addFormDataPart(LATITUDE, latitude);
         fileBody.addFormDataPart(ORDER_ID, operationOrder.getOrder_id());
         fileBody.addFormDataPart(SUMMARY, operaInfo);
         fileBody.addFormDataPart(ISCHANGE_BATTERY, changeBattery);

@@ -202,6 +202,8 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
 
     /**
      * 运维打卡
+     * String longitude = request.getParameter("longitude");// 经度
+     * 		String latitude = request.getParameter("latitude");// 维度
      */
     private void orderSignIn() {
         if (currentOperationOrder == null) {
@@ -227,7 +229,7 @@ public class OperaSignInActivity extends BaseActivity implements View.OnClickLis
             return;
         }
         showProgressDialog(R.string.loading);
-        HttpRequest.addProduct(SettingUtil.getSaveValue(SettingUtil.PHONE), currentOperationOrder
+        HttpRequest.addProduct(SettingUtil.getSaveValue(SettingUtil.PHONE), longitudeText.getText().toString(),latitudeText.getText().toString(), currentOperationOrder
                 , operaInfo, changeBattery.isChecked() ? "1" : "0", changeSolar.isChecked() ? "1" : "0", changeWire.isChecked() ? "1" : "0", changeRTU.isChecked() ? "1" : "0", yesButton.isChecked() ? "1" : "0"
                 , imageFileEnv, imageFileBefore, imageFileAfter, 0,
                 new OnHttpResponseListenerImpl(new com.heroan.operation.interfaces.OnHttpResponseListener() {
