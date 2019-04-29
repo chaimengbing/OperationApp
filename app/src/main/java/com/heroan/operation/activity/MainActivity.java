@@ -12,7 +12,6 @@ import com.heroan.operation.model.RtuItem;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.HttpRequest;
-import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -145,7 +144,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public void didReceivedNotification(int id, Object... args) {
         if (id == UiEventEntry.CONNCT_OK) {
-            ServiceUtils.sendData(ConfigParams.READRTUID);
+            showShortToast("设备连接成功");
+            toActivity(new Intent(getApplicationContext(), BasicSettingActivity.class));
+            //暂时去掉ID验证
+//            ServiceUtils.sendData(ConfigParams.READRTUID);
         } else if (id == UiEventEntry.CONNCT_FAIL) {
             showShortToast(R.string.Device_wifi_settings);
         } else if (id == UiEventEntry.READ_DATA) {
