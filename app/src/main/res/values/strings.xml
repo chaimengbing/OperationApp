@@ -1,4 +1,5 @@
 <resources>
+    <!--<string name="app_name">语润运维</string>-->
     <string name="app_name">运维云</string>
     <string name="input_phone">请输入手机号</string>
     <string name="login">登录</string>

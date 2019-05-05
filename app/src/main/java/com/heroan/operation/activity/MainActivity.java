@@ -12,6 +12,7 @@ import com.heroan.operation.model.RtuItem;
 import com.heroan.operation.utils.ConfigParams;
 import com.heroan.operation.utils.EventNotifyHelper;
 import com.heroan.operation.utils.HttpRequest;
+import com.heroan.operation.utils.ServiceUtils;
 import com.heroan.operation.utils.SocketUtil;
 import com.heroan.operation.utils.UiEventEntry;
 
@@ -84,8 +85,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                  * http://rtuyun.cn/
                  * 运维云的跳转链接改成这个地址。http://cloud.zjswxjs.com/
                  */
-//                toActivity(WebViewActivity.createIntent(context, "运维云", "http://cloud.zjswxjs.com/"));
-                toActivity(WebViewActivity.createIntent(context, getString(R.string.app_name), "http://rtu.cn/"));
+//                toActivity(WebViewActivity.createIntent(context,  getString(R.string.app_name), "http://cloud.zjswxjs.com/"));
+                toActivity(WebViewActivity.createIntent(context, getString(R.string.app_name), "http://rtuyun.cn/"));
                 break;
             case R.id.main_2:
 
