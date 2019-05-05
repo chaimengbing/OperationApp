@@ -226,13 +226,13 @@
                         android:id="@+id/rain_3"
                         style="@style/radio_button_title"
                         android:layout_marginLeft="10dp"
-                        android:text="0.5" />
+                        android:text="0.2" />
 
                     <RadioButton
                         android:id="@+id/rain_4"
                         style="@style/radio_button_title"
                         android:layout_marginLeft="10dp"
-                        android:text="0.5" />
+                        android:text="0.1" />
                 </RadioGroup>
 
             </LinearLayout>

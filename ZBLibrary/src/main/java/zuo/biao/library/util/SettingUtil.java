@@ -73,7 +73,7 @@ public final class SettingUtil {
     public static boolean vibrate = true;//开启震动
     public static boolean noDisturb = false;//夜间防打扰
 
-    public static boolean isOnTestMode = true;//测试模式
+    public static boolean isOnTestMode = false;//测试模式
     public static boolean isFirstStart = true;//第一次打开应用
 
     public static final boolean[] defaultValues;

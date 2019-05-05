@@ -84,8 +84,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                  * http://rtuyun.cn/
                  * 运维云的跳转链接改成这个地址。http://cloud.zjswxjs.com/
                  */
-                toActivity(WebViewActivity.createIntent(context, "运维云", "http://cloud.zjswxjs.com/"));
 //                toActivity(WebViewActivity.createIntent(context, "运维云", "http://cloud.zjswxjs.com/"));
+                toActivity(WebViewActivity.createIntent(context, getString(R.string.app_name), "http://rtu.cn/"));
                 break;
             case R.id.main_2:
 
@@ -146,7 +146,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         if (id == UiEventEntry.CONNCT_OK) {
             showShortToast("设备连接成功");
             toActivity(new Intent(getApplicationContext(), BasicSettingActivity.class));
-            //暂时去掉ID验证
 //            ServiceUtils.sendData(ConfigParams.READRTUID);
         } else if (id == UiEventEntry.CONNCT_FAIL) {
             showShortToast(R.string.Device_wifi_settings);
