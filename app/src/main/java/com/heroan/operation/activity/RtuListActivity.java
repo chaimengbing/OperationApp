@@ -3,6 +3,7 @@ package com.heroan.operation.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -119,6 +120,41 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
         }
     }
 
+
+    @Override
+    public void onStopRefresh() {
+        super.onStopRefresh();
+        Log.i(TAG,"onStopRefresh::");
+        runUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String rtuListString = SettingUtil.getSaveValue(SettingUtil.RTU_LIST);
+                if (TextUtils.isEmpty(rtuListString)) {
+                    showShortToast("清先获取设备清单");
+                    return;
+                }
+                final List<RtuItem> rtuItems = JSON.parseArray(rtuListString, RtuItem.class);
+                setList(rtuItems);
+            }
+        });
+
+    }
+
+    private void notifyList(List<RtuItem> rtuItems ){
+        if (adapter == null){
+            return;
+        }
+        if (rtuItems != null && rtuItems.size() > 0){
+            adapter.refresh(rtuItems);
+            lvBaseList.setVisibility(View.VISIBLE);
+            noData.setVisibility(View.GONE);
+        }else {
+            noData.setVisibility(View.VISIBLE);
+            lvBaseList.setVisibility(View.GONE);
+        }
+        setNum();
+    }
+
     @Override
     public void setList(final List<RtuItem> list) {
         setList(new AdapterCallBack<RtuListAdapter>() {
@@ -130,16 +166,8 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
 
             @Override
             public void refreshAdapter() {
-                if (list != null && list.size() > 0) {
-                    adapter.refresh(list);
-                    lvBaseList.setVisibility(View.VISIBLE);
-                    noData.setVisibility(View.GONE);
-                } else {
-                    noData.setVisibility(View.VISIBLE);
-                    lvBaseList.setVisibility(View.GONE);
+                notifyList(list);
 
-                }
-                setNum();
             }
         });
     }
@@ -164,7 +192,9 @@ public class RtuListActivity extends BaseHttpListActivity<RtuItem, ListView, Rtu
 
     @Override
     public List<RtuItem> parseArray(String json) {
-        SettingUtil.setSaveValue(SettingUtil.RTU_LIST, json);
+        if (!TextUtils.isEmpty(json)){
+            SettingUtil.setSaveValue(SettingUtil.RTU_LIST, json);
+        }
         return JSON.parseArray(json, RtuItem.class);
     }
 

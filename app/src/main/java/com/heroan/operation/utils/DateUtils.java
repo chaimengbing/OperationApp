@@ -1,10 +1,25 @@
 package com.heroan.operation.utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class DateUtils {
 
+
+    public static boolean isAfter(Date date, String endTime){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");//年-月-日 时-分
+        boolean isAfter = false;
+        try {
+            Date date2 = dateFormat.parse(endTime);//结束时间
+            isAfter = date.after(date2);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return  isAfter;
+    }
 
     //两个时间戳是否是同一天 时间戳是long型的（11或者13）
     public static boolean isSameData(long currentTime, long lastTime) {
