@@ -5,7 +5,7 @@ import android.os.Environment;
 public class ConfigParams
 {
 
-//    public static final String IP = "192.168.1.194";
+    public static final boolean isYuRun = false;
     public static final int PORT = 2800;
     public static final int GROUND_PORT = 8080;
 

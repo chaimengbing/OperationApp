@@ -24,20 +24,20 @@ public class SplashActivity extends Activity {
 
             @Override
             public void run() {
-                Date date = new Date(System.currentTimeMillis());
-                if (DateUtils.isAfter(date,"2019-06-15")){
-                    finish();
-                }else {
-                    String name = SettingUtil.getSaveValue(SettingUtil.PHONE);
-                    long loginTime = SettingUtil.getSaveLongValue(SettingUtil.LOGIN_TIME);
-                    if (loginTime != 0 && StringUtil.isNotEmpty(name, true) && DateUtils.isSameData(loginTime, System.currentTimeMillis())) {
-                        startActivity(MainActivity.createIntent(SplashActivity.this));
-                    } else {
-                        startActivity(LoginActivity.createIntent(SplashActivity.this));
-                    }
-                    finish();
+//                Date date = new Date(System.currentTimeMillis());
+//                if (DateUtils.isAfter(date, "2019-06-15")) {
+//                    finish();
+//                } else {
+                String name = SettingUtil.getSaveValue(SettingUtil.PHONE);
+                long loginTime = SettingUtil.getSaveLongValue(SettingUtil.LOGIN_TIME);
+                if (loginTime != 0 && StringUtil.isNotEmpty(name, true) && DateUtils.isSameData(loginTime, System.currentTimeMillis())) {
+                    startActivity(MainActivity.createIntent(SplashActivity.this));
+                } else {
+                    startActivity(LoginActivity.createIntent(SplashActivity.this));
                 }
+                finish();
             }
+//            }
         }, 1000);
     }
 

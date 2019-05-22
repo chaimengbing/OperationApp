@@ -24,7 +24,8 @@ import zuo.biao.library.ui.WebViewActivity;
 import zuo.biao.library.util.JSON;
 import zuo.biao.library.util.SettingUtil;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener, EventNotifyHelper.NotificationCenterDelegate {
+public class MainActivity extends BaseActivity implements View.OnClickListener,
+        EventNotifyHelper.NotificationCenterDelegate {
 
 
     public static Intent createIntent(Context context) {
@@ -57,14 +58,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void initData() {
-        HttpRequest.getDevicesList(SettingUtil.getSaveValue(SettingUtil.PHONE), 0, new OnHttpResponseListener() {
-            @Override
-            public void onHttpResponse(int requestCode, String resultJson, Exception e) {
-                if (!TextUtils.isEmpty(resultJson)) {
-                    SettingUtil.setSaveValue(SettingUtil.RTU_LIST, resultJson);
-                }
-            }
-        });
+        HttpRequest.getDevicesList(SettingUtil.getSaveValue(SettingUtil.PHONE), 0,
+                new OnHttpResponseListener() {
+                    @Override
+                    public void onHttpResponse(int requestCode, String resultJson, Exception e) {
+                        if (!TextUtils.isEmpty(resultJson)) {
+                            SettingUtil.setSaveValue(SettingUtil.RTU_LIST, resultJson);
+                        }
+                    }
+                });
     }
 
     @Override
@@ -85,8 +87,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                  * http://rtuyun.cn/
                  * 运维云的跳转链接改成这个地址。http://cloud.zjswxjs.com/
                  */
-//                toActivity(WebViewActivity.createIntent(context,  getString(R.string.app_name), "http://cloud.zjswxjs.com/"));
-                toActivity(WebViewActivity.createIntent(context, getString(R.string.app_name), "http://rtuyun.cn/"));
+                if (ConfigParams.isYuRun) {
+                    toActivity(WebViewActivity.createIntent(context, getString(R.string.app_name)
+                            , "http://cloud.zjswxjs.com/"));
+                } else {
+                    toActivity(WebViewActivity.createIntent(context, getString(R.string.app_name)
+                            , "http://rtuyun.cn/"));
+                }
+//                toActivity(WebViewActivity.createIntent(context,  getString(R.string.app_name),
+//                "http://cloud.zjswxjs.com/"));
                 break;
             case R.id.main_2:
 
@@ -146,8 +155,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public void didReceivedNotification(int id, Object... args) {
         if (id == UiEventEntry.CONNCT_OK) {
             showShortToast("设备连接成功");
-            toActivity(new Intent(getApplicationContext(), BasicSettingActivity.class));
-//            ServiceUtils.sendData(ConfigParams.READRTUID);
+            if (ConfigParams.isYuRun) {
+                ServiceUtils.sendData(ConfigParams.READRTUID);
+            } else {
+                toActivity(new Intent(getApplicationContext(), BasicSettingActivity.class));
+            }
         } else if (id == UiEventEntry.CONNCT_FAIL) {
             showShortToast(R.string.Device_wifi_settings);
         } else if (id == UiEventEntry.READ_DATA) {

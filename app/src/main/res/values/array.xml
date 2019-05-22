@@ -196,7 +196,7 @@
         <item>亿力能</item>
         <item>麦克</item>
         <item>古大</item>
-        <item>伟思</item>
+        <item>安布雷拉</item>
         <item>大连海峰</item>
         <item>慧博</item>
         <item>帅克</item>
@@ -231,16 +231,16 @@
 
     <string-array name="flow_485">
         <item>大连海峰</item>
-        <item>大连明锐</item>
+        <item>Hadcp(腾海开闳)</item>
         <item>唐山汇中</item>
         <item>唐山美伦</item>
         <item>连利水表</item>
         <item>迪纳声流量计</item>
-        <item>山东潍微远传水表</item>
+        <item>winhadcp</item>
         <item>金水中科</item>
         <item>格乐普超声波明渠流量计</item>
         <item>上海肯特</item>
-        <item>SOMMER</item>
+        <item>RG30</item>
         <item>VADCP</item>
     </string-array>
 
@@ -270,16 +270,16 @@
 
     <string-array name="flow_485_new">
         <item>大连海峰</item>
-        <item>大连明锐</item>
+        <item>Hadcp(腾海开闳)</item>
         <item>唐山汇中</item>
         <item>唐山美伦</item>
         <item>连利水表</item>
         <item>迪纳声流量计</item>
-        <item>山东潍微远传水表</item>
+        <item>winhadcp</item>
         <item>金水中科</item>
         <item>格乐普超声波明渠流量计</item>
         <item>上海肯特</item>
-        <item>SOMMER</item>
+        <item>RG30</item>
         <item>航证</item>
         <item>大连道盛</item>
         <item>麦克</item>

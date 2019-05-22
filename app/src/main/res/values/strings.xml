@@ -285,7 +285,7 @@
     <string name="Analog_range">模拟量量程</string>
     <!-- 伟思  海河  南水 -->
     <string name="zha_plan_485">485闸位计 </string>
-    <string name="zha_plan_485_1">伟思</string>
+    <string name="zha_plan_485_1">安布雷拉</string>
     <string name="zha_plan_485_2">海河</string>
     <string name="zha_plan_485_3">南水</string>
     <string name="mac_add">MAC地址:</string>
