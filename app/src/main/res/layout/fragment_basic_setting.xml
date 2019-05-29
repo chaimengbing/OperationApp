@@ -96,12 +96,36 @@
 
                     <EditText
                         android:id="@+id/water_basic_edittext"
+                        android:hint="0-300"
                         style="@style/edit_text_title_we1" />
 
                     <RelativeLayout style="@style/rl_set_button">
 
                         <TextView
                             android:id="@+id/water_basic_button"
+                            style="@style/btn_set_style"
+                            android:text="@string/setting" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout style="@style/ll_vertical_mw">
+
+                <TextView
+                    style="@style/text_set_title"
+                    android:text="@string/caiji_wait_time" />
+
+                <LinearLayout style="@style/ll_horizontal_match_wrap">
+
+                    <EditText
+                        android:id="@+id/wait_time_edittext"
+                        style="@style/edit_text_title_we1" />
+
+                    <RelativeLayout style="@style/rl_set_button">
+
+                        <TextView
+                            android:id="@+id/wait_time_button"
                             style="@style/btn_set_style"
                             android:text="@string/setting" />
 
@@ -122,6 +146,24 @@
                         android:id="@+id/company_485_spinner"
                         style="@style/spinner_text_bg_we1"
                         android:entries="@array/water_select_485" />
+
+                    <RelativeLayout style="@style/rl_set_button">
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout style="@style/ll_vertical_mw">
+
+                <TextView
+                    style="@style/text_set_title"
+                    android:text="@string/flow_485_new" />
+
+                <LinearLayout style="@style/ll_horizontal_match_wrap">
+
+                    <Spinner
+                        android:id="@+id/flow_485_spinner"
+                        style="@style/spinner_text_bg_we1"
+                        android:entries="@array/flow_485_new"/>
 
                     <RelativeLayout style="@style/rl_set_button">
 

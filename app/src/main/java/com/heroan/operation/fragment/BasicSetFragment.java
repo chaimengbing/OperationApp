@@ -30,13 +30,16 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
     private static BasicSetFragment instance;
     private static final String SEND_TIME_FORMAT = "yyyyMMddHHmmss";
 
-    private EditText addressEdit, waterBasicEdit;
-    private TextView addressBtn, timeText, timebtn, waterSetBtn, resetBtn, saveButton;
+    private EditText addressEdit, waterBasicEdit, waitTimeRdit;
+    private TextView addressBtn, timeText, timebtn, waterSetBtn, resetBtn, saveButton, waitTimeButton;
     private RadioGroup netGroup, moniGroup, celiangGroup, rainGroup;
-    private Spinner companySpinner;
+    private Spinner companySpinner, flow485Spinner;
 
     private String[] water485Items;
     private SimpleSpinnerAdapter water485Adapter;
+
+    private String[] newFlowItems;
+    private SimpleSpinnerAdapter newFlowAdapter;
 
     private SimpleDateFormat sendTimeFormat;
     private String setTime = "";
@@ -89,6 +92,9 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
         moniGroup = findView(R.id.moni_group);
         resetBtn = findView(R.id.reset_factory);
         saveButton = findView(R.id.save_and_reset);
+        waitTimeButton = findView(R.id.wait_time_button);
+        waitTimeRdit = findView(R.id.wait_time_edittext);
+        flow485Spinner = findView(R.id.flow_485_spinner);
     }
 
     @Override
@@ -99,6 +105,10 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
         water485Items = getResources().getStringArray(R.array.water_select_485);
         water485Adapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item, water485Items);
         companySpinner.setAdapter(water485Adapter);
+
+        newFlowItems = getResources().getStringArray(R.array.flow_485_new);
+        newFlowAdapter = new SimpleSpinnerAdapter(getActivity(), R.layout.simple_spinner_item, newFlowItems);
+        flow485Spinner.setAdapter(newFlowAdapter);
 
         companySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -142,11 +152,25 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
         moniGroup.setOnCheckedChangeListener(this);
         celiangGroup.setOnCheckedChangeListener(this);
         rainGroup.setOnCheckedChangeListener(this);
+        waitTimeButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.wait_time_button:
+                String values = waitTimeRdit.getText().toString().trim();
+                if (TextUtils.isEmpty(values)) {
+                    ToastUtil.showToastLong(getString(R.string.Collection_waiting_time_empty));
+                    return;
+                }
+                int num = Integer.parseInt(values);
+                if (num < 0 || num > 300) {
+                    ToastUtil.showToastLong(getString(R.string.waiting_time_enter));
+                    return;
+                }
+                ServiceUtils.sendData(ConfigParams.SetSample_Delay_Time + ServiceUtils.getStr(values, 3));
+                break;
             case R.id.add_setting_button:
                 addressSet();
                 break;
@@ -191,12 +215,37 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
     }
 
     private void setData(String result) {
+
         if (result.contains(ConfigParams.SetAddr.trim())) {// 遥测站地址：
             addressEdit.setText(result.replaceAll(ConfigParams.SetAddr.trim(), "").trim());
+        } else if (result.contains(ConfigParams.SetFlow485Type)) {
+            String data = result.replaceAll(ConfigParams.SetFlow485Type, "").trim();
+            if (ServiceUtils.isNumeric(data)) {
+                int i = Integer.parseInt(data);
+
+                flow485Spinner.setSelection(i - 1, false);
+
+                flow485Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        newFlowAdapter.setSelectedItem(position);
+                        String content = ConfigParams.SetFlow485Type + ServiceUtils.getStr(position + 1 + "", 2);
+                        ServiceUtils.sendData(content);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+            }
+        } else if (result.contains(ConfigParams.SetSample_Delay_Time)) {
+            String data = result.replaceAll(ConfigParams.SetSample_Delay_Time, "").trim();
+            waitTimeRdit.setText(data);
         } else if (result.contains(ConfigParams.SetAnaWaterBac.trim())) {
             String data = result.replaceAll(ConfigParams.SetAnaWaterBac.trim(), "").trim();
-            if (ServiceUtils.isNumeric(data))
-            {
+            if (ServiceUtils.isNumeric(data)) {
                 double level = Double.parseDouble(data) / 1000.0;
                 String temp = String.valueOf(level);
                 waterBasicEdit.setText(temp);
@@ -241,7 +290,7 @@ public class BasicSetFragment extends BaseFragment implements View.OnClickListen
                     if (t < water485Items.length) {
                         companySpinner.setSelection(t + 1, false);
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
 
