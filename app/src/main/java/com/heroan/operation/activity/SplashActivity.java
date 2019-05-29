@@ -36,6 +36,7 @@ public class SplashActivity extends Activity {
                     startActivity(LoginActivity.createIntent(SplashActivity.this));
                 }
                 finish();
+
             }
 //            }
         }, 1000);
